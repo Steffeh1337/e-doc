@@ -1,0 +1,85 @@
+<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Basic
+      </div>
+      <div class="card-body">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Start Date
+      </div>
+      <div class="card-body">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker2" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2 startView="year" [startAt]="startDate"></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Datepicker uses Moment.js dates
+      </div>
+      <div class="card-body">
+        <mat-form-field>
+          <input matInput [matDatepicker]="dp1" placeholder="Moment.js datepicker" [formControl]="date2">
+          <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+          <mat-datepicker #dp1></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Disabled datepicker
+      </div>
+      <div class="card-body">
+        <p>
+          <mat-form-field>
+            <input matInput [matDatepicker]="dp2" placeholder="Completely disabled" disabled>
+            <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+            <mat-datepicker #dp2></mat-datepicker>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <input matInput [matDatepicker]="dp3" placeholder="Popup disabled">
+            <mat-datepicker-toggle matSuffix [for]="dp3" disabled></mat-datepicker-toggle>
+            <mat-datepicker #dp3></mat-datepicker>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <input matInput [matDatepicker]="dp4" placeholder="Input disabled" disabled>
+            <mat-datepicker-toggle matSuffix [for]="dp4">
+            </mat-datepicker-toggle>
+            <mat-datepicker #dp4 disabled="false"></mat-datepicker>
+          </mat-form-field>
+        </p>
+      </div>
+    </div>
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Open method
+      </div>
+      <div class="card-body">
+        <mat-form-field class="example-full-width">
+          <input matInput [matDatepicker]="picker3" placeholder="Choose a date">
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+        <button mat-raised-button (click)="picker3.open()">Open</button>
+      </div>
+    </div>
+  </div>
+</div>

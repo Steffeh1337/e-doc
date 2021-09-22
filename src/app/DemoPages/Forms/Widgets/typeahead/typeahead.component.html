@@ -1,0 +1,15 @@
+<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>
+
+<div class="card main-card mb-3">
+  <div class="card-header">
+    Basic Example
+  </div>
+  <div class="card-body">
+    <div class="form-group">
+      <label for="typeahead-basic">Search for a state:</label>
+      <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" />
+    </div>
+    <div class="divider"></div>
+    <pre>Model: {{ model | json }}</pre>
+  </div>
+</div>

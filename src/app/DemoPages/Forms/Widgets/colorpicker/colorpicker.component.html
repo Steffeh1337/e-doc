@@ -1,0 +1,73 @@
+<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        ColorPicker Examples I
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            <input class="form-control" [style.background]="color1" [(colorPicker)]="color1"
+              (colorPickerOpen)="onEventLog('colorPickerOpen', $event)"
+              (colorPickerClose)="onEventLog('colorPickerClose', $event)"
+              (cpInputChange)="onEventLog('cpInputChange', $event)"
+              (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)"
+              (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event)" />
+          </div>
+          <div class="col-md-4">
+            <input class="form-control" [style.background]="color17" [(colorPicker)]="color17"
+              [cpColorMode]="'grayscale'" (colorPickerOpen)="onEventLog('colorPickerOpen', $event)"
+              (colorPickerClose)="onEventLog('colorPickerClose', $event)"
+              (cpInputChange)="onEventLog('cpInputChange', $event)"
+              (cpSliderDragStart)="onEventLog('cpSliderDragStart', $event)"
+              (cpSliderDragEnd)="onEventLog('cpSliderDragEnd', $event)" />
+          </div>
+          <div class="col-md-4">
+            <input class="form-control" [value]="color2" [style.background]="color2" [cpPosition]="'bottom'"
+              [(colorPicker)]="color2" />
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row">
+          <div class="col-md-4">
+            <input class="form-control" [value]="color3" [style.background]="color3" [cpOutputFormat]="'rgba'"
+              [(colorPicker)]="color3" />
+          </div>
+          <div class="col-md-4">
+            <input class="form-control" [value]="color4" [style.background]="color4" [cpOutputFormat]="'hsla'"
+              [(colorPicker)]="color4" />
+          </div>
+          <div class="col-md-4">
+            <input class="form-control" [value]="color5" [style.background]="color5" [cpPosition]="'bottom'"
+              [(colorPicker)]="color5" />
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="text-center">
+          <button class="btn btn-white change-me" [style.color]="color6" [cpPosition]="'bottom'"
+            [cpPositionOffset]="'50%'" [cpPositionRelativeToArrow]="true" [(colorPicker)]="color6">
+            Change me!
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        ColorPicker Examples II
+      </div>
+      <div class="card-body text-center">
+        <span class="d-block mx-auto" [style.background]="arrayColors[selectedColor]" [cpToggle]="true"
+          [cpDialogDisplay]="'inline'" [cpCancelButton]="true" [cpCancelButtonClass]="'btn btn-primary btn-xs'"
+          [(colorPicker)]="arrayColors[selectedColor]"></span>
+        <div class="color-box" [style.background]="arrayColors['color1']" (click)="selectedColor='color1'"></div>
+        <div class="color-box" [style.background]="arrayColors['color2']" (click)="selectedColor='color2'"></div>
+        <div class="color-box" [style.background]="arrayColors['color3']" (click)="selectedColor='color3'"></div>
+        <div class="color-box" [style.background]="arrayColors['color4']" (click)="selectedColor='color4'"></div>
+        <div class="color-box" [style.background]="arrayColors['color5']" (click)="selectedColor='color5'"></div>
+      </div>
+    </div>
+  </div>
+</div>

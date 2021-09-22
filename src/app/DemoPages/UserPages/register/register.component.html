@@ -1,0 +1,82 @@
+<div class="h-100">
+  <div class="row h-100 no-gutters">
+    <div class="h-100 d-md-flex d-sm-block bg-white justify-content-center align-items-center col-md-12 col-lg-7">
+      <div class="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
+        <div class="app-logo"></div>
+        <h4>
+          <div>Welcome,</div>
+          <span>It only takes a <span class="text-success">few seconds</span> to create your account</span>
+        </h4>
+        <div>
+          <form>
+            <div class="row">
+              <div class="col-md-6">
+                <fieldset class="form-group" id="__BVID__132">
+                  <div tabindex="-1" role="group"><label for="exampleEmail"><span class="text-danger">*</span>
+                      Email
+                    </label><input id="exampleEmail" name="email" type="email" placeholder="Email here..."
+                      class="form-control"></div>
+                </fieldset>
+              </div>
+              <div class="col-md-6">
+                <fieldset class="form-group" id="__BVID__134">
+                  <div tabindex="-1" role="group"><label for="exampleName">Name</label><input id="exampleName"
+                      name="text" type="text" placeholder="Name here..." class="form-control">
+                  </div>
+                </fieldset>
+              </div>
+              <div class="col-md-6">
+                <fieldset class="form-group" id="__BVID__136">
+                  <div tabindex="-1" role="group"><label for="examplePassword"><span class="text-danger">*</span>
+                      Password
+                    </label><input id="examplePassword" name="password" type="password" placeholder="Password here..."
+                      class="form-control"></div>
+                </fieldset>
+              </div>
+              <div class="col-md-6">
+                <fieldset class="form-group" id="__BVID__138">
+                  <div tabindex="-1" role="group"><label for="examplePasswordRep"><span class="text-danger">*</span>
+                      Repeat Password
+                    </label><input id="examplePasswordRep" name="passwordrep" type="password"
+                      placeholder="Repeat Password here..." class="form-control"></div>
+                </fieldset>
+              </div>
+            </div>
+            <div class="custom-control custom-checkbox"><input id="exampleCheck" type="checkbox" name="check"
+                autocomplete="off" class="custom-control-input" value="true"><label for="exampleCheck"
+                class="custom-control-label">
+                Accept our <a [routerLink]="">Terms and Conditions</a>.
+              </label></div>
+            <div class="mt-4 d-flex align-items-center">
+              <h5 class="mb-0">
+                Already have an account?
+                <a [routerLink]="" class="text-primary">Sign in</a></h5>
+              <div class="ml-auto">
+                <button type="button"
+                  class="btn btn-wide btn-pill btn-shadow btn-hover-shine btn-secondary btn-lg">Create Account
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="d-lg-flex d-xs-none col-lg-5">
+      <div class="slider-light">
+        <ngx-slick-carousel class="slick-slider slick-dotted" #slickModal="slick-carousel" [config]="slideConfig2">
+          <div ngxSlickItem>
+            <div class="position-relative h-100 d-flex justify-content-center align-items-center bg-plum-plate">
+              <div class="slider-content text-light">
+                <h3>Perfect Balance</h3>
+                <p>
+                  ArchitectUI is like a dream. Some think it's too good to be true! Extensive collection of
+                  unified Vue Bootstrap Components and Elements.
+                </p>
+              </div>
+            </div>
+          </div>
+        </ngx-slick-carousel>
+      </div>
+    </div>
+  </div>
+</div>

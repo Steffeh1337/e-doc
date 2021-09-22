@@ -1,0 +1,486 @@
+<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>
+
+<ul ngbNav #nav="ngbNav" class="nav-tabs tabs-animated tabs-animated-shadow">
+  <li ngbNavItem>
+    <a ngbNavLink><span>Radial Gauges</span></a>
+    <ng-template ngbNavContent>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card main-card mb-3">
+            <div class="card-body">
+              <mwl-gauge [max]="100" [dialStartAngle]="-90" [dialEndAngle]="-90.001" [label]="percentageValue"
+                [value]="gaugeValues[1]" [animated]="true" [animationDuration]="1">
+              </mwl-gauge>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card main-card mb-3">
+            <div class="card-body">
+              <mwl-gauge class="two" [max]="100" [dialStartAngle]="180" [dialEndAngle]="0" [value]="gaugeValues[2]"
+                [animated]="true" [animationDuration]="2">
+              </mwl-gauge>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card main-card mb-3">
+            <div class="card-body">
+              <mwl-gauge class="three" [max]="100" [value]="gaugeValues[3]" [animated]="true" [animationDuration]="1.5">
+              </mwl-gauge>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card main-card mb-3">
+            <div class="card-body">
+              <mwl-gauge class="four" [max]="100" [dialStartAngle]="180" [dialEndAngle]="-90" [value]="gaugeValues[4]"
+                [animated]="true" [animationDuration]="2">
+              </mwl-gauge>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card main-card mb-3">
+            <div class="card-body">
+              <mwl-gauge class="five" [max]="200" [dialStartAngle]="0" [dialEndAngle]="-180" [value]="gaugeValues[5]"
+                [animated]="true" [animationDuration]="1">
+              </mwl-gauge>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card main-card mb-3">
+            <div class="card-body">
+              <mwl-gauge class="six" [max]="100" [dialStartAngle]="90.01" [dialEndAngle]="89.99" [dialRadius]="10"
+                [showValue]="false" [value]="gaugeValues[6]" [animated]="true" [animationDuration]="1">
+              </mwl-gauge>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card main-card mb-3">
+            <div class="card-body">
+              <mwl-gauge class="seven" [max]="100" [dialStartAngle]="-90" [dialEndAngle]="-90.001" [showValue]="false"
+                [value]="gaugeValues[6]" [animated]="true" [animationDuration]="1">
+              </mwl-gauge>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink><span>Circular Gauges</span></a>
+    <ng-template ngbNavContent>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row text-center">
+            <div class="col-md-4">
+              <div class="card main-card mb-3">
+                <div class="card-body">
+                  <round-progress [current]="34" [max]="100" [color]="'#3ac47d'" [background]="'#e3e3e3'" [radius]="26"
+                    [stroke]="5" [semicircle]="false" [rounded]="true" [clockwise]="false" [responsive]="true"
+                    [duration]="1400" [animation]="'easeInOutQuart'" [animationDelay]="0"></round-progress>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card main-card mb-3">
+                <div class="card-body">
+                  <round-progress [current]="65" [max]="100" [color]="'#5362c4'" [background]="'#eaeaea'" [radius]="26"
+                    [stroke]="3" [semicircle]="false" [rounded]="true" [clockwise]="false" [responsive]="true"
+                    [duration]="1400" [animation]="'easeInOutQuart'" [animationDelay]="0"></round-progress>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card main-card mb-3">
+                <div class="card-body">
+                  <round-progress [current]="65" [max]="100" [color]="'#c46aa0'" [background]="'#eaeaea'" [radius]="26"
+                    [stroke]="3" [semicircle]="false" [rounded]="true" [clockwise]="false" [responsive]="true"
+                    [duration]="1400" [animation]="'easeInOutQuart'" [animationDelay]="0"></round-progress>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row text-center">
+            <div class="col-md-4">
+              <div class="card main-card mb-3">
+                <div class="card-body">
+                  <round-progress [current]="34" [max]="100" [color]="'#6edfbe'" [background]="'#e3e3e3'" [radius]="26"
+                    [stroke]="5" [semicircle]="true" [rounded]="true" [clockwise]="false" [responsive]="true"
+                    [duration]="1400" [animation]="'easeInOutQuart'" [animationDelay]="0"></round-progress>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card main-card mb-3">
+                <div class="card-body">
+                  <round-progress [current]="65" [max]="100" [color]="'#d16fdf'" [background]="'#eaeaea'" [radius]="26"
+                    [stroke]="3" [semicircle]="true" [rounded]="true" [clockwise]="false" [responsive]="true"
+                    [duration]="1400" [animation]="'easeInOutQuart'" [animationDelay]="0"></round-progress>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card main-card mb-3">
+                <div class="card-body">
+                  <round-progress [current]="65" [max]="100" [color]="'#dfa028'" [background]="'#eaeaea'" [radius]="26"
+                    [stroke]="3" [semicircle]="true" [rounded]="true" [clockwise]="false" [responsive]="true"
+                    [duration]="1400" [animation]="'easeInOutQuart'" [animationDelay]="0"></round-progress>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3 card">
+            <div class="card-header-tab card-header">
+              <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i
+                  class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"></i>
+                Best Selling Products
+              </div>
+              <div class="btn-actions-pane-right actions-icon-btn">
+                <div class="btn-group" ngbDropdown placement="bottom-right">
+                  <button ngbDropdownToggle type="button" class="btn btn-link dropdown-toggle btn-icon btn-icon-only">
+                    <i class="ion ion-md-apps"></i>
+                  </button>
+                  <div ngbDropdownMenu>
+                    <button type="button" class="dropdown-item">
+                      <i class="dropdown-icon lnr-inbox"></i>
+                      <span>Menus</span>
+                    </button>
+                    <button type="button" class="dropdown-item">
+                      <i class="dropdown-icon lnr-file-empty"></i>
+                      <span>Settings</span>
+                    </button>
+                    <button type="button" class="dropdown-item">
+                      <i class="dropdown-icon lnr-book"></i>
+                      <span>Actions</span>
+                    </button>
+                    <div class="dropdown-divider"></div>
+                    <div class="p-1 text-right">
+                      <button class="mr-2 btn-shadow btn-sm btn btn-link">View Details</button>
+                      <button class="mr-2 btn-shadow btn-sm btn btn-primary">Action</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pt-2 pb-0 card-body pr-0">
+              <div class="scroll-area-sm shadow-overflow">
+                <section class="scrollbar-container">
+                  <perfect-scrollbar [autoPropagation]="true">
+                    <ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush">
+                      <li class="list-group-item">
+                        <div class="widget-content p-0">
+                          <div class="widget-content-wrapper">
+                            <div class="widget-content-left mr-3">
+                              <div class="icon-wrapper m-0">
+                                <div class="progress-circle-wrapper">
+                                  <div class="round-progress-text">
+                                    <span>42%</span>
+                                    <round-progress [current]="42" [max]="100" [color]="'#52c44f'"
+                                      [background]="'#f0f0f0'" [radius]="88" [stroke]="11" [semicircle]="false"
+                                      [rounded]="true" [clockwise]="false" [responsive]="true" [duration]="1400"
+                                      [animation]="'easeInOutQuart'" [animationDelay]="0"></round-progress>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="widget-content-left">
+                              <div class="widget-heading">Asus Laptop</div>
+                              <div class="widget-subheading mt-1 opacity-10">
+                                <div class="badge badge-pill badge-dark">$152</div>
+                              </div>
+                            </div>
+                            <div class="widget-content-right">
+                              <div class="fsize-1 text-focus">
+                                <small class="opacity-5 pr-1">$</small>
+                                <span>752</span>
+                                <small class="text-warning pl-2">
+                                  <fa-icon [icon]="faAngleDown"></fa-icon>
+                                </small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="list-group-item">
+                        <div class="widget-content p-0">
+                          <div class="widget-content-wrapper">
+                            <div class="widget-content-left mr-3">
+                              <div class="icon-wrapper m-0">
+                                <div class="progress-circle-wrapper">
+                                  <div class="round-progress-text">
+                                    <span>71%</span>
+                                    <round-progress [current]="71" [max]="100" [color]="'#cc603c'"
+                                      [background]="'#f0f0f0'" [radius]="88" [stroke]="11" [semicircle]="false"
+                                      [rounded]="true" [clockwise]="false" [responsive]="true" [duration]="1400"
+                                      [animation]="'easeInOutQuart'" [animationDelay]="0"></round-progress>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="widget-content-left">
+                              <div class="widget-heading">Dell Inspire</div>
+                              <div class="widget-subheading mt-1 opacity-10">
+                                <div class="badge badge-pill badge-dark">$53</div>
+                              </div>
+                            </div>
+                            <div class="widget-content-right">
+                              <div class="fsize-1 text-focus">
+                                <small class="opacity-5 pr-1">$</small>
+                                <span>587</span>
+                                <small class="text-danger pl-2">
+                                  <fa-icon [icon]="faAngleUp"></fa-icon>
+                                </small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="list-group-item">
+                        <div class="widget-content p-0">
+                          <div class="widget-content-wrapper">
+                            <div class="widget-content-left mr-3">
+                              <div class="icon-wrapper m-0">
+                                <div class="progress-circle-wrapper">
+                                  <div class="round-progress-text">
+                                    <span>55%</span>
+                                    <round-progress [current]="55" [max]="100" [color]="'#6bbdcc'"
+                                      [background]="'#f0f0f0'" [radius]="88" [stroke]="11" [semicircle]="false"
+                                      [rounded]="true" [clockwise]="false" [responsive]="true" [duration]="1400"
+                                      [animation]="'easeInOutQuart'" [animationDelay]="0"></round-progress>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="widget-content-left">
+                              <div class="widget-heading">Lenovo IdeaPad</div>
+                              <div class="widget-subheading mt-1 opacity-10">
+                                <div class="badge badge-pill badge-dark">$239</div>
+                              </div>
+                            </div>
+                            <div class="widget-content-right">
+                              <div class="fsize-1 text-focus">
+                                <small class="opacity-5 pr-1">$</small>
+                                <span>163</span>
+                                <small class="text-muted pl-2">
+                                  <fa-icon [icon]="faAngleDown"></fa-icon>
+                                </small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="list-group-item">
+                        <div class="widget-content p-0">
+                          <div class="widget-content-wrapper">
+                            <div class="widget-content-left mr-3">
+                              <div class="icon-wrapper m-0">
+                                <div class="progress-circle-wrapper">
+                                  <div class="round-progress-text">
+                                    <span>38%</span>
+                                    <round-progress [current]="38" [max]="100" [color]="'#aacc3e'"
+                                      [background]="'#f0f0f0'" [radius]="88" [stroke]="11" [semicircle]="false"
+                                      [rounded]="true" [clockwise]="false" [responsive]="true" [duration]="1400"
+                                      [animation]="'easeInOutQuart'" [animationDelay]="0"></round-progress>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="widget-content-left">
+                              <div class="widget-heading">Asus Vivobook</div>
+                              <div class="widget-subheading mt-1 opacity-10">
+                                <div class="badge badge-pill badge-dark">$21</div>
+                              </div>
+                            </div>
+                            <div class="widget-content-right">
+                              <div class="fsize-1 text-focus">
+                                <small class="opacity-5 pr-1">$</small>
+                                653
+                                <small class="text-primary pl-2">
+                                  <fa-icon [icon]="faAngleUp"></fa-icon>
+                                </small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="list-group-item">
+                        <div class="widget-content p-0">
+                          <div class="widget-content-wrapper">
+                            <div class="widget-content-left mr-3">
+                              <div class="icon-wrapper m-0">
+                                <div class="progress-circle-wrapper">
+                                  <div class="round-progress-text">
+                                    <span>92%</span>
+                                    <round-progress [current]="92" [max]="100" [color]="'#6b72cc'"
+                                      [background]="'#f0f0f0'" [radius]="88" [stroke]="11" [semicircle]="false"
+                                      [rounded]="true" [clockwise]="false" [responsive]="true" [duration]="1400"
+                                      [animation]="'easeInOutQuart'" [animationDelay]="0"></round-progress>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="widget-content-left">
+                              <div class="widget-heading">Apple Macbook</div>
+                              <div class="widget-subheading mt-1 opacity-10">
+                                <div class="badge badge-pill badge-dark">$381</div>
+                              </div>
+                            </div>
+                            <div class="widget-content-right">
+                              <div class="fsize-1 text-focus">
+                                <small class="opacity-5 pr-1">$</small>
+                                629
+                                <small class="text-muted pl-2">
+                                  <fa-icon [icon]="faAngleUp"></fa-icon>
+                                </small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="list-group-item">
+                        <div class="widget-content p-0">
+                          <div class="widget-content-wrapper">
+                            <div class="widget-content-left mr-3">
+                              <div class="icon-wrapper m-0">
+                                <div class="progress-circle-wrapper">
+                                  <div class="round-progress-text">
+                                    <span>63%</span>
+                                    <round-progress [current]="63" [max]="100" [color]="'#5eccb5'"
+                                      [background]="'#f0f0f0'" [radius]="88" [stroke]="11" [semicircle]="false"
+                                      [rounded]="true" [clockwise]="false" [responsive]="true" [duration]="1400"
+                                      [animation]="'easeInOutQuart'" [animationDelay]="0"></round-progress>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="widget-content-left">
+                              <div class="widget-heading">HP Envy 13"</div>
+                              <div class="widget-subheading mt-1 opacity-10">
+                                <div class="badge badge-pill badge-dark">$74</div>
+                              </div>
+                            </div>
+                            <div class="widget-content-right">
+                              <div class="fsize-1 text-focus">
+                                <small class="opacity-5 pr-1">$</small>
+                                462
+                                <small class="text-muted pl-2">
+                                  <fa-icon [icon]="faAngleDown"></fa-icon>
+                                </small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="border-bottom-0 list-group-item">
+                        <div class="widget-content p-0">
+                          <div class="widget-content-wrapper">
+                            <div class="widget-content-left mr-3">
+                              <div class="icon-wrapper m-0">
+                                <div class="progress-circle-wrapper">
+                                  <div class="round-progress-text">
+                                    <span>76%</span>
+                                    <round-progress [current]="76" [max]="100" [color]="'#cc81a1'"
+                                      [background]="'#f0f0f0'" [radius]="88" [stroke]="11" [semicircle]="false"
+                                      [rounded]="true" [clockwise]="false" [responsive]="true" [duration]="1400"
+                                      [animation]="'easeInOutQuart'" [animationDelay]="0"></round-progress>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="widget-content-left">
+                              <div class="widget-heading">Gaming Laptop HP</div>
+                              <div class="widget-subheading mt-1 opacity-10">
+                                <div class="badge badge-pill badge-dark">$7</div>
+                              </div>
+                            </div>
+                            <div class="widget-content-right">
+                              <div class="fsize-1 text-focus">
+                                <small class="opacity-5 pr-1">$</small>
+                                956
+                                <small class="text-success pl-2">
+                                  <fa-icon [icon]="faAngleUp"></fa-icon>
+                                </small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </perfect-scrollbar>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3 card">
+            <div class="rm-border pb-0 responsive-center card-header">
+              <div>
+                <h5 class="menu-header-title text-capitalize">Portfolio Performance</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="no-shadow rm-border bg-transparent widget-chart text-left card">
+                  <div class="progress-circle-wrapper">
+                    <div class="round-progress-text">
+                      <span>34%</span>
+                      <round-progress [current]="34" [max]="100" [color]="'#c44636'" [background]="'#e3e3e3'"
+                        [radius]="88" [stroke]="11" [semicircle]="false" [rounded]="true" [clockwise]="false"
+                        [responsive]="true" [duration]="1400" [animation]="'easeInOutQuart'" [animationDelay]="0">
+                      </round-progress>
+                    </div>
+                  </div>
+                  <div class="widget-chart-content">
+                    <div class="widget-subheading">Capital Gains</div>
+                    <div class="widget-numbers text-success"><span>$563</span></div>
+                    <div class="widget-description text-focus">
+                      Increased by
+                      <span class="text-warning pl-1">
+                        <fa-icon [icon]="faAngleUp"></fa-icon>
+                        <span class="pl-1">7.35%</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card no-shadow rm-border bg-transparent widget-chart text-left mt-2">
+                  <div class="progress-circle-wrapper">
+                    <div class="round-progress-text">
+                      <span>34%</span>
+                      <round-progress [current]="66" [max]="100" [color]="'#4143c4'" [background]="'#e3e3e3'"
+                        [radius]="88" [stroke]="11" [semicircle]="false" [rounded]="true" [clockwise]="false"
+                        [responsive]="true" [duration]="1400" [animation]="'easeInOutQuart'" [animationDelay]="0">
+                      </round-progress>
+                    </div>
+                  </div>
+                  <div class="widget-chart-content">
+                    <div class="widget-subheading">Withdrawals</div>
+                    <div class="widget-numbers text-danger"><span>$194</span></div>
+                    <div class="widget-description opacity-8 text-focus">
+                      Down by
+                      <span class="text-success pl-1 pr-1">
+                        <fa-icon [icon]="faAngleDown"></fa-icon>
+                        <span class="pl-1">21.8%</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </li>
+</ul>
+<div [ngbNavOutlet]="nav"></div>

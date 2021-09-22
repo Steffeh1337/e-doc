@@ -1,0 +1,57 @@
+<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Basic
+      </div>
+      <div class="card-body">
+        <mat-list role="list">
+          <mat-list-item role="listitem">Item 1</mat-list-item>
+          <mat-list-item role="listitem">Item 2</mat-list-item>
+          <mat-list-item role="listitem">Item 3</mat-list-item>
+        </mat-list>
+      </div>
+    </div>
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        List with selection
+      </div>
+      <div class="card-body">
+        <mat-selection-list #shoes>
+          <mat-list-option *ngFor="let shoe of typesOfShoes">
+            {{shoe}}
+          </mat-list-option>
+        </mat-selection-list>
+        <p>
+          Options selected: {{shoes.selectedOptions.selected.length}}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        List with sections
+      </div>
+      <div class="card-body">
+        <mat-list>
+          <h3 mat-subheader>Folders</h3>
+          <mat-list-item *ngFor="let folder of folders">
+            <mat-icon mat-list-icon>folder</mat-icon>
+            <h4 mat-line>{{folder.name}}</h4>
+            <p mat-line> {{folder.updated | date}} </p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <h3 mat-subheader>Notes</h3>
+          <mat-list-item *ngFor="let note of notes">
+            <mat-icon mat-list-icon>note</mat-icon>
+            <h4 mat-line>{{note.name}}</h4>
+            <p mat-line> {{note.updated | date}} </p>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </div>
+  </div>
+</div>

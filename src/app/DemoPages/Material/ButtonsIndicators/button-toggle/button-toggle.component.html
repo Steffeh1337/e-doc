@@ -1,0 +1,38 @@
+<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Basic
+      </div>
+      <div class="card-body">
+        <mat-button-toggle>Toggle me!</mat-button-toggle>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Exclusive Selection
+      </div>
+      <div class="card-body">
+        <mat-button-toggle-group #group="matButtonToggleGroup">
+          <mat-button-toggle value="left">
+            <mat-icon>format_align_left</mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="center">
+            <mat-icon>format_align_center</mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="right">
+            <mat-icon>format_align_right</mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="justify" disabled>
+            <mat-icon>format_align_justify</mat-icon>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+        <div class="example-selected-value">Selected value: {{group.value}}</div>
+      </div>
+    </div>
+  </div>
+</div>

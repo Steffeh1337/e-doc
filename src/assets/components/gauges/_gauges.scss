@@ -1,0 +1,105 @@
+
+mwl-gauge {
+  flex: 1;
+  display: block;
+}
+mwl-gauge .gauge .dial {
+  stroke: $gray-200;
+  stroke-width: 2;
+  fill: rgba(0,0,0,0);
+}
+mwl-gauge .gauge .value {
+  stroke:  $info;
+  stroke-width: 2;
+  fill: rgba(0,0,0,0);
+}
+mwl-gauge .gauge .value-text {
+  fill:  $info;
+}
+
+/* ------- Alternate Style ------- */
+mwl-gauge.two {
+}
+mwl-gauge.two .gauge .dial {
+  stroke: $gray-300;
+  stroke-width: 10;
+}
+mwl-gauge.two .gauge .value {
+  stroke: $warning;
+  stroke-dasharray: none;
+  stroke-width: 13;
+}
+mwl-gauge.two .gauge .value-text {
+  fill: $warning;
+}
+
+/* ------- Alternate Style ------- */
+mwl-gauge.three {
+}
+mwl-gauge.three .gauge .dial {
+  stroke: $gray-300;
+  stroke-width: 2;
+}
+mwl-gauge.three .gauge .value {
+  stroke: $success;
+  stroke-width: 5;
+}
+mwl-gauge.three .gauge .value-text {
+  fill: $success;
+}
+
+/* ----- Alternate Style ----- */
+mwl-gauge.four .gauge .dial {
+  stroke: $gray-300;
+  stroke-width: 5;
+}
+mwl-gauge.four .gauge .value {
+  stroke: $danger;
+  stroke-dasharray: none;
+  stroke-width: 5;
+}
+mwl-gauge.four .gauge .value-text {
+  fill: $danger;
+}
+
+/* ----- Alternate Style ----- */
+mwl-gauge.five .gauge .dial {
+  stroke: $gray-300;
+  stroke-width: 5;
+}
+mwl-gauge.five .gauge .value {
+  stroke: $orange;
+  stroke-dasharray: 25 1;
+  stroke-width: 5;
+}
+mwl-gauge.five .gauge .value-text {
+  fill: $orange;
+  font-size: 0.7em;
+}
+
+/* ----- Alternate Style ----- */
+mwl-gauge.six .gauge .dial {
+  stroke: $gray-300;
+  fill: $gray-300;
+  stroke-width: 20;
+}
+mwl-gauge.six .gauge .value {
+  stroke: $primary;
+  stroke-width: 20;
+}
+mwl-gauge.six .gauge .value-text {
+  fill: $primary;
+  font-size: 0.7em;
+}
+
+mwl-gauge.seven .gauge .dial {
+  stroke: transparent;
+  stroke-width: 5;
+  transform: scale(0.9,0.9) translate3d(5.5px, 5.5px, 0);
+  fill: $gray-200;
+}
+mwl-gauge.seven .gauge .value {
+  stroke: $orange;
+  stroke-dasharray: none;
+  stroke-width: 5;
+}

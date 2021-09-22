@@ -1,0 +1,252 @@
+<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>
+
+<div class="card main-card mb-3">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-4">
+        <h5>State</h5>
+        <p>
+          <bSwitch [(ngModel)]="state" (changeState)="onChange($event)"></bSwitch>
+        </p>
+        <div class="btn-group mb-3">
+          <button class="btn btn-sm btn-primary" (click)="state = !state">
+            Toggle
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="state = true">
+            Set true
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="state = false">
+            Set false
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="getAlert(state)">
+            Get
+          </button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h5>Size</h5>
+        <p>
+          <bSwitch [switch-size]="size"></bSwitch>
+        </p>
+        <div class="btn-group mb-3">
+          <button class="btn btn-sm btn-primary" (click)="size = 'mini'">
+            Mini
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="size = 'small'">
+            Small
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="size = 'normal'">
+            Normal
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="size = 'large'">
+            Large
+          </button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h5>Animate</h5>
+        <p>
+          <bSwitch [switch-animate]="animate" [(ngModel)]="animated"></bSwitch>
+        </p>
+        <div class="btn-group mb-3">
+          <button class="btn btn-sm btn-primary" (click)="animate = !animate">
+            Toggle
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="getAlert(animated)">
+            Get
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Disabled</h5>
+        <p>
+          <bSwitch [switch-disabled]="disabled"></bSwitch>
+        </p>
+        <div class="btn-group mb-3">
+          <button class="btn btn-sm btn-primary" (click)="disabled = !disabled">
+            Toggle
+          </button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h5>Readonly</h5>
+        <p>
+          <bSwitch [switch-readonly]="readonly"></bSwitch>
+        </p>
+        <div class="btn-group mb-3">
+          <button class="btn btn-sm btn-primary" (click)="readonly = !readonly">
+            Toggle
+          </button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h5>Indeterminate</h5>
+        <p>
+          <bSwitch [switch-indeterminate]="indeterminate"></bSwitch>
+        </p>
+        <div class="btn-group mb-3">
+          <button class="btn btn-sm btn-primary" (click)="indeterminate = !indeterminate">
+            Toggle
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Inverse</h5>
+        <p>
+          <bSwitch [switch-inverse]="inverse" [(ngModel)]="inverseValue"></bSwitch>
+        </p>
+        <div class="btn-group mb-3">
+          <button class="btn btn-sm btn-primary" (click)="inverse = !inverse">
+            Toggle Inverse Status
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="inverseValue = !inverseValue">
+            Toggle Switch Value
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="getAlert(inverseValue)">
+            Get
+          </button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h5>On Color</h5>
+        <p>
+          <bSwitch [switch-on-color]="color"></bSwitch>
+        </p>
+        <div class="btn-group mb-3">
+          <button class="btn btn-sm btn-primary" (click)="color = 'primary'">
+            Primary
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="color = 'info'">
+            Info
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="color = 'success'">
+            Success
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="color = 'warning'">
+            Warning
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="color = 'default'">
+            Default
+          </button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h5>Off Color</h5>
+        <p>
+          <bSwitch [switch-off-color]="offColor" [(ngModel)]="offColorValue"></bSwitch>
+        </p>
+        <div class="btn-group mb-3">
+          <button class="btn btn-sm btn-primary" (click)="offColor = 'primary'">
+            Primary
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="offColor = 'info'">
+            Info
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="offColor = 'success'">
+            Success
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="offColor = 'warning'">
+            Warning
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="offColor = 'default'">
+            Default
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="row">
+      <div class="col-md-4">
+        <h5>On Text</h5>
+        <p>
+          <bSwitch [switch-on-text]="onText"></bSwitch>
+        </p>
+        <input type="text" class="form-control" [(ngModel)]="onText" />
+      </div>
+      <div class="col-md-4">
+        <h5>Off Text</h5>
+        <p>
+          <bSwitch [switch-off-text]="offText" [(ngModel)]="offTextValue"></bSwitch>
+        </p>
+        <input type="text" class="form-control" [(ngModel)]="offText" />
+      </div>
+      <div class="col-md-4">
+        <h5>Label Text</h5>
+        <p>
+          <bSwitch [switch-label-text]="labelText"></bSwitch>
+        </p>
+        <input type="text" class="form-control" [(ngModel)]="labelText" />
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Handle Width</h5>
+        <p>
+          <bSwitch [switch-handle-width]="handleWidth"></bSwitch>
+        </p>
+        <input type="number" min="0" class="form-control" [(ngModel)]="handleWidth" />
+      </div>
+      <div class="col-md-4">
+        <h5>Label Width</h5>
+        <p>
+          <bSwitch [switch-label-width]="labelWidth"></bSwitch>
+        </p>
+        <input type="number" min="0" class="form-control" [(ngModel)]="labelWidth" />
+      </div>
+      <div class="col-md-4">
+        <h5>All Attibutes</h5>
+        <p>
+          <bSwitch [switch-base-class]="baseClass" [switch-wrapper-class]="wrapperClass"
+            [switch-label-width]="labelWidth" [switch-label-text]="labelText" [switch-off-text]="offText"
+            [switch-on-text]="onText" [switch-on-color]="color" [switch-off-color]="offColor" [switch-size]="size"
+            [switch-disabled]="disabled" [switch-readonly]="readonly" [switch-animate]="animate" [(ngModel)]="state"
+            [switch-inverse]="inverse" [switch-handle-width]="handleWidth">
+          </bSwitch>
+        </p>
+        <input type="number" min="0" class="form-control" [(ngModel)]="labelWidth" />
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="row">
+      <div class="col-md-4">
+        <form [formGroup]="form">
+          <h5>Form Validation</h5>
+          <div class="form-group" [ngClass]="{
+              'has-error':
+                !form.controls['view'].valid && form.controls['view'].touched
+            }">
+            <label class="control-label" for="view">Estado</label>
+            <bSwitch id="view" [formControl]="form.controls['view']" [switch-size]="'small'" [switch-on-text]="'Activo'"
+              [switch-off-text]="'Inactivo'" [switch-on-color]="'success'" [switch-off-color]="'danger'"></bSwitch>
+            <pre>{{ form.value | json }}</pre>
+            <span class="help-text" *ngIf="
+                form.controls['view'].hasError('required') &&
+                form.controls['view'].touched
+              ">
+              Debes seleccionar el estado.
+            </span>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-sm btn-primary" style="margin-top: 15px;" (click)="toggleDisable()">
+          <span *ngIf="form.disabled">Enable</span>
+          <span *ngIf="!form.disabled">Disabled</span>
+          Form
+        </button>
+      </div>
+      <div class="col-md-4">
+        <div [style.display]="state ? 'block' : 'none'">
+          <bSwitch [switch-label-width]="52" [switch-handle-width]="52"></bSwitch>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+// Header Dots
+
+.header-dots {
+  margin-left: auto;
+  display: flex;
+
+  & > .dropdown {
+    display: flex;
+    align-content: center;
+
+    & > .btn-link {
+      text-decoration: none !important;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  .icon-wrapper-alt {
+    margin: 0;
+    height: 44px;
+    width: 44px;
+    text-align: center;
+    overflow: visible;
+
+    .icon-wrapper-bg {
+      opacity: .1;
+      transition: opacity .2s;
+      @include border-radius(40px);
+    }
+
+    i {
+      font-size: 1.3rem;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      .icon-wrapper-bg {
+        opacity: .2;
+      }
+    }
+
+    .badge-dot {
+      top: 1px;
+      right: 1px;
+      border: 0;
+    }
+  }
+}
+
+.dropdown-item {
+  .flag {
+    position: absolute;
+    @include border-radius(50%);
+    height: 24px;
+    width: 24px;
+
+    & + span {
+      padding-left: 38px;
+    }
+  }
+
+  &:hover {
+    .flag {
+      opacity: 1;
+    }
+  }
+}
+
+.language-icon {
+  @include border-radius(30px);
+  position: relative;
+  z-index: 4;
+  width: 28px;
+  height: 28px;
+  overflow: hidden;
+  margin: 0 auto;
+}

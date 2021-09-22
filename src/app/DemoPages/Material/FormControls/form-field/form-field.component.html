@@ -1,0 +1,135 @@
+<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Basic
+      </div>
+      <div class="card-body">
+        <div class="example-container">
+          <mat-form-field>
+            <input matInput placeholder="Input">
+          </mat-form-field>
+          <mat-form-field>
+            <textarea matInput placeholder="Textarea"></textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Select">
+              <mat-option value="option">Option</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Form field with label
+      </div>
+      <div class="card-body">
+        <div class="example-container">
+          <form class="example-container" [formGroup]="options">
+            <mat-checkbox formControlName="hideRequired">Hide required marker</mat-checkbox>
+            <div>
+              <label>Float label: </label>
+              <mat-radio-group formControlName="floatLabel">
+                <mat-radio-button value="auto">Auto</mat-radio-button>
+                <mat-radio-button value="always">Always</mat-radio-button>
+                <mat-radio-button value="never">Never</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </form>
+          <mat-form-field [hideRequiredMarker]="options.value.hideRequired" [floatLabel]="options.value.floatLabel">
+            <input matInput placeholder="Simple placeholder" required>
+          </mat-form-field>
+          <mat-form-field [floatLabel]="options.value.floatLabel">
+            <mat-label>Both a label and a placeholder</mat-label>
+            <input matInput placeholder="Simple placeholder">
+          </mat-form-field>
+          <mat-form-field [hideRequiredMarker]="options.value.hideRequired" [floatLabel]="options.value.floatLabel">
+            <mat-select required>
+              <mat-option>-- None --</mat-option>
+              <mat-option value="option">Option</mat-option>
+            </mat-select>
+            <mat-placeholder>
+              <mat-icon>favorite</mat-icon> <b> Fancy</b> <i> placeholder</i>
+            </mat-placeholder>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Form field with hints
+      </div>
+      <div class="card-body">
+        <div class="example-container">
+          <mat-form-field hintLabel="Max 10 characters">
+            <input matInput #input maxlength="10" placeholder="Enter some input">
+            <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Select me">
+              <mat-option value="option">Option</mat-option>
+            </mat-select>
+            <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Form field with error messages
+      </div>
+      <div class="card-body">
+        <div class="example-container">
+          <mat-form-field>
+            <input matInput placeholder="Enter your email" [formControl]="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Form field appearance variants
+      </div>
+      <div class="card-body">
+        <p>
+          <mat-form-field appearance="legacy">
+            <mat-label>Legacy form field</mat-label>
+            <input matInput placeholder="Placeholder">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Hint</mat-hint>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="standard">
+            <mat-label>Standard form field</mat-label>
+            <input matInput placeholder="Placeholder">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Hint</mat-hint>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="fill">
+            <mat-label>Fill form field</mat-label>
+            <input matInput placeholder="Placeholder">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Hint</mat-hint>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Outline form field</mat-label>
+            <input matInput placeholder="Placeholder">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Hint</mat-hint>
+          </mat-form-field>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

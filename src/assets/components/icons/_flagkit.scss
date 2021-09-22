@@ -1,0 +1,17 @@
+// FlagKit
+@import '../../../../node_modules/flag-icon-css/sass/variables';
+
+$flag-icon-css-path: '~flag-icon-css/flags';
+
+@import '../../../../node_modules/flag-icon-css/sass/flag-icon-base';
+@import '../../../../node_modules/flag-icon-css/sass/flag-icon-list';
+
+.flag-icon-lg {
+  line-height: 2em;
+  width: 100%;
+}
+
+.font-flag-wrapper {
+  width: 100%;
+  height: 40px;
+}

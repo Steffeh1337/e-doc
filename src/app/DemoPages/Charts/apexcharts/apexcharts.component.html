@@ -1,0 +1,340 @@
+<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>
+
+<ul ngbNav #nav="ngbNav" class="nav-tabs tabs-animated tabs-animated-shadow">
+  <li ngbNavItem>
+    <a ngbNavLink><span>Charts Examples</span></a>
+    <ng-template ngbNavContent>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card main-card mb-3">
+            <div class="card-header">
+              Area
+            </div>
+            <div class="card-body">
+              <apx-chart [series]="[
+                  {
+                    name: 'series1',
+                    data: [31, 40, 28, 51, 42, 109, 100]
+                  },
+                  {
+                    name: 'series2',
+                    data: [11, 32, 45, 32, 34, 52, 41]
+                  }
+                ]" [xaxis]="{categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']}" [chart]="{
+                  height: '350',
+                  type: 'area'
+                }"></apx-chart>
+            </div>
+          </div>
+          <div class="card main-card mb-3">
+            <div class="card-header">
+              Bar
+            </div>
+            <div class="card-body">
+              <apx-chart [series]="[
+                  {
+                    name: 'series-1',
+                    data: [30, 40, 45, 50, 49, 60, 70, 91]
+                  }
+                ]" [chart]="{
+                  height: '350',
+                  type: 'bar'
+                }" [plotOptions]="{
+                  bar: {
+                    horizontal: true
+                  }
+                }" [xaxis]="{
+                  categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+                }"></apx-chart>
+            </div>
+          </div>
+          <div class="card main-card mb-3">
+            <div class="card-header">
+              Columns
+            </div>
+            <div class="card-body">
+              <apx-chart [series]="[
+                  {
+                    name: 'Net Profit',
+                    data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+                  }, {
+                    name: 'Revenue',
+                    data: [76, 85, 41, 98, 87, 44, 91, 81, 94]
+                  }, {
+                    name: 'Free Cash Flow',
+                    data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+                  }
+                ]" [chart]="{
+                  height: '350',
+                  type: 'bar'
+                }" [stroke]="{
+                  show: true,
+                  width: 2,
+                  colors: ['transparent']
+                }" [plotOptions]="{
+                  bar: {
+                    horizontal: false,
+                    endingShape: 'rounded',
+                    columnWidth: '55%'
+                  }
+                }" [dataLabels]="{
+                  enabled: false
+                }"
+                [labels]="['01/01/2003', '02/01/2003', '03/01/2003', '04/01/2003', '05/01/2003', '06/01/2003', '07/01/2003', '08/01/2003', '09/01/2003', '10/01/2003', '11/01/2003']"
+                [xaxis]="{
+                  categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct']
+                }" [yaxis]="{
+                  title: {
+                    text: '$ (thousands)'
+                  }
+                }" [fill]="{
+                  opacity: 1
+                }"></apx-chart>
+            </div>
+          </div>
+          <div class="card main-card mb-3">
+            <div class="card-header">
+              Lines
+            </div>
+            <div class="card-body">
+              <apx-chart [series]="[
+                  {
+                    name: 'Series A',
+                    data: [30, 40, 45, 50, 49, 60, 70, 91]
+                  },
+                  {
+                    name: 'Series B',
+                    data: [23, 43, 54, 12, 44, 52, 32, 11]
+                  }
+                ]" [xaxis]="{
+                  type: 'datetime',
+                  categories: ['01/01/2003', '02/01/2003', '03/01/2003', '04/01/2003', '05/01/2003', '06/01/2003', '07/01/2003', '08/01/2003']
+                }" [chart]="{
+                  height: '350',
+                  type: 'line'
+                }"></apx-chart>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card main-card mb-3">
+            <div class="card-header">
+              Mixed
+            </div>
+            <div class="card-body">
+              <apx-chart [series]="[
+                  {
+                    name: 'TEAM A',
+                    type: 'column',
+                    data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
+                  }, {
+                    name: 'TEAM B',
+                    type: 'area',
+                    data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
+                  }, {
+                    name: 'TEAM C',
+                    type: 'line',
+                    data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
+                  }
+                ]" [chart]="{
+                  height: '350',
+                  type: 'line',
+                  stacked: false
+                }" [stroke]="{
+                  width: [0, 2, 5],
+                  curve: 'smooth'
+                }" [plotOptions]="{
+                  bar: {
+                    columnWidth: '50%'
+                  }
+                }" [fill]="{
+                  opacity: [0.85, 0.25, 1],
+                  gradient: {
+                    inverseColors: false,
+                    shade: 'light',
+                    type: 'vertical',
+                    opacityFrom: 0.85,
+                    opacityTo: 0.55,
+                    stops: [0, 100, 100, 100]
+                    }
+                }"
+                [labels]="['01/01/2003', '02/01/2003', '03/01/2003', '04/01/2003', '05/01/2003', '06/01/2003', '07/01/2003', '08/01/2003', '09/01/2003', '10/01/2003', '11/01/2003']"
+                [xaxis]="{
+                  type: 'datetime'
+                }" [yaxis]="{
+                  title: {
+                    text: 'Points'
+                  },
+                  min: 0
+                }"></apx-chart>
+            </div>
+          </div>
+          <div class="card main-card mb-3">
+            <div class="card-header">
+              Pie Chart
+            </div>
+            <div class="card-body">
+              <apx-chart [series]="[44, 55, 13, 43, 22]" [labels]="['Team A', 'Team B', 'Team C', 'Team D', 'Team E']"
+                [chart]="{
+                  height: '350',
+                  type: 'pie'
+                }"></apx-chart>
+            </div>
+          </div>
+          <div class="card main-card mb-3">
+            <div class="card-header">
+              Doughnut
+            </div>
+            <div class="card-body">
+              <apx-chart [series]="[44, 55, 41, 17, 15]" [chart]="{
+                  height: '350',
+                  type: 'donut'
+                }"></apx-chart>
+            </div>
+          </div>
+          <div class="card main-card mb-3">
+            <div class="card-header">
+              Heatmap
+            </div>
+            <div class="card-body">
+              <apx-chart [labels]="['Team A', 'Team B', 'Team C', 'Team D', 'Team E']" [dataLabels]="{
+                  enabled: false
+                  }" [colors]="['#008FFB']" [xaxis]=" {
+                  type: 'category'
+                }" [title]="{
+                  text: 'HeatMap Chart (Single color)'
+                }" [chart]="{
+                  height: '350',
+                  type: 'heatmap'
+                }" [series]="[{
+                name: 'Metric1',
+                data: [44, 55, 41, 17, 15]
+                },
+                {
+                  name: 'Metric2',
+                  data: [44, 55, 41, 17, 15]
+                },
+                {
+                  name: 'Metric3',
+                  data: [44, 55, 41, 17, 15]
+                  },
+                {
+                  name: 'Metric2',
+                  data: [44, 55, 41, 17, 15]
+                },
+                {
+                  name: 'Metric3',
+                  data: [44, 55, 41, 17, 15]
+                  }
+                ]"></apx-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink><span>Playground</span></a>
+    <ng-template ngbNavContent>
+      <div class="card main-card mb-3">
+        <div class="card-header">
+          AplexCharts Angular Example
+        </div>
+        <div class="card-body">
+          <apx-chart #chart [series]="form.value.series | series: form.value.type"
+            [xaxis]="{ categories: form.value.xaxis }" [chart]="{
+              height: form.value.height,
+              type: form.value.type,
+              zoom: {
+                enabled: false
+              },
+              shadow: {
+                    enabled: true,
+                    color: '#000',
+                    top: 18,
+                    left: 7,
+                    blur: 10,
+                    opacity: 1
+                }}" [title]="{ text: form.value.title }" [autoUpdateSeries]="false"></apx-chart>
+          <div class="divider"></div>
+          <form [formGroup]="form">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="">Title:</label>
+                  <input class="form-control form-control-sm" type="text" formControlName="title">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="">Height:</label>
+                  <input class="form-control form-control-sm" type="number" formControlName="height"><br>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="">Type:</label>
+                  <select class="form-control form-control-sm" formControlName="type">
+                    <option value="line">Line</option>
+                    <option value="area">Area</option>
+                    <option value="bar">Bar</option>
+                    <option value="radar">Radar</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary mr-2 mb-2" (click)="addSeries()">Add series</button>
+            <button class="btn btn-primary mr-2 mb-2" (click)="addValue()">Add value</button>
+            <div class="divider"></div>
+            <div formArrayName="xaxis">
+              <h5>XAxis</h5>
+              <div class="row">
+                <div class="col-md-3" *ngFor="let alias of form.get('xaxis').controls; let i=index">
+                  <div class="form-group">
+                    <label>
+                      Value:
+                    </label>
+                    <input class="form-control form-control-sm" type="text" [formControlName]="i">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div formArrayName="series">
+              <h5>Data</h5>
+              <div class="row">
+                <div *ngFor="let series of form.get('series').controls; let i = index" class="col-md-3">
+                  <div [formGroupName]="i">
+                    <div class="form-group">
+                      <label for="">Name:</label>
+                      <input class="form-control form-control-sm" type="text" formControlName="name">
+                    </div>
+                    <div class="form-group">
+                      <label for="">Type:</label>
+                      <select class="form-control form-control-sm" formControlName="type">
+                        <option value="line">Line</option>
+                        <option value="area">Area</option>
+                        <option value="bar">Bar</option>
+                      </select>
+                    </div>
+                    <div formArrayName="data">
+                      <div class="form-group"
+                        *ngFor="let alias of form.get('series').controls[i].get('data').controls; let y=index">
+                        <label>
+                          Value:
+                        </label>
+                        <input class="form-control form-control-sm" type="number" [formControlName]="y">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </ng-template>
+  </li>
+</ul>
+<div [ngbNavOutlet]="nav"></div>

@@ -1,0 +1,12 @@
+<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>
+
+<div class="card main-card mb-3">
+  <div class="card-body">
+    <angular-editor [(ngModel)]="htmlContent" [config]="config"></angular-editor>
+    <div class="divider"></div>
+    <b>HTML Output:</b>
+    <pre>
+      {{ htmlContent }}
+    </pre>
+  </div>
+</div>

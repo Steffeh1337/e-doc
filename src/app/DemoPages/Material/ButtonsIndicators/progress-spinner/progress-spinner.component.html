@@ -1,0 +1,79 @@
+<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Basic
+      </div>
+      <div class="card-body">
+        <mat-spinner></mat-spinner>
+      </div>
+    </div>
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Color Variations
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-spinner [color]="'accent'"></mat-spinner>
+          </div>
+          <div class="col-md-6">
+            <mat-spinner [color]="'warn'"></mat-spinner>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Spinner Playground
+      </div>
+      <div class="card-body">
+        <mat-card>
+          <mat-card-content>
+            <h6 class="example-h2">Progress spinner configuration</h6>
+            <section class="example-section">
+              <label class="example-margin">Color:</label>
+              <mat-radio-group [(ngModel)]="color">
+                <mat-radio-button class="example-margin" value="primary">
+                  Primary
+                </mat-radio-button>
+                <mat-radio-button class="example-margin" value="accent">
+                  Accent
+                </mat-radio-button>
+                <mat-radio-button class="example-margin" value="warn">
+                  Warn
+                </mat-radio-button>
+              </mat-radio-group>
+            </section>
+            <section class="example-section">
+              <label class="example-margin">Mode:</label>
+              <mat-radio-group [(ngModel)]="mode">
+                <mat-radio-button class="example-margin" value="determinate">
+                  Determinate
+                </mat-radio-button>
+                <mat-radio-button class="example-margin" value="indeterminate">
+                  Indeterminate
+                </mat-radio-button>
+              </mat-radio-group>
+            </section>
+            <section class="example-section" *ngIf="mode == 'determinate'">
+              <label class="example-margin">Progress:</label>
+              <mat-slider class="example-margin" [(ngModel)]="value"></mat-slider>
+            </section>
+          </mat-card-content>
+        </mat-card>
+        <mat-card>
+          <mat-card-content>
+            <h6 class="example-h2">Result</h6>
+            <mat-progress-spinner class="example-margin" [color]="color" [mode]="mode" [value]="value">
+            </mat-progress-spinner>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

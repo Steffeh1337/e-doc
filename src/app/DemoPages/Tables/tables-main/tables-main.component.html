@@ -1,0 +1,17 @@
+<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>
+
+<ul ngbNav #nav="ngbNav" class="nav-tabs tabs-animated tabs-animated-shadow">
+  <li ngbNavItem>
+    <a ngbNavLink><span>Regular Tables</span></a>
+    <ng-template ngbNavContent>
+      <app-regular></app-regular>
+    </ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink><span>Dynamic Tables</span></a>
+    <ng-template ngbNavContent>
+      <app-dynamic></app-dynamic>
+    </ng-template>
+  </li>
+</ul>
+<div [ngbNavOutlet]="nav"></div>

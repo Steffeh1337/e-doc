@@ -1,0 +1,119 @@
+<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Angular NG-Select
+      </div>
+      <div class="card-body">
+        <b class="d-block mb-1">Your first ng-select</b>
+        <ng-select [items]="cities12" bindLabel="name" placeholder="Select city" [(ngModel)]="selectedCity">
+        </ng-select>
+        <p class="mt-1 mb-3">
+          Selected city: {{selectedCity | json}}
+        </p>
+        <b class="d-block mb-1">Multiselect with custom bindings</b>
+        <ng-select [items]="cities2" bindLabel="name" bindValue="id" [multiple]="true" placeholder="Select cities"
+          [(ngModel)]="selectedCityIds">
+        </ng-select>
+        <p class="mt-1 mb-3">
+          Selected cities: {{selectedCityIds}}
+        </p>
+        <b class="d-block mb-1">Custom tags</b>
+        <ng-select [items]="users" bindLabel="name" bindValue="id" [addTag]="addCustomUser" [multiple]="true"
+          placeholder="Select user or add custom tag" [(ngModel)]="selectedUserIds">
+        </ng-select>
+        <p class="mt-1 mb-3">
+          Selected user: {{selectedUserIds}}
+        </p>
+        <b class="d-block mb-1">Custom templates</b>
+        <ng-select [items]="cities3" bindLabel="name" bindValue="name" placeholder="Select city"
+          [(ngModel)]="selectedCityName">
+          <ng-template ng-header-tmp>
+            Custom header
+          </ng-template>
+          <ng-template ng-label-tmp let-item="item">
+            <img height="15" width="15" class="mr-2 rounded" [src]="item.avatar" />
+            <b>{{item.name}}</b> is cool
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item" let-index="index">
+            <img height="15" width="15" class="mr-2 rounded" [src]="item.avatar" />
+            <b>{{item.name}}</b>
+          </ng-template>
+          <ng-template ng-footer-tmp>
+            Custom footer
+          </ng-template>
+        </ng-select>
+        <p class="mt-1 mb-3">
+          Selected city: {{selectedCityName}}
+        </p>
+        <b class="d-block mb-1">Hight performance. Handles even 10000 items.</b>
+        <ng-select [items]="cities4" [virtualScroll]="true" bindLabel="name" bindValue="id" placeholder="Select city"
+          [(ngModel)]="selectedCityId">
+        </ng-select>
+        <p class="mt-1 mb-3">
+          Selected city ID: {{selectedCityId}}
+        </p>
+        <b class="d-block mb-1">Append dropdown to body</b>
+        <ng-select [items]="cities4" bindLabel="name" [virtualScroll]="true" bindValue="id" appendTo="body"
+          placeholder="Select city" [(ngModel)]="selectedCityId">
+        </ng-select>
+        <p class="mt-1 mb-3">
+          Selected city ID: {{selectedCityId}}
+        </p>
+        <b class="d-block mb-1">Grouping</b>
+        <ng-select [items]="accounts" bindLabel="name" bindValue="name" groupBy="country" [(ngModel)]="selectedAccount">
+        </ng-select>
+      </div>
+    </div>
+    
+  </div>
+  <div class="col-md-6">
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Multiselect Dropdown
+      </div>
+      <div class="card-body">
+        <form [formGroup]="myForm">
+          <ng-multiselect-dropdown name="city" [placeholder]="'Select City'" [settings]="dropdownSettings" 
+            [data]="cities" formControlName="city"
+            [disabled]="disabled" [settings]="dropdownSettings" (onDropDownClose)="onDropDownClose()"
+            (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+          </ng-multiselect-dropdown>
+        </form>
+        <div class="divider"></div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" [checked]="showAll" (change)="toogleShowAll()"> Show Select All
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" [checked]="ShowFilter" (change)="toogleShowFilter()"> Show Search filter
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" [checked]="disabled" [(ngModel)]="disabled"> Disabled
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" [checked]="limitSelection" [(ngModel)]="limitSelection"
+                  (change)="handleLimitSelection()"> Limit Selection to 2
+              </label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="text-center">
+              <input type="button" class="btn btn-primary" (click)="handleReset()" value="Reset">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

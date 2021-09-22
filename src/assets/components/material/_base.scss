@@ -1,0 +1,80 @@
+@import "modifiers";
+
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$md-aui-primary: (
+  50 : #e8edfa,
+  100 : #c5d2f3,
+  200 : #9fb5ec,
+  300 : #7997e4,
+  400 : #5c80de,
+  500 : #3f6ad8,
+  600 : #3962d4,
+  700 : #3157ce,
+  800 : #294dc8,
+  900 : #1b3cbf,
+  A100 : #f4f6ff,
+  A200 : #c1ccff,
+  A400 : #8ea2ff,
+  A700 : #748cff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$md-aui-warn: (
+  50 : #fef7e5,
+  100 : #fdeabd,
+  200 : #fbdc92,
+  300 : #f9ce66,
+  400 : #f8c445,
+  500 : #f7b924,
+  600 : #f6b220,
+  700 : #f5aa1b,
+  800 : #f3a216,
+  900 : #f1930d,
+  A100 : #ffffff,
+  A200 : #fff5e9,
+  A400 : #ffdeb6,
+  A700 : #ffd39c,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #000000,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$architectui-theme-primary: mat-palette($md-aui-primary);
+$architectui-theme-accent:  mat-palette($md-aui-primary, 400, A100, A400);
+
+$architectui-theme-warn:    mat-palette($md-aui-warn);
+
+$architectui-theme-theme: mat-light-theme($architectui-theme-primary, $architectui-theme-accent, $architectui-theme-warn);
+
+@include angular-material-theme($architectui-theme-theme);

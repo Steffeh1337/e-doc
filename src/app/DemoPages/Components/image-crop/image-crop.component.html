@@ -1,0 +1,46 @@
+<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Image Cropper
+      </div>
+      <div class="card-body">
+        <div class="alert alert-info">Upload an image to see the Image Cropper in action !</div>
+        <div class="custom-file mb-3">
+          <input type="file" class="custom-file-input" (change)="fileChangeEvent($event)" id="validatedCustomFile"
+            required>
+          <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+          <div class="invalid-feedback">Example invalid custom file feedback</div>
+        </div>
+        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3"
+          [resizeToWidth]="128" [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false" format="png"
+          outputType="base64" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" [alignImage]="'left'"
+          (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"
+          [style.display]="showCropper ? null : 'none'" [canvasRotation]="canvasRotation"
+          [containWithinAspectRatio]="containWithinAspectRatio" [transform]="transform"></image-cropper>
+        <div class="divider"></div>
+        <div class="text-center">
+          <button class="btn btn-sm mr-2 btn-primary" (click)="rotateLeft()">Rotate left</button>
+          <button class="btn btn-sm mr-2 btn-primary" (click)="rotateRight()">Rotate right</button>
+          <button class="btn btn-sm mr-2 btn-primary" (click)="flipHorizontal()">Flip horizontal</button>
+          <button class="btn btn-sm mr-2 btn-primary" (click)="flipVertical()">Flip vertical</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card main-card mb-3">
+      <div class="card-header">
+        Crop Result
+      </div>
+      <div class="card-body">
+        <div *ngIf="!croppedImage" class="text-center text-primary">
+          After you upload an image you can see the crop result in this box!
+        </div>
+        <img *ngIf="croppedImage" class="img-fluid w-100" [src]="croppedImage" />
+      </div>
+    </div>
+  </div>
+</div>

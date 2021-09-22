@@ -1,0 +1,788 @@
+<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>
+
+<div class="row">
+  <div class="col-md-12 col-lg-6 col-xl-7">
+    <div class="main-card mb-3 card">
+      <div class="rm-border card-header">
+        <div>
+          <h5 class="menu-header-title text-capitalize text-primary">Income Report</h5>
+        </div>
+        <div class="btn-actions-pane-right text-capitalize">
+          <button class="btn-wide btn-outline-2x btn btn-outline-focus btn-sm">View All</button>
+        </div>
+      </div>
+      <apx-chart [series]="[
+                  {
+                    name: 'Net Profit',
+                    data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+                  }, {
+                    name: 'Revenue',
+                    data: [76, 85, 41, 98, 87, 44, 91, 81, 94]
+                  }, {
+                    name: 'Free Cash Flow',
+                    data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+                  }
+                ]" [chart]="{
+                  height: '420',
+                  type: 'bar'
+                }" [stroke]="{
+                  show: true,
+                  width: 2,
+                  colors: ['transparent']
+                }" [plotOptions]="{
+                  bar: {
+                    horizontal: false,
+                    endingShape: 'rounded',
+                    columnWidth: '55%'
+                  }
+                }" [dataLabels]="{
+                  enabled: false
+                }"
+        [labels]="['01/01/2003', '02/01/2003', '03/01/2003', '04/01/2003', '05/01/2003', '06/01/2003', '07/01/2003', '08/01/2003', '09/01/2003', '10/01/2003', '11/01/2003']"
+        [xaxis]="{
+                  categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct']
+                }" [yaxis]="{
+                  title: {
+                    text: '$ (thousands)'
+                  }
+                }" [fill]="{
+                  opacity: 1
+                }"></apx-chart>
+      <div class="card-body">
+        <h5 class="menu-header-title">Target Sales</h5>
+        <h6 class="menu-header-subtitle opacity-6">Total performance for this month</h6>
+        <div class="mt-3 row">
+          <div class="col-sm-12 col-md-6">
+            <div class="card-border mb-sm-3 mb-md-0 border-light no-shadow card">
+              <div class="widget-content">
+                <div class="widget-content-outer">
+                  <div class="widget-content-wrapper">
+                    <div class="widget-content-left">
+                      <div class="widget-heading">Orders</div>
+                    </div>
+                    <div class="widget-content-right">
+                      <div class="widget-numbers line-height-1 text-primary"><span>366</span></div>
+                    </div>
+                  </div>
+                  <div class="widget-progress-wrapper mt-1">
+                    <div class="progress-bar-xs progress mt-2 mb-2">
+                      <div class="progress-bar bg-success" role="progressbar" aria-valuenow="76" aria-valuemin="0"
+                        aria-valuemax="100" style="width: 76%;"></div>
+                    </div>
+                    <div class="progress-sub-label">
+                      <div class="sub-label-left">Monthly Target</div>
+                      <div class="sub-label-right">100%</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <div class="card-border border-light no-shadow card">
+              <div class="widget-content">
+                <div class="widget-content-outer">
+                  <div class="widget-content-wrapper">
+                    <div class="widget-content-left">
+                      <div class="widget-heading">Income</div>
+                    </div>
+                    <div class="widget-content-right">
+                      <div class="widget-numbers line-height-1 text-success"><span>$2797</span></div>
+                    </div>
+                  </div>
+                  <div class="widget-progress-wrapper mt-1">
+                    <div class="progress-bar-xs progress-bar-animated progress mt-2 mb-2">
+                      <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="23" aria-valuemin="0"
+                        aria-valuemax="100" style="width: 23%;"></div>
+                    </div>
+                    <div class="progress-sub-label">
+                      <div class="sub-label-left">Monthly Target</div>
+                      <div class="sub-label-right">100%</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 col-lg-6 col-xl-5">
+    <div class="main-card mb-3 card">
+      <div class="card-body">
+        <h6 class="text-muted text-uppercase font-size-md opacity-7 mb-3 font-weight-normal">Highlights</h6>
+        <div class="border-light card-border scroll-area-md card">
+          <perfect-scrollbar [autoPropagation]="true">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <div class="widget-content p-0">
+                  <div class="widget-content-wrapper">
+                    <div class="widget-content-left mr-3">
+                      <img width="38" class="rounded-circle" src="./assets/images/avatars/1.jpg" alt="">
+                    </div>
+                    <div class="widget-content-left">
+                      <div class="widget-heading">Beck Collier</div>
+                      <div class="widget-subheading mt-1 opacity-10">
+                        <div class="badge badge-pill badge-primary">$152</div>
+                      </div>
+                    </div>
+                    <div class="widget-content-right">
+                      <div class="fsize-2 text-success">
+                        <small class="opacity-5 pr-1">$</small>
+                        <span>750</span>
+                        <small class="text-success pl-2">
+                          <fa-icon [icon]="faAngleDown"></fa-icon>
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="widget-content p-0">
+                  <div class="widget-content-wrapper">
+                    <div class="widget-content-left mr-3">
+                      <img width="38" class="rounded-circle" src="./assets/images/avatars/2.jpg" alt="">
+                    </div>
+                    <div class="widget-content-left">
+                      <div class="widget-heading">Angelo Hume</div>
+                      <div class="widget-subheading mt-1 opacity-10">
+                        <div class="badge badge-pill badge-primary">$53</div>
+                      </div>
+                    </div>
+                    <div class="widget-content-right">
+                      <div class="fsize-2 text-success">
+                        <small class="opacity-5 pr-1">$</small>
+                        <span>542</span>
+                        <small class="text-danger pl-2">
+                          <fa-icon [icon]="faAngleUp"></fa-icon>
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="widget-content p-0">
+                  <div class="widget-content-wrapper">
+                    <div class="widget-content-left mr-3">
+                      <img width="38" class="rounded-circle" src="./assets/images/avatars/2.jpg" alt="">
+                    </div>
+                    <div class="widget-content-left">
+                      <div class="widget-heading">Saim Melendez</div>
+                      <div class="widget-subheading mt-1 opacity-10">
+                        <div class="badge badge-pill badge-primary">$239</div>
+                      </div>
+                    </div>
+                    <div class="widget-content-right">
+                      <div class="fsize-2 text-success">
+                        <small class="opacity-5 pr-1">$</small>
+                        <span>874</span>
+                        <small class="text-warning pl-2">
+                          <fa-icon [icon]="faAngleDown"></fa-icon>
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="widget-content p-0">
+                  <div class="widget-content-wrapper">
+                    <div class="widget-content-left mr-3">
+                      <img width="38" class="rounded-circle" src="./assets/images/avatars/3.jpg" alt="">
+                    </div>
+                    <div class="widget-content-left">
+                      <div class="widget-heading">Primrose Navarro</div>
+                      <div class="widget-subheading mt-1 opacity-10">
+                        <div class="badge badge-pill badge-primary">$21</div>
+                      </div>
+                    </div>
+                    <div class="widget-content-right">
+                      <div class="fsize-2 text-success">
+                        <small class="opacity-5 pr-1">$</small>
+                        348
+                        <small class="text-muted pl-2">
+                          <fa-icon [icon]="faAngleUp"></fa-icon>
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="widget-content p-0">
+                  <div class="widget-content-wrapper">
+                    <div class="widget-content-left mr-3">
+                      <img width="38" class="rounded-circle" src="./assets/images/avatars/1.jpg" alt="">
+                    </div>
+                    <div class="widget-content-left">
+                      <div class="widget-heading">Beck Collier</div>
+                      <div class="widget-subheading mt-1 opacity-10">
+                        <div class="badge badge-pill badge-primary">$152</div>
+                      </div>
+                    </div>
+                    <div class="widget-content-right">
+                      <div class="fsize-2 text-success">
+                        <small class="opacity-5 pr-1">$</small>
+                        <span>750</span>
+                        <small class="text-success pl-2">
+                          <fa-icon [icon]="faAngleDown"></fa-icon>
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="widget-content p-0">
+                  <div class="widget-content-wrapper">
+                    <div class="widget-content-left mr-3">
+                      <img width="38" class="rounded-circle" src="./assets/images/avatars/2.jpg" alt="">
+                    </div>
+                    <div class="widget-content-left">
+                      <div class="widget-heading">Angelo Hume</div>
+                      <div class="widget-subheading mt-1 opacity-10">
+                        <div class="badge badge-pill badge-primary">$53</div>
+                      </div>
+                    </div>
+                    <div class="widget-content-right">
+                      <div class="fsize-2 text-success">
+                        <small class="opacity-5 pr-1">$</small>
+                        <span>542</span>
+                        <small class="text-danger pl-2">
+                          <fa-icon [icon]="faAngleUp"></fa-icon>
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="widget-content p-0">
+                  <div class="widget-content-wrapper">
+                    <div class="widget-content-left mr-3">
+                      <img width="38" class="rounded-circle" src="./assets/images/avatars/4.jpg" alt="">
+                    </div>
+                    <div class="widget-content-left">
+                      <div class="widget-heading">Finnlay Barton</div>
+                      <div class="widget-subheading mt-1 opacity-10">
+                        <div class="badge badge-pill badge-primary">$381</div>
+                      </div>
+                    </div>
+                    <div class="widget-content-right">
+                      <div class="fsize-2 text-success">
+                        <small class="opacity-5 pr-1">$</small>
+                        692
+                        <small class="text-muted pl-2">
+                          <fa-icon [icon]="faAngleUp"></fa-icon>
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="widget-content p-0">
+                  <div class="widget-content-wrapper">
+                    <div class="widget-content-left mr-3">
+                      <img width="38" class="rounded-circle" src="./assets/images/avatars/10.jpg" alt="">
+                    </div>
+                    <div class="widget-content-left">
+                      <div class="widget-heading">Johan Corbett</div>
+                      <div class="widget-subheading mt-1 opacity-10">
+                        <div class="badge badge-pill badge-primary">$74</div>
+                      </div>
+                    </div>
+                    <div class="widget-content-right">
+                      <div class="fsize-2 text-success">
+                        <small class="opacity-5 pr-1">$</small>
+                        395
+                        <small class="text-muted pl-2">
+                          <fa-icon [icon]="faAngleDown"></fa-icon>
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="border-bottom-0 list-group-item">
+                <div class="widget-content p-0">
+                  <div class="widget-content-wrapper">
+                    <div class="widget-content-left mr-3">
+                      <img width="38" class="rounded-circle" src="./assets/images/avatars/9.jpg" alt="">
+                    </div>
+                    <div class="widget-content-left">
+                      <div class="widget-heading">Kaja Wolfe</div>
+                      <div class="widget-subheading mt-1 opacity-10">
+                        <div class="badge badge-pill badge-primary">$7</div>
+                      </div>
+                    </div>
+                    <div class="widget-content-right">
+                      <div class="fsize-2 text-success">
+                        <small class="opacity-5 pr-1">$</small>
+                        619
+                        <small class="text-muted pl-2">
+                          <fa-icon [icon]="faAngleDown"></fa-icon>
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </perfect-scrollbar>
+        </div>
+      </div>
+    </div>
+    <div class="main-card mb-3 card">
+      <div class="rm-border card-header">
+        <div>
+          <h6 class="menu-header-title text-capitalize text-primary">Monthly Statistics</h6>
+        </div>
+      </div>
+      <div class="pl-3 pr-3 pb-2 slick-slider-md slick-slider-hover">
+        <ngx-slick-carousel class="slick-slider slick-dotted" #slickModal="slick-carousel" [config]="slideConfig6">
+          <div ngxSlickItem>
+            <div class="widget-chart widget-chart2 text-left p-0">
+              <div class="widget-chat-wrapper-outer">
+                <div class="widget-chart-content">
+                  <div class="widget-chart-flex">
+                    <div class="widget-numbers">
+                      <div class="widget-chart-flex">
+                        <div>
+                          <small class="opacity-5">$</small>
+                          1545
+                        </div>
+                        <div class="widget-title ml-2 opacity-5 font-size-lg text-muted">Total Sales this Month</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="widget-chart-wrapper widget-chart-wrapper-lg opacity-10 m-0">
+                  <div class="d-block">
+                    <canvas baseChart class="chart" [datasets]="datasets2" [labels]="labels" [colors]="lineChartColors2"
+                      [options]="options" [chartType]="'line'"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div ngxSlickItem>
+            <div class="widget-chart widget-chart2 text-left p-0">
+              <div class="widget-chat-wrapper-outer">
+                <div class="widget-chart-content">
+                  <div class="widget-chart-flex">
+                    <div class="widget-numbers">
+                      <div class="widget-chart-flex">
+                        <div>
+                          <small class="opacity-5">$</small>
+                          <span>626</span>
+                        </div>
+                        <div class="widget-title ml-2 opacity-5 font-size-lg text-muted">Total Expenses Today</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="widget-chart-wrapper widget-chart-wrapper-lg opacity-10 m-0">
+                  <div class="d-block">
+                    <canvas baseChart class="chart" [datasets]="datasets3" [labels]="labels" [colors]="lineChartColors3"
+                      [options]="options" [chartType]="'line'"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ngx-slick-carousel>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="main-card mb-3 card">
+  <div class="card-header">
+    <div>
+      <h5 class="menu-header-title text-capitalize text-primary">Simple Table</h5>
+    </div>
+    <div class="btn-actions-pane-right">
+      <div role="group" class="btn-group-sm btn-group">
+        <button class="active btn btn-outline-dark">Last Week</button>
+        <button class="btn btn-outline-dark">All Month</button>
+      </div>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+      <thead>
+        <tr>
+          <th class="text-center">#</th>
+          <th class="text-center">Status</th>
+          <th>Name</th>
+          <th class="text-center">Progress</th>
+          <th class="text-center">Sales</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center text-muted">#345</td>
+          <td class="text-center">
+            <div class="badge badge-pill pl-2 pr-2 badge-warning">Pending</div>
+          </td>
+          <td>
+            <div class="widget-content p-0">
+              <div class="widget-content-wrapper">
+                <div class="widget-content-left mr-3">
+                  <div class="widget-content-left">
+                    <img width="32" class="rounded" src="./assets/images/avatars/1.jpg" alt="">
+                  </div>
+                </div>
+                <div class="widget-content-left flex2">
+                  <div class="widget-heading">John Doe</div>
+                  <div class="widget-subheading opacity-7">Web Developer</div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="text-center">
+            <div class="progress-bar-xs progress">
+              <div class="progress-bar bg-success" role="progressbar" aria-valuenow="76" aria-valuemin="0"
+                aria-valuemax="100" style="width: 76%;"></div>
+            </div>
+          </td>
+          <td class="text-center" style="width: 150px; position: relative;">
+            <ngx-trend height="40" strokeLinecap="round" stroke="var(--success)" strokeWidth="8" smooth="true"
+              radius="15" [data]="[0, 10, 5, 22, 3.6, 11]" autoDraw="true" autoDrawDuration="1500"
+              autoDrawEasing="ease-in"></ngx-trend>
+          </td>
+          <td class="text-center">
+            <button type="button" class="btn-icon btn-icon-only btn btn-light btn-sm">
+              View
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center text-muted">#347</td>
+          <td class="text-center">
+            <div class="badge badge-pill pl-2 pr-2 badge-success">Completed</div>
+          </td>
+          <td>
+            <div class="widget-content p-0">
+              <div class="widget-content-wrapper">
+                <div class="widget-content-left mr-3">
+                  <div class="widget-content-left">
+                    <img width="32" class="rounded" src="./assets/images/avatars/2.jpg" alt="">
+                  </div>
+                </div>
+                <div class="widget-content-left flex2">
+                  <div class="widget-heading">Ruben Tillman</div>
+                  <div class="widget-subheading opacity-7">Etiam sit amet orci eget</div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="text-center">
+            <div class="progress-bar-xs progress">
+              <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="23" aria-valuemin="0"
+                aria-valuemax="100" style="width: 23%;"></div>
+            </div>
+          </td>
+          <td class="text-center" style="width: 150px; position: relative;">
+            <ngx-trend height="40" strokeLinecap="round" stroke="var(--primary)" strokeWidth="8" smooth="true"
+              radius="15" [data]="[120, 149, 193.4, 200, 92]" autoDraw="true" autoDrawDuration="1500"
+              autoDrawEasing="ease-in"></ngx-trend>
+          </td>
+          <td class="text-center">
+            <button type="button" class="btn-icon btn-icon-only btn btn-light btn-sm">
+              View
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center text-muted">#321</td>
+          <td class="text-center">
+            <div class="badge badge-pill pl-2 pr-2 badge-danger">In Progress</div>
+          </td>
+          <td>
+            <div class="widget-content p-0">
+              <div class="widget-content-wrapper">
+                <div class="widget-content-left mr-3">
+                  <div class="widget-content-left">
+                    <img width="32" class="rounded" src="./assets/images/avatars/3.jpg" alt="">
+                  </div>
+                </div>
+                <div class="widget-content-left flex2">
+                  <div class="widget-heading">Elliot Huber</div>
+                  <div class="widget-subheading opacity-7">Lorem ipsum dolor sic</div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="text-center">
+            <div class="progress-bar-xs progress">
+              <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="43" aria-valuemin="0"
+                aria-valuemax="100" style="width: 43%;"></div>
+            </div>
+          </td>
+          <td class="text-center" style="width: 150px; position: relative;">
+            <ngx-trend height="40" strokeLinecap="round" stroke="var(--warning)" strokeWidth="8" smooth="true"
+              radius="15" [data]="[3, 7, 6, 16, 3.6, 23]" autoDraw="true" autoDrawDuration="1500"
+              autoDrawEasing="ease-in"></ngx-trend>
+          </td>
+          <td class="text-center">
+            <button type="button" class="btn-icon btn-icon-only btn btn-light btn-sm">
+              View
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center text-muted">#55</td>
+          <td class="text-center">
+            <div class="badge badge-pill pl-2 pr-2 badge-info">On Hold</div>
+          </td>
+          <td>
+            <div class="widget-content p-0">
+              <div class="widget-content-wrapper">
+                <div class="widget-content-left mr-3">
+                  <div class="widget-content-left">
+                    <img width="32" class="rounded" src="./assets/images/avatars/4.jpg" alt="">
+                  </div>
+                </div>
+                <div class="widget-content-left flex2">
+                  <div class="widget-heading">Vinnie Wagstaff</div>
+                  <div class="widget-subheading opacity-7">UI Designer</div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="text-center">
+            <div class="progress-bar-xs progress">
+              <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="67" aria-valuemin="0"
+                aria-valuemax="100" style="width: 67%;"></div>
+            </div>
+          </td>
+          <td class="text-center">
+            <ngx-trend height="40" strokeLinecap="round" stroke="var(--danger)" strokeWidth="8" smooth="true"
+              radius="15" [data]="[0, 10, 5, 22, 3.6, 11]" autoDraw="true" autoDrawDuration="1500"
+              autoDrawEasing="ease-in"></ngx-trend>
+          </td>
+          <td class="text-center">
+            <button type="button" class="btn-icon btn-icon-only btn btn-light btn-sm">
+              View
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-block clearfix card-footer">
+    <div class="float-left">
+      <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger btn-sm">Delete</button>
+    </div>
+    <div class="float-right">
+      <button class="btn-wide btn btn-link btn-sm">View All</button>
+      <button class="btn-wide btn-shadow btn btn-primary btn-sm">Add New Entry</button>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 col-lg-6">
+    <div class="card mb-3 widget-chart bg-arielle-smile card-border">
+      <div class="widget-chart-content text-white">
+        <div class="icon-wrapper rounded-circle">
+          <div class="icon-wrapper-bg bg-white opacity-7"></div>
+          <i class="lnr-graduation-hat text-info"></i>
+        </div>
+        <div class="widget-numbers">63.2k</div>
+        <div class="widget-subheading">Bugs Fixed</div>
+        <div class="widget-description text-white">
+          <fa-icon [icon]="faArrowRight"></fa-icon>
+          <span class="pl-1">175.5%</span>
+        </div>
+      </div>
+      <div class="widget-chart-wrapper chart-wrapper-relative">
+        <div class="d-block">
+          <canvas baseChart class="chart" [datasets]="datasets" [labels]="labels" [colors]="lineChartColors4"
+            [options]="options" [chartType]="'line'"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 col-lg-6">
+    <div class="card-shadow-primary card-border mb-3 card">
+      <div class="dropdown-menu-header">
+        <div class="dropdown-menu-header-inner bg-primary">
+          <div class="menu-header-image opacity-4 dd-header-bg-3"></div>
+          <div class="menu-header-content">
+            <h5 class="menu-header-title text-capitalize mb-0 fsize-3">Top Sellers</h5>
+            <h6 class="menu-header-subtitle mb-3">Yet another Example of Card Boxes</h6>
+            <div role="group" class="mb-0 btn-group">
+              <button type="button" class="btn-pill pl-3 pr-3  btn btn-warning">John</button>
+              <button type="button" class="pl-3 pr-3  btn btn-warning">Mary</button>
+              <button type="button" class="btn-pill pl-3 pr-3  btn btn-warning">Katie</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="p-0 list-group-item">
+          <div class="row">
+            <div class="center-elem col-md-6">
+              <div class="mx-auto">
+                <mwl-gauge style="width: 150px;" class="three" [max]="100" [dialStartAngle]="-90"
+                  [dialEndAngle]="-90.001" [value]="gaugeValues[1]" [animated]="true" [animationDuration]="2">
+                </mwl-gauge>
+              </div>
+            </div>
+            <div class="col-md-6 d-flex align-items-center">
+              <div class="w-100">
+                <div class="widget-chart">
+                  <div class="widget-chart-content">
+                    <div class="widget-numbers mt-0 text-danger">
+                      <small>$</small>
+                      158
+                      <small class="opacity-5 pl-2">
+                        <fa-icon [icon]="faAngleUp"></fa-icon>
+                      </small>
+                    </div>
+                    <div class="widget-subheading">Sales Today</div>
+                  </div>
+                </div>
+                <div class="divider mt-0 mb-0 mr-2"></div>
+                <div class="widget-chart">
+                  <div class="widget-chart-content">
+                    <div class="widget-numbers mt-0 text-primary">
+                      <small>$</small>
+                      346
+                      <small class="opacity-5 pl-2">
+                        <fa-icon [icon]="faAngleDown"></fa-icon>
+                      </small>
+                    </div>
+                    <div class="widget-subheading">Sales this Month</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="p-0 list-group-item">
+          <div class="grid-menu grid-menu-2col overflow-hidden overflow-hidden">
+            <div class="no-gutters row">
+              <div class="col-sm-12">
+                <div class="p-1">
+                  <button type="button"
+                    class="btn-transition-text btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-warning">
+                    <span class="text-uppercase font-weight-bold">Block Button Maybe?</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-12 col-lg-6">
+    <div class="card mb-3 widget-chart bg-strong-bliss card-border">
+      <div class="widget-chart-content text-white">
+        <div class="icon-wrapper rounded">
+          <div class="icon-wrapper-bg bg-white opacity-4"></div>
+          <i class="lnr-graduation-hat text-white"></i>
+        </div>
+        <div class="widget-numbers">1.5M</div>
+        <div class="widget-subheading">Bugs Fixed</div>
+        <div class="widget-description text-white">
+          Down by
+          <span class="text-white pl-1 pr-1 opacity-8">
+            <fa-icon [icon]="faAngleDown"></fa-icon>
+            <span class="pl-1">54.1%</span>
+          </span>
+          from 30 days ago
+        </div>
+      </div>
+      <div class="widget-chart-wrapper chart-wrapper-relative">
+        <div class="d-block">
+          <canvas baseChart class="chart" [datasets]="datasets4" [labels]="labels" [colors]="lineChartColors4"
+            [options]="options" [chartType]="'line'"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 col-lg-6">
+    <div class="card-shadow-primary card-border mb-3 profile-responsive-sm card">
+      <div class="dropdown-menu-header">
+        <div class="dropdown-menu-header-inner bg-vicious-stance">
+          <div class="menu-header-image opacity-1 dd-header-bg-1"></div>
+          <div class="menu-header-content btn-pane-right">
+            <div class="avatar-icon-wrapper mr-3 avatar-icon-xl btn-hover-shine">
+              <div class="avatar-icon rounded-circle"><img src="./assets/images/avatars/1.jpg" alt="Avatar 5"></div>
+            </div>
+            <div>
+              <h5 class="menu-header-title">Ruben Tillman</h5>
+              <h6 class="menu-header-subtitle">Etiam sit amet orci eget</h6>
+            </div>
+            <div class="menu-header-btn-pane">
+              <button class="btn btn-success">View Profile</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <div class="widget-content pt-4 pb-4 pr-1 pl-1">
+            <div class="text-center">
+              <h5 class="mb-0">
+                <span class="pr-1">
+                  <b class="text-danger">12</b> new leads,
+                </span>
+                <span><b class="text-success">$56.24</b> in sales</span>
+              </h5>
+            </div>
+          </div>
+        </li>
+        <li class="p-0 list-group-item">
+          <div class="grid-menu grid-menu-2col overflow-hidden">
+            <div class="no-gutters row">
+              <div class="d-block col-sm-6">
+                <div class="p-1">
+                  <button
+                    class="btn-icon-vertical btn-transition-text btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-dark">
+                    <i class="lnr-lighter text-dark opacity-7 btn-icon-wrapper mb-2"> </i>
+                    Automation
+                  </button>
+                </div>
+              </div>
+              <div class="d-block col-sm-6">
+                <div class="p-1">
+                  <button
+                    class="btn-icon-vertical btn-transition-text btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-danger">
+                    <i class="lnr-construction text-danger opacity-7 btn-icon-wrapper mb-2"> </i>
+                    Reports
+                  </button>
+                </div>
+              </div>
+              <div class="d-md-none d-lg-block col-sm-6">
+                <div class="p-1">
+                  <button
+                    class="btn-icon-vertical btn-transition-text btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-success">
+                    <i class="lnr-bus text-success opacity-7 btn-icon-wrapper mb-2"> </i>
+                    Activity
+                  </button>
+                </div>
+              </div>
+              <div class="d-md-none d-lg-block col-sm-6">
+                <div class="p-1">
+                  <button
+                    class="btn-icon-vertical btn-transition-text btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-focus">
+                    <i class="lnr-gift text-focus opacity-7 btn-icon-wrapper mb-2"> </i>
+                    Settings
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1050 @@
+<div>
+  <div class="app-inner-layout">
+    <div class="app-inner-layout__header-boxed p-0">
+      <div class="app-inner-layout__header page-title-icon-rounded text-white bg-royal mb-4">
+        <div class="app-page-title">
+          <div class="page-title-wrapper">
+            <div class="page-title-heading">
+              <div class="page-title-icon"><i class="pe-7s-umbrella icon-gradient bg-sunny-morning"></i></div>
+              <div>
+                Sales Dashboard
+                <div class="page-title-subheading">Example of a Dashboard page built with ArchitectUI.</div>
+              </div>
+            </div>
+            <div class="page-title-actions">
+              <div class="d-inline-block" ngbDropdown>
+                <button class="btn btn-info btn-icon" ngbDropdownToggle>
+                  <span class="pr-2 opacity-7">
+                    <fa-icon [icon]="faCog"></fa-icon>
+                  </span>
+                  Menu
+                </button>
+                <div ngbDropdownMenu>
+                  <div>
+                    <ul class="nav flex-column">
+                      <li class="nav-item">
+                        <a class="nav-link">
+                          <i class="nav-link-icon lnr-inbox"></i>
+                          <span>
+                            Inbox
+                          </span>
+                          <div class="ml-auto badge badge-pill badge-secondary">86</div>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link">
+                          <i class="nav-link-icon lnr-book"></i>
+                          <span>
+                            Book
+                          </span>
+                          <div class="ml-auto badge badge-pill badge-danger">5</div>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link">
+                          <i class="nav-link-icon lnr-picture"></i>
+                          <span>
+                            Picture
+                          </span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a disabled class="nav-link disabled">
+                          <i class="nav-link-icon lnr-file-empty"></i>
+                          <span>
+                            File Disabled
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container tabs-animated tabs-animated-shadow tabs-rounded-lg">
+      <ul class="nav nav-tabs nav-justified">
+        <li class="nav-item">
+          <a class="nav-link active" [routerLink]="">
+            <span>Sales</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="">
+            <span>Activity</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="">
+            <span>Profile</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="">
+            <span>Accounts</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-xl-4">
+        <div class="mb-3 card">
+          <div class="card-header-tab card-header">
+            <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+              <i class="header-icon lnr-shirt mr-3 text-muted opacity-6"> </i>
+              Top Sellers
+            </div>
+            <div class="btn-actions-pane-right actions-icon-btn" ngbDropdown>
+              <button class="btn btn-icon btn-icon-only btn-link" ngbDropdownToggle>
+                <fa-icon [icon]="faTh"></fa-icon>
+              </button>
+              <div ngbDropdownMenu>
+                <button type="button" tabindex="0" class="dropdown-item"><i class="dropdown-icon lnr-inbox">
+                  </i><span>Menus</span>
+                </button>
+                <button type="button" tabindex="0" class="dropdown-item"><i class="dropdown-icon lnr-file-empty">
+                  </i><span>Settings</span></button>
+                <button type="button" tabindex="0" class="dropdown-item"><i class="dropdown-icon lnr-book">
+                  </i><span>Actions</span>
+                </button>
+                <div class="dropdown-divider"></div>
+                <div class="p-1 text-right">
+                  <button class="mr-2 btn-shadow btn-sm btn btn-link">View Details</button>
+                  <button class="mr-2 btn-shadow btn-sm btn btn-primary">Action</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="widget-chart widget-chart2 text-left p-0">
+            <div class="widget-chat-wrapper-outer">
+              <div class="widget-chart-content widget-chart-content-lg">
+                <div class="widget-chart-flex">
+                  <div class="widget-title opacity-5 text-muted text-uppercase">New accounts since 2018</div>
+                </div>
+                <div class="widget-numbers">
+                  <div class="widget-chart-flex">
+                    <div>
+                      <span class="opacity-10 text-success pr-2">
+                        <fa-icon [icon]="faAngleUp"></fa-icon>
+                      </span>
+                      <span>9</span>
+                      <small class="opacity-5 pl-1">%</small>
+                    </div>
+                    <div class="widget-title ml-2 font-size-lg font-weight-normal text-muted">
+                      <span class="text-danger pl-2">+14% failed</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="widget-chart-wrapper widget-chart-wrapper-xlg opacity-10 m-0">
+                <canvas baseChart height="165" class="chart" [datasets]="datasets" [labels]="labels"
+                  [colors]="lineChartColors" [options]="options" [chartType]="'line'"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="pt-2 pb-0 card-body">
+            <h6 class="text-muted text-uppercase font-size-md opacity-9 mb-2 font-weight-normal">Authors</h6>
+            <div class="scroll-area-md shadow-overflow">
+              <perfect-scrollbar [autoPropagation]="true">
+                <ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush">
+                  <li class="list-group-item">
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <img width="38" class="rounded-circle" src="./assets/images/avatars/1.jpg" alt="">
+                        </div>
+                        <div class="widget-content-left">
+                          <div class="widget-heading">Viktor Martin</div>
+                          <div class="widget-subheading mt-1 opacity-10">
+                            <div class="badge badge-pill badge-dark">$152</div>
+                          </div>
+                        </div>
+                        <div class="widget-content-right">
+                          <div class="fsize-1 text-focus">
+                            <small class="opacity-5 pr-1">$</small>
+                            <span>752</span>
+                            <small class="text-warning pl-2">
+                              <fa-icon [icon]="faAngleDown"></fa-icon>
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <img width="38" class="rounded-circle" src="./assets/images/avatars/2.jpg" alt="">
+                        </div>
+                        <div class="widget-content-left">
+                          <div class="widget-heading">Denis Delgado</div>
+                          <div class="widget-subheading mt-1 opacity-10">
+                            <div class="badge badge-pill badge-dark">$53</div>
+                          </div>
+                        </div>
+                        <div class="widget-content-right">
+                          <div class="fsize-1 text-focus">
+                            <small class="opacity-5 pr-1">$</small>
+                            <span>587</span>
+                            <small class="text-danger pl-2">
+                              <fa-icon [icon]="faAngleUp"></fa-icon>
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <img width="38" class="rounded-circle" src="./assets/images/avatars/3.jpg" alt="">
+                        </div>
+                        <div class="widget-content-left">
+                          <div class="widget-heading">Shawn Galloway</div>
+                          <div class="widget-subheading mt-1 opacity-10">
+                            <div class="badge badge-pill badge-dark">$239</div>
+                          </div>
+                        </div>
+                        <div class="widget-content-right">
+                          <div class="fsize-1 text-focus">
+                            <small class="opacity-5 pr-1">$</small>
+                            <span>163</span>
+                            <small class="text-muted pl-2">
+                              <fa-icon [icon]="faAngleDown"></fa-icon>
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <img width="38" class="rounded-circle" src="./assets/images/avatars/4.jpg" alt="">
+                        </div>
+                        <div class="widget-content-left">
+                          <div class="widget-heading">Latisha Allison</div>
+                          <div class="widget-subheading mt-1 opacity-10">
+                            <div class="badge badge-pill badge-dark">$21</div>
+                          </div>
+                        </div>
+                        <div class="widget-content-right">
+                          <div class="fsize-1 text-focus">
+                            <small class="opacity-5 pr-1">$</small>
+                            653
+                            <small class="text-primary pl-2">
+                              <fa-icon [icon]="faAngleUp"></fa-icon>
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <img width="38" class="rounded-circle" src="./assets/images/avatars/5.jpg" alt="">
+                        </div>
+                        <div class="widget-content-left">
+                          <div class="widget-heading">Lilly-Mae White</div>
+                          <div class="widget-subheading mt-1 opacity-10">
+                            <div class="badge badge-pill badge-dark">$381</div>
+                          </div>
+                        </div>
+                        <div class="widget-content-right">
+                          <div class="fsize-1 text-focus">
+                            <small class="opacity-5 pr-1">$</small>
+                            629
+                            <small class="text-muted pl-2">
+                              <fa-icon [icon]="faAngleUp"></fa-icon>
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <img width="38" class="rounded-circle" src="./assets/images/avatars/8.jpg" alt="">
+                        </div>
+                        <div class="widget-content-left">
+                          <div class="widget-heading">Julie Prosser</div>
+                          <div class="widget-subheading mt-1 opacity-10">
+                            <div class="badge badge-pill badge-dark">$74</div>
+                          </div>
+                        </div>
+                        <div class="widget-content-right">
+                          <div class="fsize-1 text-focus">
+                            <small class="opacity-5 pr-1">$</small>
+                            462
+                            <small class="text-muted pl-2">
+                              <fa-icon [icon]="faAngleDown"></fa-icon>
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="border-bottom-0 list-group-item">
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <img width="38" class="rounded-circle" src="./assets/images/avatars/8.jpg" alt="">
+                        </div>
+                        <div class="widget-content-left">
+                          <div class="widget-heading">Amin Hamer</div>
+                          <div class="widget-subheading mt-1 opacity-10">
+                            <div class="badge badge-pill badge-dark">$7</div>
+                          </div>
+                        </div>
+                        <div class="widget-content-right">
+                          <div class="fsize-1 text-focus">
+                            <small class="opacity-5 pr-1">$</small>
+                            956
+                            <small class="text-success pl-2">
+                              <fa-icon [icon]="faAngleUp"></fa-icon>
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </perfect-scrollbar>
+            </div>
+          </div>
+          <div class="d-block text-center rm-border card-footer">
+            <button class="btn btn-primary">
+              View complete report
+              <fa-icon [icon]="faArrowRight" class="ml-2 opacity-3"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-xl-4">
+        <div class="mb-3 card">
+          <div class="card-header-tab card-header">
+            <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+              <i class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>
+              Best Selling Products
+            </div>
+            <div class="btn-actions-pane-right actions-icon-btn" ngbDropdown>
+
+              <button class="btn btn-icon btn-icon-only btn-link" ngbDropdownToggle>
+                <fa-icon [icon]="faTh"></fa-icon>
+              </button>
+              <div ngbDropdownMenu>
+                <button type="button" tabindex="0" class="dropdown-item"><i class="dropdown-icon lnr-inbox">
+                  </i><span>Menus</span>
+                </button>
+                <button type="button" tabindex="0" class="dropdown-item"><i class="dropdown-icon lnr-file-empty">
+                  </i><span>Settings</span></button>
+                <button type="button" tabindex="0" class="dropdown-item"><i class="dropdown-icon lnr-book">
+                  </i><span>Actions</span>
+                </button>
+                <div class="dropdown-divider"></div>
+                <div class="p-1 text-right">
+                  <button class="mr-2 btn-shadow btn-sm btn btn-link">View Details</button>
+                  <button class="mr-2 btn-shadow btn-sm btn btn-primary">Action</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="widget-chart widget-chart2 text-left p-0">
+            <div class="widget-chat-wrapper-outer">
+              <div class="widget-chart-content widget-chart-content-lg">
+                <div class="widget-chart-flex">
+                  <div class="widget-title opacity-5 text-muted text-uppercase">Toshiba Laptops</div>
+                </div>
+                <div class="widget-numbers">
+                  <div class="widget-chart-flex">
+                    <div>
+                      <span class="opacity-10 text-warning pr-2">
+                        <fa-icon [icon]="faDotCircle"></fa-icon>
+                      </span>
+                      <span>$984</span>
+                    </div>
+                    <div class="widget-title ml-2 font-size-lg font-weight-normal text-muted">
+                      <span class="text-success pl-2">+14</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="widget-chart-wrapper widget-chart-wrapper-xlg opacity-10 m-0">
+                <canvas baseChart height="165" class="chart" [datasets]="datasets2" [labels]="labels"
+                  [colors]="lineChartColors2" [options]="options" [chartType]="'line'"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="pt-2 pb-0 card-body">
+            <h6 class="text-muted text-uppercase font-size-md opacity-9 mb-2 font-weight-normal">Top Performing</h6>
+            <div class="scroll-area-md shadow-overflow">
+              <perfect-scrollbar [autoPropagation]="true">
+                <ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush">
+                  <li class="list-group-item">
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <div class="icon-wrapper m-0">
+                            <div class="progress-circle-wrapper">
+                              <div class="round-progress-text">
+                                <span>42%</span>
+                                <round-progress [current]="42" [max]="100" [color]="'#52c44f'" [background]="'#f0f0f0'"
+                                  [radius]="88" [stroke]="11" [semicircle]="false" [rounded]="true" [clockwise]="false"
+                                  [responsive]="true" [duration]="1400" [animation]="'easeInOutQuart'"
+                                  [animationDelay]="0"></round-progress>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="widget-content-left">
+                          <div class="widget-heading">Asus Laptop</div>
+                          <div class="widget-subheading mt-1 opacity-10">
+                            <div class="badge badge-pill badge-dark">$152</div>
+                          </div>
+                        </div>
+                        <div class="widget-content-right">
+                          <div class="fsize-1 text-focus">
+                            <small class="opacity-5 pr-1">$</small>
+                            <span>752</span>
+                            <small class="text-warning pl-2">
+                              <fa-icon [icon]="faAngleDown"></fa-icon>
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <div class="icon-wrapper m-0">
+                            <div class="progress-circle-wrapper">
+                              <div class="round-progress-text">
+                                <span>71%</span>
+                                <round-progress [current]="71" [max]="100" [color]="'#cc603c'" [background]="'#f0f0f0'"
+                                  [radius]="88" [stroke]="11" [semicircle]="false" [rounded]="true" [clockwise]="false"
+                                  [responsive]="true" [duration]="1400" [animation]="'easeInOutQuart'"
+                                  [animationDelay]="0"></round-progress>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="widget-content-left">
+                          <div class="widget-heading">Dell Inspire</div>
+                          <div class="widget-subheading mt-1 opacity-10">
+                            <div class="badge badge-pill badge-dark">$53</div>
+                          </div>
+                        </div>
+                        <div class="widget-content-right">
+                          <div class="fsize-1 text-focus">
+                            <small class="opacity-5 pr-1">$</small>
+                            <span>587</span>
+                            <small class="text-danger pl-2">
+                              <fa-icon [icon]="faAngleUp"></fa-icon>
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <div class="icon-wrapper m-0">
+                            <div class="progress-circle-wrapper">
+                              <div class="round-progress-text">
+                                <span>55%</span>
+                                <round-progress [current]="55" [max]="100" [color]="'#6bbdcc'" [background]="'#f0f0f0'"
+                                  [radius]="88" [stroke]="11" [semicircle]="false" [rounded]="true" [clockwise]="false"
+                                  [responsive]="true" [duration]="1400" [animation]="'easeInOutQuart'"
+                                  [animationDelay]="0"></round-progress>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="widget-content-left">
+                          <div class="widget-heading">Lenovo IdeaPad</div>
+                          <div class="widget-subheading mt-1 opacity-10">
+                            <div class="badge badge-pill badge-dark">$239</div>
+                          </div>
+                        </div>
+                        <div class="widget-content-right">
+                          <div class="fsize-1 text-focus">
+                            <small class="opacity-5 pr-1">$</small>
+                            <span>163</span>
+                            <small class="text-muted pl-2">
+                              <fa-icon [icon]="faAngleDown"></fa-icon>
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <div class="icon-wrapper m-0">
+                            <div class="progress-circle-wrapper">
+                              <div class="round-progress-text">
+                                <span>38%</span>
+                                <round-progress [current]="38" [max]="100" [color]="'#aacc3e'" [background]="'#f0f0f0'"
+                                  [radius]="88" [stroke]="11" [semicircle]="false" [rounded]="true" [clockwise]="false"
+                                  [responsive]="true" [duration]="1400" [animation]="'easeInOutQuart'"
+                                  [animationDelay]="0"></round-progress>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="widget-content-left">
+                          <div class="widget-heading">Asus Vivobook</div>
+                          <div class="widget-subheading mt-1 opacity-10">
+                            <div class="badge badge-pill badge-dark">$21</div>
+                          </div>
+                        </div>
+                        <div class="widget-content-right">
+                          <div class="fsize-1 text-focus">
+                            <small class="opacity-5 pr-1">$</small>
+                            653
+                            <small class="text-primary pl-2">
+                              <fa-icon [icon]="faAngleUp"></fa-icon>
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <div class="icon-wrapper m-0">
+                            <div class="progress-circle-wrapper">
+                              <div class="round-progress-text">
+                                <span>92%</span>
+                                <round-progress [current]="92" [max]="100" [color]="'#6b72cc'" [background]="'#f0f0f0'"
+                                  [radius]="88" [stroke]="11" [semicircle]="false" [rounded]="true" [clockwise]="false"
+                                  [responsive]="true" [duration]="1400" [animation]="'easeInOutQuart'"
+                                  [animationDelay]="0"></round-progress>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="widget-content-left">
+                          <div class="widget-heading">Apple Macbook</div>
+                          <div class="widget-subheading mt-1 opacity-10">
+                            <div class="badge badge-pill badge-dark">$381</div>
+                          </div>
+                        </div>
+                        <div class="widget-content-right">
+                          <div class="fsize-1 text-focus">
+                            <small class="opacity-5 pr-1">$</small>
+                            629
+                            <small class="text-muted pl-2">
+                              <fa-icon [icon]="faAngleUp"></fa-icon>
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <div class="icon-wrapper m-0">
+                            <div class="progress-circle-wrapper">
+                              <div class="round-progress-text">
+                                <span>63%</span>
+                                <round-progress [current]="63" [max]="100" [color]="'#5eccb5'" [background]="'#f0f0f0'"
+                                  [radius]="88" [stroke]="11" [semicircle]="false" [rounded]="true" [clockwise]="false"
+                                  [responsive]="true" [duration]="1400" [animation]="'easeInOutQuart'"
+                                  [animationDelay]="0"></round-progress>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="widget-content-left">
+                          <div class="widget-heading">HP Envy 13"</div>
+                          <div class="widget-subheading mt-1 opacity-10">
+                            <div class="badge badge-pill badge-dark">$74</div>
+                          </div>
+                        </div>
+                        <div class="widget-content-right">
+                          <div class="fsize-1 text-focus">
+                            <small class="opacity-5 pr-1">$</small>
+                            462
+                            <small class="text-muted pl-2">
+                              <fa-icon [icon]="faAngleDown"></fa-icon>
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="border-bottom-0 list-group-item">
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <div class="icon-wrapper m-0">
+                            <div class="progress-circle-wrapper">
+                              <div class="round-progress-text">
+                                <span>76%</span>
+                                <round-progress [current]="76" [max]="100" [color]="'#cc81a1'" [background]="'#f0f0f0'"
+                                  [radius]="88" [stroke]="11" [semicircle]="false" [rounded]="true" [clockwise]="false"
+                                  [responsive]="true" [duration]="1400" [animation]="'easeInOutQuart'"
+                                  [animationDelay]="0"></round-progress>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="widget-content-left">
+                          <div class="widget-heading">Gaming Laptop HP</div>
+                          <div class="widget-subheading mt-1 opacity-10">
+                            <div class="badge badge-pill badge-dark">$7</div>
+                          </div>
+                        </div>
+                        <div class="widget-content-right">
+                          <div class="fsize-1 text-focus">
+                            <small class="opacity-5 pr-1">$</small>
+                            956
+                            <small class="text-success pl-2">
+                              <fa-icon [icon]="faAngleUp"></fa-icon>
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </perfect-scrollbar>
+            </div>
+          </div>
+          <div class="d-block text-center rm-border card-footer">
+            <button class="btn btn-primary">
+              View all participants
+              <fa-icon [icon]="faArrowRight" class="ml-2 opacity-3"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 col-xl-4">
+        <div class="mb-3 card">
+          <div class="rm-border pb-0 responsive-center card-header">
+            <div>
+              <h5 class="menu-header-title text-capitalize">Portfolio Performance</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-xl-12">
+              <div class="no-shadow rm-border bg-transparent widget-chart text-left card">
+                <div class="progress-circle-wrapper">
+                  <div class="round-progress-text">
+                    <span>47%</span>
+                    <round-progress [current]="47" [max]="100" [color]="'#c44636'" [background]="'#e3e3e3'"
+                      [radius]="88" [stroke]="11" [semicircle]="false" [rounded]="true" [clockwise]="false"
+                      [responsive]="true" [duration]="1400" [animation]="'easeInOutQuart'" [animationDelay]="0">
+                    </round-progress>
+                  </div>
+                </div>
+                <div class="widget-chart-content">
+                  <div class="widget-subheading">Capital Gains</div>
+                  <div class="widget-numbers text-success"><span>$563</span></div>
+                  <div class="widget-description text-focus">
+                    Increased by
+                    <span class="text-warning pl-1">
+                      <fa-icon [icon]="faAngleUp"></fa-icon>
+                      <span class="pl-1">7.35%</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-xl-12">
+              <div class="card no-shadow rm-border bg-transparent widget-chart text-left mt-2">
+                <div class="progress-circle-wrapper">
+                  <div class="round-progress-text">
+                    <span>66%</span>
+                    <round-progress [current]="66" [max]="100" [color]="'#4143c4'" [background]="'#e3e3e3'"
+                      [radius]="88" [stroke]="11" [semicircle]="false" [rounded]="true" [clockwise]="false"
+                      [responsive]="true" [duration]="1400" [animation]="'easeInOutQuart'" [animationDelay]="0">
+                    </round-progress>
+                  </div>
+                </div>
+                <div class="widget-chart-content">
+                  <div class="widget-subheading">Withdrawals</div>
+                  <div class="widget-numbers text-danger"><span>$194</span></div>
+                  <div class="widget-description opacity-8 text-focus">
+                    Down by
+                    <span class="text-success pl-1 pr-1">
+                      <fa-icon [icon]="faAngleDown"></fa-icon>
+                      <span class="pl-1">21.8%</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="text-center">
+              <h5 class="menu-header-title">Example Heading</h5>
+              <h6 class="menu-header-subtitle opacity-6">Example of various options built with ArchitectUI</h6>
+            </div>
+            <div class="card-hover-shadow-2x widget-chart widget-chart2 bg-premium-dark text-left mt-3 card">
+              <div class="widget-chart-content text-white">
+                <div class="widget-chart-flex">
+                  <div class="widget-title">Sales</div>
+                  <div class="widget-subtitle opacity-7">Monthly Goals</div>
+                </div>
+                <div class="widget-chart-flex">
+                  <div class="widget-numbers text-success">
+                    <small>$</small>
+                    <span>976</span>
+                    <small class="opacity-8 pl-2">
+                      <fa-icon [icon]="faAngleUp"></fa-icon>
+                    </small>
+                  </div>
+                  <div class="widget-description ml-auto opacity-7">
+                    <fa-icon [icon]="faAngleUp"></fa-icon>
+                    <span class="pl-1">175%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center mt-3">
+              <button class="btn-pill btn-shadow btn-wide fsize-1 btn btn-success btn-lg">
+                <span class="mr-2 opacity-7">
+                  <fa-icon [icon]="faCog" [spin]="true"></fa-icon>
+                </span>
+                <span class="mr-1">View Complete Report</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-xl-12">
+        <div class="mb-3 card">
+          <div class="card-header-tab card-header">
+            <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+              <i class="header-icon lnr-dice mr-3 text-muted opacity-6"> </i>
+              Table Example
+            </div>
+            <div class="btn-actions-pane-right actions-icon-btn" ngbDropdown>
+              <button class="btn btn-icon btn-icon-only btn-link" ngbDropdownToggle>
+                <fa-icon [icon]="faTh"></fa-icon>
+              </button>
+              <div ngbDropdownMenu>
+                <button type="button" tabindex="0" class="dropdown-item"><i class="dropdown-icon lnr-inbox">
+                  </i><span>Menus</span>
+                </button>
+                <button type="button" tabindex="0" class="dropdown-item"><i class="dropdown-icon lnr-file-empty">
+                  </i><span>Settings</span></button>
+                <button type="button" tabindex="0" class="dropdown-item"><i class="dropdown-icon lnr-book">
+                  </i><span>Actions</span>
+                </button>
+                <div class="dropdown-divider"></div>
+                <div class="p-1 text-right">
+                  <button class="mr-2 btn-shadow btn-sm btn btn-link">View Details</button>
+                  <button class="mr-2 btn-shadow btn-sm btn btn-primary">Action</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+              <thead>
+                <tr>
+                  <th class="text-center">#</th>
+                  <th>Name</th>
+                  <th class="text-center">City</th>
+                  <th class="text-center">Status</th>
+                  <th class="text-center">Sales</th>
+                  <th class="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center text-muted">#345</td>
+                  <td>
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <div class="widget-content-left">
+                            <img width="40" class="rounded-circle" src="./assets/images/avatars/4.jpg" alt="">
+                          </div>
+                        </div>
+                        <div class="widget-content-left flex2">
+                          <div class="widget-heading">John Doe</div>
+                          <div class="widget-subheading opacity-7">Web Developer</div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-center">Madrid</td>
+                  <td class="text-center">
+                    <div class="badge badge-warning">Pending</div>
+                  </td>
+                  <td class="text-center" style="width: 150px;">
+                    <ngx-trend height="40" strokeLinecap="round" stroke="var(--success)" strokeWidth="8" smooth="true"
+                      radius="15" [data]="[0, 10, 5, 22, 3.6, 11]" autoDraw="true" autoDrawDuration="1500"
+                      autoDrawEasing="ease-in"></ngx-trend>
+                  </td>
+                  <td class="text-center">
+                    <button type="button" class="btn btn-primary btn-sm">Details</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center text-muted">#347</td>
+                  <td>
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <div class="widget-content-left">
+                            <img width="40" class="rounded-circle" src="./assets/images/avatars/3.jpg" alt="">
+                          </div>
+                        </div>
+                        <div class="widget-content-left flex2">
+                          <div class="widget-heading">Ruben Tillman</div>
+                          <div class="widget-subheading opacity-7">Etiam sit amet orci eget</div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-center">Berlin</td>
+                  <td class="text-center">
+                    <div class="badge badge-success">Completed</div>
+                  </td>
+                  <td class="text-center" style="width: 150px; position: relative;">
+                    <ngx-trend height="40" strokeLinecap="round" stroke="var(--primary)" strokeWidth="8" smooth="true"
+                      radius="15" [data]="[120, 149, 193.4, 200, 92]" autoDraw="true" autoDrawDuration="1500"
+                      autoDrawEasing="ease-in"></ngx-trend>
+                  </td>
+                  <td class="text-center">
+                    <button type="button" class="btn btn-primary btn-sm">Details</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center text-muted">#321</td>
+                  <td>
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <div class="widget-content-left">
+                            <img width="40" class="rounded-circle" src="./assets/images/avatars/2.jpg" alt="">
+                          </div>
+                        </div>
+                        <div class="widget-content-left flex2">
+                          <div class="widget-heading">Elliot Huber</div>
+                          <div class="widget-subheading opacity-7">Lorem ipsum dolor sic</div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-center">London</td>
+                  <td class="text-center">
+                    <div class="badge badge-danger">In Progress</div>
+                  </td>
+                  <td class="text-center" style="width: 150px; position: relative;">
+                    <ngx-trend height="40" strokeLinecap="round" stroke="var(--warning)" strokeWidth="8" smooth="true"
+                      radius="15" [data]="[3, 7, 6, 16, 3.6, 23]" autoDraw="true" autoDrawDuration="1500"
+                      autoDrawEasing="ease-in"></ngx-trend>
+                  </td>
+                  <td class="text-center">
+                    <button type="button" class="btn btn-primary btn-sm">Details</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center text-muted">#55</td>
+                  <td>
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <div class="widget-content-left">
+                            <img width="40" class="rounded-circle" src="./assets/images/avatars/1.jpg" alt=""></div>
+                        </div>
+                        <div class="widget-content-left flex2">
+                          <div class="widget-heading">Vinnie Wagstaff</div>
+                          <div class="widget-subheading opacity-7">UI Designer</div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-center">Amsterdam</td>
+                  <td class="text-center">
+                    <div class="badge badge-info">On Hold</div>
+                  </td>
+                  <td class="text-center" style="width: 150px; position: relative;">
+                    <ngx-trend height="40" strokeLinecap="round" stroke="var(--danger)" strokeWidth="8" smooth="true"
+                      radius="15" [data]="[0, 10, 5, 22, 3.6, 11]" autoDraw="true" autoDrawDuration="1500"
+                      autoDrawEasing="ease-in"></ngx-trend>
+                  </td>
+                  <td class="text-center">
+                    <button type="button" class="btn btn-primary btn-sm">Details</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center text-muted">#345</td>
+                  <td>
+                    <div class="widget-content p-0">
+                      <div class="widget-content-wrapper">
+                        <div class="widget-content-left mr-3">
+                          <div class="widget-content-left">
+                            <img width="40" class="rounded-circle" src="./assets/images/avatars/4.jpg" alt="">
+                          </div>
+                        </div>
+                        <div class="widget-content-left flex2">
+                          <div class="widget-heading">John Doe</div>
+                          <div class="widget-subheading opacity-7">Web Developer</div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-center">Madrid</td>
+                  <td class="text-center">
+                    <div class="badge badge-warning">Pending</div>
+                  </td>
+                  <td class="text-center" style="width: 150px;">
+                    <ngx-trend height="40" strokeLinecap="round" stroke="var(--success)" strokeWidth="8" smooth="true"
+                      radius="15" [data]="[0, 10, 5, 22, 3.6, 11]" autoDraw="true" autoDrawDuration="1500"
+                      autoDrawEasing="ease-in"></ngx-trend>
+                  </td>
+                  <td class="text-center">
+                    <button type="button" class="btn btn-primary btn-sm">Details</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="divider mb-0 mt-0"></div>
+          <div class="card-body clearfix">
+            <ul role="menubar" aria-disabled="false" aria-label="Pagination"
+              class="pagination float-right mb-0 b-pagination pagination-md">
+              <li aria-hidden="true" class="page-item disabled"><span class="page-link">«</span>
+              </li>
+              <li aria-hidden="true" class="page-item disabled"><span class="page-link">‹</span>
+              </li>
+              <li class="page-item active"><a [routerLink]="" class="page-link">1</a></li>
+              <li class="page-item"><a [routerLink]="" class="page-link">2</a>
+              </li>
+              <li class="page-item"><a [routerLink]="" class="page-link">3</a>
+              </li>
+              <li class="page-item bv-d-xs-down-none"><a [routerLink]="" class="page-link">4</a></li>
+              <li role="separator" class="page-item disabled bv-d-xs-down-none"><span class="page-link">…</span></li>
+              <li class="page-item"><a [routerLink]="" class="page-link">›</a></li>
+              <li class="page-item"><a [routerLink]="" class="page-link">»</a></li>
+            </ul>
+          </div>
+          <div class="d-block text-center card-footer">
+            <button class="mr-2 btn btn-link btn-sm">Cancel</button>
+            <button class="btn btn-success btn-lg">Save</button>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-12 col-lg-6 col-xl-4">
+        <div class="mb-3 card">
+          <div class="card-header-tab card-header">
+            <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+              <i class="header-icon lnr-cloud-download icon-gradient bg-happy-itmeo"> </i>
+              Technical Support
+            </div>
+          </div>
+          <div class="p-0 card-body">
+            <div class="dropdown-menu-header mt-0 mb-0">
+              <div class="dropdown-menu-header-inner bg-heavy-rain">
+                <div class="menu-header-image opacity-1 dd-header-bg-5"></div>
+                <div class="menu-header-content text-dark">
+                  <h5 class="menu-header-title">Notifications</h5>
+                  <h6 class="menu-header-subtitle">
+                    You have
+                    <b class="text-danger">21 </b>
+                    unread messages
+                  </h6>
+                </div>
+              </div>
+            </div>
+            
+            <ul class="nav flex-column">
+              <li class="nav-item-btn text-center pt-1 pb-3 nav-item">
+                <button class="btn-shadow btn-wide btn-pill btn btn-dark">
+                  <span class="badge badge-dot badge-dot-lg badge-warning badge-pulse">Badge</span>
+                  View All Messages
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="main-card mb-3 card">
+      <div class="no-gutters row">
+        <div class="col-md-6 col-xl-4">
+          <div class="widget-content">
+            <div class="widget-content-wrapper">
+              <div class="widget-content-right ml-0 mr-3">
+                <div class="widget-numbers text-success">1896</div>
+              </div>
+              <div class="widget-content-left">
+                <div class="widget-heading">Total Orders</div>
+                <div class="widget-subheading">Last year expenses</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-4">
+          <div class="widget-content">
+            <div class="widget-content-wrapper">
+              <div class="widget-content-right ml-0 mr-3">
+                <div class="widget-numbers text-warning">$ 14M</div>
+              </div>
+              <div class="widget-content-left">
+                <div class="widget-heading">Products Sold</div>
+                <div class="widget-subheading">Total revenue streams</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-4">
+          <div class="widget-content">
+            <div class="widget-content-wrapper">
+              <div class="widget-content-right ml-0 mr-3">
+                <div class="widget-numbers text-danger">45.9%</div>
+              </div>
+              <div class="widget-content-left">
+                <div class="widget-heading">Followers</div>
+                <div class="widget-subheading">People Interested</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-xl-none d-md-block col-md-6 col-xl-4">
+          <div class="widget-content">
+            <div class="widget-content-wrapper">
+              <div class="widget-content-right ml-0 mr-3">
+                <div class="widget-numbers text-danger">45.9%</div>
+              </div>
+              <div class="widget-content-left">
+                <div class="widget-heading">Followers</div>
+                <div class="widget-subheading">People Interested</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<app-page-title [heading]="heading" [subheading]="subheading" [icon]="icon"></app-page-title>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="card main-card mb-3">
+      <div class="card-body">
+        <ngx-trend strokeLinecap="round" stroke="var(--primary)" strokeWidth="4" smooth="true" radius="15"
+          [data]="[0, 10, 5, 22, 3.6, 11]" autoDraw="true" autoDrawDuration="2000" autoDrawEasing="ease-in"></ngx-trend>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card main-card mb-3">
+      <div class="card-body">
+        <ngx-trend strokeLinecap="round" stroke="var(--success)" strokeWidth="4" smooth="true" radius="15"
+          [data]="[120, 149, 193.4, 200, 92]" autoDraw="true" autoDrawDuration="2000" autoDrawEasing="ease-in">
+        </ngx-trend>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card main-card mb-3">
+      <div class="card-body">
+        <ngx-trend strokeLinecap="round" stroke="var(--danger)" strokeWidth="4" smooth="true" radius="15"
+          [data]="[3, 7, 6, 16, 3.6, 23]" autoDraw="true" autoDrawDuration="2000" autoDrawEasing="ease-in"></ngx-trend>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="divider mb-3"></div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="card main-card mb-3">
+      <div class="card-body">
+        <ngx-trend strokeLinecap="round" smooth="true" radius="12" strokeWidth="8" [padding]="18"
+          [data]="[0, 10, 5, 22, 3.6, 11]" autoDraw="true" autoDrawDuration="2000" autoDrawEasing="ease-in"
+          [gradient]="['var(--primary)', 'var(--warning)', 'var(--danger)']"></ngx-trend>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card main-card mb-3">
+      <div class="card-body">
+        <ngx-trend strokeLinecap="round" smooth="true" radius="12" strokeWidth="8" [padding]="18"
+          [data]="[120, 149, 193.4, 200, 92]" autoDraw="true" autoDrawDuration="2000" autoDrawEasing="ease-in"
+          [gradient]="['#f72047', '#ffd200', '#1feaea']"></ngx-trend>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card main-card mb-3">
+      <div class="card-body">
+        <ngx-trend strokeLinecap="round" smooth="true" radius="12" strokeWidth="8" [padding]="18"
+          [data]="[3, 7, 6, 16, 3.6, 23]" autoDraw="true" autoDrawDuration="2000" autoDrawEasing="ease-in"
+          [gradient]="['#00c6ff', '#F0F', '#FF0']"></ngx-trend>
+      </div>
+    </div>
+  </div>
+</div>
