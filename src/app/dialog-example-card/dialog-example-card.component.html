@@ -1,0 +1,33 @@
+<div>
+	<div class="row flex-row align-items-center justify-content-around">
+
+		<div class="w-100">
+			<h3><i mat-dialog-close class="vsm-icon pe-7s-close mb-3 float-right pull-right p-1" (click)="cancel()"></i></h3>
+		</div>
+
+		<div class="col-12 p-0 m-0" *ngIf="data.length == 0">
+			<div class="row w-100 p-0 m-0">
+				<div class="col-12 p-0 m-0">
+					<h3 class="blue-color p-0 m-0 text-center">Nu aveți niciun card adăugat</h3>
+				</div>
+			</div>
+		</div>
+
+		<button *ngFor="let card of data" (click)="chooseCard(card.id)"
+			class="w-100 btn btn-outline-primary p-3 mb-3 d-flex flex-row justify-content-around">
+			<div>
+				<p class="choose-card-paragraph">{{card.card_type}}</p>
+			</div>
+			<div>
+				<p class="choose-card-paragraph">{{card.mcard}}</p>
+			</div>
+			<div>
+				<p class="choose-card-paragraph">{{card.card_exp}}</p>
+
+			</div>
+		</button>
+		<button mat-button mat-dialog-close class="btn btn-outline-danger mt-5" (click)="cancel()">
+			<strong>Anulați</strong>
+		</button>
+	</div>
+</div>

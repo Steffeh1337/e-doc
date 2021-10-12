@@ -1,0 +1,18 @@
+<form>
+    <!-- nume -->
+    <mat-form-field class="example-full-width mt-2 mb-2" *ngFor="let row of arrData; let i = index">
+
+        <input [ngModel]="row.nume" name="nume_{{i}}" matInput placeholder="Nume" [errorStateMatcher]="matcher"
+            type="text" required="required">
+        <mat-icon matSuffix class="red-text pointer" (click)="removeRow(i)">remove
+        </mat-icon>
+    </mat-form-field>
+
+    <!-- add button please -->
+    <div class="col-sm-12">
+        <button type="button" (click)="addNewRow()"
+            class="mb-2 mr-2 btn-transition float-right btn-lg btn btn-outline-primary">
+            ADAUGA
+        </button>
+    </div>
+</form>

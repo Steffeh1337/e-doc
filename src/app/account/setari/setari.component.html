@@ -1,0 +1,617 @@
+<div class="app-inner-layout">
+    <div class="app-inner-layout__header bg-heavy-rain">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div class="page-title-icon">
+                        <i class="fa fa-fw fa-cog icon-gradient bg-mixed-hopes"></i>
+                    </div>
+                    <div>
+                        Setări
+                        <div class="page-title-subheading">
+                            Vizualizare și actualiare date personale, adrese, cât și actualizarea parolei contului personal
+                        </div>
+                    </div>
+                </div>
+                <div class="page-title-actions">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row w-100 mt-5">
+
+        <div class="col-sm-12 col-md-6">
+            <div class="row">
+
+                <div class="col-sm-12 col-lg-12">
+                    <div class="mb-3 card">
+                        <div class="card-header-tab card-header">
+                            <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                <i class="header-icon fa fa-fw fa-user icon-gradient bg-happy-itmeo"> </i>
+                                Informații Personale
+                            </div>
+                            <div class="btn-actions-pane-right text-capitalize actions-icon-btn"  *ngIf="!updateFormShow">
+                                <button class="btn-transition btn btn-sm btn btn-outline-primary" (click)="toggleForm()">
+                                    <i class="fa fa-fw fa-pencil"></i> ACTUALIZARE
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-0 card-body">
+                            <div class="p-0 slick-slider-sm mx-auto">
+                                <div class="widget-content-wrapper">
+                                    <div class="main-card mb-3 card mb-0" *ngIf="!updateFormShow"
+                                        style="margin-bottom: 0 !important;">
+                                        <div class="card-body p-0">
+                                            <ul class="list-group p-0">
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <span><strong>Nume</strong></span>
+                                                    <span>{{ user.nume }}</span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <span><strong>Prenume</strong></span>
+                                                    <span>{{ user.prenume }}</span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <span><strong>CI</strong></span>
+                                                    <span>{{ user.ci_serie || 'n/a'}} - {{user.ci_numar ||
+                                                        'n/a'}}</span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <span><strong>CNP/CUI</strong></span>
+                                                    <span>{{ user.cnp }}</span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between"
+                                                    *ngIf="user.f_nume !== '' && user.type == 2">
+                                                    <span><strong>Denumire Companie</strong></span>
+                                                    <span>{{ user.f_nume }}</span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between"
+                                                    *ngIf="user.f_reg_com !== '' && user.type == 2">
+                                                    <span><strong>Registrul Comerțului</strong></span>
+                                                    <span>{{ user.f_reg_com || 'n/a' }}</span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <span><strong>Email</strong></span>
+                                                    <span>{{ user.email }}</span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <span><strong>Telefon</strong></span>
+                                                    <span>{{ user.international_number }}</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+
+                                    <form *ngIf="updateFormShow" [formGroup]="form" (ngSubmit)="updateAccount()"
+                                        class="p-4">
+
+                                        <!-- add here the form inputs -->
+                                        <!-- nume -->
+                                        <mat-form-field class="example-full-width mt-2 mb-2">
+                                            <input formControlName="nume" matInput placeholder="Nume"
+                                                [errorStateMatcher]="matcher" type="text" required="required">
+
+                                            <mat-error class="p-2"
+                                                *ngIf="(nume.dirty || nume.touched) && nume.errors?.required">
+                                                <strong>Câmp obligatoriu</strong>
+                                            </mat-error>
+                                            <mat-error class="p-2"
+                                                *ngIf="(nume.dirty || nume.touched) && nume.errors?.minlength">
+                                                <strong>Minim 8 caractere</strong>
+                                            </mat-error>
+
+                                            <mat-error class="p-2"
+                                                *ngIf="(nume.dirty || nume.touched) && nume.errors?.maxlength">
+                                                <strong>Max 50 caractere</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <!-- prenume -->
+                                        <mat-form-field class="example-full-width mt-2 mb-2">
+                                            <input formControlName="prenume" matInput placeholder="Prenume"
+                                                [errorStateMatcher]="matcher" type="text" required="required">
+
+                                            <mat-error class="p-2"
+                                                *ngIf="(nume.dirty || nume.touched) && nume.errors?.required">
+                                                <strong>Câmp obligatoriu</strong>
+                                            </mat-error>
+                                            <mat-error class="p-2"
+                                                *ngIf="(nume.dirty || nume.touched) && nume.errors?.minlength">
+                                                <strong>Minim 8 caractere</strong>
+                                            </mat-error>
+
+                                            <mat-error class="p-2"
+                                                *ngIf="(nume.dirty || nume.touched) && nume.errors?.maxlength">
+                                                <strong>Max 50 caractere</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <!-- ci_serie -->
+                                                <mat-form-field class="example-full-width mt-2 mb-2">
+                                                    <input formControlName="ci_serie" matInput placeholder="CI Serie"
+                                                        [errorStateMatcher]="matcher" type="text">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <!-- ci_numar -->
+                                                <mat-form-field class="example-full-width mt-2 mb-2">
+                                                    <input formControlName="ci_numar" matInput placeholder="CI Numar"
+                                                        [errorStateMatcher]="matcher" type="text">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" *ngIf="user.type == 2">
+                                            <div class="col-sm-6">
+                                                <!-- denumire firma -->
+                                                <mat-form-field class="example-full-width mt-2 mb-2"
+                                                    *ngIf="user.f_nume !== ''">
+                                                    <input formControlName="f_nume" matInput
+                                                        placeholder="Denumire Firma" [errorStateMatcher]="matcher"
+                                                        type="text">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <!-- denumire firma -->
+                                                <mat-form-field class="example-full-width mt-2 mb-2"
+                                                    *ngIf="user.f_nume !== ''">
+                                                    <input formControlName="f_reg_com" matInput
+                                                        placeholder="Registrul Comertului" [errorStateMatcher]="matcher"
+                                                        type="text">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+
+                                        <!-- email -->
+                                        <mat-form-field class="example-full-width mt-2 mb-2">
+                                            <input formControlName="email" matInput placeholder="Email"
+                                                [errorStateMatcher]="matcher" type="email" required="required">
+
+                                            <mat-error class="p-2"
+                                                *ngIf="(email.dirty || email.touched) && email.errors?.required">
+                                                <strong>Câmp obligatoriu</strong>
+                                            </mat-error>
+                                            <mat-error class="p-2"
+                                                *ngIf="(email.dirty || email.touched) && (email.errors?.email || email.errors?.pattern)">
+                                                <strong>Email invalid</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <!-- telefon -->
+                                        <mat-form-field class="example-full-width mt-2 mb-2">
+                                            <ngx-mat-intl-tel-input [preferredCountries]="selectedCountry"
+                                                [cssClass]="'custom'" [enablePlaceholder]="true" name="telefon"
+                                                formControlName="telefon" #phone require="required">
+                                            </ngx-mat-intl-tel-input>
+                                            <mat-hint class="p-2">ex: {{phone.selectedCountry.placeHolder}}</mat-hint>
+                                            <mat-error class="p-2" *ngIf="form.controls['telefon']?.errors?.required">
+                                                Câmp
+                                                obligatoriu
+                                            </mat-error>
+                                            <mat-error class="p-2"
+                                                *ngIf="form.controls['telefon']?.errors?.validatePhoneNumber">
+                                                Număr telefon invalid</mat-error>
+                                        </mat-form-field>
+
+
+                                        <div class="divider"></div>
+                                        <!-- buttons -->
+                                        <div class=" widget-content-actions d-flex justify-content-between">
+                                            <button type="button" (click)="toggleForm()"
+                                                class="mb-2 mr-2 btn-transition btn btn-lg btn btn-warning">
+                                                ÎNCHIDE
+                                            </button>
+
+                                            <button type="submit" [disabled]="!form.valid"
+                                                class="mb-2 mr-2 btn-transition btn btn-lg btn btn-primary">
+                                                ACTUALIZARE INFORMAȚII
+                                            </button>
+                                        </div>
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-lg-12">
+                    <div class="mb-3 card">
+                        <div class="card-header-tab card-header">
+                            <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                <i class="header-icon fa fa-fw fa-cog icon-gradient bg-happy-itmeo"> </i>
+                                Actualizare Parolă
+                            </div>
+                        </div>
+                        <div class="p-0 card-body">
+                            <div class="slick-slider-sm mx-auto p-4">
+                                <form [formGroup]="formPasswords" (ngSubmit)="updatePwd()">
+
+                                    <mat-form-field class="example-full-width mt-2 mb-2">
+                                        <input formControlName="password" matInput placeholder="Parola noua"
+                                            [errorStateMatcher]="matcher" required="required"
+                                            [type]="hide ? 'password' : 'text'">
+
+                                        <mat-icon matSuffix (click)="hide = !hide">
+                                            {{hide ? 'visibility_off' : 'visibility'}}
+                                        </mat-icon>
+
+                                        <mat-error class="p-2"
+                                            *ngIf="(password.dirty || password.touched) && password.errors?.required">
+                                            <strong>Câmp obligatoriu</strong>
+                                        </mat-error>
+                                        <mat-error class="p-2"
+                                            *ngIf="(password.dirty || password.touched) && password.errors?.minlength">
+                                            <strong>Minim 8 caractere</strong>
+                                        </mat-error>
+
+                                        <mat-error class="p-2"
+                                            *ngIf="(password.dirty || password.touched) && password.errors?.maxlength">
+                                            <strong>Max 50 caractere</strong>
+                                        </mat-error>
+
+                                    </mat-form-field>
+
+                                    <mat-form-field class="example-full-width mt-2 mb-2">
+                                        <input formControlName="password_confirmation" matInput
+                                            placeholder="Confirmati parola noua" [errorStateMatcher]="matcher"
+                                            required="required" [type]="hide_confirmation ? 'password' : 'text'">
+
+                                        <mat-icon matSuffix (click)="hide_confirmation = !hide_confirmation">
+                                            {{hide_confirmation ? 'visibility_off' : 'visibility'}}
+                                        </mat-icon>
+
+                                        <mat-error class="p-2"
+                                            *ngIf="(passwordConfirmation.dirty || passwordConfirmation.touched) && passwordConfirmation.errors?.required">
+                                            <strong>Câmp obligatoriu</strong>
+                                        </mat-error>
+                                        <mat-error class="p-2"
+                                            *ngIf="(passwordConfirmation.dirty || passwordConfirmation.touched) && passwordConfirmation.errors?.minlength">
+                                            <strong>Minim 8 caractere</strong>
+                                        </mat-error>
+
+                                        <mat-error class="p-2"
+                                            *ngIf="(passwordConfirmation.dirty || passwordConfirmation.touched) && passwordConfirmation.errors?.maxlength">
+                                            <strong>Max 50 caractere</strong>
+                                        </mat-error>
+
+                                    </mat-form-field>
+
+                                    <div class="form-group mt-2 mb-2">
+                                        <button type="submit" [disabled]="!formPasswords.valid"
+                                            class="mb-2 mr-2 btn-transition btn-block btn-lg btn btn-primary">
+                                            ACTUALIZARE PAROLĂ
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="mb-3 card">
+                        <div class="card-header-tab card-header">
+                            <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                <i class="header-icon fa fa-fw fa-map-marker icon-gradient bg-happy-itmeo"> </i>
+                                Adrese (Domiciliu<span *ngIf="user.type == 2">/Sediu Social</span>)
+                            </div>
+                            <div class="btn-actions-pane-right text-capitalize actions-icon-btn" *ngIf="!updateFormShowAddress">
+
+                                <button class="btn-transition btn btn-sm btn btn-outline-primary" (click)="toggleFormAddress()">
+                                    <i class="fa fa-fw fa-plus"></i> ADAUGĂ ADRESĂ
+                                </button>
+
+                            </div>
+                        </div>
+                        <div class="p-0 card-body">
+                            <div class="slick-slider-sm mx-auto p-0">
+                                <div class="main-card mb-3 card mb-0" *ngIf="!updateFormShowAddress"
+                                    style="margin-bottom: 0 !important;">
+                                    <div class="card-body p-4">
+
+
+                                        <div class="smallHeader mb-3">
+                                            <h5 class="border-bottom"><strong>Adresă Domiciliu</strong></h5>
+                                        </div>
+
+                                        <div class="row mt-3">
+
+                                            <div class="col-sm-12 d-flex justify-content-center" *ngIf="listAddresses.domiciliu.length == 0">
+                                                <button type="button" (click)="toggleFormAddress()"
+                                                    class="mb-2 mr-2 btn-transition btn btn-lg btn btn-outline-primary">
+                                                    <i class="fa fa-fw fa-plus"></i> ADAUGĂ ADRESĂ
+                                                </button>
+                                            </div>
+
+                                            <div class="col-sm-12">
+                                                <div class="wrap-address-box-list"
+                                                    *ngFor="let row of listAddresses.domiciliu">
+                                                    <div class="row">
+                                                        <div class="col-sm-8">
+                                                            <p class="m-0"><strong>Județ:</strong> {{row.judet_name}},
+                                                                <strong>Oraș:</strong> {{row.oras}},
+                                                                <strong>Sector:</strong> {{row.sector_name}}
+                                                            </p>
+                                                            <p class="m-0"><strong>Strada:</strong> {{row.strada}},
+                                                                <strong>Număr:</strong> {{row.numar}}
+                                                                <span *ngIf="row.bloc !== null">, <strong>Bl.</strong>
+                                                                    {{row.bloc}}</span>
+                                                                <span *ngIf="row.scara !== null">, <strong>Sc.</strong>
+                                                                    {{row.scara}}</span>
+                                                                <span *ngIf="row.etaj !== null">, <strong>Et.</strong>
+                                                                    {{row.etaj}}</span>
+                                                                <span
+                                                                    *ngIf="row.apartament !== null">, <strong>Ap.</strong>
+                                                                    {{row.apartament}}</span>
+                                                            </p>
+                                                            <p class="m-0"><strong>Observații:</strong> {{row.observatii
+                                                                || 'n/a'}}
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <button type="button"
+                                                                class="mb-2 mr-2 btn-transition btn btn-lg btn btn-outline-danger float-right" (click)="deleteAddress(row)">
+                                                                ȘTERGE
+                                                            </button>
+                                                            <button type="button"
+                                                                class="mb-2 mr-2 btn-transition btn btn-lg btn btn-outline-primary float-right" (click)="updateFormAddress(row)">
+                                                                MODIFICĂ
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="smallHeader mt-5 mb-3" *ngIf="user.type == 2">
+                                            <h5 class="border-bottom"><strong>Adresă Sediu Social</strong></h5>
+                                        </div>
+
+                                        <div class="row mt-3" *ngIf="user.type == 2">
+                                            <div class="col-sm-12 d-flex justify-content-center" *ngIf="listAddresses.sediu.length == 0">
+                                                <button type="button" (click)="toggleFormAddress()"
+                                                    class="mb-2 mr-2 btn-transition btn btn-lg btn btn-outline-primary">
+                                                    <i class="fa fa-fw fa-plus"></i> ADAUGĂ ADRESĂ
+                                                </button>
+                                            </div>
+
+                                            <div class="col-sm-12">
+                                                <div class="wrap-address-box-list"
+                                                    *ngFor="let row of listAddresses.sediu">
+                                                    <div class="row">
+                                                        <div class="col-sm-8">
+                                                            <p class="m-0"><strong>Județ:</strong> {{row.judet_name}},
+                                                                <strong>Oraș:</strong> {{row.oras}},
+                                                                <strong>Sector:</strong> {{row.sector_name}}
+                                                            </p>
+                                                            <p class="m-0"><strong>Strada:</strong> {{row.strada}},
+                                                                <strong>Număr:</strong> {{row.numar}}
+                                                                <span *ngIf="row.bloc !== null"><strong>Bl.</strong>
+                                                                    {{row.bloc}}</span>
+                                                                <span *ngIf="row.scara !== null"><strong>Sc.</strong>
+                                                                    {{row.scara}}</span>
+                                                                <span *ngIf="row.etaj !== null"><strong>Et.</strong>
+                                                                    {{row.etaj}}</span>
+                                                                <span
+                                                                    *ngIf="row.apartament !== null"><strong>Ap.</strong>
+                                                                    {{row.apartament}}</span>
+                                                            </p>
+                                                            <p class="m-0"><strong>Observații:</strong> {{row.observatii
+                                                                || 'n/a'}}
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <button type="button"
+                                                                class="mb-2 mr-2 btn-transition btn btn-lg btn btn-outline-danger float-right" (click)="deleteAddress(row)">
+                                                                ȘTERGE
+                                                            </button>
+                                                            <button type="button"
+                                                                class="mb-2 mr-2 btn-transition btn btn-lg btn btn-outline-primary float-right" (click)="updateFormAddress(row)">
+                                                                MODIFICĂ
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <form *ngIf="updateFormShowAddress" [formGroup]="formAddress" (ngSubmit)="addAddress()"
+                                    class="p-4">
+
+                                    <mat-form-field class="example-full-width mt-2 mb-2">
+                                        <mat-select matSelect formControlName="type" placeholder="Tip Adresa" required>
+                                            <mat-option value="-1">-- Alegeți --</mat-option>
+                                            <mat-option value="1">Domiciliu</mat-option>
+                                            <mat-option value="2" *ngIf="user.type == 2">Sediu Social</mat-option>
+                                        </mat-select>
+                                        <mat-error class="p-2" *ngIf="formAddress.controls['type']?.errors?.required">
+                                            Câmp obligatoriu
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                                <mat-select matSelect formControlName="judet" placeholder="Judet"
+                                                    required="required">
+                                                    <mat-option *ngFor="let judet of judete" [value]="judet.id">
+                                                        {{judet.name}}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error class="p-2"
+                                                    *ngIf="formAddress.controls['judet']?.errors?.required">
+                                                    Câmp obligatoriu
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                                <input formControlName="oras" matInput placeholder="Oras"
+                                                    [errorStateMatcher]="matcher" type="text" required="required">
+
+                                                <mat-error class="p-2"
+                                                    *ngIf="(oras.dirty || oras.touched) && oras.errors?.required">
+                                                    <strong>Câmp obligatoriu</strong>
+                                                </mat-error>
+                                                <mat-error class="p-2"
+                                                    *ngIf="(oras.dirty || oras.touched) && oras.errors?.minlength">
+                                                    <strong>Minim 2 caractere</strong>
+                                                </mat-error>
+
+                                                <mat-error class="p-2"
+                                                    *ngIf="(oras.dirty || oras.touched) && oras.errors?.maxlength">
+                                                    <strong>Max 50 caractere</strong>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                                <mat-select matSelect formControlName="sector" placeholder="Sector">
+                                                    <mat-option value="-1">-- Alegeți --</mat-option>
+                                                    <mat-option value="1">Sector 1</mat-option>
+                                                    <mat-option value="2">Sector 2</mat-option>
+                                                    <mat-option value="3">Sector 3</mat-option>
+                                                    <mat-option value="4">Sector 4</mat-option>
+                                                    <mat-option value="5">Sector 5</mat-option>
+                                                    <mat-option value="6">Sector 6</mat-option>
+                                                </mat-select>
+                                                <mat-error class="p-2"
+                                                    *ngIf="formAddress.controls['sector']?.errors?.required">
+                                                    Câmp obligatoriu
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                                <input formControlName="strada" matInput placeholder="Strada"
+                                                    [errorStateMatcher]="matcher" type="text" required="required">
+
+                                                <mat-error class="p-2"
+                                                    *ngIf="(strada.dirty || strada.touched) && strada.errors?.required">
+                                                    <strong>Câmp obligatoriu</strong>
+                                                </mat-error>
+                                                <mat-error class="p-2"
+                                                    *ngIf="(strada.dirty || strada.touched) && strada.errors?.minlength">
+                                                    <strong>Minim 2 caractere</strong>
+                                                </mat-error>
+
+                                                <mat-error class="p-2"
+                                                    *ngIf="(strada.dirty || strada.touched) && strada.errors?.maxlength">
+                                                    <strong>Max 50 caractere</strong>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                                <input formControlName="numar" matInput placeholder="Numar"
+                                                    [errorStateMatcher]="matcher" type="text" required="required">
+
+                                                <mat-error class="p-2"
+                                                    *ngIf="(numar.dirty || numar.touched) && numar.errors?.required">
+                                                    <strong>Câmp obligatoriu</strong>
+                                                </mat-error>
+
+                                                <mat-error class="p-2"
+                                                    *ngIf="(numar.dirty || numar.touched) && numar.errors?.minlength">
+                                                    <strong>Minim 2 caractere</strong>
+                                                </mat-error>
+
+                                                <mat-error class="p-2"
+                                                    *ngIf="(numar.dirty || numar.touched) && numar.errors?.maxlength">
+                                                    <strong>Max 50 caractere</strong>
+                                                </mat-error>
+
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                                <input formControlName="bloc" matInput placeholder="Bloc"
+                                                    [errorStateMatcher]="matcher" type="text">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-sm-4">
+                                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                                <input formControlName="scara" matInput placeholder="Scara"
+                                                    [errorStateMatcher]="matcher" type="text">
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                                <input formControlName="etaj" matInput placeholder="Etaj"
+                                                    [errorStateMatcher]="matcher" type="text">
+                                            </mat-form-field>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                                <input formControlName="apartament" matInput placeholder="Apartament"
+                                                    [errorStateMatcher]="matcher" type="text">
+                                            </mat-form-field>
+                                        </div>
+
+                                    </div>
+
+
+                                    <mat-form-field class="example-full-width mt-2 mb-2">
+                                        <textarea formControlName="observatii" matInput placeholder="Observatii"
+                                            [errorStateMatcher]="matcher"></textarea>
+                                    </mat-form-field>
+
+
+
+                                    <div class="divider"></div>
+                                    <!-- buttons -->
+                                    <div class=" widget-content-actions d-flex justify-content-between">
+                                        <button type="button" (click)="toggleFormAddress()"
+                                            class="mb-2 mr-2 btn-transition btn btn-lg btn btn-warning">
+                                            ÎNCHIDE
+                                        </button>
+
+                                        <button type="submit" [disabled]="!formAddress.valid"
+                                            class="mb-2 mr-2 btn-transition btn btn-lg btn btn-primary">
+                                            ADAUGĂ
+                                        </button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="" *ngIf="loading">
+    <ngx-loading [show]="loading"
+        [config]="{backdropBorderRadius: '3px', backdropBackgroundColour: 'rgba(0, 0, 0, 0.5)'}"
+        [template]="loadingTemplate"></ngx-loading>
+    <h4 class="loading-text">Vă rugăm așteptați!</h4>
+</div>

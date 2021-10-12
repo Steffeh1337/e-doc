@@ -1,0 +1,67 @@
+$primary: #104382
+
+img.example-full-width
+    max-width: 500px !important
+
+.mat-error
+    color: white
+    background: red
+    width: 100%
+    text-align: left
+
+@media (min-width: 576px)
+    .modal-dialog
+        max-width: 700px !important
+
+div.file-upload-wrapper
+    height: 72px
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, .12)
+    margin-bottom: 8px
+    padding: 16px 8px
+    border-radius: 4px
+    transition: 0.125s ease-in-out box-shadow
+
+    &.file-upload-wrapper-uploaded
+        color: $primary
+        // color: #0db700;
+        box-shadow: 0px 0px 0px 2px $primary
+
+        &:hover
+            box-shadow: 0px 0px 0px 2px $primary
+
+    &:hover
+        border-width: 0px
+        box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, .87)
+
+    mat-label 
+        align-self: center
+        margin-left: 8px
+        user-select: none
+
+        @media only screen and (max-width: 959px)
+            font-size: 12px
+
+    button
+        margin-right: 8px
+
+        mat-icon 
+            margin-right: 8px
+            margin-bottom: 2px
+
+        &.upload-icon-button
+            color: rgba(0, 0, 0, .47)
+
+            &.upload-icon-button-2
+                color: #de0000
+
+            mat-icon 
+                margin: 0
+
+.loading-text
+    z-index: 2000
+    position: absolute
+    color: white
+    left: 0
+    right: 0
+    text-align: center
+    top: calc(50% + 40px)

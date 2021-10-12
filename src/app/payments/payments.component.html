@@ -1,0 +1,329 @@
+<div class="app-inner-layout">
+	<div class="app-inner-layout__header bg-heavy-rain">
+		<div class="app-page-title">
+			<div class="page-title-wrapper">
+				<div class="page-title-heading">
+					<div class="page-title-icon">
+						<i class="vsm-icon pe-7s-wallet icon-gradient bg-mixed-hopes"></i>
+					</div>
+					<div>
+						Plăți Impozite și Taxe
+						<div class="page-title-subheading">
+							Direcția Generală de Impozite și Taxe Sector 4
+						</div>
+					</div>
+				</div>
+				<div class="page-title-actions">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row w-100 mt-5">
+		<div class="col-sm-12 ">
+			<div class="row">
+
+				<div class="col w-75 margin-0-auto white-bg p-5 primary-dashboard">
+					<div class="total-box">
+						<p><strong>Total de plată :</strong> </p>
+						<h5>{{ taxes.total }} RON</h5>
+						<p>Numărul de carduri salvate: <strong>{{ savedCards.length }}</strong></p>
+					</div>
+
+					<div class="button-box-wrapper">
+						<div class="button-box green-box-payments" [class.light-box-payments]="viewPanel !== 1">
+							<p class="bumBox" (click)="showPanel(1)">
+								<img class="smallIcon" src="./assets/images/icons/credit-cards-payment_white.png"
+									style="height: 15px; margin: 0 6px;" />
+								<span>Obligații de Plată</span>
+							</p>
+						</div>
+						<div class="button-box orange-box-payments" [class.light-box-payments]="viewPanel !== 2">
+							<p class="bumBox" (click)="showPanel(2)">
+								<img class="smallIcon" src="/assets/images/icons/icon_lista.png"
+									style="height: 15px; margin: 0 6px;" />
+								<span>Istoric Plăți</span>
+							</p>
+						</div>
+						<div class="button-box blue-box-payments" [class.light-box-payments]="viewPanel !== 3">
+							<p class="bumBox" (click)="showPanel(3)">
+								<img class="smallIcon" src="/assets/images/icons/credit-cards-payment_white.png"
+									style="height: 15px; margin: 0 6px;" />
+								<span>Carduri Salvate</span>
+							</p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="row w-75 obligatii-wrapper" *ngIf="loaded == 1 && viewPanel == 1">
+
+		<div class="col-12" *ngIf="taxes.total == 0">
+			<div class="row w-100">
+				<div class="col-12">
+					<h3 class="blue-color">Toate taxele sunt plătite</h3>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-12 mt-5 mb-5" *ngIf="batchPayment.bills.length > 0">
+			<div class="row w-100">
+				<div class="col-12">
+					<div class="plati-de-facut">
+						<h3 class="blue-color mb-5">Plătiți {{batchPayment.bills.length}} / {{taxes.total_bills}} taxe:
+						</h3>
+						<div *ngFor="let plata of batchPayment.bills">
+							<div class="col-12 flex-row plata-de-facut-row">
+								<p class="payment-p" [class.text-black]="plata.description.indexOf('AMENZI') !== -1">
+									{{plata.description}} -
+									{{plata.bill_debit.toFixed(2)}} RON
+								</p>
+							</div>
+						</div>
+						<div>
+							<p class="text-red"><b>Total de plată: {{(batchPayment.total).toFixed(2)}}</b>
+							</p>
+						</div>
+						<button class="btn btn-warning mt-3" (click)="onChoosePayment()">Alegeți metoda de
+							plată</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="row w-100" *ngFor="let tipFacturare of categories">
+			<div class="col-12" *ngIf="taxes.items[tipFacturare.name].length > 0">
+				<div class="payment-box-wrapper">
+
+					<div class="payment-box-title" [ngClass]="tipFacturare.class">
+						<p (click)="updateBillsGeneralToPay(tipFacturare)">
+                            <fa-icon 
+                                [icon]="(tipFacturare.checked ? faSquareSolid : faSquare)"
+                                [class.green-text]= "tipFacturare.checked "
+                                class="m10t pointer payAllCheckbox"></fa-icon>
+
+							<span class="text-center"><strong>{{tipFacturare.title}}</strong></span>
+
+                            <strong>
+                                <fa-icon  (click)="viewBoxPayments(tipFacturare)"
+                                [icon]="(tipFacturare.expanded ? faTimesCircle : faPlusCircle)"
+                                class="m10t pointer payment-box-title-icon"></fa-icon>
+                            </strong>
+						</p>
+					</div>
+
+					<div class="payment-details-lines w-100" *ngIf="tipFacturare.expanded == true">
+						<div class="payment-details-line"
+							*ngFor="let bill of taxes.items[tipFacturare.name]; let i = index;">
+							<div class="payment-box-details">
+
+								<table class="table table-collapsed table-clean">
+									<tbody>
+
+										<tr>
+											<td class="checkBoxSection no-border">
+                                                <fa-icon (click)="updateBillsToPayV2(i, bill)"
+                                                    [icon]="(bill.bill_checked ? faSquareSolid : faSquare)"
+                                                    [class.green-text]= "bill.bill_checked"
+                                                    class="m10t pointer"></fa-icon>
+											</td>
+
+											<td class="left-side no-border">Descriere</td>
+											<td class="right-side no-border">{{bill.description}}</td>
+										</tr>
+
+										<tr *ngIf="bill.nr_auto !== null">
+											<td class="checkBoxSection"></td>
+											<td class="left-side">Număr Auto</td>
+											<td class="right-side">{{bill.nr_auto}}</td>
+										</tr>
+
+										<tr *ngIf="tipFacturare.name == 'dmu' && bill.parking !== null">
+											<td class="checkBoxSection"></td>
+											<td class="left-side">Parcare</td>
+											<td class="right-side">{{bill.parking}}</td>
+										</tr>
+
+										<tr>
+											<td class="checkBoxSection"></td>
+											<td class="left-side">Total de plată</td>
+											<td class="right-side">{{bill.bill_debit.toFixed(2) }} lei</td>
+										</tr>
+
+										<tr *ngIf="tipFacturare.name == 'dgitl'">
+											<td class="checkBoxSection"></td>
+											<td class="left-side">Total {{bill.bill_label}} an curent</td>
+											<td class="right-side">{{bill.bill_sold.toFixed(2)}} lei</td>
+										</tr>
+
+										<tr *ngIf="tipFacturare.name == 'dgitl' && bill.bill_ramasita > 0">
+											<td class="checkBoxSection"></td>
+											<td class="left-side">Rămășiță</td>
+											<td class="right-side">{{bill.bill_ramasita.toFixed(2)}} lei
+											</td>
+										</tr>
+
+										<tr *ngIf="tipFacturare.name == 'dgitl'">
+											<td class="checkBoxSection"></td>
+											<td class="left-side">Majorări</td>
+											<td class="right-side">{{bill.bill_accesorii.toFixed(2)}}
+												lei</td>
+										</tr>
+
+										<tr *ngIf="tipFacturare.name == 'dgitl' && bill.bill_bonificatie > 0">
+											<td class="checkBoxSection"></td>
+											<td class="left-side">Bonificații</td>
+											<td class="right-side">{{bill.bill_bonificatie.toFixed(2)}} lei -
+												{{taxes.items[tipFacturare.name][i].bill_checked}}
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<div class="payment-box-footer">
+								<div class="btn-box-payment pull-right justify-content-end"
+									[class.disabled-btn]="bill.bill_checked == true || ([1,2].includes(bill.type) && taxes.priorities[categoryLabel[bill.type]].val.includes(bill.priority + 1))"
+									(click)="choosePaymentCard(bill)">
+									<span>
+										<img class="smallIcon" src="/assets/images/icons/credit-cards-payment.png"
+											style="height: 15px" /> Plătește
+									</span>
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row w-75 istoric-plati-wrapper margin-0-auto p-5" *ngIf="loaded == 1 && viewPanel == 2">
+
+		<div class="col-12" *ngIf="taxes.istoric.length == 0">
+			<div class="row w-100">
+				<div class="col-12">
+					<h3 class="blue-color">Nu aveți nicio plată efectuată</h3>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-12 whiteBg mb-2" *ngFor="let row of taxes.istoric">
+			<div class="col col-12">
+				<div class="row head-section-class p-3">
+					<div class="col flex-column details-width">
+						<table class="table table-collapsed table-clean">
+							<tbody>
+
+								<tr>
+									<td class="left-side no-border">Data Plății</td>
+									<td class="right-side no-border">{{row.date}}</td>
+								</tr>
+
+								<tr>
+									<td class="left-side">Total Achitat</td>
+									<td class="right-side">{{row.total_value}} {{row.iso}}</td>
+								</tr>
+
+								<tr>
+									<td class="left-side">Metodă plată</td>
+									<td class="right-side">{{row.method}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<img src="/assets/images/icons/credit-cards-payment_blue.png" class="float-right-icon"
+						style="width: 40px; margin-top: 6px">
+				</div>
+
+				<div class="row body-section-class">
+					<div class="col flex-column details-width">
+						<table class="table table-collapsed table-clean">
+							<tbody>
+								<tr *ngFor="let obj of row.accesorii" class="border-top">
+									<td class="left-section no-border" style="vertical-align: top"> # {{obj.index}}</td>
+									<td text-wrap
+										class="middle-section blue-color flex-display flex-column full-width no-border">
+										<span>
+											{{obj.name}}
+											<span *ngIf="obj.nr_auto !== null">
+												<strong> - {{obj.nr_auto}}</strong>
+											</span>
+										</span>
+										<small *ngIf="obj.parcare !== null"
+											class="flex-row justify-content-between w-100"><span>Parcare:
+											</span>
+											<strong> {{ obj.parcare }}</strong></small>
+										<small *ngIf="obj.from !== null"
+											class="flex-row justify-content-between w-100"><span>De
+												la: </span> <strong> {{ obj.from }}</strong></small>
+										<small *ngIf="obj.end !== null"
+											class="flex-row justify-content-between w-100"><span>Până
+												la: </span> <strong> {{ obj.end }}</strong></small>
+									</td>
+
+									<td class="right-section ion-padding-end text-center" style="vertical-align: top">
+										{{obj.total_value}} {{obj.iso}}
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row w-75 istoric-obj-class-wrapper d-flex flex-column align-items-center justify-content-center"
+		*ngIf="loaded == 1 && viewPanel == 3">
+
+		<div class="col-12" *ngIf="savedCards.length == 0">
+			<div class="row w-100">
+				<div class="col-12">
+					<h3 class="blue-color">Nu aveți niciun card adăugat</h3>
+				</div>
+			</div>
+		</div>
+
+		<div class="row w-100 istoric-obj-class" *ngFor="let row of savedCards">
+			<div class="col col-12">
+				<div class="row head-section-class">
+					<div class="col flex-column details-width">
+						<table class="table table-collapsed table-clean">
+							<tbody>
+								<tr>
+									<td class="left-side no-border"><b>{{row.card_type}}</b></td>
+									<td class="right-side no-border">{{row.mcard}}</td>
+								</tr>
+								<tr>
+									<td class="left-side">{{row.card_exp}}</td>
+									<td class="right-side">
+										<span class="red-text deleteCardBtn" (click)="removeCard(row)">Ștergeți</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<img class="float-right-icon" src="/assets/images/icons/credit-cards-payment_blue.png"
+						style="height: 40px; margin: 0 6px;" />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="" *ngIf="loading">
+	<ngx-loading [show]="loading"
+		[config]="{backdropBorderRadius: '3px', backdropBackgroundColour: 'rgba(0, 0, 0, 0.5)'}"
+		[template]="loadingTemplate"></ngx-loading>
+	<h4 class="loading-text">Vă rugăm așteptați!</h4>
+</div>

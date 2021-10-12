@@ -1,0 +1,613 @@
+<div class="app-inner-layout">
+    <div class="app-inner-layout__header bg-heavy-rain">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div class="page-title-icon">
+                        <i class="fa fa-fw fa-file-text icon-gradient bg-mixed-hopes"></i>
+                    </div>
+                    <div>
+                        Adauga o Solicitare
+                        <div class="page-title-subheading">
+                            <span *ngIf="step == 1">Alegeti un tip de solicitare de mai jos</span>
+                            <span *ngIf="step == 2">Completati toate informatiile de mai jos si trimiteti solicitarea la
+                                DGITL S4.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-title-actions">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row w-100 mt-5" *ngIf="generalError !== null">
+
+        <div class="col-sm-12">
+            <div role="alert" class="alert alert-danger fade show">
+                <h5>ATENTIE!</h5>
+                <p class="mb-0">{{generalError}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row w-100 mt-5" *ngIf="generalError == null">
+
+        <div class="col-sm-12 white-bg pt-5" *ngIf="step == 2">
+            <button type="button" (click)="resetForm()"
+                class="mb-2 mr-2 btn-transition btn btn-lg btn btn-light pull-right">
+                RESET
+            </button>
+        </div>
+        <!-- alege tip persoana -->
+        <div class="col-sm-12 hidden" *ngIf="step == 0">
+            <div class="choice-wrapper">
+                <div class="choice-box" (click)="choosePerson('persoanaFizica')">
+                    <div class="choice-img">
+                        <i class="fa fa-fw fa-user"></i>
+                    </div>
+                    <div class="choice-text">
+                        <p>PERSOANĂ FIZICĂ</p>
+                    </div>
+                </div>
+                <div class="choice-box" (click)="choosePerson('persoanaJuridica')">
+                    <div class="choice-img">
+                        <i class="fa fa-fw fa-briefcase"></i>
+                    </div>
+                    <div class="choice-text">
+                        <p>PERSOANĂ JURIDICĂ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- alege formular -->
+        <div class="col-sm-12 white-bg p-5" *ngIf="step == 1">
+            <div class="row" *ngFor="let row of listShow">
+                <div class="col-sm-12 smallSectionBox">
+                    <div class="smallSectionHeader">
+                        <h4 class="m-0">{{row.title}}</h4>
+                    </div>
+                    <div class="smallSectionList">
+                        <ul class="custom-list-choice">
+                            <li *ngFor="let rw of row.items; let i = index" (click)="showForm(rw)">{{1 + i}}.
+                                {{rw.title}}</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- randare formular -->
+
+        <form (ngSubmit)="submit()" class="w-100" *ngIf="step == 2">
+
+            <div class="col-sm-12 white-bg p-5">
+
+                <div class="row">
+                    <div class="col-sm-12 text-center pb50">
+                        <h4 class="text-center" [innerHtml]="sectionChosen.title_section"></h4>
+                        <p class="text-center">{{sectionChosen.subtitle}}</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-12" *ngIf="loaded == 1">
+
+                    <!-- <div class="row" *ngIf="errorMessages.length > 0">
+                        <div class="col-sm-12"> -->
+                    <!-- <p class="red-text"><strong>Am intâmpinat {{errorMessages.length}} erori în completarea Cererii
+                                    Dumneavoastră Vă rugăm să reverificați cererea și să o retransmiteți:</strong></p>
+                            <hr />
+                            <ul class="simple-list">
+                                <li class="red-text" *ngFor="errMsg in errorMessages track by $index">{{$index + 1}}.
+                                    {{errMsg}}</li>
+                            </ul> -->
+                    <!-- </div>
+                    </div> -->
+
+                    <h4 class="section-title border-bottom mb-3">Subsemnatul</h4>
+
+                    <div class="row pb-5">
+
+                        <div class="col-sm-12 col-md-6 pb-5" *ngIf="user.type == 2">
+                            <h5 class="sub-section-title"><Strong>Identificare Contribuabil</Strong></h5>
+
+                            <ul class="list-group p-0">
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span><strong>CNP/CUI</strong></span>
+                                    <span>{{ user.cnp }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between"
+                                    *ngIf="user.f_nume !== '' && user.type == 2">
+                                    <span><strong>Denumire Companie</strong></span>
+                                    <span>{{ user.f_nume }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between"
+                                    *ngIf="user.f_reg_com !== '' && user.type == 2">
+                                    <span><strong>Registrul Comertului</strong></span>
+                                    <span>{{ user.f_reg_com || 'n/a' }}</span>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 pb-5" *ngIf="user.type == 2">
+                            <h5 class="sub-section-title">Adresa Sediu Social</h5>
+
+                                <!-- placeholder="Alegeti Adresa Domiciliu" -->
+                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                <mat-select matSelect [(ngModel)]="subsemnatul.source_sediu_social"
+                                     name="source_sediu_social" required 
+                                    (ngModelChange)="updateAdresaSelected($event, 'source_sediu_social')">
+                                    <mat-option value="-1">-- Alegeti --</mat-option>
+                                    <mat-option *ngFor="let row of listAddresses.sediu_social" value="{{row.id}}">
+                                        Str.{{row.strada}},
+                                        Nr. {{row.numar}}
+                                        <span *ngIf="row.bloc !== null">, Bl. {{row.bloc}}</span>
+                                        <span *ngIf="row.scara !== null">, Sc. {{row.scara}}</span>
+                                        <span *ngIf="row.etaj !== null">, Et. {{row.etaj}}</span>
+                                        <span *ngIf="row.apartament !== null">, Ap. {{row.apartament}}</span>
+                                        , {{row.oras}}, {{row.judet_name}}<span *ngIf="row.sector > 0">,
+                                            {{row.sector_name}}</span>
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <div class="col-sm-12">
+                                <div role="alert" class="alert alert-danger fade show text-center" *ngIf="subsemnatul.source_sediu_social == -1">
+                                    <h5>ATENTIE!</h5>
+                                    <p class="mb-0">Adresa Sediu Social este obligatorie</p>
+                                </div>
+
+                                <p class="border-bottom" *ngIf="subsemnatul.source_sediu_social > -1">Adresa selectata</p>
+
+                                <div class="wrap-address-box-list" *ngFor="let row of listAddresses.sediu_social">
+                                    <div class="row" *ngIf="subsemnatul.source_adresa == row.id">
+                                        <div class="col-sm-8">
+                                            <p class="m-0"><strong>Judet:</strong> {{row.judet_name}},
+                                                <strong>Oras:</strong> {{row.oras}},
+                                                <strong>Sector:</strong> {{row.sector_name}}
+                                            </p>
+                                            <p class="m-0"><strong>Strada:</strong> {{row.strada}},
+                                                <strong>Numar:</strong> {{row.numar}}
+                                                <span *ngIf="row.bloc !== null">, <strong>Bl.</strong>
+                                                    {{row.bloc}}</span>
+                                                <span *ngIf="row.scara !== null">, <strong>Sc.</strong>
+                                                    {{row.scara}}</span>
+                                                <span *ngIf="row.etaj !== null">, <strong>Et.</strong>
+                                                    {{row.etaj}}</span>
+                                                <span *ngIf="row.apartament !== null">, <strong>Ap.</strong>
+                                                    {{row.apartament}}</span>
+                                            </p>
+                                            <p class="m-0"><strong>Observatii:</strong> {{row.observatii
+                                                || 'n/a'}}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="divider" *ngIf="user.type == 2"></div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <h5 class="sub-section-title"><Strong>Identificare <span *ngIf="user.type == 2">Împuternicit/Mandatar</span></Strong></h5>
+
+                            <ul class="list-group p-0">
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span><strong>Nume</strong></span>
+                                    <span>{{ user.nume }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span><strong>Prenume</strong></span>
+                                    <span>{{ user.prenume }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span><strong>CI</strong></span>
+                                    <span>{{ user.ci_serie || 'n/a'}} - {{user.ci_numar ||
+                                        'n/a'}}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between" *ngIf="user.type == 1">
+                                    <span><strong>CNP/CUI</strong></span>
+                                    <span>{{ user.cnp }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span><strong>Email</strong></span>
+                                    <span>{{ user.email }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span><strong>Telefon</strong></span>
+                                    <span>{{ user.international_number }}</span>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <h5 class="sub-section-title">Adresa Domiciliu</h5>
+
+                                <!-- placeholder="Alegeti Adresa Domiciliu" -->
+                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                <mat-select matSelect [(ngModel)]="subsemnatul.source_adresa"
+                                     name="source_adresa" required 
+                                    (ngModelChange)="updateAdresaSelected($event, 'source_adresa')">
+                                    <mat-option value="-1">-- Alegeti --</mat-option>
+                                    <mat-option *ngFor="let row of listAddresses.domiciliu" value="{{row.id}}">
+                                        Str.{{row.strada}},
+                                        Nr. {{row.numar}}
+                                        <span *ngIf="row.bloc !== null">, Bl. {{row.bloc}}</span>
+                                        <span *ngIf="row.scara !== null">, Sc. {{row.scara}}</span>
+                                        <span *ngIf="row.etaj !== null">, Et. {{row.etaj}}</span>
+                                        <span *ngIf="row.apartament !== null">, Ap. {{row.apartament}}</span>
+                                        , {{row.oras}}, {{row.judet_name}}<span *ngIf="row.sector > 0">,
+                                            {{row.sector_name}}</span>
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <div class="col-sm-12">
+                                <div role="alert" class="alert alert-danger fade show text-center" *ngIf="subsemnatul.source_adresa == -1">
+                                    <h5>ATENTIE!</h5>
+                                    <p class="mb-0">Adresa de Domiciliu este obligatorie</p>
+                                </div>
+
+                                <p class="border-bottom" *ngIf="subsemnatul.source_adresa > -1">Adresa selectata</p>
+
+                                <div class="wrap-address-box-list" *ngFor="let row of listAddresses.domiciliu">
+                                    <div class="row" *ngIf="subsemnatul.source_adresa == row.id">
+                                        <div class="col-sm-8">
+                                            <p class="m-0"><strong>Judet:</strong> {{row.judet_name}},
+                                                <strong>Oras:</strong> {{row.oras}},
+                                                <strong>Sector:</strong> {{row.sector_name}}
+                                            </p>
+                                            <p class="m-0"><strong>Strada:</strong> {{row.strada}},
+                                                <strong>Numar:</strong> {{row.numar}}
+                                                <span *ngIf="row.bloc !== null">, <strong>Bl.</strong>
+                                                    {{row.bloc}}</span>
+                                                <span *ngIf="row.scara !== null">, <strong>Sc.</strong>
+                                                    {{row.scara}}</span>
+                                                <span *ngIf="row.etaj !== null">, <strong>Et.</strong>
+                                                    {{row.etaj}}</span>
+                                                <span *ngIf="row.apartament !== null">, <strong>Ap.</strong>
+                                                    {{row.apartament}}</span>
+                                            </p>
+                                            <p class="m-0"><strong>Observatii:</strong> {{row.observatii
+                                                || 'n/a'}}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- informatii -->
+                <div class="col-sm-12" *ngIf="loaded == 1">
+                    <h4 class="section-title border-bottom">Informații {{form.informatii[0].headerInfo}}</h4>
+                    <div *ngFor="let section of form.informatii; let i = index" class="row">
+                        <!-- custom elements here -->
+                        <div class="col-sm-12" *ngIf="section.headerInfo !== null">
+                            <h5 class="sub-section-title">{{section.headerInfo}}</h5>
+                        </div>
+                        <div *ngIf="section.customTemplate == 'formElements'" class="col-sm-12">
+                            <div class="row">
+                                <div *ngFor="let element of section.items" class="{{element.customCss}} checkCole">
+                                    <mat-form-field class="example-full-width mt-2 mb-2"
+                                        *ngIf="['input-element'].includes(element.directive) && !hiddenKeys.includes(element.key)">
+                                        <!-- input-element -->
+                                        <input matInput [(ngModel)]="values[element.ngModel]" [type]="element.type"
+                                            [placeholder]="element.placeholder"
+                                            (ngModelChange)="modelChangeFn($event, element)"
+                                            [errorStateMatcher]="matcher" [required]="element.required"
+                                            name="{{element.ngModel}}Input">
+                                    </mat-form-field>
+
+                                    <mat-form-field class="example-full-width mt-2 mb-2"
+                                        *ngIf="['textarea-element'].includes(element.directive) && !hiddenKeys.includes(element.key)">
+                                        <!-- textarea-element -->
+                                        <textarea matInput [(ngModel)]="values[element.ngModel]"
+                                            [placeholder]="element.placeholder"
+                                            (ngModelChange)="modelChangeFn($event, element)"
+                                            [errorStateMatcher]="matcher" [required]="element.required"
+                                            matAutosizeMinRows="2" matAutosizeMaxRows="5"
+                                            name="{{element.ngModel}}Input"></textarea>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="example-full-width mt-2 mb-2"
+                                        *ngIf="['select-element'].includes(element.directive) && !hiddenKeys.includes(element.key)">
+                                        <!-- select-element -->
+                                        <mat-select matSelect [(ngModel)]="values[element.section][element.key]"
+                                            (ngModelChange)="modelChangeFn($event, element)"
+                                            [placeholder]="element.placeholder" [required]="element.required"
+                                            name="{{element.ngModel}}Input">
+                                            <mat-option value="{{val.id}}" *ngFor="let val of element.values">
+                                                {{val.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div *ngIf="section.customTemplate == 'subFormElements' && values.informatii[section.keyCheck] !== null"
+                            class="col-sm-12">
+
+                            <div class="row"
+                                *ngFor="let subSection of section.items_arr[values.informatii[section.keyCheck]]">
+                                <div class="col-sm-12" *ngIf="subSection.headerInfo !== null">
+                                    <h5 class="sub-section-title">{{subSection.headerInfo}}</h5>
+                                </div>
+
+
+                                <div class="row">
+
+                                    <div *ngFor="let element of subSection.items"
+                                        class="{{element.customCss}} checkCole">
+                                        <mat-form-field class="example-full-width mt-2 mb-2"
+                                            *ngIf="['input-element'].includes(element.directive)  && !hiddenKeys.includes(element.key)">
+                                            <!-- input-element -->
+                                            <input matInput [(ngModel)]="values[element.ngModel]" [type]="element.type"
+                                                [placeholder]="element.placeholder"
+                                                (ngModelChange)="modelChangeFn($event, element)"
+                                                [errorStateMatcher]="matcher" [required]="element.required"
+                                                name="{{element.ngModel}}Input">
+                                        </mat-form-field>
+
+                                        <mat-form-field class="example-full-width mt-2 mb-2"
+                                            *ngIf="['textarea-element'].includes(element.directive)  && !hiddenKeys.includes(element.key)">
+                                            <!-- textarea-element -->
+                                            <textarea matInput [(ngModel)]="values[element.ngModel]"
+                                                [placeholder]="element.placeholder"
+                                                (ngModelChange)="modelChangeFn($event, element)"
+                                                [errorStateMatcher]="matcher" [required]="element.required"
+                                                matAutosizeMinRows="2" matAutosizeMaxRows="5"
+                                                name="{{element.ngModel}}Input"></textarea>
+                                        </mat-form-field>
+
+                                        <mat-form-field class="example-full-width mt-2 mb-2"
+                                            *ngIf="['select-element'].includes(element.directive)  && !hiddenKeys.includes(element.key)">
+                                            <!-- select-element -->
+                                            <mat-select matSelect [(ngModel)]="values[element.section][element.key]"
+                                                (ngModelChange)="modelChangeFn($event, element)"
+                                                [placeholder]="element.placeholder" [required]="element.required"
+                                                name="{{element.ngModel}}Input">
+                                                <mat-option value="{{val.id}}" *ngFor="let val of element.values">
+                                                    {{val.name}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- here we add extra inputs -->
+                    <div class="col-sm-12" *ngIf="['3'].includes(values.informatii.calitateSolicitant)">
+                        <div class="row">
+                            <h5 class="full-width sub-section-title border-bottom">Informații ÎMPUTERNICIT/MANDATAR</h5>
+                        </div>
+                        <div class="row">
+                            <app-imputernicit-form [(values)]="values"></app-imputernicit-form>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12" *ngIf="['2'].includes(values.informatii.calitateSolicitant)">
+                        <div class="row">
+                            <h5 class="full-width sub-section-title border-bottom">Informații Coproprietari</h5>
+                        </div>
+                        <div class="row">
+                            <app-coproprietari-form [(values)]="values"></app-coproprietari-form>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12" *ngIf="['1','2'].includes(values.informatii.tipListaBilete)">
+                        <div class="row">
+                            <h5 class="full-width sub-section-title border-bottom">Informatii inregistrare/avizare-tabel</h5>
+                        </div>
+                        <app-bilete-form [(values)]="values"></app-bilete-form>
+                    </div>
+
+                    <div class="col-sm-12" *ngIf="sectionChosen.id == 34">
+                        <div class="row">
+                            <h5 class="full-width sub-section-title border-bottom">Taxe de declarat</h5>
+                        </div>
+                        <app-tip-taxa-form [(values)]="values"></app-tip-taxa-form>
+                    </div>
+
+                    <div class="col-sm-12" *ngIf="sectionChosen.id == 31">
+                        <app-contracte-publicitate-form [(values)]="values"></app-contracte-publicitate-form>
+                    </div>
+
+                    <div class="col-sm-12" *ngIf="values.informatii.tip_scutire !== null">
+                        <app-tip-scutire [(values)]="values"></app-tip-scutire>
+                    </div>
+
+
+                    <div class="col-sm-12" *ngIf="['2','3'].includes(values.informatii.metoda_restituirii)">
+                        <app-metoda-restituire [(values)]="values"></app-metoda-restituire>
+                    </div>
+
+                    <div class="col-sm-12"
+                        *ngIf="[1].includes(values.informatii.act_instrainare) && [6].includes(sectionChosen.id)">
+                        <app-proprietar-nou [(values)]="values"></app-proprietar-nou>
+                    </div>
+
+                    <div class="col-sm-12" *ngIf="sectionChosen.id == 7">
+                        <app-mc-gunoi [(values)]="values"></app-mc-gunoi>
+                    </div>
+
+                    <div class="col-sm-12" *ngIf="values.informatii.calitateSolicitant == '6'">
+                        <app-notar [(values)]="values" [judete]="judete"></app-notar>
+                    </div>
+
+                    <div class="col-sm-12 hidden" *ngIf="['1'].includes(values.informatii.calitateSolicitant)">
+                        <app-beneficiar-form [(values)]="values" [judete]="judete" [sectoare]="sectoare" [(tipPersoana)]="tipPersoana"></app-beneficiar-form>
+                    </div>
+                </div>
+
+
+                <!-- documente -->
+                <div class="col-sm-12 mt-5 pb-3" *ngIf="loaded == 1">
+                    <div class="row">
+                        <div class="col-sm-12 pb-3">
+                            <h4 class="section-title border-bottom">Documente necesare</h4>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12" *ngFor="let input of form.documente; let i = index">
+
+                            <!-- file wrapper -->
+                            <div class="file-upload-wrapper d-flex justify-content-between"
+                                [ngClass]="{'file-upload-wrapper-uploaded': values.files[input.name].length !== 0}">
+                                <mat-label>{{input.label}} <span class="red-text" *ngIf="input.required">*</span>
+                                    <span *ngIf="values.files[input.name].length > 0">
+                                        <strong> - {{ (values.files[input.name][0].original_name.length > 20)?
+                                            (values.files[input.name][0].original_name |
+                                            slice:0:20)+'..':(values.files[input.name][0].original_name) }}</strong>
+                                    </span>
+                                </mat-label>
+                                <!-- (click)="file_{{input.name}}.click()" -->
+
+                                <button mat-raised-button id="upload-button-0" class="upload-button" type="button"
+                                    *ngIf="values.files[input.name].length == 0 && !uploading[input.name]"
+                                     color="accent" (click)="clickFileInput('file_' + input.name)">
+                                    <mat-icon>cloud_upload</mat-icon>
+                                    <span>ÎNCARCĂ</span>
+                                </button>
+                                <div class="upload-buttons-container"
+                                    *ngIf="values.files[input.name].length > 0 && !uploading[input.name]">
+                                    <button mat-icon-button class="upload-icon-button" type="button"
+                                        matTooltip="Încarcă un alt fișier"  (click)="clickFileInput('file_' + input.name)" >
+                                        <mat-icon>cached</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="upload-icon-button upload-icon-button-2"
+                                        type="button" matTooltip="Șterge fișierul încărcat"
+                                        (click)="clearInputFile(input.name)">
+                                        <mat-icon>clear</mat-icon>
+                                    </button>
+                                    <!-- file_{{input.name}}.value = '';  -->
+                                </div>
+                                <mat-spinner diameter="32" style="margin-right: 8px; margin-top: 4px"
+                                    *ngIf="uploading[input.name]"></mat-spinner>
+
+                                <input type="file" accept="image/png, image/jpeg, image/gif, image/jpg, application/pdf"
+                                    id="upload-file-input-0" #file_{{input.name}} id="file_{{input.name}}" name="file_{{input.name}}"
+                                    (change)="upload($event.target.files, input.name)" style="display: none">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- subsol => checkboxes -->
+                <div class="col-sm-12">
+                    <mat-checkbox [(ngModel)]="values.declar_propria_rasp" class="mt-2 mb-2" name="declar_propria_rasp">
+                        Declar în deplină cunoștință și pe proprie răspundere, cunoscând dispozițiile art. 326 Cod Penal
+                        referitoare la falsul în declarații
+                    </mat-checkbox> <br />
+
+                    <mat-checkbox [(ngModel)]="values.declar_acte" class="mt-2 mb-2" name="declar_acte">
+                        Declar că sunt de acord cu transmiterea actelor administrative pe cale electronică
+                    </mat-checkbox> <br />
+
+                    <mat-checkbox [(ngModel)]="values.terms" class="mt-2 mb-2" name="terms">
+                        Sunt de acord cu <a href="https://registratura.taxeimpozite4.ro/termeni-si-conditii"
+                            target="_blank">Termenii și Condițiile de Confidențialitate</a> <span
+                            class="red-text">(*)</span> (conform GDPR)
+                    </mat-checkbox><br />
+                </div>
+
+                <div class="col-sm-12 pb100">
+                    <p class="float-left"><strong><i class="red-text fa fa-fw fa-info-circle"></i> Câmpurile marcate cu
+                            <span class="red-text">*</span> sunt obligatorii</strong> <br />
+                        <span><strong><i class="red-text fa fa-fw fa-info-circle"></i> Fișiere atașate trebuie să fie de
+                                tip
+                                imagine sau PDF</strong></span>
+                    </p>
+                    <button type="submit" class="mb-2 mr-2 btn-transition btn-block btn-lg btn btn-outline-primary">
+                        TRIMITE
+                    </button>
+                </div>
+
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<!-- <app-simple-element></app-simple-element> -->
+<!-- <app-info-sections></app-info-sections> -->
+<!-- <app-bilete-form></app-bilete-form> -->
+<!-- <app-beneficiar-form></app-beneficiar-form> -->
+<!-- <app-contracte-publicitate-form></app-contracte-publicitate-form> -->
+<!-- <app-coproprietari-form></app-coproprietari-form> -->
+<!-- <app-imputernicit-form></app-imputernicit-form> -->
+<!-- <app-mc-gunoi></app-mc-gunoi> -->
+<!-- <app-metoda-restituire></app-metoda-restituire> -->
+<!-- <app-notar></app-notar> -->
+<!-- <app-proprietar-nou></app-proprietar-nou> -->
+<!-- <app-tip-beneficiar></app-tip-beneficiar> -->
+<!-- <app-tip-scutire></app-tip-scutire> -->
+<!-- <app-tip-taxa-form></app-tip-taxa-form> -->
+
+
+
+<!-- make for identificare -->
+<!-- <div *ngFor="let section of form.identificare" class="row">
+    <div class="col-sm-12" *ngIf="section.headerInfo !== null">
+        <h5 class="sub-section-title">{{section.headerInfo}}</h5>
+    </div>
+    <div *ngIf="section.customTemplate == 'formElements'" class="row">
+        <div *ngFor="let element of section.items" class="{{element.customCss}} checkCole">
+
+            <mat-form-field class="example-full-width mt-2 mb-2"
+                *ngIf="['input-element'].includes(element.directive)">
+                <input matInput [(ngModel)]="values[element.ngModel]" [type]="element.type"
+                    [placeholder]="element.placeholder"
+                    (ngModelChange)="modelChangeFn($event, element)" [errorStateMatcher]="matcher"
+                    [required]="element.required" name="{{element.ngModel}}Input">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width mt-2 mb-2"
+                *ngIf="['textarea-element'].includes(element.directive)">
+                <textarea matInput [(ngModel)]="values[element.ngModel]"
+                    [placeholder]="element.placeholder"
+                    (ngModelChange)="modelChangeFn($event, element)" [errorStateMatcher]="matcher"
+                    [required]="element.required" matAutosizeMinRows="2" matAutosizeMaxRows="5"
+                    name="{{element.ngModel}}Input"></textarea>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width mt-2 mb-2"
+                *ngIf="['select-element'].includes(element.directive)">
+                <mat-select matSelect [(ngModel)]="values[element.section][element.key]"
+                    (ngModelChange)="modelChangeFn($event, element)"
+                    [placeholder]="element.placeholder" [required]="element.required"
+                    name="{{element.ngModel}}Input">
+                    <mat-option value="{{val.id}}" *ngFor="let val of element.values">{{val.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+<p class="small-footer-section" *ngIf="![11].includes(sectionChosen.id)">
+    <i>Informații</i><br>
+    <i *ngIf="tipPersoana == 'persoanaFizica'">Se vor completa datele de identificare ale
+        proprietarului/coproprietarului </i>
+    <i *ngIf="tipPersoana == 'persoanaJuridica'">Se vor completa datele de identificare ale
+        societății</i>
+</p> -->

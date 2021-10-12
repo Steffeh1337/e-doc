@@ -1,0 +1,212 @@
+$primary: #104382
+
+.example-form
+    min-width: 150px
+    width: 100%
+
+img.example-full-width
+    max-width: 500px !important
+
+.example-full-width
+    width: 100%
+
+.mat-error
+    color: white
+    background: red
+    width: 100%
+    text-align: left
+
+.loading-text
+    z-index: 2000
+    position: absolute
+    color: white
+    left: 0
+    right: 0
+    text-align: center
+    top: calc(50% + 40px)
+
+.choice-wrapper
+    height: 100%
+    margin: 0
+    padding: 0
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    display: -webkit-box
+    display: -moz-box
+    display: -ms-flexbox
+    display: -webkit-flex
+    display: flex
+    align-items: center
+    justify-content: center
+
+.choice-box
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    border: 1px solid #ccc
+    flex: 1
+    margin: 10px
+    padding: 50px 20px
+    cursor: pointer
+    background: $primary
+    color: white
+
+.choice-text p
+    font-size: 21px
+    font-weight: 500
+    font-family: sans-serif
+
+.choice-img
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    padding: 20px 0px
+
+    & img
+        width: 50%
+
+.choice-box:hover
+    background: #0c4f9d
+    color: white
+    border-color: #0c4f9d
+
+.choice-box .fas, .choice-box .far
+    font-size: 80px
+
+.custom-list-choice li
+    padding: 5px
+    border-bottom: 1px solid #ccc
+    text-transform: uppercase
+    cursor: pointer
+    font-family: sans-serif
+
+ul.custom-list-choice
+    list-style-type: none
+    padding: 0
+    margin: 0
+
+.sub-section-title
+    font-size: 90%
+    color: #888
+    margin-left: 20px
+
+.border-bottom-section
+    border-bottom: 1px solid #ccc
+    padding-top: 20px
+
+    &:last-child
+        border: 0
+
+p.small-footer-section
+    padding: 0px 20px 20px
+    color: #888
+    font-size: 80%
+
+.pb50
+    padding-bottom: 50px
+
+.smallSectionHeader
+    background: $primary
+    margin: 0
+    color: white
+    padding: 10px 30px
+
+ul.custom-list-choice > li
+    padding-left: 20px
+
+.smallSectionBox
+    border: 1px solid #ccc
+    box-shadow: 1px 1px 1px #c888
+    margin: 10px 0
+    padding: 0
+
+.choice-img
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    padding: 20px 0px
+
+    & img
+        width: 50%
+
+.choice-box:hover
+    background: #0c4f9d
+    color: white
+    border-color: #0c4f9d
+
+.choice-box .fa
+    font-size: 80px
+
+img.example-full-width
+    max-width: 500px !important
+
+.mat-error
+    color: white
+    background: red
+    width: 100%
+    text-align: left
+
+@media (min-width: 576px)
+    .modal-dialog
+        max-width: 700px !important
+
+div.file-upload-wrapper
+    height: 72px
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, .12)
+    margin-bottom: 8px
+    padding: 16px 8px
+    border-radius: 4px
+    transition: 0.125s ease-in-out box-shadow
+
+    &.file-upload-wrapper-uploaded
+        color: $primary
+        // color: #0db700;
+        box-shadow: 0px 0px 0px 2px $primary
+
+        &:hover
+            box-shadow: 0px 0px 0px 2px $primary
+
+    &:hover
+        border-width: 0px
+        box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, .87)
+
+    mat-label 
+        align-self: center
+        margin-left: 8px
+        user-select: none
+
+        @media only screen and (max-width: 959px)
+            font-size: 12px
+
+    button
+        margin-right: 8px
+
+        mat-icon 
+            margin-right: 8px
+            margin-bottom: 2px
+
+        &.upload-icon-button
+            color: rgba(0, 0, 0, .47)
+
+            &.upload-icon-button-2
+                color: #de0000
+
+            mat-icon 
+                margin: 0
+
+.loading-text
+    z-index: 2000
+    position: absolute
+    color: white
+    left: 0
+    right: 0
+    text-align: center
+    top: calc(50% + 40px)
+
+.white-bg
+    background: white !important

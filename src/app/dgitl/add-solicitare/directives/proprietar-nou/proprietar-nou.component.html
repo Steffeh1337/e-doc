@@ -1,0 +1,94 @@
+<form class="row">
+    <div class="col-sm-12">
+        <h5 class="full-width sub-section-title">Date identificare proprietar nou</h5>
+    </div>
+
+    <div class="col-6 col-lg-3">
+        <mat-form-field class="example-full-width mt-2 mb-2">
+            <input [(ngModel)]="values.date_identificare_proprietar_nou.nume" name="nume" matInput placeholder="Nume" [errorStateMatcher]="matcher"
+                type="text">
+        </mat-form-field>
+    </div>
+
+    <div class="col-6 col-lg-3">
+        <mat-form-field class="example-full-width mt-2 mb-2">
+            <input [(ngModel)]="values.date_identificare_proprietar_nou.prenume" name="prenume" matInput placeholder="Prenume"
+                [errorStateMatcher]="matcher" type="text">
+        </mat-form-field>
+    </div>
+
+    <div class="col-6 col-lg-3">
+        <mat-form-field class="example-full-width mt-2 mb-2">
+            <input [(ngModel)]="values.date_identificare_proprietar_nou.cnp" name="cnp" matInput placeholder="CNP" [errorStateMatcher]="matcher"
+                type="number">
+        </mat-form-field>
+    </div>
+
+    <div class="col-6 col-lg-3">
+        <mat-form-field class="example-full-width mt-2 mb-2">
+            <mat-select matSelect [(ngModel)]="values.date_identificare_proprietar_nou.judet" placeholder="Judet" name="judet">
+                <mat-option value="{{val.id}}" *ngFor="let val of judete">{{val.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="col-6 col-lg-3">
+        <mat-form-field class="example-full-width mt-2 mb-2">
+            <input [(ngModel)]="values.date_identificare_proprietar_nou.oras" name="oras" matInput placeholder="Oras/Municipiu/Comuna"
+                [errorStateMatcher]="matcher" type="text">
+        </mat-form-field>
+    </div>
+
+    <div class="col-6 col-lg-3">
+        <mat-form-field class="example-full-width mt-2 mb-2">
+            <mat-select matSelect [(ngModel)]="values.date_identificare_proprietar_nou.sector" placeholder="Sector" name="sector">
+                <mat-option value="{{val.id}}" *ngFor="let val of sectoare">{{val.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="col-6 col-lg-3">
+        <mat-form-field class="example-full-width mt-2 mb-2">
+            <input [(ngModel)]="values.date_identificare_proprietar_nou.strada" name="strada" matInput placeholder="Strada" [errorStateMatcher]="matcher"
+                type="text">
+        </mat-form-field>
+    </div>
+
+    <div class="col-4 col-lg-2">
+        <mat-form-field class="example-full-width mt-2 mb-2">
+            <input [(ngModel)]="values.date_identificare_proprietar_nou.numar" name="numar" matInput placeholder="Nr." [errorStateMatcher]="matcher"
+                type="text">
+        </mat-form-field>
+    </div>
+
+    <div class="col-4 col-lg-2">
+        <mat-form-field class="example-full-width mt-2 mb-2">
+            <input [(ngModel)]="values.date_identificare_proprietar_nou.scara" name="scara" matInput placeholder="Sc" [errorStateMatcher]="matcher"
+                type="text">
+        </mat-form-field>
+    </div>
+
+    <div class="col-4 col-lg-2">
+        <mat-form-field class="example-full-width mt-2 mb-2">
+            <input [(ngModel)]="values.date_identificare_proprietar_nou.etaj" name="etaj" matInput placeholder="Etaj" [errorStateMatcher]="matcher"
+                type="text">
+        </mat-form-field>
+    </div>
+
+    <div class="col-4 col-lg-2">
+        <mat-form-field class="example-full-width mt-2 mb-2">
+            <input [(ngModel)]="values.date_identificare_proprietar_nou.apartament" name="apartament" matInput placeholder="Ap"
+                [errorStateMatcher]="matcher" type="text">
+        </mat-form-field>
+    </div>
+
+    <div class="col-6 col-lg-3">
+        <mat-form-field class="example-full-width mt-2 mb-2">
+            <textarea [(ngModel)]="values.date_identificare_proprietar_nou.observatii" name="observatii" matInput placeholder="Observații"
+                [errorStateMatcher]="matcher" matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+    </div>
+
+</form>

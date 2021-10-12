@@ -1,0 +1,300 @@
+<div class="bg-primary min-h-100">
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="mx-auto app-login-box col-md-8">
+            <div class="logo text-center">
+                <img src="/assets/images/logo.png" class="img-fluid example-full-width" />
+            </div>
+            <div class="modal-dialog w-100">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h5 class="modal-title">
+                            <h4 class="mt-2 text-center">Confirmare cont pre-Înrolat - Primăria Sectorului 4</h4>
+                        </h5>
+                        <div class="divider"></div>
+
+                        <!-- add pin form -->
+                        <form [formGroup]="formPIN" (ngSubmit)="checkPIN()" *ngIf="step == -1">
+
+                            <!-- cnp / cui -->
+                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                <input formControlName="cnp_cui" matInput placeholder="CNP/CUI"
+                                    [errorStateMatcher]="matcher" required="required" type='number'>
+
+                                <mat-error class="p-2" *ngIf="(cnpPIN.dirty || cnpPIN.touched) && cnpPIN.errors?.required">
+                                    <strong>Câmp obligatoriu</strong>
+                                </mat-error>
+                                <mat-error class="p-2" *ngIf="(cnpPIN.dirty || cnpPIN.touched) && cnpPIN.errors?.minlength">
+                                    <strong>Minim 4 caractere</strong>
+                                </mat-error>
+
+                                <mat-error class="p-2" *ngIf="(cnpPIN.dirty || cnpPIN.touched) && cnpPIN.errors?.maxlength">
+                                    <strong>Max 13 caractere</strong>
+                                </mat-error>
+                            </mat-form-field>
+
+                            <!-- nume -->
+                            <mat-form-field class="example-full-width mt-2 mb-4">
+                                <input formControlName="pin" matInput placeholder="PIN" [errorStateMatcher]="matcher"
+                                    type="text" required="required">
+
+                                <mat-error class="p-2" *ngIf="(pin.dirty || pin.touched) && pin.errors?.required">
+                                    <strong>Câmp obligatoriu</strong>
+                                </mat-error>
+                                <mat-error class="p-2" *ngIf="(pin.dirty || pin.touched) && pin.errors?.minlength">
+                                    <strong>Minim 8 caractere</strong>
+                                </mat-error>
+
+                                <mat-error class="p-2" *ngIf="(pin.dirty || pin.touched) && pin.errors?.maxlength">
+                                    <strong>Max 8 caractere</strong>
+                                </mat-error>
+                            </mat-form-field>
+
+                            <div class="divider"></div>
+
+                            <button type="submit" [disabled]="!formPIN.valid"
+                                class="mb-2 mr-2 btn-transition btn-block btn-lg btn btn-outline-primary">
+                                VERIFICARE
+                            </button>
+
+                        </form>
+
+                        <!-- add form -->
+                        <form [formGroup]="form" (ngSubmit)="store()" *ngIf="step == 0">
+
+                            <!-- nume -->
+                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                <input formControlName="nume" matInput placeholder="Nume" [errorStateMatcher]="matcher"
+                                    type="text" required="required">
+
+                                <mat-error class="p-2" *ngIf="(nume.dirty || nume.touched) && nume.errors?.required">
+                                    <strong>Câmp obligatoriu</strong>
+                                </mat-error>
+                                <mat-error class="p-2" *ngIf="(nume.dirty || nume.touched) && nume.errors?.minlength">
+                                    <strong>Minim 8 caractere</strong>
+                                </mat-error>
+
+                                <mat-error class="p-2" *ngIf="(nume.dirty || nume.touched) && nume.errors?.maxlength">
+                                    <strong>Max 50 caractere</strong>
+                                </mat-error>
+                            </mat-form-field>
+
+                            <!-- prenume -->
+                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                <input formControlName="prenume" matInput placeholder="Prenume"
+                                    [errorStateMatcher]="matcher" type="text" required="required">
+
+                                <mat-error class="p-2" *ngIf="(nume.dirty || nume.touched) && nume.errors?.required">
+                                    <strong>Câmp obligatoriu</strong>
+                                </mat-error>
+                                <mat-error class="p-2" *ngIf="(nume.dirty || nume.touched) && nume.errors?.minlength">
+                                    <strong>Minim 8 caractere</strong>
+                                </mat-error>
+
+                                <mat-error class="p-2" *ngIf="(nume.dirty || nume.touched) && nume.errors?.maxlength">
+                                    <strong>Max 50 caractere</strong>
+                                </mat-error>
+                            </mat-form-field>
+
+                            <!-- cnp / cui -->
+                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                <input formControlName="cnp" matInput placeholder="CNP/CUI"
+                                    [errorStateMatcher]="matcher" required="required" type='number'>
+
+                                <mat-error class="p-2" *ngIf="(cnp.dirty || cnp.touched) && cnp.errors?.required">
+                                    <strong>Câmp obligatoriu</strong>
+                                </mat-error>
+                                <mat-error class="p-2" *ngIf="(cnp.dirty || cnp.touched) && cnp.errors?.minlength">
+                                    <strong>Minim 4 caractere</strong>
+                                </mat-error>
+
+                                <mat-error class="p-2" *ngIf="(cnp.dirty || cnp.touched) && cnp.errors?.maxlength">
+                                    <strong>Max 13 caractere</strong>
+                                </mat-error>
+                            </mat-form-field>
+
+                            <!-- denumire firma -->
+                            <mat-form-field class="example-full-width mt-2 mb-2"
+                                *ngIf="form.value.cnp !== null && form.value.cnp.toString().length < 13 && form.value.cnp.toString().length > 3">
+                                <input formControlName="f_nume" matInput placeholder="Denumire Firma"
+                                    [errorStateMatcher]="matcher" type="text">
+                            </mat-form-field>
+
+                            <!-- telefon -->
+                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                <ngx-mat-intl-tel-input [preferredCountries]="['ro']" [cssClass]="'custom'"
+                                    [enablePlaceholder]="true" name="telefon" formControlName="telefon" #phone>
+                                </ngx-mat-intl-tel-input>
+                                <mat-hint class="p-2">ex: {{phone.selectedCountry.placeHolder}}</mat-hint>
+                                <mat-error class="p-2" *ngIf="form.controls['telefon']?.errors?.required">Câmp
+                                    obligatoriu
+                                </mat-error>
+                                <mat-error class="p-2" *ngIf="form.controls['telefon']?.errors?.validatePhoneNumber">
+                                    Număr telefon
+                                    invalid</mat-error>
+                            </mat-form-field>
+
+                            <!-- email -->
+
+                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                <input formControlName="email" matInput placeholder="Email"
+                                    [errorStateMatcher]="matcher" type="email" required="required">
+
+                                <mat-error class="p-2" *ngIf="(email.dirty || email.touched) && email.errors?.required">
+                                    <strong>Câmp obligatoriu</strong>
+                                </mat-error>
+                                <mat-error class="p-2"
+                                    *ngIf="(email.dirty || email.touched) && (email.errors?.email || email.errors?.pattern)">
+                                    <strong>Email invalid</strong>
+                                </mat-error>
+                            </mat-form-field>
+
+                            <!-- parole -->
+                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                <input formControlName="password" matInput placeholder="Parola"
+                                    [errorStateMatcher]="matcher" required="required"
+                                    [type]="hide ? 'password' : 'text'">
+
+                                <mat-icon matSuffix (click)="hide = !hide">
+                                    {{hide ? 'visibility_off' : 'visibility'}}
+                                </mat-icon>
+
+                                <mat-error class="p-2"
+                                    *ngIf="(password.dirty || password.touched) && password.errors?.required">
+                                    <strong>Câmp obligatoriu</strong>
+                                </mat-error>
+                                <mat-error class="p-2"
+                                    *ngIf="(password.dirty || password.touched) && password.errors?.minlength">
+                                    <strong>Minim 8 caractere</strong>
+                                </mat-error>
+
+                                <mat-error class="p-2"
+                                    *ngIf="(password.dirty || password.touched) && password.errors?.maxlength">
+                                    <strong>Max 50 caractere</strong>
+                                </mat-error>
+
+                            </mat-form-field>
+
+                            <!-- parole_confirm -->
+
+                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                <input formControlName="password_confirmation" matInput placeholder="Confirmați parola"
+                                    [errorStateMatcher]="matcher" required="required"
+                                    [type]="hide_confirmation ? 'password' : 'text'">
+
+                                <mat-icon matSuffix (click)="hide_confirmation = !hide_confirmation">
+                                    {{hide_confirmation ? 'visibility_off' : 'visibility'}}
+                                </mat-icon>
+
+                                <mat-error class="p-2"
+                                    *ngIf="(passwordConfirmation.dirty || passwordConfirmation.touched) && passwordConfirmation.errors?.required">
+                                    <strong>Câmp obligatoriu</strong>
+                                </mat-error>
+                                <mat-error class="p-2"
+                                    *ngIf="(passwordConfirmation.dirty || passwordConfirmation.touched) && passwordConfirmation.errors?.minlength">
+                                    <strong>Minim 8 caractere</strong>
+                                </mat-error>
+
+                                <mat-error class="p-2"
+                                    *ngIf="(passwordConfirmation.dirty || passwordConfirmation.touched) && passwordConfirmation.errors?.maxlength">
+                                    <strong>Max 50 caractere</strong>
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-checkbox formControlName="termeni_conditii" class="mt-2 mb-2 termeni_conditii">
+                                Sunt de acord cu
+                                <a href="https://ps4.ro/contact-primarie/aplicatia-mobila-primaria-sector-4"
+                                    target="_blank">termenii și condițiile de confidențialitate ale Primăriei
+                                    Municipiului București Sector 4</a>
+                            </mat-checkbox>
+
+
+                            <button type="submit" [disabled]="!form.valid"
+                                class="mb-2 mr-2 btn-transition btn-block btn-lg btn btn-outline-primary">
+                                ÎNREGISTRARE CONT
+                            </button>
+
+                            <div class="divider"></div>
+
+                            <div class="w-100">
+                                <strong><small><span class="red-text">*</span> - Câmpuri obligatorii</small></strong>
+                                <br />
+                                <strong><small><i>Confirmarea contului se va face prin SMS către numărul de telefon
+                                            menționat în formularul de mai sus</i></small></strong><br />
+                                <strong><small>Suport tehnic: <a
+                                            href="https://www.mobilitateurbana4.ro/registratura-online/?d=6&t=20"
+                                            target="_blank" class="primary-text">aici</a></small></strong>
+                            </div>
+                        </form>
+
+                        <!-- code form -->
+                        <form *ngIf="step == 1" [formGroup]="formCode" (ngSubmit)="confirmCode()">
+                            <p class="text-center">Introduceți codul primit prin SMS la numărul de telefon
+                                <strong>{{phone_no}} </strong>
+                            </p>
+                            <mat-form-field class="example-full-width mt-2 mb-2">
+                                <mat-label>Cod SMS</mat-label>
+                                <input matInput formControlName="code" />
+
+                                <mat-error class="p-2"
+                                    *ngIf="(codeInput.dirty || codeInput.touched) && codeInput.errors?.required">
+                                    <strong>Camp obligatoriu</strong>
+                                </mat-error>
+                                <mat-error class="p-2"
+                                    *ngIf="(codeInput.dirty || codeInput.touched) && codeInput.errors?.minlength">
+                                    <strong>Codul trebuie să conțină 5 cifre</strong>
+                                </mat-error>
+                                <mat-error class="p-2"
+                                    *ngIf="(codeInput.dirty || codeInput.touched) && codeInput.errors?.maxlength">
+                                    <strong>Codul trebuie să conțină 5 cifre</strong>
+                                </mat-error>
+                            </mat-form-field>
+
+                            <div class="divider"></div>
+                            <div>
+                                <p class="text-center red-text pointer" (click)="resendCode()">Nu ați primit codul ?
+                                    Retrimitere SMS aici.</p>
+                                <p class="text-center primary-text">Codul de activare este valabil 1h.</p>
+                            </div>
+                            <div class="divider"></div>
+
+                            <button type="submit" [disabled]="!formCode.valid"
+                                class="mb-2 mr-2 btn-transition btn-block btn-lg btn btn-outline-primary">
+                                CONFIRMA COD
+                            </button>
+                        </form>
+
+                        <!-- success -->
+                        <div class="w-100" *ngIf="step == 2">
+                            <h4 class="green-text text">Contul Dumneavoastră a fost creat cu succes. Vă puteți
+                                autentifica folosind adresa de email înregistrată și parola aleasă.</h4>
+                            <!-- <h4 class="green-text text">
+                                Pentru a beneficia de toate funcționalitățile aplicației este necesară validarea de
+                                către un operator a documentului de identitate atașat la înregistrare. Termenul maxim de
+                                validare este de 24-48 ore.
+                            </h4> -->
+                        </div>
+
+                    </div>
+                    <div class="modal-footer d-block text-center">
+                        <h6 class="mb-0">
+                            Aveti deja cont?
+                            <a routerLink="/auth/login" class="text-primary">Autentificare</a>
+                            |
+                            <a routerLink="/auth/forgot" class="text-primary">Recuperare parolă</a>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center text-white opacity-8 mt-3">
+                {{env.config.copyrightText}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="" *ngIf="loading">
+    <ngx-loading [show]="loading"
+        [config]="{backdropBorderRadius: '3px', backdropBackgroundColour: 'rgba(0, 0, 0, 0.5)'}"
+        [template]="loadingTemplate"></ngx-loading>
+    <h4 class="loading-text">Vă rugăm așteptați!</h4>
+</div>
