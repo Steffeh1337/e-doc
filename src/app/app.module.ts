@@ -49,7 +49,12 @@ import { ChartsModule } from 'ng2-charts';
 
 // ANGULAR MATERIAL COMPONENTS
 
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 // LAYOUT
 
@@ -83,12 +88,9 @@ import { FooterMenuComponent } from './Layout/Components/footer/elements/footer-
 
 // Pages
 
-import { ForgotPasswordComponent } from './DemoPages/UserPages/forgot-password/forgot-password.component';
 import { ForgotPasswordBoxedComponent } from './DemoPages/UserPages/forgot-password-boxed/forgot-password-boxed.component';
 import { LoginBoxedComponent } from './DemoPages/UserPages/login-boxed/login-boxed.component';
-import { LoginComponent } from './DemoPages/UserPages/login/login.component';
 import { RegisterBoxedComponent } from './DemoPages/UserPages/register-boxed/register-boxed.component';
-import { RegisterComponent } from './DemoPages/UserPages/register/register.component';
 
 // Components
 
@@ -104,142 +106,178 @@ import { TrendModule } from 'ngx-trend';
 // Angular Material
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true
+	suppressScrollX: true
 };
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
-  // Change this to your upload POST address:
-  url: 'https://httpbin.org/post',
-  maxFilesize: 50,
-  acceptedFiles: 'image/*'
+	// Change this to your upload POST address:
+	url: 'https://httpbin.org/post',
+	maxFilesize: 50,
+	acceptedFiles: 'image/*'
 };
 
+// custom components
+
+import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { StorageServiceModule } from 'ngx-webstorage-service';
+// import { NotificationService } from './general/notification.service'
+
+import { CheckCodeComponent } from '../app/auth-module/dialogs/check-code/check-code.component'
+
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { NgxMatIntlTelInputModule } from 'ngx-mat-intl-tel-input';
+
+// dialogs, settings
+import { httpInterceptorProviders } from "./interceptors";
+import { DialogExampleComponent } from './dialog-example/dialog-example.component';
+import { DialogExampleCardComponent } from './dialog-example-card/dialog-example-card.component';
+import { DialogExampleAddCardComponent } from './dialog-example-add-card/dialog-example-add-card.component';
+
+// import { InfoSectionsComponent } from '../app/dgitl/add-solicitare/directives/info-sections/info-sections.component'
+
 @NgModule({
-  declarations: [
+	declarations: [
 
-    // LAYOUT
+		// LAYOUT
 
-    AppComponent,
-    BaseLayoutComponent,
-    AppsLayoutComponent,
-    PagesLayoutComponent,
-    OptionsDrawerComponent,
+		AppComponent,
+		BaseLayoutComponent,
+		AppsLayoutComponent,
+		PagesLayoutComponent,
+		OptionsDrawerComponent,
 
-    // HEADER
+		// HEADER
 
-    HeaderComponent,
-    DotsComponent,
-    SearchBoxComponent,
-    MegamenuComponent,
-    MegapopoverComponent,
-    UserBoxComponent,
-    DrawerComponent,
+		HeaderComponent,
+		DotsComponent,
+		SearchBoxComponent,
+		MegamenuComponent,
+		MegapopoverComponent,
+		UserBoxComponent,
+		DrawerComponent,
 
-    // SIDEBAR
+		// SIDEBAR
 
-    SidebarComponent,
-    LogoComponent,
+		SidebarComponent,
+		LogoComponent,
 
-    // FOOTER
+		// FOOTER
 
-    FooterComponent,
-    FooterDotsComponent,
-    FooterMenuComponent,
+		FooterComponent,
+		FooterDotsComponent,
+		FooterMenuComponent,
 
-    // // User Pages
+		// // User Pages
+		ForgotPasswordBoxedComponent,
+		LoginBoxedComponent,
+		RegisterBoxedComponent,
 
-    ForgotPasswordComponent,
-    ForgotPasswordBoxedComponent,
-    LoginBoxedComponent,
-    LoginComponent,
-    RegisterBoxedComponent,
-    RegisterComponent,
+		// Tables
+		NgbdSortableHeaderDirective,
 
-    // Tables
-    NgbdSortableHeaderDirective,
+		// new pages
+		CheckCodeComponent,
+    	DialogExampleComponent,
+        DialogExampleCardComponent,
+        DialogExampleAddCardComponent,
+		// InfoSectionsComponent
+	],
+	imports: [
+		BrowserModule.withServerTransition({ appId: 'serverApp' }),
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		NgReduxModule,
+		CommonModule,
+		LoadingBarRouterModule,
 
-  ],
-  imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    NgReduxModule,
-    CommonModule,
-    LoadingBarRouterModule,
+		// Angular Bootstrap Components
 
-    // Angular Bootstrap Components
+		PerfectScrollbarModule,
+		NgbModule,
+		FontAwesomeModule,
+		LaddaModule,
+		FormsModule,
+		ReactiveFormsModule,
+		NgBootstrapFormValidationModule.forRoot(),
+		NgxLoadingModule.forRoot({}),
+		RoundProgressModule,
+		ToastrModule.forRoot(),
+		SlickCarouselModule,
+		CalendarModule.forRoot({
+			provide: DateAdapter,
+			useFactory: adapterFactory
+		}),
+		// CountUpModule,
+		AgmCoreModule.forRoot({
+			// please get your own API key here:
+			// https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
+			apiKey: ''
+		}),
+		ImageCropperModule,
+		NouisliderModule,
+		NgSelectModule,
+		// SelectDropDownModule,
+		NgMultiSelectDropDownModule.forRoot(),
+		JwBootstrapSwitchNg2Module,
+		AngularEditorModule,
+		HttpClientModule,
+		// TextMaskModule,
+		ClipboardModule,
+		TextareaAutosizeModule,
+		ColorPickerModule,
+		DropzoneModule,
 
-    PerfectScrollbarModule,
-    NgbModule,
-    FontAwesomeModule,
-    LaddaModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgBootstrapFormValidationModule.forRoot(),
-    NgxLoadingModule.forRoot({}),
-    RoundProgressModule,
-    ToastrModule.forRoot(),
-    SlickCarouselModule,
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory
-    }),
-    // CountUpModule,
-    AgmCoreModule.forRoot({
-      // please get your own API key here:
-      // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
-      apiKey: ''
-    }),
-    ImageCropperModule,
-    NouisliderModule,
-    NgSelectModule,
-    // SelectDropDownModule,
-    NgMultiSelectDropDownModule.forRoot(),
-    JwBootstrapSwitchNg2Module,
-    AngularEditorModule,
-    HttpClientModule,
-    // TextMaskModule,
-    ClipboardModule,
-    TextareaAutosizeModule,
-    ColorPickerModule,
-    DropzoneModule,
+		// Charts
 
-    // Charts
+		ChartsModule,
+		NgApexchartsModule,
+		GaugeModule.forRoot(),
+		TrendModule,
 
-    ChartsModule,
-    NgApexchartsModule,
-    GaugeModule.forRoot(),
-    TrendModule,
+		// Angular Material Components
 
-    // Angular Material Components
+		MatCheckboxModule,
+		MatDialogModule,
+		MatFormFieldModule,
+		MatInputModule,
+		MatIconModule,
+		MatButtonModule,
 
-    MatCheckboxModule
-  ],
-  providers: [
-    {
-      provide:
-        PERFECT_SCROLLBAR_CONFIG,
-      // DROPZONE_CONFIG,
-      useValue:
-        DEFAULT_PERFECT_SCROLLBAR_CONFIG,
-      // DEFAULT_DROPZONE_CONFIG,
-    },
-    ConfigActions,
-    ThemeOptions
-  ],
-  bootstrap: [AppComponent]
+		//  new methods
+
+		JwtModule,
+		StorageServiceModule,
+		NgxIntlTelInputModule,
+		NgxMatIntlTelInputModule
+
+
+	],
+	providers: [
+		{
+			provide:
+				PERFECT_SCROLLBAR_CONFIG,
+			// DROPZONE_CONFIG,
+			useValue:
+				DEFAULT_PERFECT_SCROLLBAR_CONFIG,
+			// DEFAULT_DROPZONE_CONFIG,
+		},
+		ConfigActions,
+		ThemeOptions,
+		httpInterceptorProviders
+	],
+	bootstrap: [AppComponent],
 })
 
 export class AppModule {
-  constructor(private ngRedux: NgRedux<ArchitectUIState>,
-    private devTool: DevToolsExtension) {
+	constructor(private ngRedux: NgRedux<ArchitectUIState>,
+		private devTool: DevToolsExtension) {
 
-    this.ngRedux.configureStore(
-      rootReducer,
-      {} as ArchitectUIState,
-      [],
-      [this.devTool.isEnabled() ? this.devTool.enhancer() : f => f]
-    );
+		this.ngRedux.configureStore(
+			rootReducer,
+			{} as ArchitectUIState,
+			[],
+			[this.devTool.isEnabled() ? this.devTool.enhancer() : f => f]
+		);
 
-  }
+	}
 }

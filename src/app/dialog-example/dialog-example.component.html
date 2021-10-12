@@ -1,0 +1,20 @@
+<div>
+	<div class="row flex-row align-items-center justify-content-around">
+
+		<div class="w-100">
+			<h3><i mat-dialog-close class="vsm-icon pe-7s-close mb-3 float-right pull-right p-1" (click)="cancel()"></i></h3>
+		</div>
+
+		<button class="btn btn-outline-secondary w-100 p-3 mb-3" (click)="newCard()">
+			Card Nou
+		</button>
+
+		<button class="btn btn-outline-primary w-100 p-3 mb-5" (click)="exsCard()">
+			Card Existent
+		</button>
+
+		<button mat-button mat-dialog-close class="btn btn-outline-danger" (click)="cancel()">
+			<strong>Anulați</strong>
+		</button>
+	</div>
+</div>

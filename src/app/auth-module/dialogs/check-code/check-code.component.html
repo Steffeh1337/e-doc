@@ -1,0 +1,35 @@
+<h1 mat-dialog-title class="text-center">
+    <span *ngIf="data.inputFormat == 'sms'">Introduceți codul primit prin SMS la numărul de telefon <strong>{{data.phone_no}} </strong></span>
+    <span *ngIf="data.inputFormat == 'email'">Introduceți codul primit prin Email la adresa de email utilizata la autentificare</span>
+</h1>
+<div mat-dialog-content class="checkCodeComponentClass">
+    <form [formGroup]="form">
+        <mat-form-field appearance="fill" class="example-full-width m-0 p-0">
+            <mat-label>Cod confirmare</mat-label>
+            <input matInput formControlName="code" />
+
+            <mat-error class="p-2" *ngIf="(codeInput.dirty || codeInput.touched) && codeInput.errors?.required">
+                <strong>Camp obligatoriu</strong>
+            </mat-error>
+            <mat-error class="p-2" *ngIf="(codeInput.dirty || codeInput.touched) && codeInput.errors?.minlength">
+                <strong>Codul trebuie să conțină 5 cifre</strong>
+            </mat-error>
+            <mat-error class="p-2" *ngIf="(codeInput.dirty || codeInput.touched) && codeInput.errors?.maxlength">
+                <strong>Codul trebuie să conțină 5 cifre</strong>
+            </mat-error>
+        </mat-form-field>
+    </form>
+
+    <div class="divider"></div>
+    <div>
+        <p class="text-center red-text pointer" (click)="resendCode()">Nu ați primit codul ? Retrimitere COD aici.</p>
+        <p class="text-center primary-text">Codul de activare este valabil 1h.</p>
+    </div>
+</div>
+<div mat-dialog-actions class="example-full-width" align="end">
+    <button mat-button (click)="onNoClick()">Închide</button>
+    <button mat-button class="float-right" cdkFocusInitial [disabled]="!form.valid || loading"
+        (click)="confirmCode()">Confirmă
+        <i class="fa fa-fw fa-spinner icn-spinner primary-text" aria-hidden="true" title="address-book" *ngIf="loading"></i>
+    </button>
+</div>

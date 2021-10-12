@@ -1,0 +1,103 @@
+<div class="app-inner-layout">
+    <div class="app-inner-layout__header bg-heavy-rain">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div class="page-title-icon">
+                        <i class="vsm-icon pe-7s-copy-file icon-gradient bg-mixed-hopes"></i>
+                    </div>
+                    <div>
+                        Solicitările mele
+                        <div class="page-title-subheading">
+                            Registratura Online Directia Generala de Impozite si Taxe Sector 4
+                        </div>
+                    </div>
+                </div>
+                <div class="page-title-actions">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row w-100 mt-5">
+
+        <div class="col-sm-12 ">
+            <div class="row">
+                <div class="col-sm-12 white-bg p-5" *ngIf="loaded == 1">
+                    <div class="row">
+                        <div class="col-sm-12 mb-5">
+                            <button class="btn-transition btn btn-sm btn btn-outline-primary float-right" type="button"
+                                routerLink="/dgitl-add-solicitare" routerLinkActive="active-item">
+                                <i class="fa fa-fw fa-plus"></i> ADAUGA O SOLICITARE
+                            </button>
+                        </div>
+                        <div class="col-sm-12">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#Nr Solicitare</th>
+                                        <th scope="col">Tip Solicitare</th>
+                                        <th scope="col">Cetatean</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Data creat</th>
+                                        <th scope="col">Ultima actualizare</th>
+                                        <th scope="col">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngIf="records.length == 0">
+                                        <td colspan="7" class="text-center">Lipsa Inregistrari</td>
+                                    </tr>
+                                    <tr *ngFor="let row of data; index as i" class="pointer">
+                                        <th scope="row">{{row.reg_numar}}</th>
+                                        <td>
+                                            {{row.subject}}
+                                        </td>
+                                        <td>
+                                            {{row.full_name}}
+                                            <span *ngIf="row.f_nume !== null && row.f_nume !== ''"> -
+                                                {{row.f_nume}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="badge "
+                                                style="background-color: {{row.status_color}};color: {{row.status_bgColor}}">{{row.status_msg}}</span>
+                                        </td>
+                                        <td>{{row.created}}</td>
+                                        <td>{{row.updated}}</td>
+                                        <td>
+                                            <button class="btn-transition btn btn-sm btn btn-outline-primary float-left"
+                                                type="button" routerLink="/dgitl-view-solicitare/{{row.id_cerere}}"
+                                                routerLinkActive="active-item">
+                                                VIZUALIZARE
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="d-flex justify-content-between p-2">
+                                <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+                                    (pageChange)="refreshData()">
+                                </ngb-pagination>
+
+
+                                <div class="form-group">
+                                    <label><strong>Nr înregistrări afișate:</strong> &nbsp;</label>
+                                    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize"
+                                        (ngModelChange)="refreshData()">
+                                        <option [ngValue]="5">5</option>
+                                        <option [ngValue]="10">10</option>
+                                        <option [ngValue]="20">20</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

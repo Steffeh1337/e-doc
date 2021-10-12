@@ -1,0 +1,104 @@
+<form>
+
+    <div class="row" *ngFor="let row of values.informatii.bilete_abonamente; let i = index">
+
+        <h5 class="w-100 sub-section-title border-bottom">Inregistrare/avizare bilete/abonamente #{{1 + i}}</h5> <br/>
+
+        <div class="col-6 col-lg-3">
+            <mat-form-field class="example-full-width mt-2 mb-2">
+                <input [(ngModel)]="row.fel_document_bilete" name="fel_document_bilete_{{i}}" matInput
+                    placeholder="Fel document" [errorStateMatcher]="matcher" type="text">
+            </mat-form-field>
+        </div>
+
+        <div class="col-6 col-lg-3">
+            <mat-form-field class="example-full-width mt-2 mb-2">
+                <input [(ngModel)]="row.numar_document_bilete" name="numar_document_bilete_{{i}}" matInput
+                    placeholder="Numar document" [errorStateMatcher]="matcher" type="text">
+            </mat-form-field>
+        </div>
+
+        <div class="col-6 col-lg-3">
+            <mat-form-field class="example-full-width mt-2 mb-2">
+                <input [(ngModel)]="row.total_bilete" name="total_bilete_{{i}}" matInput placeholder="Numar bilete/abonam"
+                    [errorStateMatcher]="matcher" type="text">
+            </mat-form-field>
+        </div>
+
+        <div class="col-6 col-lg-3">
+            <mat-form-field class="example-full-width mt-2 mb-2">
+                <input [(ngModel)]="row.tarif_bilete" name="tarif_bilete_{{i}}" matInput placeholder="Tarif"
+                    [errorStateMatcher]="matcher" type="text">
+            </mat-form-field>
+        </div>
+
+        <div class="col-6 col-lg-3">
+            <mat-form-field class="example-full-width mt-2 mb-2">
+                <input [(ngModel)]="row.valoare_totala_bilete" name="valoare_totala_bilete_{{i}}" matInput
+                    placeholder="Valoare totala" [errorStateMatcher]="matcher" type="text">
+            </mat-form-field>
+        </div>
+
+        <div class="col-6 col-lg-3">
+            <mat-form-field class="example-full-width mt-2 mb-2">
+                <input [(ngModel)]="row.serie_bilete" name="serie_bilete_{{i}}" matInput
+                    placeholder="Serie bilete/abonament" [errorStateMatcher]="matcher" type="text">
+            </mat-form-field>
+        </div>
+
+        <div class="col-6 col-lg-3">
+            <mat-form-field class="example-full-width mt-2 mb-2">
+                <input [(ngModel)]="row.numar_inceput_bilete" name="numar_inceput_bilete_{{i}}" matInput
+                    placeholder="Număr inceput" [errorStateMatcher]="matcher" type="text">
+            </mat-form-field>
+        </div>
+
+        <div class="col-6 col-lg-3">
+            <mat-form-field class="example-full-width mt-2 mb-2">
+                <input [(ngModel)]="row.numar_sfarsit_bilete" name="numar_sfarsit_bilete_{{i}}" matInput
+                    placeholder="Număr sfarsit" [errorStateMatcher]="matcher" type="text">
+            </mat-form-field>
+        </div>
+
+        <div class="col-6 col-lg-3">
+            <mat-form-field class="example-full-width mt-2 mb-2" appearance="fill">
+                <mat-label>Data inceput</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="row.data_inceput" name="data_inceput_{{i}}">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div class="col-6 col-lg-3">
+            <mat-form-field class="example-full-width mt-2 mb-2" appearance="fill">
+                <mat-label>Data sfarsit</mat-label>
+                <input matInput [matDatepicker]="picker2" [(ngModel)]="row.data_sfarsit" name="data_sfarsit_{{i}}">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div class="col-6 col-lg-3">
+            <mat-form-field class="example-full-width mt-2 mb-2">
+                <textarea [(ngModel)]="row.necesitate_bilete" name="necesitate_bilete" matInput placeholder="Necesitate"
+                    [errorStateMatcher]="matcher" matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+        </div>
+
+        <div class="col-sm-12">
+            <button type="button" (click)="removeRow(i)"
+                class="mb-2 mr-2 btn-transition float-right btn-lg btn btn-outline-danger">
+                STERGE
+            </button>
+        </div>
+    </div>
+
+    <!-- add button please -->
+    <div class="col-sm-12">
+        <button type="button" (click)="addNewRow()"
+            class="mb-2 mr-2 btn-transition float-right btn-lg btn btn-outline-primary">
+            ADAUGA
+        </button>
+    </div>
+
+</form>
