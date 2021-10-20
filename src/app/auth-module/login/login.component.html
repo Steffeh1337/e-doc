@@ -1,108 +1,107 @@
-<div class="h-100 bg-primary bg-animation">
-    <div class="d-flex h-100 justify-content-center align-items-center">
-        <div class="mx-auto app-login-box col-md-8">
-            <div class="logo text-center">
-                <img src="/assets/images/logo.png" class="img-fluid example-full-width" />
-            </div>
+<div class="h-100 bg-lightblue bg-animation">
+	<div class="d-flex h-100 justify-content-center align-items-center">
+		<div class="mx-auto app-login-box col-md-8">
 
-            <div class="modal-dialog w-100 mx-auto">
-                <div class="modal-content">
-                    <div class="modal-body">
+			<div class="modal-dialog w-100 mx-auto">
+				<div class="modal-content">
+					<div class="logo text-center">
+						<img src="/assets/images/logo-mic.png" class="img-fluid example-full-width" />
+					</div>
+					<div class="modal-body">
 
-                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                            <div class="h5 modal-title text-center">
-                                <h4 class="mt-2">
-                                    <div><strong>Bine ați venit,</strong></div>
-                                    <span><strong>Autentificați-vă în portalul <br> Direcției Generale de Impozite și
-                                            Taxe Sector 4</strong></span>
-                                </h4>
-                            </div>
+						<form [formGroup]="form" (ngSubmit)="onSubmit()">
+							<div class="h5 modal-title text-center">
+								<h4 class="mt-2">
+									<div>Login</div>
+								</h4>
+							</div>
 
-                            <mat-form-field class="example-full-width mt-2 mb-2">
-                                <input formControlName="email" matInput placeholder="Email"
-                                    [errorStateMatcher]="matcher" type="email" required="required">
+							<mat-form-field class="example-full-width mt-2 mb-2">
+								<input formControlName="email" matInput placeholder="Email"
+									[errorStateMatcher]="matcher" type="email" required="required">
 
-                                <mat-error class="p-2" *ngIf="(email.dirty || email.touched) && email.errors?.required">
-                                    <strong>Camp obligatoriu</strong>
-                                </mat-error>
-                                <mat-error class="p-2"
-                                    *ngIf="(email.dirty || email.touched) && (email.errors?.email || email.errors?.pattern)">
-                                    <strong>Email invalid</strong>
-                                </mat-error>
-                            </mat-form-field>
+								<mat-error class="p-2" *ngIf="(email.dirty || email.touched) && email.errors?.required">
+									<strong>Camp obligatoriu</strong>
+								</mat-error>
+								<mat-error class="p-2"
+									*ngIf="(email.dirty || email.touched) && (email.errors?.email || email.errors?.pattern)">
+									<strong>Email invalid</strong>
+								</mat-error>
+							</mat-form-field>
 
-                            <mat-form-field class="example-full-width mt-2 mb-2">
-                                <input formControlName="password" matInput placeholder="Parola"
-                                    [errorStateMatcher]="matcher" required="required"
-                                    [type]="hide ? 'password' : 'text'">
+							<mat-form-field class="example-full-width mt-2 mb-2">
+								<input formControlName="password" matInput placeholder="Parola"
+									[errorStateMatcher]="matcher" required="required"
+									[type]="hide ? 'password' : 'text'">
 
-                                <mat-icon matSuffix (click)="hide = !hide">
-                                    {{hide ? 'visibility_off' : 'visibility'}}
-                                </mat-icon>
+								<mat-icon matSuffix (click)="hide = !hide">
+									{{hide ? 'visibility_off' : 'visibility'}}
+								</mat-icon>
 
-                                <mat-error class="p-2"
-                                    *ngIf="(password.dirty || password.touched) && password.errors?.required">
-                                    <strong>Camp obligatoriu</strong>
-                                </mat-error>
-                                <mat-error class="p-2"
-                                    *ngIf="(password.dirty || password.touched) && password.errors?.minlength">
-                                    <strong>Minim 8 caractere</strong>
-                                </mat-error>
+								<mat-error class="p-2"
+									*ngIf="(password.dirty || password.touched) && password.errors?.required">
+									<strong>Camp obligatoriu</strong>
+								</mat-error>
+								<mat-error class="p-2"
+									*ngIf="(password.dirty || password.touched) && password.errors?.minlength">
+									<strong>Minim 8 caractere</strong>
+								</mat-error>
 
-                                <mat-error class="p-2"
-                                    *ngIf="(password.dirty || password.touched) && password.errors?.maxlength">
-                                    <strong>Max 50 caractere</strong>
-                                </mat-error>
+								<mat-error class="p-2"
+									*ngIf="(password.dirty || password.touched) && password.errors?.maxlength">
+									<strong>Max 50 caractere</strong>
+								</mat-error>
 
-                            </mat-form-field>
+							</mat-form-field>
 
-                            <mat-checkbox formControlName="saveme" class="mt-2 mb-2">Pastreaza datele</mat-checkbox>
+							<mat-checkbox formControlName="saveme" class="mt-2 mb-2">Pastreaza datele</mat-checkbox>
 
 
-                            <div class="form-group mt-2 mb-2">
-                                <button type="submit" [disabled]="!form.valid"
-                                    class="mb-2 mr-2 btn-transition btn-block btn-lg btn btn-outline-primary">
-                                    AUTENTIFICARE
-                                </button>
+							<div class="form-group mt-2 mb-2">
+								<button type="submit" [disabled]="!form.valid"
+									class="mb-2 mr-2 btn-transition btn-block btn-lg btn btn-outline-primary">
+									AUTENTIFICARE
+								</button>
 
-                            </div>
-                        </form>
+							</div>
+						</form>
 
-                        <div class="divider"></div>
-                        <h6 class="pb-2 mb-2 text-center">
-                            <a routerLink="/auth/forgot" class="text-primary">Ai uitat Parola?</a>
-                        </h6>
-                        <h6 class="pt-2 pb-2 mb-2 mt-2 text-center">
-                            &nbsp;
-                        </h6>
-                        <h6 class="mb-2 mt-2 text-center">
-                            <span class="pb-2 mb-2">Nu ai cont?</span>
-                            <a routerLink="/auth/register"
-                                class="mb-2 mt-2 btn-transition btn-block btn-lg btn btn-outline-primary">CREEAZA
-                                CONT</a>
-                        </h6>
+						<!-- <div class="divider"></div>
+						<h6 class="pb-2 mb-2 text-center">
+							<a routerLink="/auth/forgot" class="text-primary">Ai uitat Parola?</a>
+						</h6>
+						<h6 class="pt-2 pb-2 mb-2 mt-2 text-center">
+							&nbsp;
+						</h6>
+						<h6 class="mb-2 mt-2 text-center">
+							<span class="pb-2 mb-2">Nu ai cont?</span>
+							<a routerLink="/auth/register"
+								class="mb-2 mt-2 btn-transition btn-block btn-lg btn btn-outline-primary">CREEAZA
+								CONT</a>
+						</h6>
 
-                        <div class="divider"></div>
-                        <h6 class="mb-2 mt-2 text-center">
-                            <a routerLink="/auth/inregistrare"
-                                class="mb-2 mt-2 btn-transition btn-block btn-lg btn btn-outline-primary">CONFIRMARE CONT SECTOR 4</a>
-                        </h6>
-<!--    
+						<div class="divider"></div>
+						<h6 class="mb-2 mt-2 text-center">
+							<a routerLink="/auth/inregistrare"
+								class="mb-2 mt-2 btn-transition btn-block btn-lg btn btn-outline-primary">CONFIRMARE
+								CONT SECTOR 4</a>
+						</h6> -->
+						<!--    
                         <div class="divider"></div>
                         <button type="button" class='btn btn-primary btn-lg btn-block mt-2' (click)="openDialog()">Open mE2!!</button> -->
-                    </div>
-                </div>
-            </div>
-            <div class="text-center text-white opacity-8 mt-3">
-                {{env.config.copyrightText}}
-            </div>
-        </div>
-    </div>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="text-center text-white opacity-8 mt-3">
+				{{env.config.copyrightText}}
+			</div> -->
+		</div>
+	</div>
 </div>
 
 <div class="" *ngIf="loading">
-    <ngx-loading [show]="loading"
-        [config]="{backdropBorderRadius: '3px', backdropBackgroundColour: 'rgba(0, 0, 0, 0.5)'}"
-        [template]="loadingTemplate"></ngx-loading>
-    <h4 class="loading-text">Vă rugăm așteptați!</h4>
+	<ngx-loading [show]="loading"
+		[config]="{backdropBorderRadius: '3px', backdropBackgroundColour: 'rgba(0, 0, 0, 0.5)'}"
+		[template]="loadingTemplate"></ngx-loading>
+	<h4 class="loading-text">Vă rugăm așteptați!</h4>
 </div>

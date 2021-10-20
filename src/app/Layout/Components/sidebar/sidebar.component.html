@@ -1,27 +1,27 @@
 <div [class]="'app-sidebar sidebar-shadow ' + (config$ | async).sidebarTheme" (mouseover)="sidebarHoverMouseIn()"
-    (mouseout)="sidebarHoverMouseOut()">
-    <div class="app-header__logo">
-        <!-- <div class="logo-src"></div> -->
-        <div>
-            <strong>DGITL - PS4</strong>
-        </div>
-        <div class="header__pane ml-auto">
-            <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
-                [ngClass]="{'is-active' : globals.toggleSidebar}" (click)="toggleSidebar();">
-                <span class="hamburger-box">
-                    <span class="hamburger-inner"></span>
-                </span>
-            </button>
-        </div>
-    </div>
-    <div class="app-sidebar-content">
-        <div class="app-sidebar-scroll">
-            <perfect-scrollbar [autoPropagation]="true" class="scroll-container" [config]="config"
-                [scrollIndicators]="true" style="max-width: 600px; max-height: 690px;">
-                <div class="v-sidebar-menu vsm-default">
-                    <div class="vsm-list">
-                        <!-- demo menu -->
-                        <!-- <ngb-accordion [destroyOnHide]="false" [closeOthers]="true" #acc="ngbAccordion"
+	(mouseout)="sidebarHoverMouseOut()">
+	<div class="app-header__logo bg-light">
+		<!-- <div class="logo-src"></div> -->
+		<div>
+			<strong>PS6</strong>
+		</div>
+		<div class="header__pane ml-auto">
+			<button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
+				[ngClass]="{'is-active' : globals.toggleSidebar}" (click)="toggleSidebar();">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</button>
+		</div>
+	</div>
+	<div class="app-sidebar-content">
+		<div class="app-sidebar-scroll skin-blue">
+			<perfect-scrollbar [autoPropagation]="true" class="scroll-container" [config]="config"
+				[scrollIndicators]="true" style="max-width: 600px; max-height: 690px;">
+				<div class="v-sidebar-menu vsm-default">
+					<div class="vsm-list">
+						<!-- demo menu -->
+						<!-- <ngb-accordion [destroyOnHide]="false" [closeOthers]="true" #acc="ngbAccordion"
 							activeIds="{{extraParameter}}">
 							<ngb-panel>
 								<ng-template ngbPanelHeader>
@@ -843,46 +843,73 @@
 						</div> -->
 
 
-                        <!-- clean menu -->
+						<!-- clean menu -->
 
-                        <a routerLink="/dashboard/main" routerLinkActive="active-item" class="vsm-link">
-                            <i class="vsm-icon pe-7s-home"></i>
-                            <span class="vsm-title">Acasă</span>
-                        </a>
-
-                        <a routerLink="/dgitl-add-solicitare" routerLinkActive="active-item" class="vsm-link">
-                            <i class="vsm-icon pe-7s-plus"></i>
-                            <span class="vsm-title">Adaugă o Solicitare</span>
-                        </a>
-
-						<a routerLink="/dgitl-solicitari" routerLinkActive="active-item" class="vsm-link">
-							<i class="vsm-icon pe-7s-copy-file"></i>
-							<span class="vsm-title">Solicitarile mele</span>
+						<a routerLink="/tickets" routerLinkActive="active-item" class="vsm-link">
+							<i class="vsm-icon fa fa-envelope"></i>
+							<span class="vsm-title">Solicitari Registratura</span>
 						</a>
-						
-						<!-- <a routerLink="/dgitl-cf-generate" routerLinkActive="active-item" class="vsm-link">
-							<i class="vsm-icon pe-7s-settings"></i>
-							<span class="vsm-title">Generare CF</span>
-						</a> -->
 
-                        <a routerLink="/plati" routerLinkActive="active-item" class="vsm-link">
-                            <i class="vsm-icon pe-7s-wallet"></i>
-                            <span class="vsm-title">Plăți Impozite și Taxe</span>
-                        </a>
+						<a routerLink="/mobile-payments" routerLinkActive="active-item" class="vsm-link">
+							<i class="vsm-icon fa fa-credit-card"></i>
+							<span class="vsm-title">Plati</span>
+						</a>
 
-                        <a routerLink="/setari" routerLinkActive="active-item" class="vsm-link">
-                            <!-- <i class="fa fa-fw fa-cog"></i> -->
-                            <i class="vsm-icon pe-7s-settings"></i>
-                            <span class="vsm-title">Setări</span>
-                        </a>
+						<a routerLink="/mobile-accounts" routerLinkActive="active-item" class="vsm-link">
+							<i class="vsm-icon fa fa-user"></i>
+							<span class="vsm-title">Conturi Mobile</span>
+						</a>
 
-                        <span class="vsm-link" (click)="logout()">
-                            <i class="vsm-icon pe-7s-power"></i>
-                            <span class="vsm-title">Deconectare</span>
-                        </span>
-                    </div>
-                </div>
-            </perfect-scrollbar>
-        </div>
-    </div>
+						<a routerLink="/mobile-gallery" routerLinkActive="active-item" class="vsm-link">
+							<i class="vsm-icon fa fa-image"></i>
+							<span class="vsm-title">Imagini in Sectorul 6</span>
+						</a>
+
+						<a routerLink="/sesizari" routerLinkActive="active-item" class="vsm-link">
+							<!-- <i class="fa fa-fw fa-cog"></i> -->
+							<i class="vsm-icon fa fa-question-circle"></i>
+							<span class="vsm-title">Sesizari</span>
+						</a>
+
+						<a routerLink="/sondaje" routerLinkActive="active-item" class="vsm-link">
+							<!-- <i class="fa fa-fw fa-cog"></i> -->
+							<i class="vsm-icon fa fa-pie-chart"></i>
+							<span class="vsm-title">Sondaje</span>
+						</a>
+
+						<a routerLink="/sesizari" routerLinkActive="active-item" class="vsm-link">
+							<!-- <i class="fa fa-fw fa-cog"></i> -->
+							<i class="vsm-icon fa fa-question-circle-o"></i>
+							<span class="vsm-title">Sesizari</span>
+						</a>
+
+						<a routerLink="/push-notifications" routerLinkActive="active-item" class="vsm-link">
+							<!-- <i class="fa fa-fw fa-cog"></i> -->
+							<i class="vsm-icon fa fa-flag"></i>
+							<span class="vsm-title">Push Notifications</span>
+						</a>
+
+						<a routerLink="/situatii" routerLinkActive="active-item" class="vsm-link">
+							<!-- <i class="fa fa-fw fa-cog"></i> -->
+							<i class="vsm-icon fa fa-users"></i>
+							<span class="vsm-title">Dashboard - Sesizari</span>
+						</a>
+
+						<a routerLink="/sesizareproactivity" routerLinkActive="active-item" class="vsm-link">
+							<!-- <i class="fa fa-fw fa-cog"></i> -->
+							<i class="vsm-icon fa fa-bar-chart"></i>
+							<span class="vsm-title">ProActivity</span>
+						</a>
+
+						<a routerLink="/settings" routerLinkActive="active-item" class="vsm-link">
+							<!-- <i class="fa fa-fw fa-cog"></i> -->
+							<i class="vsm-icon fa fa-gear"></i>
+							<span class="vsm-title">Setari</span>
+						</a>
+
+					</div>
+				</div>
+			</perfect-scrollbar>
+		</div>
+	</div>
 </div>

@@ -1,0 +1,61 @@
+<div class="app-inner-layout">
+	<section class="content">
+		<div class="row">
+			<div class="col-sm-2">
+				<ul id="settings" class="sub-menu-wrap">
+					<li class="sub-menu-item" [ngClass]="activeModule == 'user-list' ? 'active' : ''"
+						(click)="changeLocation('user-list')">Utilizatori</li>
+					<li class="sub-menu-item" [ngClass]="activeModule == 'mobile-section-list' ? 'active' : ''"
+						(click)="changeLocation('mobile-section-list')">Sectiuni
+						Mobile</li>
+					<li class="sub-menu-item" [ngClass]="activeModule == 'mobile-section-content' ? 'active' : ''"
+						(click)="changeLocation('mobile-section-content')">
+						Pagini Mobile</li>
+					<li class="sub-menu-item" [ngClass]="activeModule == 'article-list' ? 'active' : ''"
+						(click)="changeLocation('article-list')">Articole</li>
+					<li class="sub-menu-item" [ngClass]="activeModule == 'sesizare-priority-list' ? 'active' : ''"
+						(click)="changeLocation('sesizare-priority-list')">
+						Prioritati Sesizari</li>
+					<li class="sub-menu-item" [ngClass]="activeModule == 'sesizare-sabloane-list' ? 'active' : ''"
+						(click)="changeLocation('sesizare-sabloane-list')">
+						Sabloane Sesizari</li>
+					<li class="sub-menu-item" [ngClass]="activeModule == 'sesizare-status-list' ? 'active' : ''"
+						(click)="changeLocation('sesizare-status-list')">Status
+						Sesizari</li>
+					<li class="sub-menu-item" [ngClass]="activeModule == 'sesizare-type-list' ? 'active' : ''"
+						(click)="changeLocation('sesizare-type-list')">Tipuri
+						Sesizari</li>
+				</ul>
+			</div>
+			<div class="col-sm-10">
+
+				<!-- settings -->
+				<user-list *ngIf="activeModule == 'user-list'"></user-list>
+				<mobile-section-list *ngIf="activeModule == 'mobile-section-list'"></mobile-section-list>
+				<mobile-section-content *ngIf="activeModule == 'mobile-section-content'"></mobile-section-content>
+				<article-list *ngIf="activeModule == 'article-list'"></article-list>
+				<sesizare-priority-list *ngIf="activeModule == 'sesizare-priority-list'"></sesizare-priority-list>
+				<sesizare-sabloane-list *ngIf="activeModule == 'sesizare-sabloane-list'"></sesizare-sabloane-list>
+				<sesizare-status-list *ngIf="activeModule == 'sesizare-status-list'"></sesizare-status-list>
+				<sesizare-type-list *ngIf="activeModule == 'sesizare-type-list'"></sesizare-type-list>
+
+				<!-- settings - admin -->
+				<user-permissions *ngIf="activeModule == 'user-permissions'"></user-permissions>
+				<user-roles *ngIf="activeModule == 'user-roles'"></user-roles>
+				<permission-actions *ngIf="activeModule == 'permission-actions'"></permission-actions>
+				<department-list *ngIf="activeModule == 'department-list'"></department-list>
+				<cron-job-list *ngIf="activeModule == 'cronjob-list'"></cron-job-list>
+				<directii-list *ngIf="activeModule == 'directii-list'"></directii-list>
+				<logs-list *ngIf="activeModule == 'logs'"></logs-list>
+
+			</div>
+		</div>
+	</section>
+</div>
+
+<!-- <div class="" *ngIf="loading">
+	<ngx-loading [show]="loading"
+		[config]="{backdropBorderRadius: '3px', backdropBackgroundColour: 'rgba(0, 0, 0, 0.5)'}"
+		[template]="loadingTemplate"></ngx-loading>
+	<h4 class="loading-text">Vă rugăm așteptați!</h4>
+</div> -->

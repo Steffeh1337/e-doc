@@ -1,153 +1,156 @@
 {
-	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-	"version": 1,
-	"newProjectRoot": "projects",
-	"projects": {
-		"architectui-angular-pro": {
-			"root": "",
-			"sourceRoot": "src",
-			"projectType": "application",
-			"prefix": "app",
-			"schematics": {
-				"@schematics/angular:component": {
-					"style": "sass"
-				}
-			},
-			"architect": {
-				"build": {
-					"builder": "@angular-devkit/build-angular:browser",
-					"options": {
-						"aot": true,
-						"outputPath": "/Applications/XAMPP/xamppfiles/htdocs/staging-registratura-app.webproductionlabs.com/PROD-DGITL-S4-WEB-APP",
-						"index": "src/index.html",
-						"main": "src/main.ts",
-						"polyfills": "src/polyfills.ts",
-						"tsConfig": "src/tsconfig.app.json",
-						"assets": [
-							"src/favicon.ico",
-							"src/assets/images"
-						],
-						"styles": [
-							"./node_modules/intl-tel-input/build/css/intlTelInput.css",
-							"src/styles.scss",
-							"./node_modules/font-awesome/scss/font-awesome.scss"
-						],
-						"scripts": [
-							"node_modules/jquery/dist/jquery.min.js",
-							"node_modules/slick-carousel/slick/slick.min.js",
-							"node_modules/apexcharts/dist/apexcharts.min.js"
-						]
-					},
-					"configurations": {
-						"production": {
-							"fileReplacements": [
-								{
-									"replace": "src/environments/environment.ts",
-									"with": "src/environments/environment.prod.ts"
-								}
-							],
-							"optimization": true,
-							"outputHashing": "all",
-							"sourceMap": false,
-							"namedChunks": false,
-							"aot": true,
-							"extractLicenses": true,
-							"vendorChunk": true,
-							"buildOptimizer": true,
-							"budgets": [
-								{
-									"type": "initial",
-									"maximumWarning": "13mb",
-									"maximumError": "15mb"
-								},
-								{
-									"type": "anyComponentStyle",
-									"maximumWarning": "6kb"
-								}
-							]
-						}
-					}
-				},
-				"serve": {
-					"builder": "@angular-devkit/build-angular:dev-server",
-					"options": {
-						"browserTarget": "architectui-angular-pro:build"
-					},
-					"configurations": {
-						"production": {
-							"browserTarget": "architectui-angular-pro:build:production"
-						}
-					}
-				},
-				"extract-i18n": {
-					"builder": "@angular-devkit/build-angular:extract-i18n",
-					"options": {
-						"browserTarget": "architectui-angular-pro:build"
-					}
-				},
-				"test": {
-					"builder": "@angular-devkit/build-angular:karma",
-					"options": {
-						"main": "src/test.ts",
-						"polyfills": "src/polyfills.ts",
-						"tsConfig": "src/tsconfig.spec.json",
-						"karmaConfig": "src/karma.conf.js",
-						"styles": [
-							"./node_modules/bootstrap/dist/css/bootstrap.min.css",
-							"./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-							"src/styles.sass"
-						],
-						"assets": [
-							"src/favicon.ico",
-							"src/assets"
-						]
-					}
-				},
-				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
-					"options": {
-						"tsConfig": [
-							"src/tsconfig.app.json",
-							"src/tsconfig.spec.json"
-						],
-						"exclude": [
-							"**/node_modules/**"
-						]
-					}
-				}
-			}
-		},
-		"architectui-angular-pro-e2e": {
-			"root": "e2e/",
-			"projectType": "application",
-			"prefix": "",
-			"architect": {
-				"e2e": {
-					"builder": "@angular-devkit/build-angular:protractor",
-					"options": {
-						"protractorConfig": "e2e/protractor.conf.js",
-						"devServerTarget": "architectui-angular-pro:serve"
-					},
-					"configurations": {
-						"production": {
-							"devServerTarget": "architectui-angular-pro:serve:production"
-						}
-					}
-				},
-				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
-					"options": {
-						"tsConfig": "e2e/tsconfig.e2e.json",
-						"exclude": [
-							"**/node_modules/**"
-						]
-					}
-				}
-			}
-		}
-	},
-	"defaultProject": "architectui-angular-pro",
-	"cli": {
-		"analytics": "dcf515e2-34ba-4e6f-bdfc-b79806281cdf"
-	}
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "architectui-angular-pro": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "sass"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "aot": true,
+            "outputPath": "/Applications/XAMPP/xamppfiles/htdocs/staging-registratura-app.webproductionlabs.com/PROD-DGITL-S4-WEB-APP",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets/images"
+            ],
+            "styles": [
+              "./node_modules/intl-tel-input/build/css/intlTelInput.css",
+              "src/styles.scss",
+              "./node_modules/font-awesome/scss/font-awesome.scss",
+              "node_modules/datatables.net-dt/css/jquery.dataTables.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/slick-carousel/slick/slick.min.js",
+              "node_modules/apexcharts/dist/apexcharts.min.js",
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "13mb",
+                  "maximumError": "15mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "architectui-angular-pro:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "architectui-angular-pro:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "architectui-angular-pro:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
+            "karmaConfig": "src/karma.conf.js",
+            "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "src/styles.sass"
+            ],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "architectui-angular-pro-e2e": {
+      "root": "e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "architectui-angular-pro:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "architectui-angular-pro:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "architectui-angular-pro",
+  "cli": {
+    "analytics": "dcf515e2-34ba-4e6f-bdfc-b79806281cdf"
+  }
 }

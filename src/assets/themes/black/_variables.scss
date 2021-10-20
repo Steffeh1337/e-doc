@@ -28,20 +28,16 @@ $black: #000;
 
 $grays: ();
 
-$grays: map-merge(
-                (
-                        "100": $gray-100,
-                        "200": $gray-200,
-                        "300": $gray-300,
-                        "400": $gray-400,
-                        "500": $gray-500,
-                        "600": $gray-600,
-                        "700": $gray-700,
-                        "800": $gray-800,
-                        "900": $gray-900
-                ),
-                $grays
-);
+$grays: map-merge(("100": $gray-100,
+    "200": $gray-200,
+    "300": $gray-300,
+    "400": $gray-400,
+    "500": $gray-500,
+    "600": $gray-600,
+    "700": $gray-700,
+    "800": $gray-800,
+    "900": $gray-900),
+  $grays);
 
 //--#{$color}
 $brand: $gray-900;
@@ -70,21 +66,17 @@ $alt: $purple;
 
 $theme-colors: ();
 
-$theme-colors: map-merge(
-                (
-                        "primary": $primary,
-                        "secondary": $secondary,
-                        "success": $success,
-                        "info": $info,
-                        "warning": $warning,
-                        "danger": $danger,
-                        "light": $light,
-                        "dark": $dark,
-                        "focus": $focus,
-                        "alternate": $alt
-                ),
-                $theme-colors
-);
+$theme-colors: map-merge(("primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $light,
+    "dark": $dark,
+    "focus": $focus,
+    "alternate": $alt),
+  $theme-colors);
 
 // BOOTSTRAP OVERWRITES
 
@@ -95,7 +87,10 @@ $font-size-lg: ($font-size-base * 1.35);
 $font-size-sm: ($font-size-base * 1.1);
 $font-size-xs: ($font-size-base / 1.1);
 
-$btn-transition: color .15s, background-color .15s, border-color .15s, box-shadow .15s;
+$btn-transition: color .15s,
+background-color .15s,
+border-color .15s,
+box-shadow .15s;
 $btn-focus-width: 0;
 $btn-focus-box-shadow: none;
 
@@ -111,16 +106,25 @@ $dropdown-link-hover-bg: #d6d6db;
 $dropdown-item-padding-y: .4rem;
 $dropdown-padding-y: .65rem;
 
-$box-shadow-default: 0 0.46875rem 2.1875rem rgba(darken($primary, 50%), .03), 0 0.9375rem 1.40625rem rgba(darken($primary, 50%), .03), 0 0.25rem 0.53125rem rgba(darken($primary, 50%), .05), 0 0.125rem 0.1875rem rgba(darken($primary, 50%), .03);
+$box-shadow-default: 0 0.46875rem 2.1875rem rgba(darken($primary, 50%), .03),
+0 0.9375rem 1.40625rem rgba(darken($primary, 50%), .03),
+0 0.25rem 0.53125rem rgba(darken($primary, 50%), .05),
+0 0.125rem 0.1875rem rgba(darken($primary, 50%), .03);
 
 $box-shadow-default-right: 0.46875rem 0 2.1875rem rgba(darken($primary, 50%), .03),
 0.9375rem 0 1.40625rem rgba(darken($primary, 50%), .03),
 0.25rem 0 0.53125rem rgba(darken($primary, 50%), .05),
 0.125rem 0 0.1875rem rgba(darken($primary, 50%), .03);
 
-$box-shadow-default-inverse: 0 -0.46875rem 2.1875rem rgba(darken($primary, 50%), .03), 0 -0.9375rem 1.40625rem rgba(darken($primary, 50%), .03), 0 -0.25rem 0.53125rem rgba(darken($primary, 50%), .05), 0 -0.125rem 0.1875rem rgba(darken($primary, 50%), .03);
+$box-shadow-default-inverse: 0 -0.46875rem 2.1875rem rgba(darken($primary, 50%), .03),
+0 -0.9375rem 1.40625rem rgba(darken($primary, 50%), .03),
+0 -0.25rem 0.53125rem rgba(darken($primary, 50%), .05),
+0 -0.125rem 0.1875rem rgba(darken($primary, 50%), .03);
 
-$box-shadow-lg-default: 0 0.76875rem 2.4875rem rgba($gray-800, .3), 0 1.3375rem 1.70625rem rgba($gray-800, .3), 0 0.55rem 0.53125rem rgba(darken($gray-800, 50%), .05), 0 0.225rem 0.4375rem rgba($gray-800, .3);
+$box-shadow-lg-default: 0 0.76875rem 2.4875rem rgba($gray-800, .3),
+0 1.3375rem 1.70625rem rgba($gray-800, .3),
+0 0.55rem 0.53125rem rgba(darken($gray-800, 50%), .05),
+0 0.225rem 0.4375rem rgba($gray-800, .3);
 
 $form-check-input-margin-y: 0.3rem;
 
@@ -174,7 +178,8 @@ $list-group-border-color: rgba($primary, .08);
 
 // Border
 
-@each $color, $value in $theme-colors {
+@each $color,
+$value in $theme-colors {
   .border-#{$color} {
     border-color: $value;
   }
@@ -182,18 +187,22 @@ $list-group-border-color: rgba($primary, .08);
 
 // List Group
 
-@each $color, $value in $theme-colors {
+@each $color,
+$value in $theme-colors {
   @include list-group-item-variant($color, theme-color-level($color, -9), theme-color-level($color, 6));
 }
 
 // Background
 
-@each $color, $value in $theme-colors {
+@each $color,
+$value in $theme-colors {
   @include bg-variant(".bg-#{$color}", $value);
 }
 
 @if $enable-gradients {
-  @each $color, $value in $theme-colors {
+
+  @each $color,
+  $value in $theme-colors {
     @include bg-gradient-variant(".bg-gradient-#{$color}", $value);
   }
 }

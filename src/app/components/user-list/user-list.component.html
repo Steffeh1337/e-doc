@@ -1,0 +1,15 @@
+<p>user-list works!</p>
+<table datatable [dtOptions]="dtOptions" class="row-border hover">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>First name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let person of persons">
+			<td>{{ person.id }}</td>
+			<td>{{ person.name }}</td>
+		</tr>
+	</tbody>
+</table>
