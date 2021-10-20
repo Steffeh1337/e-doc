@@ -94,6 +94,13 @@ $sidebar-box-shadow: 7px 0 60px rgba(0, 0, 0, 0.05);
 }
 
 // Sidebar Menu
+.skin-blue {
+  background-color: #222d32;
+}
+
+.vsm-list a {
+  color: #b8c7ce !important;
+}
 
 .v-sidebar-menu {
   width: auto !important;
@@ -125,11 +132,13 @@ $sidebar-box-shadow: 7px 0 60px rgba(0, 0, 0, 0.05);
 
     &:hover {
       @extend %side-link-hover;
+      background: #1e282c;
     }
 
     &.active-item {
       font-weight: 600;
       @extend %side-link-hover;
+      background: #1e282c;
     }
 
     &[disabled] {
@@ -248,7 +257,7 @@ $sidebar-box-shadow: 7px 0 60px rgba(0, 0, 0, 0.05);
     max-height: 600px;
   }
 
-  .vsm-list > .vsm-item {
+  .vsm-list>.vsm-item {
     .vsm-link {
       font-weight: normal;
 

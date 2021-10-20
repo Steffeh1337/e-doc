@@ -9,9 +9,9 @@ export const environment = {
 	},
 	config: {
 		fromTokenValid: 'https://registratura-back.taxeimpozite4.ro/api/auth/login',
-		tokenKey: 'dgitl-web-app-token',
-		userKey: 'dgitl-web-app-user',
-		storageKey: "dtigl-web-app",
+		tokenKey: 'ps6-web-app-token',
+		userKey: 'ps6-web-app-user',
+		storageKey: "ps6-web-app",
 		copyrightText: "Copyright © DGITL Sector 4 2021",
 		defaultLNG: 'ro',
 		emailRegex : "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",

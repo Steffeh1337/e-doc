@@ -6,15 +6,15 @@ export const environment = {
 	production: false,
 	app: {
 		paymentUrls: {
-			successUrl: "http://ps6-mob.back.lc/success-bt-payment",
-			errorUrl: "http://ps6-mob.back.lc/fail-bt-payment"
+			successUrl: "http://ps6-web.back.lc/success-bt-payment",
+			errorUrl: "http://ps6-web.back.lc/fail-bt-payment"
 		}
 	},
 	config: {
-		fromTokenValid: 'http://staging-registratura-back.webproductionlabs.com/api/auth/login',
-		tokenKey: 'dgitl-web-app-token',
-		userKey: 'dgitl-web-app-user',
-		storageKey: "dtigl-web-app",
+		fromTokenValid: 'http://ps6-web.back.lc/api/auth/login',
+		tokenKey: 'ps6-web-app-token',
+		userKey: 'ps6-web-app-user',
+		storageKey: "ps6-web-app",
 		copyrightText: "Copyright © DGITL Sector 4 2021",
 		defaultLNG: 'ro',
 		emailRegex : "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
@@ -48,7 +48,7 @@ export const environment = {
 		}
 	},
 	interop: {
-		basePath: "http://staging-registratura-back.webproductionlabs.com",
+		basePath: "http://ps6-web.back.lc",
 		user: {
 			loginUrl: '/api/auth/login',
 			refreshLogin: '/api/refresh-login',

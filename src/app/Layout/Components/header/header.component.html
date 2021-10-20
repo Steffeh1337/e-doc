@@ -1,41 +1,40 @@
-<div [class]="'app-header header-shadow ' + (config$ | async).headerTheme" class=" bg-primary text-lighter">
+<div [class]="'app-header header-shadow ' + (config$ | async).headerTheme" class="bg-light text-lighter">
 	<!-- <div class="app-header__content"> -->
 	<!-- </div> -->
 	<div class="float-right text-right custom-header-class">
 		<span class="float-right" style="color: white">{{user.nume}} {{user.prenume}}
 			<span *ngIf="user.f_nume !== null && user.f_nume !== ''">({{user.f_nume}})</span>
 		</span>
-		<img src="/assets/images/logo.png" class=" float-right"
-		style="max-height: 50px; width: 110px; top: 5px; right: 10px;" />
-		
+
+
 	</div>
-	
+
 	<!-- <div class="logo-src"></div>
-  <div class="app-header__content">
-    <div class="app-header-left">
-      <app-mega-menu></app-mega-menu>
-    </div>
-    <div class="app-header-right">
-      <app-dots></app-dots>
-      <app-user-box></app-user-box>
-    </div>
-  </div>
-  <div class="app-header__mobile-menu">
-    <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
-      [ngClass]="{'is-active' : globals.toggleSidebarMobile}" (click)="toggleSidebarMobile()">
-      <span class="hamburger-box">
-        <span class="hamburger-inner"></span>
-      </span>
-    </button>
-  </div>
-  <div class="app-header__menu">
-    <span>
-      <button class="btn-icon btn-icon-only btn btn-primary" [ngClass]="{'is-active' : globals.toggleHeaderMobile}"
-        (click)="toggleHeaderMobile()">
-        <div class="btn-icon-wrapper">
-          <fa-icon [icon]="faEllipsisV"></fa-icon>
-        </div>
-      </button>
-    </span>
-  </div> -->
+	<div class="app-header__content">
+		<div class="app-header-left">
+			<app-mega-menu></app-mega-menu>
+		</div>
+		<div class="app-header-right">
+			<app-dots></app-dots>
+			<app-user-box></app-user-box>
+		</div>
+	</div>
+	<div class="app-header__mobile-menu">
+		<button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
+			[ngClass]="{'is-active' : globals.toggleSidebarMobile}" (click)="toggleSidebarMobile()">
+			<span class="hamburger-box">
+				<span class="hamburger-inner"></span>
+			</span>
+		</button>
+	</div>
+	<div class="app-header__menu">
+		<span>
+			<button class="btn-icon btn-icon-only btn btn-primary"
+				[ngClass]="{'is-active' : globals.toggleHeaderMobile}" (click)="toggleHeaderMobile()">
+				<div class="btn-icon-wrapper">
+					<fa-icon [icon]="faEllipsisV"></fa-icon>
+				</div>
+			</button>
+		</span>
+	</div> -->
 </div>

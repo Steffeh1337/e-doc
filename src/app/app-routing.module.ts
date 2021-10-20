@@ -170,7 +170,13 @@ const routes: Routes = [
 				loadChildren: () => import('./dgitl/cf-generate/cf-generate.module').then(m => m.CfGenerateModule),
 				pathMatch: 'full',
 				canActivate: [AuthGuard],
-			}
+			},
+			{
+				path: 'settings',
+				loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
 		]
 	}
 ];
