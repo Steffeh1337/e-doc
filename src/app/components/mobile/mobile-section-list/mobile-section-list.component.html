@@ -1,0 +1,30 @@
+<div class="row d-flex justify-content-between mb-3">
+	<h5 class="ml-3">Sectiuni Mobile</h5>
+	<button type='button' class="btn btn-xs btn-success mr-3" (click)="addSection()">Adauga</button>
+</div>
+<table datatable class="row-border table-striped table-bordered hover w-100" [dtOptions]="dtOptions">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Nume</th>
+			<th>Slug</th>
+			<th>Actiuni</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let row of data">
+			<td>{{ row.id }}</td>
+			<td>{{ row.name }}</td>
+			<td>{{ row.slug }}</td>
+			<td>
+				<button type='button' class='edit-button btn btn-xs btn-warning' (click)='editSection(row.id)'>
+					<i class='fa fa-edit'></i>
+				</button>
+				&nbsp;
+				<button type='button' class='info-button btn btn-xs btn-info'>
+					<i class='fa fa-question'></i>
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

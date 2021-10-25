@@ -1,0 +1,24 @@
+<form [formGroup]="addForm" (ngSubmit)="onSubmit()" style="width: 20vw">
+	<div class="form-group">
+		<label for="name"><strong>Nume</strong></label>
+		<input formControlName="name" type="text" name="name" class="form-control">
+		<span class="text-danger pt-3"
+			*ngIf="(addFormControl.name.touched || submitted) && addFormControl.name.errors?.required ">
+			Numele este obligatoriu
+		</span>
+	</div>
+
+	<div class="form-group">
+		<label for="slug"><strong>Slug</strong></label>
+		<input formControlName="slug" type="text" name="slug" class="form-control">
+		<span class="text-danger pt-3"
+			*ngIf="(addFormControl.slug.touched || submitted) && addFormControl.slug.errors?.required ">
+			Slug este obligatoriu
+		</span>
+	</div>
+
+	<div class="form-group d-flex flex-row justify-content-between">
+		<button type="button" mat-button mat-dialog-close class="btn btn-warning" (click)="cancel()">Inchide</button>
+		<button type="submit" mat-button class="btn btn-primary">Adauga</button>
+	</div>
+</form>
