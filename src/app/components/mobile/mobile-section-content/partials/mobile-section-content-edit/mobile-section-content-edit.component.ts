@@ -5,7 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-mobile-section-content-edit',
+  selector: 'mobile-section-content-edit',
   templateUrl: './mobile-section-content-edit.component.html',
   styleUrls: ['./mobile-section-content-edit.component.sass']
 })
@@ -25,10 +25,9 @@ export class MobileSectionContentEditComponent implements OnInit {
 		this.editForm = this.fb.group({
 			title: [this.data.el.title, Validators.required],
 			slug: [this.data.el.slug, Validators.required],
-			sectiune_id: [this.data.el.sectiune.name, Validators.required],
+			sectiune_id: [this.data.el.sectiune.id, Validators.required],
 			content: [this.data.el.content, Validators.required]
 		});
-		console.log(this.data.el.sectiune.name);
 	}
 
 	cancel(){
@@ -37,7 +36,6 @@ export class MobileSectionContentEditComponent implements OnInit {
 
 	onSubmit(){
 		this.submitted = true;
-		console.log(this.editForm.controls);
 		if(this.editForm.valid){
 			this.dialogRef.close({
 				data: this.editForm.value
