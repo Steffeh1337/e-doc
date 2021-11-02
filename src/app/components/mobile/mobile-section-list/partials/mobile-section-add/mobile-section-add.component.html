@@ -1,4 +1,4 @@
-<form [formGroup]="addForm" (ngSubmit)="onSubmit()" style="width: 20vw">
+<form [formGroup]="addForm" (ngSubmit)="onSubmit()" class="w-100">
 	<div class="form-group">
 		<label for="name"><strong>Nume</strong></label>
 		<input formControlName="name" type="text" name="name" class="form-control">
@@ -19,6 +19,6 @@
 
 	<div class="form-group d-flex flex-row justify-content-between">
 		<button type="button" mat-button mat-dialog-close class="btn btn-warning" (click)="cancel()">Inchide</button>
-		<button type="submit" mat-button class="btn btn-primary">Adauga</button>
+		<button type="submit" mat-button class="btn btn-success">Adauga</button>
 	</div>
 </form>

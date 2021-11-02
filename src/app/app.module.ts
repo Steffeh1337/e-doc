@@ -133,7 +133,6 @@ import { DialogExampleComponent } from './dialog-example/dialog-example.componen
 import { DialogExampleCardComponent } from './dialog-example-card/dialog-example-card.component';
 import { DialogExampleAddCardComponent } from './dialog-example-add-card/dialog-example-add-card.component';
 
-
 // import { InfoSectionsComponent } from '../app/dgitl/add-solicitare/directives/info-sections/info-sections.component'
 
 @NgModule({

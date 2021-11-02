@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { DataTablesModule } from "angular-datatables";
 
+import { EditorModule } from '@tinymce/tinymce-angular';
+
 import { SettingsComponent } from './settings.component';
 import { SettingsRoutingModule } from './settings-routing.module';
 
@@ -30,6 +32,18 @@ import { MobileSectionAddComponent } from '../components/mobile/mobile-section-l
 import { MobileSectionContentEditComponent } from '../components/mobile/mobile-section-content/partials/mobile-section-content-edit/mobile-section-content-edit.component';
 import { MobileSectionContentAddComponent } from '../components/mobile/mobile-section-content/partials/mobile-section-content-add/mobile-section-content-add.component';
 
+import { SesizarePriorityListEditComponent } from '../components/sesizare/sesizare-priority-list/partials/sesizare-priority-list-edit/sesizare-priority-list-edit.component';
+import { SesizarePriorityListAddComponent } from '../components/sesizare/sesizare-priority-list/partials/sesizare-priority-list-add/sesizare-priority-list-add.component';
+
+import { SesizareSabloaneListAddComponent } from '../components/sesizare/sesizare-sabloane-list/partials/sesizare-sabloane-list-add/sesizare-sabloane-list-add.component';
+import { SesizareSabloaneListEditComponent } from '../components/sesizare/sesizare-sabloane-list/partials/sesizare-sabloane-list-edit/sesizare-sabloane-list-edit.component';
+
+import { SesizareStatusListAddComponent } from '../components/sesizare/sesizare-status-list/partials/sesizare-status-list-add/sesizare-status-list-add.component';
+import { SesizareStatusListEditComponent } from '../components/sesizare/sesizare-status-list/partials/sesizare-status-list-edit/sesizare-status-list-edit.component';
+
+import { SesizareTypeListAddComponent } from '../components/sesizare/sesizare-type-list/partials/sesizare-type-list-add/sesizare-type-list-add.component';
+import { SesizareTypeListEditComponent } from '../components/sesizare/sesizare-type-list/partials/sesizare-type-list-edit/sesizare-type-list-edit.component';
+
 @NgModule({
   declarations: [
     SettingsComponent,
@@ -53,14 +67,26 @@ import { MobileSectionContentAddComponent } from '../components/mobile/mobile-se
 	MobileSectionAddComponent,
 
 	MobileSectionContentEditComponent,
-	MobileSectionContentAddComponent
+	MobileSectionContentAddComponent,
 
+	SesizarePriorityListEditComponent,
+	SesizarePriorityListAddComponent,
+
+	SesizareSabloaneListEditComponent,
+	SesizareSabloaneListAddComponent,
+
+	SesizareStatusListEditComponent,
+	SesizareStatusListAddComponent,
+
+	SesizareTypeListEditComponent,
+	SesizareTypeListAddComponent
   ],
   imports: [
     CommonModule,
 	SettingsRoutingModule,
 	DataTablesModule,
-	ReactiveFormsModule
+	ReactiveFormsModule,
+	EditorModule
   ]
 })
 export class SettingsModule { }

@@ -1,1 +1,28 @@
-<table datatable class="row-border table-striped table-bordered hover w-100" [dtOptions]="dtOptions"></table>
+<div class="row d-flex justify-content-between mb-3">
+	<h5 class="ml-3">Status Sesizari</h5>
+	<button type='button' class="btn btn-sm btn-info mr-3" (click)="addStatus()">Adauga</button>
+</div>
+<table datatable class="row-border table-striped table-bordered hover w-100" [dtOptions]="dtOptions">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Nume</th>
+			<th>Actiuni</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let row of data">
+			<td>{{ row.id_sesizare_status }}</td>
+			<td>
+				<span class="little-label" [style.background-color]="row.color" [style.color]="row.textColor">{{
+					row.name }}</span>
+			</td>
+			<td>
+				<button type='button' class='edit-button btn btn-sm btn-warning'
+					(click)='editStatus(row.id_sesizare_status)'>
+					<i class=' fa fa-edit'></i>
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

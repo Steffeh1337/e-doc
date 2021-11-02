@@ -20,7 +20,7 @@
         z-index: 2;
         color: $pagination-hover-color;
         text-decoration: none;
-        background-color: $pagination-hover-bg;
+        // background-color: $pagination-hover-bg;
         border-color: $pagination-hover-border-color;
       }
 
@@ -42,6 +42,7 @@
         @include border-left-radius($border-radius);
       }
     }
+
     &:last-child {
       a {
         @include border-right-radius($border-radius);

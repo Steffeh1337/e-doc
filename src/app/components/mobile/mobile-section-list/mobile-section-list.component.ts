@@ -55,7 +55,7 @@ export class MobileSectionListComponent implements OnInit {
 				info: "Afisate de la _START_ pana la _END_ din _TOTAL_ inregistrari",
 				emptyTable: "Lipsa inregistrari",
 				infoEmpty: "Lipsa inregistrari",
-				zeroRecords: ""
+				zeroRecords: "Lipsa inregistrari"
 			},
 			ajax: (dataTablesParameters: any, callback) => {
 				self.http
@@ -70,7 +70,7 @@ export class MobileSectionListComponent implements OnInit {
 					callback({
 						recordsTotal: response.data['recordsTotal'],
 						recordsFiltered: response.data['recordsFiltered'],
-						// data: response.data['data]
+						data: self.data
 					});
 				});
 			},
@@ -86,6 +86,7 @@ export class MobileSectionListComponent implements OnInit {
 		});
 
 		let dialogRef = this.dialog.open(MobileSectionEditComponent, {
+			width: "500px",
 			data: element
 		}).afterClosed().subscribe(res => {
 			if(res){
@@ -110,7 +111,10 @@ export class MobileSectionListComponent implements OnInit {
 	}
 
 	addSection(): void{
-		let dialogRef = this.dialog.open(MobileSectionAddComponent)
+
+		let dialogRef = this.dialog.open(MobileSectionAddComponent, {
+			width: "500px"
+		})
 		.afterClosed()
 		.subscribe(res => {
 			if(res){
@@ -123,7 +127,7 @@ export class MobileSectionListComponent implements OnInit {
 					dataToSend,
 				).subscribe(response => {
 					console.log(response);
-				})
+				});
 			}
 		});
 	}

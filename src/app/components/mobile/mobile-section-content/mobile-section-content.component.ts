@@ -82,7 +82,7 @@ export class MobileSectionContentComponent implements OnInit {
 	}
 
 
-	getMobileSections(){
+	getMobileSections(): void{
 		this.http.get(
 			'http://ps6-web.back.lc/api/mobile-sections-active',
 		).subscribe(response => {
@@ -91,6 +91,7 @@ export class MobileSectionContentComponent implements OnInit {
 	}
 
 	editPage(id): void{
+
 		let element = this.data.find(obj => {
 			return obj.id === id;
 		});
@@ -101,6 +102,7 @@ export class MobileSectionContentComponent implements OnInit {
 		};
 
 		let dialogRef = this.dialog.open(MobileSectionContentEditComponent, {
+			width: "1000px",
 			data: dataToDialog
 		})
 		.afterClosed()
@@ -117,15 +119,49 @@ export class MobileSectionContentComponent implements OnInit {
 				element.title = res.data.title;
 				element.slug = res.data.slug;
 				element.content = res.data.content;
-				element.sectiune_id = res.data.sectiune_id;
+				element.sectiune_id = res.data.sectiune_id.toString();
 
 				this.http.put<any>(
 					'http://ps6-web.back.lc/api/mobile-section-page',
 					dataToSend,
 				).subscribe(response => {
 					console.log(response);
+					this.datatable();
 				});
 			}
 		});
 	}
+
+	addPage(): void{
+
+		let dataToDialog = {
+			mobileSections: this.mobileSections
+		};
+
+		let dialogRef = this.dialog.open(MobileSectionContentAddComponent, {
+			width: "1000px",
+			data: dataToDialog
+		})
+		.afterClosed()
+		.subscribe(res => {
+			if(res){
+				let dataToSend = {
+					title: res.data.title,
+					slug: res.data.slug,
+					content: res.data.content,
+					sectiune_id: res.data.sectiune_id
+				};
+
+				this.http.post<any>(
+					'http://ps6-web.back.lc/api/mobile-section-page',
+					dataToSend,
+				).subscribe(response => {
+					console.log(response);
+					this.datatable();
+				});
+			}
+		});
+	}
+
+	
 }
