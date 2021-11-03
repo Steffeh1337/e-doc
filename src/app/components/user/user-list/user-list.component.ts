@@ -61,24 +61,18 @@ export class UserListComponent implements OnInit {
 
 					self.displayTable = true;
 
-					// let parsedData = [];
-					// response.data['data'].forEach(item => {
-					// 	item.actions = `<button type='button' class='btn btn-sm btn-primary' (click)='edit(${item.id_user})'>Editeaza</button>`;
-					// 	parsedData.push(item);
-					// });
+					$(function(){
+						$('.change-status').on('click', function(){
+							let id_user = $(this).val();
+							self.changeStatus(id_user);
+						});
+					});
 
 					callback({
 						recordsTotal: response.data['recordsTotal'],
 						recordsFiltered: response.data['recordsFiltered'],
-						// data: parsedData,
 						data: response.data['data']
 					});
-
-					// var elements = document.getElementsByClassName("actions");
-					
-					// for(var i = 0; i < elements.length; i ++){
-					// 	elements[i].addEventListener('click', this.edit, false);
-					// }
 				});
 			},
 			columns: [
@@ -86,8 +80,13 @@ export class UserListComponent implements OnInit {
 				{ title: 'Nume', data: 'name' },
 				{ title: 'Email', data: 'email' },
 				{ title: 'Departament', data: 'department' },
-				{ orderable: false, title: 'Actiuni', data: 'id_user', render: function(data){ return `<button class='btn btn-default' (click)=edit(${data})>Editeaza</button>`;} }
+				{ orderable: false, data: 'actions', title: 'Actiuni' }
 			],
 		};
+	}
+
+	changeStatus(id){
+		console.log('trying to change status of ' + id);
+		return false;
 	}
 }

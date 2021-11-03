@@ -30,27 +30,32 @@ export class SesizareTypeListComponent implements AfterViewInit, OnDestroy, OnIn
 
 	dtOptions: DataTables.Settings = {};
 	displayTable: boolean;
-	data: any[];
+	types: any[];
 	departments: any[];
+
 
 	constructor(
 		private http: HttpClient,
 		private dialog: MatDialog
 	) { }
 
+
 	ngOnInit(): void {
 		this.datatable();
 		this.getDepartments();
 	}
 
+
 	ngAfterViewInit(): void {
 		this.dtTrigger.next();
 	}
+
 
 	ngOnDestroy(): void {
 		// Do not forget to unsubscribe the event
 		this.dtTrigger.unsubscribe();
 	}
+
 
 	rerender(): void {
 		this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
@@ -62,11 +67,12 @@ export class SesizareTypeListComponent implements AfterViewInit, OnDestroy, OnIn
 		});
 	  }
 
+
 	datatable(): void{
 		var self = this;
 
 		this.dtOptions = {
-			pagingType: "full_numbers",
+			pagingType: "simple_numbers",
 			pageLength: 10,
 			serverSide: true,
 			processing: true,
@@ -74,8 +80,8 @@ export class SesizareTypeListComponent implements AfterViewInit, OnDestroy, OnIn
 				paginate: {
 					first: "Prima",
 					last: "Ultima",
-					next: "Urmatoarea",
-					previous: "Anterior"
+					next: ">>",
+					previous: "<<"
 				},
 				loadingRecords: "Va rugam asteptati. Se incarca...",
 				processing: "Va rugam asteptati. Se incarca...",
@@ -93,20 +99,28 @@ export class SesizareTypeListComponent implements AfterViewInit, OnDestroy, OnIn
 					dataTablesParameters, {}
 				).
 				subscribe(response => {
+
 					self.displayTable = true;
-					self.data = response.data['data'];
+					self.types = response.data['data'];
+
+					$(function(){
+						$('.edit-type').on('click', function(){
+							let id_sesizare_type = $(this).val();
+							self.editType(id_sesizare_type);
+						});
+					});
 
 					callback({
 						recordsTotal: response.data['recordsTotal'],
 						recordsFiltered: response.data['recordsFiltered'],
-						// data: response.data['data'],
-						data: [],
+						data: response.data['data'],
 					});
 				});
 			},
 			columns: [{ title: 'ID', data: 'id_sesizare_type' }, { title: 'Nume', data: 'name' }, { title: 'Departament', data: 'id_department'}, { title: 'Actiuni', data: 'actions', orderable: false}],
 		};
 	}
+
 
 	getDepartments() {
 		this.http.get(
@@ -115,6 +129,7 @@ export class SesizareTypeListComponent implements AfterViewInit, OnDestroy, OnIn
 			this.departments = response['data']['departments-active'];
 		})
 	}
+
 
 	returnDepartmentName(id): string{
 		let departmentName = "";
@@ -131,14 +146,18 @@ export class SesizareTypeListComponent implements AfterViewInit, OnDestroy, OnIn
 		return departmentName;
 	}
 
-	editType(id): void{
 
-		let element = this.data.find(obj => {
-			return obj.id_sesizare_type === id;
-		});
+	async editType(id){
+
+		
+		// const elementData = this.getSesizareType(id);
+
+		// console.log(elementData);
+
+
 
 		let dataToDialog = {
-			el: element,
+			// el: elementData,
 			departments: this.departments
 		};
 
@@ -161,9 +180,6 @@ export class SesizareTypeListComponent implements AfterViewInit, OnDestroy, OnIn
 				)
 				.subscribe(response => {
 					if(response.data == 'success'){
-						element.name = res.data.name;
-						element.id_department = res.data.id_department;
-
 						this.rerender();
 					}
 				});
@@ -171,6 +187,23 @@ export class SesizareTypeListComponent implements AfterViewInit, OnDestroy, OnIn
 		});
 	}
 
-	
+	// async getSesizareType(id){
+	// 	var self = this
 
+	// 	this.http.get('http://ps6-web.back.lc/api/sesizare/type/' + id)
+	// 		.then((res) => {
+	// 			// nu iti merge acest then, cum il am eu in ionic/angular web... deoarece nu folosesti service-uri + promises ca return.... implemeteaza service-ul !! first.. si dupa revii aici.. ca sa poti avea si un control de info... got it?
+				
+	// 		})
+	// 		.catch((err) => {
+
+	// 		})
+
+	// 	this.http.get(
+			
+	// 	).subscribe(response => {
+	// 		return response;
+	// 		// return response['data'];
+	// 	});
+	// }
 }

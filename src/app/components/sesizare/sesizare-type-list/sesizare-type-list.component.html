@@ -2,27 +2,5 @@
 	<h5 class="ml-3">Tipuri Sesizari</h5>
 	<button type='button' class="btn btn-sm btn-info mr-3">Adauga</button>
 </div>
-<table datatable class="row-border table-striped table-bordered hover w-100" [dtOptions]="dtOptions"
-	[dtTrigger]="dtTrigger">
-	<thead>
-		<tr>
-			<th>ID</th>
-			<th>Nume</th>
-			<th>Departament</th>
-			<th>Actiuni</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr *ngFor="let row of data">
-			<td>{{ row.id_sesizare_type }}</td>
-			<td>{{ row.name }}</td>
-			<td>{{ returnDepartmentName(row.id_department) }}</td>
-			<td>
-				<button type='button' class='edit-button btn btn-sm btn-warning'
-					(click)='editType(row.id_sesizare_type)'>
-					<i class=' fa fa-edit'></i>
-				</button>
-			</td>
-		</tr>
-	</tbody>
+<table datatable class="table table-striped table-bordered w-100" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
 </table>
