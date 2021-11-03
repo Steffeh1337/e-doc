@@ -44,6 +44,7 @@ import { SesizareStatusListEditComponent } from '../components/sesizare/sesizare
 import { SesizareTypeListAddComponent } from '../components/sesizare/sesizare-type-list/partials/sesizare-type-list-add/sesizare-type-list-add.component';
 import { SesizareTypeListEditComponent } from '../components/sesizare/sesizare-type-list/partials/sesizare-type-list-edit/sesizare-type-list-edit.component';
 
+
 @NgModule({
   declarations: [
     SettingsComponent,
@@ -79,7 +80,7 @@ import { SesizareTypeListEditComponent } from '../components/sesizare/sesizare-t
 	SesizareStatusListAddComponent,
 
 	SesizareTypeListEditComponent,
-	SesizareTypeListAddComponent
+	SesizareTypeListAddComponent,
   ],
   imports: [
     CommonModule,

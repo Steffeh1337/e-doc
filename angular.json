@@ -31,7 +31,6 @@
               "./node_modules/intl-tel-input/build/css/intlTelInput.css",
               "src/styles.scss",
               "./node_modules/font-awesome/scss/font-awesome.scss",
-              "node_modules/datatables.net-dt/css/jquery.dataTables.css",
               "node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css"
             ],
             "scripts": [
