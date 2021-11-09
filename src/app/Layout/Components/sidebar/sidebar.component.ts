@@ -8,15 +8,20 @@ import {
 	PerfectScrollbarComponent, PerfectScrollbarDirective
 } from 'ngx-perfect-scrollbar';
 
-import { AuthService } from '../../../auth-module/auth.service'
+import { AuthService } from '../../../auth-module/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-sidebar',
 	templateUrl: './sidebar.component.html',
 })
+
 export class SidebarComponent implements OnInit {
 	public extraParameter: any;
+	public showRegistratura = false;
+	public showMobile = false;
+	public showSettings = false;
+	public showAdmin = false;
 
 	constructor(public globals: ThemeOptions, private activatedRoute: ActivatedRoute,
 		private authService: AuthService,
