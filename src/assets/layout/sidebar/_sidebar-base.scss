@@ -102,9 +102,58 @@ $sidebar-box-shadow: 7px 0 60px rgba(0, 0, 0, 0.05);
   color: #b8c7ce !important;
 }
 
+.v-sidebar-menu .main-list li a {
+  padding: 12px 5px 12px 15px;
+  display: block;
+}
+
+.v-sidebar-menu .main-list li a.active {
+  background: #1e282c;
+}
+
+.v-sidebar-menu .main-list li a.active>i {
+  color: white;
+}
+
+.v-sidebar-menu .main-list li a.active>span {
+  color: white;
+}
+
+.main-list li a:hover,
+.sub-list li a:hover {
+  text-decoration: none;
+}
+
+.main-link:hover {
+  background: #1e282c;
+}
+
+.main-list li a:hover i,
+.sub-list li a:hover i {
+  color: white;
+}
+
+.main-list li a:hover span,
+.sub-list li a:hover span {
+  color: white;
+}
+
+.main-list li a span,
+.sub-list li a span {
+  padding-left: 5px;
+}
+
+.activeBg {
+  background: #2c3b41;
+}
+
+.v-sidebar-menu .sub-list li a {
+  padding: 5px 15px;
+}
+
 .v-sidebar-menu {
   width: auto !important;
-  padding: 0 $layout-spacer-x $layout-spacer-x;
+  //   padding: 0 $layout-spacer-x $layout-spacer-x;
 
   %side-link-hover {
     background: $dropdown-link-hover-bg;

@@ -17,9 +17,138 @@
 	<div class="app-sidebar-content">
 		<div class="app-sidebar-scroll skin-blue">
 			<perfect-scrollbar [autoPropagation]="true" class="scroll-container" [config]="config"
-				[scrollIndicators]="true" style="max-width: 600px; max-height: 690px;">
+				[scrollIndicators]="true" style="max-width: 600px;">
 				<div class="v-sidebar-menu vsm-default">
 					<div class="vsm-list">
+						<ul class="p-0 m-0 main-list list-unstyled">
+
+							<li>
+								<a href="javascript:void(0)" class="main-link w-100 pr-3 pl-3"
+									(click)="showRegistratura = !showRegistratura"
+									[class]="showRegistratura ? 'active' : 'inactive'">
+									<i class="fa fa-address-card fa-fw"></i>
+									<span *ngIf="!globals.toggleSidebar || globals.sidebarHover">Registratura</span>
+									<i *ngIf="!globals.toggleSidebar || globals.sidebarHover"
+										class="fa fa-angle-left pull-right"></i>
+								</a>
+								<ul class="p-0 m-0 sub-list list-unstyled" *ngIf="showRegistratura"
+									[class]="showRegistratura ? 'activeBg' : 'inactiveBg'">
+									<li>
+										<a routerLink="/registratura-dashboard">
+											<i class="fa fa-bar-chart fa-fw"></i> <span>Dashboard Registratura</span>
+										</a>
+									</li>
+									<li>
+										<a routerLink="/registratura-setari">
+											<i class="fa fa-gears fa-fw"></i> <span>Setari</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+							<li>
+								<a href="javascript:void(0)" class="main-link w-100 pr-3 pl-3"
+									(click)="showMobile = !showMobile" [class]="showMobile ? 'active' : 'inactive'">
+									<i class="fa fa-envelope fa-fw"></i>
+									<span *ngIf="!globals.toggleSidebar || globals.sidebarHover">Mobile</span>
+									<i *ngIf="!globals.toggleSidebar || globals.sidebarHover"
+										class="fa fa-angle-left pull-right"></i>
+								</a>
+								<ul class="p-0 m-0 sub-list list-unstyled" *ngIf="showMobile"
+									[class]="showMobile ? 'activeBg' : 'inactiveBg'">
+									<li>
+										<a routerLink="/mobile-dashboard">
+											<i class="fa fa-bar-chart fa-fw"></i> <span>Dashboard Sesizari</span>
+										</a>
+									</li>
+									<li>
+										<a routerLink="/mobile-sesizari">
+											<i class="fa fa-comment fa-fw"></i> <span>Sesizari</span>
+										</a>
+										<a routerLink="/mobile-plati">
+											<i class="fa fa-credit-card fa-fw"></i> <span>Plati</span>
+										</a>
+										<a routerLink="/mobile-conturi">
+											<i class="fa fa-user fa-fw"></i> <span>Conturi</span>
+										</a>
+										<a routerLink="/mobile-arcitole">
+											<i class="fa fa-newspaper-o fa-fw"></i> <span>Articole</span>
+										</a>
+										<a routerLink="/mobile-pagini">
+											<i class="fa fa-file-word-o fa-fw"></i> <span>Pagini</span>
+										</a>
+										<a routerLink="/mobile-galerie">
+											<i class="fa fa-image fa-fw"></i> <span>Galerie</span>
+										</a>
+										<a routerLink="/mobile-sectiuni">
+											<i class="fa fa-list-alt fa-fw"></i> <span>Sectiuni</span>
+										</a>
+										<a routerLink="/mobile-sondaje">
+											<i class="fa fa-pie-chart fa-fw"></i> <span>Sondaje</span>
+										</a>
+										<a routerLink="/mobile-notificari">
+											<i class="fa fa-bell fa-fw"></i> <span>Notificari Push</span>
+										</a>
+										<a routerLink="/mobile-setari">
+											<i class="fa fa-gears fa-fw"></i> <span>Setari</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+							<li>
+								<a href="javascript:void(0)" class="main-link w-100 pr-3 pl-3"
+									(click)="showSettings = !showSettings"
+									[class]="showSettings ? 'active' : 'inactive'">
+									<i class="fa fa-cog"></i>
+									<span *ngIf="!globals.toggleSidebar || globals.sidebarHover">Setari</span>
+									<i *ngIf="!globals.toggleSidebar || globals.sidebarHover"
+										class="fa fa-angle-left pull-right"></i>
+								</a>
+								<ul class="p-0 m-0 sub-list list-unstyled" *ngIf="showSettings"
+									[class]="showSettings ? 'activeBg' : 'inactiveBg'">
+									<li>
+										<a routerLink="/setari-utilizatori">
+											<i class="fa fa-users fa-fw"></i> <span>Utilizatori</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+							<li>
+								<a href="javascript:void(0)" class="main-link w-100 pr-3 pl-3"
+									(click)="showAdmin = !showAdmin" [class]="showAdmin ? 'active' : 'inactive'">
+									<i class="fa fa-shield"></i>
+									<span *ngIf="!globals.toggleSidebar || globals.sidebarHover">Administrativ</span>
+									<i *ngIf="!globals.toggleSidebar || globals.sidebarHover"
+										class="fa fa-angle-left pull-right"></i>
+								</a>
+								<ul class="p-0 m-0 sub-list list-unstyled" *ngIf="showAdmin"
+									[class]="showAdmin ? 'activeBg' : 'inactiveBg'">
+									<li>
+										<a routerLink="/administrative-permisiuni">
+											<i class="fa fa-lock fa-fw"></i> <span>Permisiuni</span>
+										</a>
+									</li>
+									<li>
+										<a routerLink="/administrative-permisiuni-actiuni">
+											<i class="fa fa-balance-scale fa-fw"></i> <span>Actiuni Permisiuni</span>
+										</a>
+									</li>
+									<li>
+										<a routerLink="/administrative-cronuri">
+											<i class="fa fa-clock-o fa-fw"></i> <span>Cron-uri</span>
+										</a>
+									</li>
+									<li>
+										<a routerLink="/administrative-dashboard">
+											<i class="fa fa-history fa-fw"></i> <span>Log-uri</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+
 						<!-- demo menu -->
 						<!-- <ngb-accordion [destroyOnHide]="false" [closeOthers]="true" #acc="ngbAccordion"
 							activeIds="{{extraParameter}}">
@@ -845,7 +974,9 @@
 
 						<!-- clean menu -->
 
-						<a routerLink="/tickets" routerLinkActive="active-item" class="vsm-link">
+
+						<!-- Inainte de restructurare pe module -->
+						<!-- <a routerLink="/tickets" routerLinkActive="active-item" class="vsm-link">
 							<i class="vsm-icon fa fa-envelope"></i>
 							<span class="vsm-title">Solicitari Registratura</span>
 						</a>
@@ -866,46 +997,65 @@
 						</a>
 
 						<a routerLink="/sesizari" routerLinkActive="active-item" class="vsm-link">
-							<!-- <i class="fa fa-fw fa-cog"></i> -->
 							<i class="vsm-icon fa fa-question-circle"></i>
 							<span class="vsm-title">Sesizari</span>
 						</a>
 
 						<a routerLink="/sondaje" routerLinkActive="active-item" class="vsm-link">
-							<!-- <i class="fa fa-fw fa-cog"></i> -->
 							<i class="vsm-icon fa fa-pie-chart"></i>
 							<span class="vsm-title">Sondaje</span>
 						</a>
 
 						<a routerLink="/sesizari" routerLinkActive="active-item" class="vsm-link">
-							<!-- <i class="fa fa-fw fa-cog"></i> -->
 							<i class="vsm-icon fa fa-question-circle-o"></i>
 							<span class="vsm-title">Sesizari</span>
 						</a>
 
 						<a routerLink="/push-notifications" routerLinkActive="active-item" class="vsm-link">
-							<!-- <i class="fa fa-fw fa-cog"></i> -->
 							<i class="vsm-icon fa fa-flag"></i>
 							<span class="vsm-title">Push Notifications</span>
 						</a>
 
 						<a routerLink="/situatii" routerLinkActive="active-item" class="vsm-link">
-							<!-- <i class="fa fa-fw fa-cog"></i> -->
 							<i class="vsm-icon fa fa-users"></i>
 							<span class="vsm-title">Dashboard - Sesizari</span>
 						</a>
 
 						<a routerLink="/sesizareproactivity" routerLinkActive="active-item" class="vsm-link">
-							<!-- <i class="fa fa-fw fa-cog"></i> -->
 							<i class="vsm-icon fa fa-bar-chart"></i>
 							<span class="vsm-title">ProActivity</span>
 						</a>
 
 						<a routerLink="/settings" routerLinkActive="active-item" class="vsm-link">
-							<!-- <i class="fa fa-fw fa-cog"></i> -->
 							<i class="vsm-icon fa fa-gear"></i>
 							<span class="vsm-title">Setari</span>
-						</a>
+						</a> -->
+
+						<!-- <button type="button" (click)="isCollapsed = !isCollapsed"
+							[attr.aria-expanded]="!isCollapsed" aria-controls="registraturaDropdown">
+							Registratura
+						</button> -->
+
+						<!-- <button routerLink="none" (click)="isCollapsed = !isCollapsed"
+							[attr.aria-expanded]="!isCollapsed" aria-controls="registraturaDropdown"
+							routerLinkActive="active-item" class="vsm-link">
+							<i class="vsm-icon fa fa-envelope"></i>
+							<span class="vsm-title">Registratura</span>
+						</button>
+
+						<div id="registraturaDropdown" [ngbCollapse]="isCollapsed">
+							<a routerLink="/registratura-dashboard" routerLinkActive="active-item" class="vsm-link">
+								<i class="vsm-icon fa fa-gear"></i>
+								<span class="vsm-title">Dashboard</span>
+							</a>
+							<a routerLink="/settings" routerLinkActive="active-item" class="vsm-link">
+								<i class="vsm-icon fa fa-gear"></i>
+								<span class="vsm-title">Setari</span>
+							</a>
+						</div> -->
+
+
+
 
 					</div>
 				</div>
