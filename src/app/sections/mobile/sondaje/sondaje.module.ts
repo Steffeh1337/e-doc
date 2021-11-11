@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { SondajeComponent } from './sondaje.component';
 
+import { SondajeRoutingModule } from './sondaje-routing.module';
 
 
 @NgModule({
@@ -9,7 +11,8 @@ import { SondajeComponent } from './sondaje.component';
     SondajeComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+	SondajeRoutingModule
   ]
 })
 export class SondajeModule { }

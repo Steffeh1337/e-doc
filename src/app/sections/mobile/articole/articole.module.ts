@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { ArticoleComponent } from './articole.component';
+
+import { ArticoleRoutingModule } from './articole-routing.module';
 
 
 
@@ -9,7 +12,8 @@ import { ArticoleComponent } from './articole.component';
     ArticoleComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+	ArticoleRoutingModule
   ]
 })
 export class ArticoleModule { }

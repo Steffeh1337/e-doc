@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { SectiuniComponent } from './sectiuni.component';
 
+import { SectiuniRoutingModule } from './sectiuni-routing.module';
 
 
 @NgModule({
@@ -9,7 +11,8 @@ import { SectiuniComponent } from './sectiuni.component';
     SectiuniComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+	SectiuniRoutingModule
   ]
 })
 export class SectiuniModule { }

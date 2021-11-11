@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { ActiuniPermisiuniComponent } from './actiuni-permisiuni.component';
+
+import { ActiuniPermisiuniRoutingModule } from './actiuni-permisiuni-routing.module';
 
 
 
@@ -9,7 +12,8 @@ import { ActiuniPermisiuniComponent } from './actiuni-permisiuni.component';
     ActiuniPermisiuniComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+	ActiuniPermisiuniRoutingModule
   ]
 })
 export class ActiuniPermisiuniModule { }
