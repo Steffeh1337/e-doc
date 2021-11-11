@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { SetariComponent } from './setari.component';
+
+import { SetariRoutingModule } from './setari-routing.module';
+
 import { TipSesizareComponent } from './tip-sesizare/tip-sesizare.component';
 import { StatusSesizareComponent } from './status-sesizare/status-sesizare.component';
 import { PrioritateSesizareComponent } from './prioritate-sesizare/prioritate-sesizare.component';
@@ -21,7 +25,8 @@ import { DepartamenteInstitutiiComponent } from './departamente-institutii/depar
     DepartamenteInstitutiiComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+	SetariRoutingModule
   ]
 })
 export class SetariModule { }

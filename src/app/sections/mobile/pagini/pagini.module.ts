@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { PaginiComponent } from './pagini.component';
+
+import { PaginiRoutingModule } from './pagini-routing.module';
 
 
 
@@ -9,7 +12,8 @@ import { PaginiComponent } from './pagini.component';
     PaginiComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+	PaginiRoutingModule
   ]
 })
 export class PaginiModule { }

@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { LoguriComponent } from './loguri.component';
+
+import { LoguriRoutingModule } from './loguri-routing.module';
 
 
 
@@ -9,7 +12,8 @@ import { LoguriComponent } from './loguri.component';
     LoguriComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+	LoguriRoutingModule
   ]
 })
 export class LoguriModule { }

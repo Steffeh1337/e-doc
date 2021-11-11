@@ -129,12 +129,125 @@ const routes: Routes = [
 		path: '',
 		component: BaseLayoutComponent,
 		children: [
+			// REGISTRATURA
 			{
-				path: 'setari',
-				loadChildren: () => import('./account/setari/setari.module').then(m => m.SetariModule),
+				path: 'registratura-dashboard',
+				loadChildren: () => import('./sections/registratura/dashboard/dashboard.module').then(m => m.DashboardModule),
 				pathMatch: 'full',
 				canActivate: [AuthGuard],
 			},
+			{
+				path: 'registratura-setari',
+				loadChildren: () => import('./sections/registratura/setari/setari.module').then(m => m.SetariModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			// MOBILE
+			{
+				path: 'mobile-dashboard',
+				loadChildren: () => import('./sections/mobile/dashboard/dashboard.module').then(m => m.DashboardModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			{
+				path: 'mobile-sesizari',
+				loadChildren: () => import('./sections/mobile/sesizari/sesizari.module').then(m => m.SesizariModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			{
+				path: 'mobile-plati',
+				loadChildren: () => import('./sections/mobile/plati/plati.module').then(m => m.PlatiModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			{
+				path: 'mobile-conturi',
+				loadChildren: () => import('./sections/mobile/conturi/conturi.module').then(m => m.ConturiModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			{
+				path: 'mobile-articole',
+				loadChildren: () => import('./sections/mobile/articole/articole.module').then(m => m.ArticoleModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			{
+				path: 'mobile-pagini',
+				loadChildren: () => import('./sections/mobile/pagini/pagini.module').then(m => m.PaginiModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			{
+				path: 'mobile-galerie',
+				loadChildren: () => import('./sections/mobile/galerie/galerie.module').then(m => m.GalerieModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			{
+				path: 'mobile-sectiuni',
+				loadChildren: () => import('./sections/mobile/sectiuni/sectiuni.module').then(m => m.SectiuniModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			{
+				path: 'mobile-sondaje',
+				loadChildren: () => import('./sections/mobile/sondaje/sondaje.module').then(m => m.SondajeModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			{
+				path: 'mobile-notificari',
+				loadChildren: () => import('./sections/mobile/push-notifications/push-notifications.module').then(m => m.PushNotificationsModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			{
+				path: 'mobile-setari',
+				loadChildren: () => import('./sections/mobile/setari/setari.module').then(m => m.SetariModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			// SETARI
+			{
+				path: 'setari-utilizatori',
+				loadChildren: () => import('./sections/setari/utilizatori/utilizatori.module').then(m => m.UtilizatoriModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			// ADMINISTRATIV
+			{
+				path: 'administrativ-permisiuni',
+				loadChildren: () => import('./sections/administrativ/permisiuni/permisiuni.module').then(m => m.PermisiuniModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			{
+				path: 'administrativ-actiuni-permisiuni',
+				loadChildren: () => import('./sections/administrativ/actiuni-permisiuni/actiuni-permisiuni.module').then(m => m.ActiuniPermisiuniModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			{
+				path: 'administrativ-cronuri',
+				loadChildren: () => import('./sections/administrativ/cronuri/cronuri.module').then(m => m.CronuriModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			{
+				path: 'administrativ-loguri',
+				loadChildren: () => import('./sections/administrativ/loguri/loguri.module').then(m => m.LoguriModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			// old format
+			// {
+			// 	path: 'setari',
+			// 	loadChildren: () => import('./account/setari/setari.module').then(m => m.SetariModule),
+			// 	pathMatch: 'full',
+			// 	canActivate: [AuthGuard],
+			// },
 			{
 				path: 'dgitl-add-solicitare',
 				loadChildren: () => import('./dgitl/add-solicitare/add-solicitare.module').then(m => m.AddSolicitareModule),

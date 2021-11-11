@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { CronuriComponent } from './cronuri.component';
+
+import { CronuriRoutingModule } from './cronuri-routing.module';
 
 
 
@@ -9,7 +12,8 @@ import { CronuriComponent } from './cronuri.component';
     CronuriComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+	CronuriRoutingModule
   ]
 })
 export class CronuriModule { }

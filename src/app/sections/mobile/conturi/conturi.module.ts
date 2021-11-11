@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { ConturiComponent } from './conturi.component';
+
+import { ConturiRoutingModule } from './conturi-routing.module';
 
 
 
@@ -9,7 +12,8 @@ import { ConturiComponent } from './conturi.component';
     ConturiComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+	ConturiRoutingModule
   ]
 })
 export class ConturiModule { }

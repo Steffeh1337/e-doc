@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { SesizariComponent } from './sesizari.component';
+
+import { SesizariRoutingModule } from './sesizari-routing.module';
 
 
 
@@ -9,7 +12,8 @@ import { SesizariComponent } from './sesizari.component';
     SesizariComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+	SesizariRoutingModule
   ]
 })
 export class SesizariModule { }
