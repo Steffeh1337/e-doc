@@ -137,6 +137,12 @@ const routes: Routes = [
 				canActivate: [AuthGuard],
 			},
 			{
+				path: 'registratura-solicitari',
+				loadChildren: () => import('./sections/registratura/solicitari/solicitari.module').then(m => m.SolicitariModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			{
 				path: 'registratura-setari',
 				loadChildren: () => import('./sections/registratura/setari/setari.module').then(m => m.SetariModule),
 				pathMatch: 'full',
