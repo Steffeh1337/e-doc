@@ -25,6 +25,7 @@ export class EditComponent implements OnInit {
 		this.editForm = this.fb.group({
 			name: [this.data.el.name, Validators.required],
 			color: [this.data.el.color, Validators.required],
+			time: [this.data.el.time, Validators.required],
 		});
 	}
 

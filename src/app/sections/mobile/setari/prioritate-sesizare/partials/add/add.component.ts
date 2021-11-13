@@ -4,18 +4,18 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'sesizare-priority-list-add',
-  templateUrl: './sesizare-priority-list-add.component.html',
-  styleUrls: ['./sesizare-priority-list-add.component.sass']
+	selector: 'app-add',
+	templateUrl: './add.component.html',
+	styleUrls: ['./add.component.sass']
 })
 
-export class SesizarePriorityListAddComponent implements OnInit {
+export class AddComponent implements OnInit {
 
 	addForm: FormGroup;
 	submitted = false;
 
 	constructor(
-		private dialogRef: MatDialogRef<SesizarePriorityListAddComponent>,
+		private dialogRef: MatDialogRef<AddComponent>,
 		private fb: FormBuilder,
 	) { }
 

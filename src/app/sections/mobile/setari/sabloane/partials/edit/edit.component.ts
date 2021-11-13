@@ -24,7 +24,7 @@ export class EditComponent implements OnInit {
 	ngOnInit(): void {
 		this.editForm = this.fb.group({
 			name: [this.data.el.name, Validators.required],
-			color: [this.data.el.color, Validators.required],
+			content: [this.data.el.content, Validators.required],
 		});
 	}
 

@@ -101,6 +101,7 @@ export class StatusSesizareComponent implements OnInit {
 
 
 	async datatable(){
+		
 		var self = this;
 
 		self.toggleTemplate();
@@ -142,12 +143,12 @@ export class StatusSesizareComponent implements OnInit {
 						item.textColor = this.pickTextColorBasedOnBgColorSimple(item.color, "#fff", "#000");
 					});
 
-					// $(function(){
-					// 	$('.edit-type').on('click', function(){
-					// 		let id_sesizare_type = $(this).val();
-					// 		self.editType(id_sesizare_type);
-					// 	});
-					// });
+					$(function(){
+						$('.edit-status').on('click', function(){
+							let id_sesizare_status = $(this).val();
+							self.editStatus(id_sesizare_status);
+						});
+					});
 
 					callback({
 						recordsTotal: response.data['recordsTotal'],
@@ -223,4 +224,97 @@ export class StatusSesizareComponent implements OnInit {
 		});
 	}
 
+
+	async editStatus(id){
+		
+		var self = this;
+
+		self.statusSesizareService.getSesizareStatus(id)
+		.then(async (res) => {
+			let response = (typeof res.status_code !== 'undefined' ? res : res.error)
+			if (typeof response.status_code !== 'undefined') {
+				if (response.status_code == 200 && typeof response.data !== 'undefined') {
+
+					self.loading = false;
+					let element = response.data;
+
+					self.loaded = 1;
+
+					let dataToDialog = {
+						el: element,
+					};
+					
+					let dialogRef = self.dialog.open(EditComponent, {
+						width: "500px",
+						data: dataToDialog
+					})
+					.afterClosed()
+					.subscribe(res => {
+						if(res){
+							let dataToSend = {
+								id_sesizare_status: id,
+								name: res.data.name,
+								color: res.data.color,
+							};
+							
+							self.statusSesizareService.updateSesizareStatus(dataToSend)
+							.then(async (res) => {
+								if(res.errors == false){
+									self.loading = false;
+									self.rerender();
+									self.loaded = 1;
+
+									await self.notificationService.warningSwal(
+										self.successTitle, self.editSuccessLabel,  self.successIcon
+									);
+								}
+								else{
+									self.loading = false;
+									await self.notificationService.warningSwal(
+										self.errorTitle, self.generalError, self.errorIcon
+									);
+
+									return false;
+								}
+							})
+							.catch(async err => {
+								self.loading = false;
+								await self.notificationService.warningSwal(
+									self.errorTitle, self.generalError, self.errorIcon
+								);
+								
+								return false;
+							});
+						}
+					});
+
+					return false;
+
+				} else {
+					self.loading = false;
+					await self.notificationService.warningSwal(
+						self.errorTitle, self.generalError, self.errorIcon
+					);
+
+					return false;
+				}
+
+			} else {
+				self.loading = false;
+				await self.notificationService.warningSwal(
+					self.errorTitle, self.generalError, self.errorIcon
+				);
+
+				return false;
+			}
+		})
+		.catch(async err => {
+			self.loading = false;
+			await self.notificationService.warningSwal(
+				self.errorTitle, self.generalError, self.errorIcon
+			);
+			
+			return false;
+		});
+	}
 }

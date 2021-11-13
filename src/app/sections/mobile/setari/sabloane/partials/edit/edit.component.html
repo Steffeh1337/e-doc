@@ -9,11 +9,24 @@
 	</div>
 
 	<div class="form-group">
-		<label for="color"><strong>Culoare</strong></label>
-		<input formControlName="color" type="text" name="color" class="form-control">
+		<label for="content"><strong>Continut</strong></label>
+		<editor formControlName="content" apiKey="qezjtxhis2t6campgcgs840r34i82atufabgrwclq9fgfwtx" [init]="{
+			height: 500,
+			menubar: false,
+			plugins: [
+			'advlist autolink lists link image charmap print preview anchor',
+			'searchreplace visualblocks code fullscreen',
+			'insertdatetime media table paste code help wordcount'
+			],
+			toolbar:
+			'undo redo | formatselect | bold italic backcolor | \
+			alignleft aligncenter alignright alignjustify | \
+			bullist numlist outdent indent | removeformat | help'
+			}">
+		</editor>
 		<span class="text-danger pt-3"
-			*ngIf="(editFormControl.color.touched || submitted) && editFormControl.color.errors?.required ">
-			Culoarea este obligatorie
+			*ngIf="(editFormControl.content.touched || submitted) && editFormControl.content.errors?.required ">
+			Continutul este obligatoriu
 		</span>
 	</div>
 

@@ -18,7 +18,6 @@ export class SetariComponent implements OnInit {
 
 	changeLocation(page): void{
 		this.activeModule = page;
-		console.log(page);
 	}
 
 }
