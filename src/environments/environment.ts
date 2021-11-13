@@ -58,6 +58,18 @@ export const environment = {
 						editError: "Statusul sesizării nu a putut fi actualizat.",
 						addSuccess: "Statusul a fost adăugat cu succes!",
 						addError: "Statusul nu a putut fi adăugat." 
+					},
+					prioritatiSesizari: {
+						editSuccess: "Prioritatea sesizării a fost actualizată cu succes!",
+						editError: "Prioritatea sesizării nu a putut fi actualizată.",
+						addSuccess: "Prioritatea a fost adăugată cu succes!",
+						addError: "Prioritatea nu a putut fi adăugată."
+					},
+					sabloaneSesizari: {
+						editSuccess: "Șablonul sesizării a fost actualizat cu succes!",
+						editError: "Șablonul sesizării nu a putut fi actualizat.",
+						addSuccess: "Șablonul a fost adăugat cu succes!",
+						addError: "Șablonul nu a putut fi adăugat."
 					}
 				}
 			}
@@ -113,7 +125,21 @@ export const environment = {
 					},
 					statusuriSesizari: {
 						getStatusuriSesizari: '/api/sesizarestatuses',
+						findStatusSesizare: '/api/sesizare/status/',
+						editStatusSesizare: '/api/sesizare/status',
 						addStatusSesizare: '/api/sesizare/status'
+					},
+					prioritatiSesizari: {
+						getPrioritatiSesizari: '/api/sesizarepriorities',
+						findPrioritateSesizare: '/api/sesizare/priority/',
+						editPrioritateSesizare: '/api/sesizare/priority',
+						addPrioritateSesizare: '/api/sesizare/priority'
+					},
+					sabloaneSesizari: {
+						getSabloaneSesizari: '/api/sesizaresabloane',
+						findSablonSesizare: '/api/sesizare-sabloane/',
+						editSablonSesizare: '/api/sesizare-sabloane',
+						addSablonSesizare: '/api/sesizare-sabloane'
 					}
 				}
 			}
