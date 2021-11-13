@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-prioritate-sesizare',
+  selector: 'prioritate-sesizare',
   templateUrl: './prioritate-sesizare.component.html',
   styleUrls: ['./prioritate-sesizare.component.sass']
 })

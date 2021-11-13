@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { DataTablesModule } from "angular-datatables";
+
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { SetariComponent } from './setari.component';
 
 import { SetariRoutingModule } from './setari-routing.module';
@@ -12,6 +16,12 @@ import { SabloaneComponent } from './sabloane/sabloane.component';
 import { InstitutiiComponent } from './institutii/institutii.component';
 import { DepartamenteInstitutiiComponent } from './departamente-institutii/departamente-institutii.component';
 
+import { EditComponent as SesizareTypeEditComponent } from './tip-sesizare/partials/edit/edit.component';
+import { AddComponent as SesizareAddEditComponent } from './tip-sesizare/partials/add/add.component';
+
+import { EditComponent as SesizareStatusEditComponent } from './status-sesizare/partials/edit/edit.component';
+import { AddComponent as SesizareStatusAddComponent } from './status-sesizare/partials/add/add.component';
+
 
 
 @NgModule({
@@ -22,11 +32,17 @@ import { DepartamenteInstitutiiComponent } from './departamente-institutii/depar
     PrioritateSesizareComponent,
     SabloaneComponent,
     InstitutiiComponent,
-    DepartamenteInstitutiiComponent
+    DepartamenteInstitutiiComponent,
+    SesizareTypeEditComponent,
+    SesizareAddEditComponent,
+	SesizareStatusEditComponent,
+	SesizareStatusAddComponent
   ],
   imports: [
     CommonModule,
-	SetariRoutingModule
+	SetariRoutingModule,
+	DataTablesModule,
+	ReactiveFormsModule,
   ]
 })
 export class SetariModule { }

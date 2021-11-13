@@ -44,6 +44,22 @@ export const environment = {
 			},
 			generalMessages: {
 				error: "Ne pare rau, dar am intampinat o problema. Va rugam sa reincercati. Daca problema persista, va rugam sa ne contactati prin butonul de suport IT."
+			},
+			mobile: {
+				setari: {
+					tipuriSesizari: {
+						editSuccess: "Tipul de sesizare a fost actualizat cu succes!",
+						editError: "Tipul de sesizare nu a putut fi actualizat.",
+						addSuccess: "Tipul de sesizare a fost adăugat cu succes!",
+						addError: "Tipul de sesizare nu a putut fi adăugat." 
+					},
+					statusuriSesizari: {
+						editSuccess: "Statusul sesizării a fost actualizat cu succes!",
+						editError: "Statusul sesizării nu a putut fi actualizat.",
+						addSuccess: "Statusul a fost adăugat cu succes!",
+						addError: "Statusul nu a putut fi adăugat." 
+					}
+				}
 			}
 		}
 	},
@@ -85,7 +101,22 @@ export const environment = {
 				processPaymentsRecurente: '/api/process-payments-recurente/',
 				getCards: '/api/get-cards',
 				removeCard: '/api/remove-card/'
-            }
+            },
+			mobile: {
+				setari: {
+					tipuriSesizari: {
+						getTipuriSesizari: '/api/sesizaretypes',
+						getDepartamente: '/api/departments-active',
+						findTipSesizare: '/api/sesizare/type/',
+						editTipSesizare: '/api/sesizare/type',
+						addTipSesizare: '/api/sesizare/type',
+					},
+					statusuriSesizari: {
+						getStatusuriSesizari: '/api/sesizarestatuses',
+						addStatusSesizare: '/api/sesizare/status'
+					}
+				}
+			}
         }
 	}
 };
