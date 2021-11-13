@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-sabloane',
+  selector: 'sabloane',
   templateUrl: './sabloane.component.html',
   styleUrls: ['./sabloane.component.sass']
 })

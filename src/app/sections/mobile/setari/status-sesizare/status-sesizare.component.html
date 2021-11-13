@@ -1,1 +1,7 @@
-<p>status-sesizare works!</p>
+<div class="row d-flex justify-content-between mb-3">
+	<h5 class="ml-3">Statusuri Sesizari</h5>
+	<button type='button' class="btn btn-sm btn-info mr-3" (click)="addStatus()">Adauga</button>
+</div>
+
+<table datatable class="table table-striped table-bordered w-100" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+</table>

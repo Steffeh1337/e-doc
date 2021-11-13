@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-setari',
-  templateUrl: './setari.component.html',
-  styleUrls: ['./setari.component.sass']
+	selector: 'app-setari',
+	templateUrl: './setari.component.html',
+	styleUrls: ['./setari.component.sass']
 })
 export class SetariComponent implements OnInit {
 
-  constructor() { }
+	activeModule: string;
 
-  ngOnInit(): void {
-  }
+	constructor() { }
+
+
+	ngOnInit(): void {
+		this.activeModule = 'sesizare-type-list';
+	}
+
+	changeLocation(page): void{
+		this.activeModule = page;
+		console.log(page);
+	}
 
 }
