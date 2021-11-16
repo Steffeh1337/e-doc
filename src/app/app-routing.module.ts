@@ -215,12 +215,6 @@ const routes: Routes = [
 				pathMatch: 'full',
 				canActivate: [AuthGuard],
 			},
-			{
-				path: 'directii-compartimente',
-				loadChildren: () => import('./sections/mobile/setari/setari.module').then(m => m.SetariModule),
-				pathMatch: 'full',
-				canActivate: [AuthGuard],
-			},
 			// SETARI
 			{
 				path: 'setari-utilizatori',
