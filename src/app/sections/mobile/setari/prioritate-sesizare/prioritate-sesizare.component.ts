@@ -156,7 +156,7 @@ export class PrioritateSesizareComponent implements OnInit {
 			},
 			columns: [
 				{ title: 'ID', data: 'id_sesizare_priority' },
-				{ title: 'Prioritate', data: 'name' },
+				{ title: 'Prioritate', data: 'name' }, //render: function(data, type, full, meta){ "<span class='little-label' style='background:" + meta.settings['data'][0].color + "'">+data+"</span>" }
 				{ title: 'Timp(ore)', data: 'time' },
 				{ orderable: false, data: 'actions', title: 'Actiuni' }
 			],

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-setari',
@@ -9,7 +10,9 @@ export class SetariComponent implements OnInit {
 
 	activeModule: string;
 
-	constructor() { }
+	constructor(
+		public router: Router
+	) { }
 
 
 	ngOnInit(): void {
@@ -19,5 +22,9 @@ export class SetariComponent implements OnInit {
 	changeLocation(page): void{
 		this.activeModule = page;
 	}
+
+	// isDirectieCompartimenteRoute(){
+	// 	return this.router.url === 'directie-compartimente'
+	// }
 
 }
