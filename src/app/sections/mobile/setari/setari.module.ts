@@ -30,6 +30,16 @@ import { EditComponent as SesizarePrioritateEditComponent} from './prioritate-se
 import { EditComponent as SesizareSablonEditComponent } from './sabloane/partials/edit/edit.component';
 import { AddComponent as SesizareSablonAddComponent } from './sabloane/partials/add/add.component';
 
+import { EditComponent as InstitutieEditComponent } from './institutii/partials/edit/edit.component';
+import { AddComponent as InstitutieAddComponent } from './institutii/partials/add/add.component';
+
+import { ListComponent as InstitutieCompartimentListComponent } from './institutii/partials/compartimente/list/list.component';
+import { AddComponent as InstitutieCompartimentAddComponent } from './institutii/partials/compartimente/add/add.component';
+import { EditComponent as InstitutieCompartimentEditComponent } from './institutii/partials/compartimente/edit/edit.component';
+
+import { EditComponent as DepartamenteInstitutiiEditComponent } from './departamente-institutii/partials/edit/edit.component';
+import { AddComponent as DepartamenteInstitutiiAddComponent } from './departamente-institutii/partials/add/add.component';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +61,17 @@ import { AddComponent as SesizareSablonAddComponent } from './sabloane/partials/
 	SesizarePrioritateEditComponent,
 
 	SesizareSablonEditComponent,
-	SesizareSablonAddComponent
+	SesizareSablonAddComponent,
+	
+	InstitutieEditComponent,
+	InstitutieAddComponent,
+
+	InstitutieCompartimentListComponent,
+	InstitutieCompartimentAddComponent,
+	InstitutieCompartimentEditComponent,
+	
+	DepartamenteInstitutiiEditComponent,
+	DepartamenteInstitutiiAddComponent
   ],
   imports: [
     CommonModule,

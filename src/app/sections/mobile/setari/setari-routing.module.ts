@@ -6,7 +6,7 @@ import { SetariComponent } from './setari.component';
 const routes: Routes = [
     {
         path: '',
-		component: SetariComponent
+		component: SetariComponent,
     }
 ];
 

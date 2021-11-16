@@ -1,1 +1,7 @@
-<p>institutii works!</p>
+<div class="row d-flex justify-content-between mb-3">
+	<h5 class="ml-3">Institutii</h5>
+	<button type='button' class="btn btn-sm btn-info mr-3" (click)="addInstitutie()">Adauga</button>
+</div>
+
+<table datatable class="table table-striped table-bordered w-100" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+</table>

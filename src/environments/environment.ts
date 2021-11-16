@@ -70,6 +70,18 @@ export const environment = {
 						editError: "Șablonul sesizării nu a putut fi actualizat.",
 						addSuccess: "Șablonul a fost adăugat cu succes!",
 						addError: "Șablonul nu a putut fi adăugat."
+					},
+					institutii: {
+						editSuccess: "Instituția a fost actualizată cu succes!",
+						editError: "Instituția nu a putut fi actualizată.",
+						addSuccess: "Instituția a fost adăugată cu succes!",
+						addError: "Instituția nu a putut fi adăugată."
+					},
+					departamenteInstitutii: {
+						editSuccess: "Departamentul a fost actualizat cu succes!",
+						editError: "Departamentul nu a putut fi actualizat.",
+						addSuccess: "Departamentul a fost adăugat cu succes!",
+						addError: "Departamentul nu a putut fi adăugat."
 					}
 				}
 			}
@@ -140,6 +152,18 @@ export const environment = {
 						findSablonSesizare: '/api/sesizare-sabloane/',
 						editSablonSesizare: '/api/sesizare-sabloane',
 						addSablonSesizare: '/api/sesizare-sabloane'
+					},
+					institutii: {
+						getInstitutii: '/api/directii',
+						findInstitutie: '/api/directie/',
+						editInstitutie: '/api/directie',
+						addInstitutie: '/api/directie'
+					},
+					departamenteInstitutii: {
+						getDepartments: '/api/departments',
+						findDepartment: '/api/department/',
+						editDepartment: '/api/department',
+						addDepartment: '/api/department'
 					}
 				}
 			}
