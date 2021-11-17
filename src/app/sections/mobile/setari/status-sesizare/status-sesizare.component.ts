@@ -139,10 +139,6 @@ export class StatusSesizareComponent implements OnInit {
 					self.loading = false;
 					self.loaded = 1;
 
-					response.data['data'].forEach((item) => {
-						item.textColor = this.pickTextColorBasedOnBgColorSimple(item.color, "#fff", "#000");
-					});
-
 					$(function(){
 						$('.edit-status').on('click', function(){
 							let id_sesizare_status = $(this).val();
@@ -159,7 +155,7 @@ export class StatusSesizareComponent implements OnInit {
 			},
 			columns: [
 				{ title: 'ID', data: 'id_sesizare_status' },
-				{ title: 'Nume', data: 'name' },
+				{ title: 'Nume', data: 'name', render : function(data, type, full, meta){ return `<span class="little-label" style="background: ${meta.settings['aoData'][meta.row]['_aData'].color}; color: ${self.pickTextColorBasedOnBgColorSimple(meta.settings['aoData'][meta.row]['_aData'].color, "#fff", "#000")}">${data}</span>` } },
 				{ orderable: false, data: 'actions', title: 'Actiuni' }
 			],
 		};
@@ -171,8 +167,10 @@ export class StatusSesizareComponent implements OnInit {
 		var r = parseInt(color.substring(0, 2), 16); // hexToR
 		var g = parseInt(color.substring(2, 4), 16); // hexToG
 		var b = parseInt(color.substring(4, 6), 16); // hexToB
-		return (((r * 0.299) + (g * 0.587) + (b * 0.114)) > 186) ? darkColor : lightColor;
+		return (((r * 0.299) + (g * 0.587) + (b * 0.114)) >= 186) ?
+		  darkColor : lightColor;
 	}
+	
 
 
 	async addStatus(){

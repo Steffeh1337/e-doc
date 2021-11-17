@@ -83,6 +83,12 @@ export const environment = {
 						addSuccess: "Departamentul a fost adăugat cu succes!",
 						addError: "Departamentul nu a putut fi adăugat."
 					}
+				},
+				articole: {
+					editSuccess: "Articolul a fost actualizat cu succes!",
+					editError: "Articolul nu a putut fi actualizat.",
+					addSuccess: "Articolul a fost adăugat cu succes!",
+					addError: "Articolul nu a putut fi adăugat."
 				}
 			}
 		}

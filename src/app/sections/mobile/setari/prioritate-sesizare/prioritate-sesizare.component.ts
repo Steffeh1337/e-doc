@@ -156,11 +156,21 @@ export class PrioritateSesizareComponent implements OnInit {
 			},
 			columns: [
 				{ title: 'ID', data: 'id_sesizare_priority' },
-				{ title: 'Prioritate', data: 'name' }, //render: function(data, type, full, meta){ "<span class='little-label' style='background:" + meta.settings['data'][0].color + "'">+data+"</span>" }
+				{ title: 'Prioritate', data: 'name', render : function(data, type, full, meta){ return `<span class="little-label" style="background: ${meta.settings['aoData'][meta.row]['_aData'].color}; color: ${self.pickTextColorBasedOnBgColorSimple(meta.settings['aoData'][meta.row]['_aData'].color, "#fff", "#000")}">${data}</span>` } }, 
 				{ title: 'Timp(ore)', data: 'time' },
 				{ orderable: false, data: 'actions', title: 'Actiuni' }
 			],
 		};
+	}
+
+
+	pickTextColorBasedOnBgColorSimple(bgColor, lightColor, darkColor) {
+		var color = (bgColor.charAt(0) === '#') ? bgColor.substring(1, 7) : bgColor;
+		var r = parseInt(color.substring(0, 2), 16); // hexToR
+		var g = parseInt(color.substring(2, 4), 16); // hexToG
+		var b = parseInt(color.substring(4, 6), 16); // hexToB
+		return (((r * 0.299) + (g * 0.587) + (b * 0.114)) >= 186) ?
+		  darkColor : lightColor;
 	}
 
 
