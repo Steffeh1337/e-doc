@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'app-add',
@@ -22,9 +22,10 @@ export class AddComponent implements OnInit {
 	ngOnInit(): void {
 		this.addForm = this.fb.group({
 			name: ['', Validators.required],
-			color: ['', Validators.required],
+			color: ['', [ Validators.required, Validators.minLength(7), Validators.maxLength(7) ]],
 			time: ['', Validators.required],
 		});
+
 	}
 
 	cancel(){

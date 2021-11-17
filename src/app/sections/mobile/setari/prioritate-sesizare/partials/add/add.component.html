@@ -15,6 +15,11 @@
 			*ngIf="(addFormControl.color.touched || submitted) && addFormControl.color.errors?.required ">
 			Culoarea este obligatorie
 		</span>
+
+		<span class="text-danger pt-3"
+			*ngIf="((addFormControl.color.touched || submitted) && (addFormControl.color.errors?.minlength || addFormControl.color.errors?.maxlength))">
+			Culoarea trebuie sa contina exact 7 caractere
+		</span>
 	</div>
 
 	<div class="form-group">

@@ -188,3 +188,11 @@
 .min-h-100 {
   min-height: 100vh !important;
 }
+
+.little-label {
+  padding: .2em .6em .3em;
+  border-radius: .25em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+}
