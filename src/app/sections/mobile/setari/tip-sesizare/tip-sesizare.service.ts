@@ -75,5 +75,4 @@ export class TipSesizareService {
 			)
 			.catch(e => e.error);
 	}
-
 }

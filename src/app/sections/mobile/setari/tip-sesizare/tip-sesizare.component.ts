@@ -159,95 +159,10 @@ export class TipSesizareComponent implements OnInit {
 			columns: [
 				{ title: 'ID', data: 'id_sesizare_type' },
 				{ title: 'Nume', data: 'name' },
-				{ title: 'Departament', data: 'id_department' },
+				{ title: 'Departament', data: 'department.name', defaultContent: "" },
 				{ orderable: false, data: 'actions', title: 'Actiuni' }
 			],
 		};
-		// try{
-
-		// 	self.dtOptions = {
-		// 		pagingType: "full_numbers",
-		// 		pageLength: 10,
-		// 		serverSide: true,
-		// 		processing: true,
-		// 		language: {
-		// 			paginate: {
-		// 				first: "Prima",
-		// 				last: "Ultima",
-		// 				next: ">>",
-		// 				previous: "<<"
-		// 			},
-		// 			loadingRecords: "Va rugam asteptati. Se incarca...",
-		// 			processing: "Va rugam asteptati. Se incarca...",
-		// 			lengthMenu: "Afiseaza _MENU_ inregistrari",
-		// 			infoFiltered: "(filtrate din totalul de _MAX_ inregistrari)",
-		// 			info: "Afisate de la _START_ pana la _END_ din _TOTAL_ inregistrari",
-		// 			emptyTable: "Lipsa inregistrari",
-		// 			infoEmpty: "Lipsa inregistrari",
-		// 			zeroRecords: "Lipsa inregistrari"
-		// 		},
-		// 		ajax: (dataTablesParameters: any, callback) => {
-
-		// 			self.tipSesizareService.getSesizareTypes(dataTablesParameters)
-		// 			.then(async (res) => {
-		// 				let response = (typeof res.status_code !== 'undefined' ? res : res.error)
-		// 				if (typeof response.status_code !== 'undefined') {
-		// 					if (response.status_code == 200 && typeof response.data !== 'undefined') {
-
-		// 						self.loading = false;
-
-		// 						$(function(){
-		// 							$('.edit-type').on('click', function(){
-		// 								let id_sesizare_type = $(this).val();
-		// 								self.changeStatus(id_sesizare_type);
-		// 							});
-		// 						});
-
-		// 						callback({
-		// 							recordsTotal: response.data['recordsTotal'],
-		// 							recordsFiltered: response.data['recordsFiltered'],
-		// 							data: response.data['data']
-		// 						});
-
-		// 						self.loaded = 1;
-			
-		// 					} else {
-			
-		// 						self.loading = false;
-		// 						await self.notificationService.warningSwal(
-		// 							self.errorTitle, self.generalError, self.errorIcon
-		// 						);
-			
-		// 						return false;
-		// 					}
-			
-		// 				} else {
-			
-		// 					self.loading = false;
-		// 					await self.notificationService.warningSwal(
-		// 						self.errorTitle, self.generalError, self.errorIcon
-		// 					);
-			
-		// 					return false
-		// 				}
-		// 			})
-		// 			.catch(async err => {
-
-		// 				self.loading = false;
-		// 				await self.notificationService.warningSwal(
-		// 					self.errorTitle, self.generalError, self.errorIcon
-		// 				);
-
-		// 				return false;
-		// 			})
-		// 		}
-		// 	}
-		// }
-		// catch (err) {
-
-		// 	self.loading = false;
-        //     await self.notificationService.warningSwal(this.errorTitle, 'Am intampinat o problema in procesarea informatiilor dvs. Va rugam sa reincercati sau sa reveniti mai tarziu.', this.errorIcon);
-        // }	
 	}
 
 

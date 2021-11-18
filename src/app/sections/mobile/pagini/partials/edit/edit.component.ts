@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
 	selector: 'app-edit',
 	templateUrl: './edit.component.html',
@@ -22,13 +23,14 @@ export class EditComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-		console.log(this.data);
 		this.editForm = this.fb.group({
 			title: [this.data.el.title, Validators.required],
-			url: [this.data.el.url, Validators.required],
+			slug: [this.data.el.slug, Validators.required],
+			sectiune_id: [this.data.el.sectiune_id > 0 ? this.data.el.sectiune_id : -1, Validators.required],
 			content: [this.data.el.content, Validators.required],
 		});
 	}
+
 
 	cancel(){
 		this.dialogRef.close();
