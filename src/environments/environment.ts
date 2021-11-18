@@ -88,7 +88,15 @@ export const environment = {
 					editSuccess: "Articolul a fost actualizat cu succes!",
 					editError: "Articolul nu a putut fi actualizat.",
 					addSuccess: "Articolul a fost adăugat cu succes!",
-					addError: "Articolul nu a putut fi adăugat."
+					addError: "Articolul nu a putut fi adăugat.",
+					changePublicVisibilitySuccess: "Vizibilitatea articolului a fost actualizată cu succes!",
+					changePublicVisibilityError: "Vizibilitatea articolului nu a putut fi actualizată."
+				},
+				paginiMobile: {
+					editSuccess: "Pagina a fost actualizată cu succes!",
+					editError: "Pagina nu a putut fi actualizată.",
+					addSuccess: "Pagina a fost adăugată cu succes!",
+					addError: "Pagina nu a putut fi adăugată."
 				}
 			}
 		}
@@ -171,6 +179,20 @@ export const environment = {
 						editDepartment: '/api/department',
 						addDepartment: '/api/department'
 					}
+				},
+				articole: {
+					getArticole: '/api/articles',
+					findArticol: '/api/article/',
+					editArticol: '/api/article',
+					addArticol: '/api/article',
+					updatePublicView: '/api/article-public-view/'
+				},
+				paginiMobile: {
+					getPaginiMobile: '/api/mobile-section-pages',
+					getSectiuniMobile: '/api/mobile-sections-active',
+					findPaginaMobila: '/api/mobile-section-page/',
+					editPaginaMobila: '/api/mobile-section-page',
+					addPaginaMobila: '/api/mobile-section-page'
 				}
 			}
         }

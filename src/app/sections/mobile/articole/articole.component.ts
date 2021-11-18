@@ -57,6 +57,8 @@ export class ArticoleComponent implements OnInit {
 	addErrorLabel: string = environment.config.customNotifications.mobile.articole.addError;
 	editSuccessLabel: string = environment.config.customNotifications.mobile.articole.editSuccess;
 	addSuccessLabel: string = environment.config.customNotifications.mobile.articole.addSuccess;
+	changeVisibilityErrorLabel: string = environment.config.customNotifications.mobile.articole.changePublicVisibilityError;
+	changeVisibilitySuccessLabel: string = environment.config.customNotifications.mobile.articole.changePublicVisibilitySuccess;
 
 	generalError = environment.config.customNotifications.generalMessages.error;
 
@@ -143,6 +145,11 @@ export class ArticoleComponent implements OnInit {
 							let id = $(this).val();
 							self.editArticle(id);
 						});
+
+						$('.update-public-view').on('click', function(){
+							let id = $(this).val();
+							self.updatePublicView(id);
+						});
 					});
 
 					callback({
@@ -163,13 +170,154 @@ export class ArticoleComponent implements OnInit {
 	}
 
 
-	editArticle(id){
+	async editArticle(id){
 
+		var self = this;
+
+		self.articoleService.findArticle(id)
+		.then(async (res) => {
+			let response = (typeof res.status_code !== 'undefined' ? res : res.error)
+			if (typeof response.status_code !== 'undefined') {
+				if (response.status_code == 200 && typeof response.data !== 'undefined') {
+
+					self.loading = false;
+					let element = response.data;
+					console.log(element);
+
+					self.loaded = 1;
+
+					let dataToDialog = {
+						el: element,
+					};
+					
+					let dialogRef = self.dialog.open(EditComponent, {
+						width: "1000px",
+						data: dataToDialog,
+						autoFocus: false,
+						maxHeight: '90vh'
+						
+					})
+					.afterClosed()
+					.subscribe(res => {
+						// if(res){
+						// 	let dataToSend = {
+						// 		id: id,
+						// 		title: res.data.title,
+						// 		content: res.data.content,
+						// 		url: res.data.url,
+						// 	};
+							
+						// 	self.articoleService.updateArticle(dataToSend)
+						// 	.then(async (res) => {
+						// 		if(res.errors == false){
+						// 			self.loading = false;
+						// 			self.rerender();
+						// 			self.loaded = 1;
+
+						// 			await self.notificationService.warningSwal(
+						// 				self.successTitle, self.editSuccessLabel,  self.successIcon
+						// 			);
+						// 		}
+						// 		else{
+						// 			self.loading = false;
+						// 			await self.notificationService.warningSwal(
+						// 				self.errorTitle, self.generalError, self.errorIcon
+						// 			);
+
+						// 			return false;
+						// 		}
+						// 	})
+						// 	.catch(async err => {
+						// 		self.loading = false;
+						// 		await self.notificationService.warningSwal(
+						// 			self.errorTitle, self.generalError, self.errorIcon
+						// 		);
+								
+						// 		return false;
+						// 	});
+						// }
+					});
+
+					return false;
+
+				} else {
+					self.loading = false;
+					await self.notificationService.warningSwal(
+						self.errorTitle, self.generalError, self.errorIcon
+					);
+
+					return false;
+				}
+
+			} else {
+				self.loading = false;
+				await self.notificationService.warningSwal(
+					self.errorTitle, self.generalError, self.errorIcon
+				);
+
+				return false;
+			}
+		})
+		.catch(async err => {
+			self.loading = false;
+			await self.notificationService.warningSwal(
+				self.errorTitle, self.generalError, self.errorIcon
+			);
+			
+			return false;
+		});
 	}
 
 
-	addArticle(){
+	async addArticle(){
 		
+	}
+
+
+	async updatePublicView(id){
+		
+		var self = this;
+		self.articoleService.updatePublicView(id)
+		.then(async (res) => {
+			let response = (typeof res.status_code !== 'undefined' ? res : res.error)
+			if (typeof response.status_code !== 'undefined') {
+				if (response.status_code == 200 && typeof response.data !== 'undefined') {
+
+					self.loading = false;
+					self.rerender();
+					self.loaded = 1;
+
+					await self.notificationService.warningSwal(
+						self.successTitle, self.changeVisibilitySuccessLabel,  self.successIcon
+					);
+					return false;
+
+				} else {
+					self.loading = false;
+					await self.notificationService.warningSwal(
+						self.errorTitle, self.changeVisibilityErrorLabel, self.errorIcon
+					);
+
+					return false;
+				}
+
+			} else {
+				self.loading = false;
+				await self.notificationService.warningSwal(
+					self.errorTitle, self.generalError, self.errorIcon
+				);
+
+				return false;
+			}
+		})
+		.catch(async err => {
+			self.loading = false;
+			await self.notificationService.warningSwal(
+				self.errorTitle, self.generalError, self.errorIcon
+			);
+			
+			return false;
+		});
 	}
 
 }
