@@ -23,131 +23,191 @@
 						<ul class="p-0 m-0 main-list list-unstyled">
 
 							<li>
-								<a href="javascript:void(0)" class="main-link w-100 pr-3 pl-3"
+								<a href="javascript:void(0)" class="vsm-link main-link"
 									(click)="showRegistratura = !showRegistratura"
-									[class]="showRegistratura ? 'active' : 'inactive'">
-									<i class="fa fa-address-card fa-fw"></i>
-									<span *ngIf="!globals.toggleSidebar || globals.sidebarHover">Registratura</span>
-									<i *ngIf="!globals.toggleSidebar || globals.sidebarHover"
-										class="fa fa-angle-left pull-right"></i>
+									[class]="showRegistratura ? 'active expanded' : 'inactive collapsed'">
+									<i class="vsm-icon fa fa-address-card fa-fw"></i>
+									<span class="vsm-title">Registratura</span>
+									<i class="vsm-arrow"></i>
 								</a>
-								<ul class="p-0 m-0 sub-list list-unstyled" *ngIf="showRegistratura"
+								<ul class="list-unstyled" *ngIf="showRegistratura"
 									[class]="showRegistratura ? 'activeBg' : 'inactiveBg'">
 									<li>
-										<a routerLink="/registratura-dashboard">
-											<i class="fa fa-bar-chart fa-fw"></i> <span>Dashboard Registratura</span>
+										<a routerLink="/registratura-dashboard" routerLinkActive="active-item"
+											class="vsm-link">
+											<i class="vsm-icon fa fa-bar-chart fa-fw"></i> <span
+												class="vsm-title">Dashboard
+												Registratura</span>
 										</a>
 									</li>
 									<li>
-										<a routerLink="/registratura-solicitari">
-											<i class="fa fa-envelope-open fa-fw"></i> <span>Solicitari</span>
+										<a routerLink="/registratura-solicitari" routerLinkActive="active-item"
+											class="vsm-link">
+											<i class="vsm-icon fa fa-envelope-open fa-fw"></i> <span
+												class="vsm-title">Solicitari</span>
 										</a>
 									</li>
 									<li>
-										<a routerLink="/registratura-setari">
-											<i class="fa fa-gears fa-fw"></i> <span>Setari</span>
+										<a routerLink="/registratura-setari" routerLinkActive="active-item"
+											class="vsm-link">
+											<i class="vsm-icon fa fa-gears fa-fw"></i> <span
+												class="vsm-title">Setari</span>
 										</a>
 									</li>
 								</ul>
 							</li>
 
 							<li>
-								<a href="javascript:void(0)" class="main-link w-100 pr-3 pl-3"
-									(click)="showMobile = !showMobile" [class]="showMobile ? 'active' : 'inactive'">
-									<i class="fa fa-envelope fa-fw"></i>
-									<span *ngIf="!globals.toggleSidebar || globals.sidebarHover">Mobile</span>
-									<i *ngIf="!globals.toggleSidebar || globals.sidebarHover"
-										class="fa fa-angle-left pull-right"></i>
+								<a href="javascript:void(0)" class="vsm-link main-link"
+									(click)="showMobile = !showMobile"
+									[class]="showMobile ? 'active expanded' : 'inactive collapsed'">
+									<i class="vsm-icon fa fa-envelope fa-fw"></i>
+									<span class="vsm-title">Mobile</span>
+									<i class="vsm-arrow"></i>
 								</a>
-								<ul class="p-0 m-0 sub-list list-unstyled" *ngIf="showMobile"
+								<ul class="list-unstyled" *ngIf="showMobile"
 									[class]="showMobile ? 'activeBg' : 'inactiveBg'">
 									<li>
-										<a routerLink="/mobile-dashboard">
-											<i class="fa fa-bar-chart fa-fw"></i> <span>Dashboard Sesizari</span>
+										<a routerLink="/mobile-dashboard" routerLinkActive="active-item"
+											class="vsm-link">
+											<i class="vsm-icon fa fa-bar-chart fa-fw"></i> <span
+												class="vsm-title">Dashboard
+												Sesizari</span>
 										</a>
 									</li>
+
 									<li>
-										<a routerLink="/mobile-sesizari">
-											<i class="fa fa-comment fa-fw"></i> <span>Sesizari</span>
+										<a routerLink="/mobile-sesizari" routerLinkActive="active-item"
+											class="vsm-link">
+											<i class="vsm-icon fa fa-comment fa-fw"></i> <span
+												class="vsm-title">Sesizari</span>
 										</a>
-										<a routerLink="/mobile-plati">
-											<i class="fa fa-credit-card fa-fw"></i> <span>Plati</span>
+									</li>
+
+									<li>
+										<a routerLink="/mobile-plati" routerLinkActive="active-item" class="vsm-link">
+											<i class="vsm-icon fa fa-credit-card fa-fw"></i> <span
+												class="vsm-title">Plati</span>
 										</a>
-										<a routerLink="/mobile-conturi">
-											<i class="fa fa-user fa-fw"></i> <span>Conturi</span>
+									</li>
+
+									<li>
+										<a routerLink="/mobile-conturi" routerLinkActive="active-item" class="vsm-link">
+											<i class="vsm-icon fa fa-user fa-fw"></i> <span
+												class="vsm-title">Conturi</span>
 										</a>
-										<a routerLink="/mobile-articole">
-											<i class="fa fa-newspaper-o fa-fw"></i> <span>Articole</span>
+									</li>
+
+									<li>
+										<a routerLink="/mobile-articole" routerLinkActive="active-item"
+											class="vsm-link">
+											<i class="vsm-icon fa fa-newspaper-o fa-fw"></i> <span
+												class="vsm-title">Articole</span>
 										</a>
-										<a routerLink="/mobile-pagini">
-											<i class="fa fa-file-word-o fa-fw"></i> <span>Pagini</span>
+									</li>
+
+									<li>
+										<a routerLink="/mobile-pagini" routerLinkActive="active-item" class="vsm-link">
+											<i class="vsm-icon fa fa-file-word-o fa-fw"></i> <span
+												class="vsm-title">Pagini</span>
 										</a>
-										<a routerLink="/mobile-sectiuni">
-											<i class="fa fa-list-alt fa-fw"></i> <span>Sectiuni</span>
+									</li>
+
+									<li>
+										<a routerLink="/mobile-sectiuni" routerLinkActive="active-item"
+											class="vsm-link">
+											<i class="vsm-icon fa fa-list-alt fa-fw"></i> <span
+												class="vsm-title">Sectiuni</span>
 										</a>
-										<a routerLink="/mobile-galerie">
-											<i class="fa fa-image fa-fw"></i> <span>Galerie</span>
+									</li>
+
+									<li>
+										<a routerLink="/mobile-galerie" routerLinkActive="active-item" class="vsm-link">
+											<i class="vsm-icon fa fa-image fa-fw"></i> <span
+												class="vsm-title">Galerie</span>
 										</a>
-										<a routerLink="/mobile-sondaje">
-											<i class="fa fa-pie-chart fa-fw"></i> <span>Sondaje</span>
+									</li>
+
+									<li>
+										<a routerLink="/mobile-sondaje" routerLinkActive="active-item" class="vsm-link">
+											<i class="vsm-icon fa fa-pie-chart fa-fw"></i> <span
+												class="vsm-title">Sondaje</span>
 										</a>
-										<a routerLink="/mobile-notificari">
-											<i class="fa fa-bell fa-fw"></i> <span>Notificari Push</span>
+									</li>
+
+									<li>
+										<a routerLink="/mobile-notificari" routerLinkActive="active-item"
+											class="vsm-link">
+											<i class="vsm-icon fa fa-bell fa-fw"></i> <span class="vsm-title">Notificari
+												Push</span>
 										</a>
-										<a routerLink="/mobile-setari">
-											<i class="fa fa-gears fa-fw"></i> <span>Setari</span>
+									</li>
+
+									<li>
+										<a routerLink="/mobile-setari" routerLinkActive="active-item" class="vsm-link">
+											<i class="vsm-icon fa fa-gears fa-fw"></i> <span
+												class="vsm-title">Setari</span>
 										</a>
 									</li>
 								</ul>
 							</li>
 
 							<li>
-								<a href="javascript:void(0)" class="main-link w-100 pr-3 pl-3"
+								<a href="javascript:void(0)" class="vsm-link main-link"
 									(click)="showSettings = !showSettings"
-									[class]="showSettings ? 'active' : 'inactive'">
-									<i class="fa fa-cog"></i>
-									<span *ngIf="!globals.toggleSidebar || globals.sidebarHover">Setari</span>
-									<i *ngIf="!globals.toggleSidebar || globals.sidebarHover"
-										class="fa fa-angle-left pull-right"></i>
+									[class]="showSettings ? 'active expanded' : 'inactive collapsed'">
+									<i class="vsm-icon fa fa-cog"></i>
+									<span class="vsm-title">Setari</span>
+									<i class="vsm-arrow"></i>
 								</a>
-								<ul class="p-0 m-0 sub-list list-unstyled" *ngIf="showSettings"
+								<ul class="list-unstyled" *ngIf="showSettings"
 									[class]="showSettings ? 'activeBg' : 'inactiveBg'">
 									<li>
-										<a routerLink="/setari-utilizatori">
-											<i class="fa fa-users fa-fw"></i> <span>Utilizatori</span>
+										<a routerLink="/setari-utilizatori" routerLinkActive="active-item"
+											class="vsm-link">
+											<i class="vsm-icon fa fa-users fa-fw"></i> <span
+												class="vsm-title">Utilizatori</span>
 										</a>
 									</li>
 								</ul>
 							</li>
 
 							<li>
-								<a href="javascript:void(0)" class="main-link w-100 pr-3 pl-3"
-									(click)="showAdmin = !showAdmin" [class]="showAdmin ? 'active' : 'inactive'">
-									<i class="fa fa-shield"></i>
-									<span *ngIf="!globals.toggleSidebar || globals.sidebarHover">Administrativ</span>
-									<i *ngIf="!globals.toggleSidebar || globals.sidebarHover"
-										class="fa fa-angle-left pull-right"></i>
+								<a href="javascript:void(0)" class="vsm-link main-link" (click)="showAdmin = !showAdmin"
+									[class]="showAdmin ? 'active expanded' : 'inactive collapsed'">
+									<i class="vsm-icon fa fa-shield"></i>
+									<span class="vsm-title">Administrativ</span>
+									<i class="vsm-arrow"></i>
 								</a>
-								<ul class="p-0 m-0 sub-list list-unstyled" *ngIf="showAdmin"
+								<ul class="list-unstyled" *ngIf="showAdmin"
 									[class]="showAdmin ? 'activeBg' : 'inactiveBg'">
 									<li>
-										<a routerLink="/administrativ-permisiuni">
-											<i class="fa fa-lock fa-fw"></i> <span>Permisiuni</span>
+										<a routerLink="/administrativ-permisiuni" routerLinkActive="active-item"
+											class="vsm-link">
+											<i class="vsm-icon fa fa-lock fa-fw"></i> <span
+												class="vsm-title">Permisiuni</span>
 										</a>
 									</li>
 									<li>
-										<a routerLink="/administrativ-actiuni-permisiuni">
-											<i class="fa fa-balance-scale fa-fw"></i> <span>Actiuni Permisiuni</span>
+										<a routerLink="/administrativ-actiuni-permisiuni" routerLinkActive="active-item"
+											class="vsm-link">
+											<i class="vsm-icon fa fa-balance-scale fa-fw"></i> <span
+												class="vsm-title">Actiuni
+												Permisiuni</span>
 										</a>
 									</li>
 									<li>
-										<a routerLink="/administrativ-cronuri">
-											<i class="fa fa-clock-o fa-fw"></i> <span>Cron-uri</span>
+										<a routerLink="/administrativ-cronuri" routerLinkActive="active-item"
+											class="vsm-link">
+											<i class="vsm-icon fa fa-clock-o fa-fw"></i> <span
+												class="vsm-title">Cron-uri</span>
 										</a>
 									</li>
 									<li>
-										<a routerLink="/administrativ-loguri">
-											<i class="fa fa-history fa-fw"></i> <span>Log-uri</span>
+										<a routerLink="/administrativ-loguri" routerLinkActive="active-item"
+											class="vsm-link">
+											<i class="vsm-icon fa fa-history fa-fw"></i> <span
+												class="vsm-title">Log-uri</span>
 										</a>
 									</li>
 								</ul>
@@ -982,57 +1042,57 @@
 
 						<!-- Inainte de restructurare pe module -->
 						<!-- <a routerLink="/tickets" routerLinkActive="active-item" class="vsm-link">
-							<i class="vsm-icon fa fa-envelope"></i>
+							<i class="fa fa-envelope"></i>
 							<span class="vsm-title">Solicitari Registratura</span>
 						</a>
 
 						<a routerLink="/mobile-payments" routerLinkActive="active-item" class="vsm-link">
-							<i class="vsm-icon fa fa-credit-card"></i>
+							<i class="fa fa-credit-card"></i>
 							<span class="vsm-title">Plati</span>
 						</a>
 
 						<a routerLink="/mobile-accounts" routerLinkActive="active-item" class="vsm-link">
-							<i class="vsm-icon fa fa-user"></i>
+							<i class="fa fa-user"></i>
 							<span class="vsm-title">Conturi Mobile</span>
 						</a>
 
 						<a routerLink="/mobile-gallery" routerLinkActive="active-item" class="vsm-link">
-							<i class="vsm-icon fa fa-image"></i>
+							<i class="fa fa-image"></i>
 							<span class="vsm-title">Imagini in Sectorul 6</span>
 						</a>
 
 						<a routerLink="/sesizari" routerLinkActive="active-item" class="vsm-link">
-							<i class="vsm-icon fa fa-question-circle"></i>
+							<i class="fa fa-question-circle"></i>
 							<span class="vsm-title">Sesizari</span>
 						</a>
 
 						<a routerLink="/sondaje" routerLinkActive="active-item" class="vsm-link">
-							<i class="vsm-icon fa fa-pie-chart"></i>
+							<i class="fa fa-pie-chart"></i>
 							<span class="vsm-title">Sondaje</span>
 						</a>
 
 						<a routerLink="/sesizari" routerLinkActive="active-item" class="vsm-link">
-							<i class="vsm-icon fa fa-question-circle-o"></i>
+							<i class="fa fa-question-circle-o"></i>
 							<span class="vsm-title">Sesizari</span>
 						</a>
 
 						<a routerLink="/push-notifications" routerLinkActive="active-item" class="vsm-link">
-							<i class="vsm-icon fa fa-flag"></i>
+							<i class="fa fa-flag"></i>
 							<span class="vsm-title">Push Notifications</span>
 						</a>
 
 						<a routerLink="/situatii" routerLinkActive="active-item" class="vsm-link">
-							<i class="vsm-icon fa fa-users"></i>
+							<i class="fa fa-users"></i>
 							<span class="vsm-title">Dashboard - Sesizari</span>
 						</a>
 
 						<a routerLink="/sesizareproactivity" routerLinkActive="active-item" class="vsm-link">
-							<i class="vsm-icon fa fa-bar-chart"></i>
+							<i class="fa fa-bar-chart"></i>
 							<span class="vsm-title">ProActivity</span>
 						</a>
 
 						<a routerLink="/settings" routerLinkActive="active-item" class="vsm-link">
-							<i class="vsm-icon fa fa-gear"></i>
+							<i class="fa fa-gear"></i>
 							<span class="vsm-title">Setari</span>
 						</a> -->
 
@@ -1044,17 +1104,17 @@
 						<!-- <button routerLink="none" (click)="isCollapsed = !isCollapsed"
 							[attr.aria-expanded]="!isCollapsed" aria-controls="registraturaDropdown"
 							routerLinkActive="active-item" class="vsm-link">
-							<i class="vsm-icon fa fa-envelope"></i>
+							<i class="fa fa-envelope"></i>
 							<span class="vsm-title">Registratura</span>
 						</button>
 
 						<div id="registraturaDropdown" [ngbCollapse]="isCollapsed">
 							<a routerLink="/registratura-dashboard" routerLinkActive="active-item" class="vsm-link">
-								<i class="vsm-icon fa fa-gear"></i>
+								<i class="fa fa-gear"></i>
 								<span class="vsm-title">Dashboard</span>
 							</a>
 							<a routerLink="/settings" routerLinkActive="active-item" class="vsm-link">
-								<i class="vsm-icon fa fa-gear"></i>
+								<i class="fa fa-gear"></i>
 								<span class="vsm-title">Setari</span>
 							</a>
 						</div> -->

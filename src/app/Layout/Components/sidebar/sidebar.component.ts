@@ -83,6 +83,4 @@ export class SidebarComponent implements OnInit {
 		this.router.navigateByUrl('/auth/login', { replaceUrl: true });
 		console.log('here')
 	}
-
-
 }
