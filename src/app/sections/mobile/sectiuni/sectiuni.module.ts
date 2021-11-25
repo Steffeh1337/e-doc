@@ -5,14 +5,32 @@ import { SectiuniComponent } from './sectiuni.component';
 
 import { SectiuniRoutingModule } from './sectiuni-routing.module';
 
+import { AddComponent } from './partials/add/add.component';
+import { EditComponent } from './partials/edit/edit.component';
+
+import { DataTablesModule } from "angular-datatables";
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { ListComponent as FaqListComponent } from './partials/faq/list/list.component';
+import { AddComponent as FaqAddComponent } from './partials/faq/add/add.component';
+import { EditComponent as FaqEditComponent } from './partials/faq/edit/edit.component';
+
 
 @NgModule({
   declarations: [
-    SectiuniComponent
+    SectiuniComponent,
+    AddComponent,
+    EditComponent,
+
+    FaqListComponent,
+	FaqAddComponent,
+	FaqEditComponent
   ],
   imports: [
     CommonModule,
-	SectiuniRoutingModule
+	SectiuniRoutingModule,
+	DataTablesModule,
+	ReactiveFormsModule
   ]
 })
 export class SectiuniModule { }

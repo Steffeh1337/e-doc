@@ -97,6 +97,12 @@ export const environment = {
 					editError: "Pagina nu a putut fi actualizată.",
 					addSuccess: "Pagina a fost adăugată cu succes!",
 					addError: "Pagina nu a putut fi adăugată."
+				},
+				sectiuniMobile: {
+					editSuccess: "Secțiunea a fost actualizată cu succes!",
+					editError: "Secțiunea nu a putut fi actualizată.",
+					addSuccess: "Secțiunea a fost adăugată cu succes!",
+					addError: "Secțiunea nu a putut fi adăugată."
 				}
 			}
 		}
@@ -193,6 +199,17 @@ export const environment = {
 					findPaginaMobila: '/api/mobile-section-page/',
 					editPaginaMobila: '/api/mobile-section-page',
 					addPaginaMobila: '/api/mobile-section-page'
+				},
+				sectiuniMobile: {
+					getSectiuniMobile: '/api/mobile-sections',
+					findSectiuneMobila: '/api/mobile-section/',
+					editSectiuneMobila: '/api/mobile-section',
+					addSectiuneMobila: '/api/mobile-section',
+
+					getFAQ: '/api/mobile-section-faq/',
+					findFAQ: '/api/mobile-section-faq-one/',
+					editSectiuneMobilaFAQ: '/api/mobile-section-faq/',
+					addSectiuneMobilaFAQ: '/api/mobile-section-faq'
 				}
 			}
         }

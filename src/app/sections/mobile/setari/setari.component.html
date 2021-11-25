@@ -17,7 +17,7 @@
 						Institutii</li>
 					<li class="sub-menu-item" [ngClass]="activeModule == 'departamente-institutii-list' ? 'active' : ''"
 						(click)="changeLocation('departamente-institutii-list')">
-						Departamente Institutii</li>
+						Departamente</li>
 				</ul>
 			</div>
 			<div class="col-sm-10 p-3 bg-white">
@@ -39,9 +39,6 @@
 
 				<departamente-institutii *ngIf="activeModule == 'departamente-institutii-list'">
 				</departamente-institutii>
-
-				<!-- <directii-compartimente-list *ngIf="isDirectieCompartimenteRoute()">
-				</directii-compartimente-list> -->
 
 			</div>
 		</div>

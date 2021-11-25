@@ -94,66 +94,10 @@ $sidebar-box-shadow: 7px 0 60px rgba(0, 0, 0, 0.05);
 }
 
 // Sidebar Menu
-.skin-blue {
-  background-color: #222d32;
-}
-
-.vsm-list a {
-  color: #b8c7ce !important;
-}
-
-.v-sidebar-menu .main-list li a {
-  padding: 12px 5px 12px 15px;
-  display: block;
-}
-
-.v-sidebar-menu .main-list li a.active {
-  background: #1e282c;
-}
-
-.v-sidebar-menu .main-list li a.active>i {
-  color: white;
-}
-
-.v-sidebar-menu .main-list li a.active>span {
-  color: white;
-}
-
-.main-list li a:hover,
-.sub-list li a:hover {
-  text-decoration: none;
-}
-
-.main-link:hover {
-  background: #1e282c;
-}
-
-.main-list li a:hover i,
-.sub-list li a:hover i {
-  color: white;
-}
-
-.main-list li a:hover span,
-.sub-list li a:hover span {
-  color: white;
-}
-
-.main-list li a span,
-.sub-list li a span {
-  padding-left: 5px;
-}
-
-.activeBg {
-  background: #2c3b41;
-}
-
-.v-sidebar-menu .sub-list li a {
-  padding: 5px 15px;
-}
 
 .v-sidebar-menu {
   width: auto !important;
-  //   padding: 0 $layout-spacer-x $layout-spacer-x;
+  padding: 0 $layout-spacer-x $layout-spacer-x;
 
   %side-link-hover {
     background: $dropdown-link-hover-bg;
@@ -162,8 +106,8 @@ $sidebar-box-shadow: 7px 0 60px rgba(0, 0, 0, 0.05);
 
   & .vsm-link {
     display: block;
-    line-height: 2.4rem;
-    height: 2.4rem;
+    line-height: 2rem;
+    height: 2rem;
     padding: 0 1.5rem 0 45px;
     position: relative;
     border-radius: .25rem;
@@ -181,13 +125,11 @@ $sidebar-box-shadow: 7px 0 60px rgba(0, 0, 0, 0.05);
 
     &:hover {
       @extend %side-link-hover;
-      background: #1e282c;
     }
 
     &.active-item {
       font-weight: 600;
       @extend %side-link-hover;
-      background: #1e282c;
     }
 
     &[disabled] {
@@ -199,6 +141,7 @@ $sidebar-box-shadow: 7px 0 60px rgba(0, 0, 0, 0.05);
       font-weight: normal;
 
       .vsm-arrow {
+        transition: all 300ms;
         transform: rotate(0deg);
         font-weight: bold;
       }
@@ -235,7 +178,6 @@ $sidebar-box-shadow: 7px 0 60px rgba(0, 0, 0, 0.05);
     margin-top: -17px;
     font-size: 1.5rem;
     font-style: normal;
-    opacity: .3;
     transition: all 300ms;
     transform: rotate(180deg);
 
@@ -340,6 +282,12 @@ $sidebar-box-shadow: 7px 0 60px rgba(0, 0, 0, 0.05);
     width: 100%;
   }
 }
+
+.main-link {
+  text-transform: uppercase;
+  font-weight: 700 !important;
+}
+
 
 // Modifiers
 
