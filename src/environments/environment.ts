@@ -102,7 +102,15 @@ export const environment = {
 					editSuccess: "Secțiunea a fost actualizată cu succes!",
 					editError: "Secțiunea nu a putut fi actualizată.",
 					addSuccess: "Secțiunea a fost adăugată cu succes!",
-					addError: "Secțiunea nu a putut fi adăugată."
+					addError: "Secțiunea nu a putut fi adăugată.",
+					FAQ: {
+						editSuccess: "FAQ-ul a fost actualizat cu succes!",
+						editError: "FAQ-ul nu a putut fi actualizat.",
+						addSuccess: "FAQ-ul a fost adăugat cu succes!",
+						addError: "FAQ-ul nu a putut fi adăugat.",
+						deleteSuccess: "FAQ-ul a fost șters cu succes!",
+						deleteError: "FAQ-ul nu a putut fi șters."
+					}
 				}
 			}
 		}
@@ -208,8 +216,9 @@ export const environment = {
 
 					getFAQ: '/api/mobile-section-faq/',
 					findFAQ: '/api/mobile-section-faq-one/',
-					editSectiuneMobilaFAQ: '/api/mobile-section-faq/',
-					addSectiuneMobilaFAQ: '/api/mobile-section-faq'
+					editSectiuneMobilaFAQ: '/api/mobile-section-faq',
+					addSectiuneMobilaFAQ: '/api/mobile-section-faq/',
+					deleteFAQ: '/api/mobile-section-faq/'
 				}
 			}
         }

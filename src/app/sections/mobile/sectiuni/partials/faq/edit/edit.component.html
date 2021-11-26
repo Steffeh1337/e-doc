@@ -1,1 +1,37 @@
-<p>edit works!</p>
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="w-100">
+	<div class="form-group">
+		<label for="name"><strong>Nume</strong></label>
+		<input formControlName="name" type="text" name="name" class="form-control">
+		<span class="text-danger pt-3"
+			*ngIf="(editFormControl.name.touched || submitted) && editFormControl.name.errors?.required ">
+			Numele este obligatoriu
+		</span>
+	</div>
+
+	<div class="form-group">
+		<label for="description"><strong>Descriere</strong></label>
+		<editor formControlName="description" apiKey="qezjtxhis2t6campgcgs840r34i82atufabgrwclq9fgfwtx" [init]="{
+			height: 500,
+			menubar: false,
+			plugins: [
+			'advlist autolink lists link image charmap print preview anchor',
+			'searchreplace visualblocks code fullscreen',
+			'insertdatetime media table paste code help wordcount'
+			],
+			toolbar:
+			'undo redo | formatselect | bold italic backcolor | \
+			alignleft aligncenter alignright alignjustify | \
+			bullist numlist outdent indent | removeformat | help'
+			}">
+		</editor>
+		<span class="text-danger pt-3"
+			*ngIf="(editFormControl.description.touched || submitted) && editFormControl.description.errors?.required ">
+			Descrierea este obligatorie
+		</span>
+	</div>
+
+	<div class="form-group d-flex flex-row justify-content-between">
+		<button type="button" mat-button mat-dialog-close class="btn btn-warning" (click)="cancel()">Inchide</button>
+		<button type="submit" mat-button class="btn btn-success">Actualizeaza</button>
+	</div>
+</form>

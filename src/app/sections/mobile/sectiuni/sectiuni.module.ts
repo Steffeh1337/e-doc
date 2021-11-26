@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { EditorModule } from '@tinymce/tinymce-angular';
+
 import { SectiuniComponent } from './sectiuni.component';
 
 import { SectiuniRoutingModule } from './sectiuni-routing.module';
@@ -30,7 +32,8 @@ import { EditComponent as FaqEditComponent } from './partials/faq/edit/edit.comp
     CommonModule,
 	SectiuniRoutingModule,
 	DataTablesModule,
-	ReactiveFormsModule
+	ReactiveFormsModule,
+	EditorModule
   ]
 })
 export class SectiuniModule { }
