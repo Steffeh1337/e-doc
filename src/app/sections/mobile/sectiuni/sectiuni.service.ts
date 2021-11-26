@@ -20,7 +20,7 @@ export class SectiuniService {
 	findMobileSectionFAQUrl = environment.interop.api.mobile.sectiuniMobile.findFAQ;
 	editMobileSectionFAQUrl = environment.interop.api.mobile.sectiuniMobile.editSectiuneMobilaFAQ;
 	addMobileSectionFAQUrl = environment.interop.api.mobile.sectiuniMobile.addSectiuneMobilaFAQ;
-
+	deleteMobileSectionFAQUrl = environment.interop.api.mobile.sectiuniMobile.deleteFAQ;
 	constructor(
 		private http: HttpClient
 	) { }
@@ -93,7 +93,7 @@ export class SectiuniService {
 
 
 	updateMobileSectionFAQ(data){
-		return this.http.put<{ data: any }>(this.url + this.addMobileSectionFAQUrl, data)
+		return this.http.put<{ data: any }>(this.url + this.editMobileSectionFAQUrl, data)
 			.toPromise()
 			.then(
 				res => res,
@@ -103,8 +103,19 @@ export class SectiuniService {
 	}
 
 
-	storeMobileSectionFAQ(data){
-		return this.http.post<{ data: any }>(this.url + this.addMobileSectionUrl, data)
+	storeMobileSectionFAQ(data, id){
+		return this.http.post<{ data: any }>(this.url + this.addMobileSectionFAQUrl + id, data)
+			.toPromise()
+			.then(
+				res => res,
+				err => err.error
+			)
+			.catch(e => e.error);
+	}
+
+
+	deleteMobileSectionFAQ(id){
+		return this.http.delete<{ data: any}>(this.url + this.deleteMobileSectionFAQUrl + id)
 			.toPromise()
 			.then(
 				res => res,

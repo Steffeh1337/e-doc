@@ -8,8 +8,6 @@ import { AddComponent } from './partials/add/add.component';
 import { EditComponent } from './partials/edit/edit.component';
 
 import { ListComponent as FaqListComponent } from './partials/faq/list/list.component';
-import { AddComponent as FaqAddComponent } from './partials/faq/add/add.component';
-import { EditComponent as FaqEditComponent } from './partials/faq/edit/edit.component';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -320,12 +318,55 @@ export class SectiuniComponent implements OnInit {
 	async openSectionFAQs(id){
 		
 		var self = this;
-		let dialogRef = self.dialog.open(FaqListComponent, {
-			width: "1000px"
+
+		self.sectiuniService.findMobileSection(id)
+		.then(async (res) => {
+			let response = (typeof res.status_code !== 'undefined' ? res : res.error)
+			if(typeof response.status_code !== 'undefined'){
+				if(response.status_code == 200 && typeof response.data !== 'undefined'){
+
+					self.loading = false;
+					let element = response.data;
+					self.loaded = 1;
+
+					let dataToDialog = {
+						el: element
+					};
+
+					let dialogRef = self.dialog.open(FaqListComponent, {
+						width: "1000px",
+						data: dataToDialog,
+					})
+					.afterClosed()
+					.subscribe(res => {
+						console.log('inchis modal faq');
+					});
+				}
+				else {
+					self.loading = false;
+					await self.notificationService.warningSwal(
+						self.errorTitle, self.generalError, self.errorIcon
+					);
+	
+					return false;
+				}
+			}
+			else {
+				self.loading = false;
+				await self.notificationService.warningSwal(
+					self.errorTitle, self.generalError, self.errorIcon
+				);
+
+				return false;
+			}
 		})
-		.afterClosed()
-		.subscribe(res => {
-			console.log('inchis modal');
+		.catch(async err => {
+			self.loading = false;
+			await self.notificationService.warningSwal(
+				self.errorTitle, self.generalError, self.errorIcon
+			);
+			
+			return false;
 		});
 	}
 }

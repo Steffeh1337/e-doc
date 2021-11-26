@@ -42,5 +42,4 @@ export class AddComponent implements OnInit {
 	get addFormControl(){
 		return this.addForm.controls;
 	}
-
 }
