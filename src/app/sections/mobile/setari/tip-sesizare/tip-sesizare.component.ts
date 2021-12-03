@@ -354,21 +354,4 @@ export class TipSesizareComponent implements OnInit {
 			}
 		})
 	}
-
-
-	async returnDepartmentName(id){
-
-		let departmentName = "";
-		if(this.departments){
-			this.departments.forEach(item => {
-				if(item.id_department === id){
-					if(item.name){
-						departmentName = item.name;
-					}
-				}
-			});
-		}
-		return departmentName;
-	}
-
 }

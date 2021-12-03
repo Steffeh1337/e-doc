@@ -5,9 +5,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.sass']
+	selector: 'app-edit',
+	templateUrl: './edit.component.html',
+	styleUrls: ['./edit.component.sass']
 })
 export class EditComponent implements OnInit {
 

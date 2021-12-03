@@ -15,9 +15,6 @@
 					<li class="sub-menu-item" [ngClass]="activeModule == 'institutii-list' ? 'active' : ''"
 						(click)="changeLocation('institutii-list')">
 						Institutii</li>
-					<li class="sub-menu-item" [ngClass]="activeModule == 'departamente-institutii-list' ? 'active' : ''"
-						(click)="changeLocation('departamente-institutii-list')">
-						Departamente</li>
 				</ul>
 			</div>
 			<div class="col-sm-10 p-3 bg-white">
@@ -31,14 +28,11 @@
 				<prioritate-sesizare *ngIf="activeModule == 'sesizare-priority-list'">
 				</prioritate-sesizare>
 
-				<sabloane *ngIf="activeModule == 'sesizare-sabloane-list'">
-				</sabloane>
+				<sabloane-sesizare *ngIf="activeModule == 'sesizare-sabloane-list'">
+				</sabloane-sesizare>
 
 				<institutii *ngIf="activeModule == 'institutii-list'">
 				</institutii>
-
-				<departamente-institutii *ngIf="activeModule == 'departamente-institutii-list'">
-				</departamente-institutii>
 
 			</div>
 		</div>

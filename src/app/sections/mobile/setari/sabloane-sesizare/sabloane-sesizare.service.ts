@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
   providedIn: 'root'
 })
 
-export class SabloaneService {
+export class SabloaneSesizareService {
 
 	url = environment.interop.basePath;
 	getSesizareSabloaneUrl = environment.interop.api.mobile.setari.sabloaneSesizari.getSabloaneSesizari;

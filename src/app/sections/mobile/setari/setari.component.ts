@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 	templateUrl: './setari.component.html',
 	styleUrls: ['./setari.component.sass']
 })
+
 export class SetariComponent implements OnInit {
 
 	activeModule: string;
@@ -22,9 +23,4 @@ export class SetariComponent implements OnInit {
 	changeLocation(page): void{
 		this.activeModule = page;
 	}
-
-	// isDirectieCompartimenteRoute(){
-	// 	return this.router.url === 'directie-compartimente'
-	// }
-
 }
