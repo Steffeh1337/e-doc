@@ -9,7 +9,7 @@ import { EditComponent } from './partials/edit/edit.component';
 
 import { HttpClient } from '@angular/common/http';
 
-import { DepartamenteInstitutiiService } from './departamente-institutii.service';
+import { SabloaneSesizareService } from './sabloane-sesizare.service';
 import { NotificationService } from 'src/app/general/notification.service';
 
 import { environment } from '../../../../../environments/environment'
@@ -24,12 +24,12 @@ class DataTablesResponse{
 }
 
 @Component({
-	selector: 'departamente-institutii',
-	templateUrl: './departamente-institutii.component.html',
-	styleUrls: ['./departamente-institutii.component.sass']
+	selector: 'sabloane-sesizare',
+	templateUrl: './sabloane-sesizare.component.html',
+	styleUrls: ['./sabloane-sesizare.component.sass']
 })
 
-export class DepartamenteInstitutiiComponent implements OnInit {
+export class SabloaneSesizareComponent implements OnInit {
 
 	@ViewChild(DataTableDirective, {static: false})
 
@@ -53,21 +53,20 @@ export class DepartamenteInstitutiiComponent implements OnInit {
 	successIcon: string = environment.config.customNotifications.icons.success;
 	successType: string = environment.config.customNotifications.icons.success;
 
-	editErrorLabel: string = environment.config.customNotifications.mobile.setari.departamenteInstitutii.editError;
-	addErrorLabel: string = environment.config.customNotifications.mobile.setari.departamenteInstitutii.addError;
-	editSuccessLabel: string = environment.config.customNotifications.mobile.setari.departamenteInstitutii.editSuccess;
-	addSuccessLabel: string = environment.config.customNotifications.mobile.setari.departamenteInstitutii.addSuccess;
+	editErrorLabel: string = environment.config.customNotifications.mobile.setari.sabloaneSesizari.editError;
+	addErrorLabel: string = environment.config.customNotifications.mobile.setari.sabloaneSesizari.addError;
+	editSuccessLabel: string = environment.config.customNotifications.mobile.setari.sabloaneSesizari.editSuccess;
+	addSuccessLabel: string = environment.config.customNotifications.mobile.setari.sabloaneSesizari.addSuccess;
 
 	generalError = environment.config.customNotifications.generalMessages.error;
 
-
+	
 	constructor(
 		private http: HttpClient,
-		private departamenteInstitutiiService: DepartamenteInstitutiiService,
+		private sabloaneSesizareService: SabloaneSesizareService,
 		private notificationService: NotificationService,
-		private dialog: MatDialog,
+		private dialog: MatDialog
 	) { }
-
 
 	ngOnInit(): void {
 		this.datatable();
@@ -101,7 +100,7 @@ export class DepartamenteInstitutiiComponent implements OnInit {
 
 
 	async datatable(){
-
+		
 		var self = this;
 
 		self.toggleTemplate();
@@ -131,7 +130,7 @@ export class DepartamenteInstitutiiComponent implements OnInit {
 			ajax: (dataTablesParameters: any, callback) => {
 				self.http
 				.post<DataTablesResponse>(
-					'http://ps6-web.back.lc/api/departments',
+					'http://ps6-web.back.lc/api/sesizaresabloane',
 					dataTablesParameters, {}
 				).
 				subscribe(response => {
@@ -140,9 +139,9 @@ export class DepartamenteInstitutiiComponent implements OnInit {
 					self.loaded = 1;
 
 					$(function(){
-						$('.edit-department').on('click', function(){
-							let id_department = $(this).val();
-							self.editDepartment(id_department);
+						$('.edit-sablon').on('click', function(){
+							let id = $(this).val();
+							self.editSablon(id);
 						});
 					});
 
@@ -154,26 +153,73 @@ export class DepartamenteInstitutiiComponent implements OnInit {
 				});
 			},
 			columns: [
-				{ title: 'ID', data: 'id_department' },
+				{ title: 'ID', data: 'id' },
 				{ title: 'Nume', data: 'name' },
-				{ title: 'Observatii', data: 'description' },
 				{ orderable: false, data: 'actions', title: 'Actiuni' }
 			],
 		};
 	}
 
 
-	async editDepartment(id){
+	async addSablon(){
 
 		var self = this;
 
-		self.departamenteInstitutiiService.findDepartment(id)
+		let dialogRef = self.dialog.open(AddComponent, {
+			width: "1000px",
+		})
+		.afterClosed()
+		.subscribe(res => {
+			if(res){
+				let dataToSend = {
+					name: res.data.name,
+					content: res.data.content
+				};
+				
+				self.sabloaneSesizareService.storeSesizareSablon(dataToSend)
+				.then(async (res) => {
+					if(res.errors == false){
+						self.loading = false;
+						self.rerender();
+						self.loaded = 1;
+
+						await self.notificationService.warningSwal(
+							self.successTitle, self.addSuccessLabel, self.successIcon
+						);
+
+						return false;
+					}
+					else{
+						self.loading = false;
+						await self.notificationService.warningSwal(
+							self.errorTitle, self.generalError, self.errorIcon
+						);
+
+						return false;
+					}
+				})
+				.catch(async err => {
+					self.loading = false;
+					await self.notificationService.warningSwal(
+						self.errorTitle, self.generalError, self.errorIcon
+					);
+					
+					return false;
+				});
+			}
+		});
+	}
+
+
+	async editSablon(id){
+
+		var self = this;
+
+		self.sabloaneSesizareService.getSesizareSablon(id)
 		.then(async (res) => {
 			let response = (typeof res.status_code !== 'undefined' ? res : res.error)
 			if (typeof response.status_code !== 'undefined') {
 				if (response.status_code == 200 && typeof response.data !== 'undefined') {
-
-					console.log(response);
 
 					self.loading = false;
 					let element = response.data;
@@ -185,19 +231,19 @@ export class DepartamenteInstitutiiComponent implements OnInit {
 					};
 					
 					let dialogRef = self.dialog.open(EditComponent, {
-						width: "500px",
+						width: "1000px",
 						data: dataToDialog
 					})
 					.afterClosed()
 					.subscribe(res => {
 						if(res){
 							let dataToSend = {
-								id_department: id,
+								id: id,
 								name: res.data.name,
-								description: res.data.description
+								content: res.data.content
 							};
 							
-							self.departamenteInstitutiiService.updateDepartment(dataToSend)
+							self.sabloaneSesizareService.updateSesizareSablon(dataToSend)
 							.then(async (res) => {
 								if(res.errors == false){
 									self.loading = false;
@@ -255,56 +301,6 @@ export class DepartamenteInstitutiiComponent implements OnInit {
 			);
 			
 			return false;
-		});
-	}
-
-
-	async addDepartment(){
-
-		var self = this;
-
-		let dialogRef = self.dialog.open(AddComponent, {
-			width: "500px",
-		})
-		.afterClosed()
-		.subscribe(res => {
-			if(res){
-				let dataToSend = {
-					name: res.data.name,
-					description: res.data.description
-				};
-				
-				self.departamenteInstitutiiService.storeDepartment(dataToSend)
-				.then(async (res) => {
-					if(res.errors == false){
-						self.loading = false;
-						self.rerender();
-						self.loaded = 1;
-
-						await self.notificationService.warningSwal(
-							self.successTitle, self.addSuccessLabel, self.successIcon
-						);
-
-						return false;
-					}
-					else{
-						self.loading = false;
-						await self.notificationService.warningSwal(
-							self.errorTitle, self.generalError, self.errorIcon
-						);
-
-						return false;
-					}
-				})
-				.catch(async err => {
-					self.loading = false;
-					await self.notificationService.warningSwal(
-						self.errorTitle, self.generalError, self.errorIcon
-					);
-					
-					return false;
-				});
-			}
 		});
 	}
 }

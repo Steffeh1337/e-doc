@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SabloaneComponent } from './sabloane.component';
+import { SabloaneSesizareComponent } from './sabloane-sesizare.component';
 
-describe('SabloaneComponent', () => {
-  let component: SabloaneComponent;
-  let fixture: ComponentFixture<SabloaneComponent>;
+describe('SabloaneSesizareComponent', () => {
+  let component: SabloaneSesizareComponent;
+  let fixture: ComponentFixture<SabloaneSesizareComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SabloaneComponent ]
+      declarations: [ SabloaneSesizareComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SabloaneComponent);
+    fixture = TestBed.createComponent(SabloaneSesizareComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

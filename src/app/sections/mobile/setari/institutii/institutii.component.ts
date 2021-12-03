@@ -7,6 +7,8 @@ import { ngxLoadingAnimationTypes, NgxLoadingComponent } from 'ngx-loading';
 import { AddComponent } from './partials/add/add.component';
 import { EditComponent } from './partials/edit/edit.component';
 
+import { ListComponent as CompartimenteListComponent } from './partials/compartimente/list/list.component';
+
 import { HttpClient } from '@angular/common/http';
 
 import { InstitutiiService } from './institutii.service';
@@ -147,14 +149,12 @@ export class InstitutiiComponent implements OnInit {
 							let id_directie = $(this).val();
 							self.editInstitutie(id_directie);
 						});
-					});
 
-					// $(function(){
-					// 	$('.list-compartimente').on('click', function(){
-					// 		let id_directie = $(this).val();
-					// 		self.router.navigate(['/directie-compartimente/']);
-					// 	});
-					// });
+						$('.list-compartimente').on('click', function(){
+							let id = $(this).val();
+							self.openInstitutieCompartimente(id);
+						});
+					});
 
 					callback({
 						recordsTotal: response.data['recordsTotal'],
@@ -231,8 +231,6 @@ export class InstitutiiComponent implements OnInit {
 			if (typeof response.status_code !== 'undefined') {
 				if (response.status_code == 200 && typeof response.data !== 'undefined') {
 
-					console.log(response);
-
 					self.loading = false;
 					let element = response.data;
 
@@ -297,6 +295,62 @@ export class InstitutiiComponent implements OnInit {
 				}
 
 			} else {
+				self.loading = false;
+				await self.notificationService.warningSwal(
+					self.errorTitle, self.generalError, self.errorIcon
+				);
+
+				return false;
+			}
+		})
+		.catch(async err => {
+			self.loading = false;
+			await self.notificationService.warningSwal(
+				self.errorTitle, self.generalError, self.errorIcon
+			);
+			
+			return false;
+		});
+	}
+
+
+	async openInstitutieCompartimente(id){
+		
+		var self = this;
+
+		self.institutiiService.findInstitutie(id)
+		.then(async (res) => {
+			let response = (typeof res.status_code !== 'undefined' ? res : res.error)
+			if(typeof response.status_code !== 'undefined'){
+				if(response.status_code == 200 && typeof response.data !== 'undefined'){
+
+					self.loading = false;
+					let element = response.data;
+					self.loaded = 1;
+
+					let dataToDialog = {
+						el: element
+					};
+
+					let dialogRef = self.dialog.open(CompartimenteListComponent, {
+						width: "1000px",
+						data: dataToDialog,
+					})
+					.afterClosed()
+					.subscribe(res => {
+						console.log('inchis modal compartimente');
+					});
+				}
+				else {
+					self.loading = false;
+					await self.notificationService.warningSwal(
+						self.errorTitle, self.generalError, self.errorIcon
+					);
+	
+					return false;
+				}
+			}
+			else {
 				self.loading = false;
 				await self.notificationService.warningSwal(
 					self.errorTitle, self.generalError, self.errorIcon

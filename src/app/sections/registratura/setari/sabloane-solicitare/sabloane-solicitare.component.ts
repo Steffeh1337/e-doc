@@ -9,7 +9,7 @@ import { EditComponent } from './partials/edit/edit.component';
 
 import { HttpClient } from '@angular/common/http';
 
-import { SabloaneService } from './sabloane.service';
+import { SabloaneSolicitareService } from './sabloane-solicitare.service';
 import { NotificationService } from 'src/app/general/notification.service';
 
 import { environment } from '../../../../../environments/environment'
@@ -24,12 +24,12 @@ class DataTablesResponse{
 }
 
 @Component({
-	selector: 'sabloane',
-	templateUrl: './sabloane.component.html',
-	styleUrls: ['./sabloane.component.sass']
+	selector: 'sabloane-solicitare',
+	templateUrl: './sabloane-solicitare.component.html',
+	styleUrls: ['./sabloane-solicitare.component.sass']
 })
 
-export class SabloaneComponent implements OnInit {
+export class SabloaneSolicitareComponent implements OnInit {
 
 	@ViewChild(DataTableDirective, {static: false})
 
@@ -53,17 +53,17 @@ export class SabloaneComponent implements OnInit {
 	successIcon: string = environment.config.customNotifications.icons.success;
 	successType: string = environment.config.customNotifications.icons.success;
 
-	editErrorLabel: string = environment.config.customNotifications.mobile.setari.sabloaneSesizari.editError;
-	addErrorLabel: string = environment.config.customNotifications.mobile.setari.sabloaneSesizari.addError;
-	editSuccessLabel: string = environment.config.customNotifications.mobile.setari.sabloaneSesizari.editSuccess;
-	addSuccessLabel: string = environment.config.customNotifications.mobile.setari.sabloaneSesizari.addSuccess;
+	editErrorLabel: string = environment.config.customNotifications.registratura.setari.sabloaneSolicitari.editError;
+	addErrorLabel: string = environment.config.customNotifications.registratura.setari.sabloaneSolicitari.addError;
+	editSuccessLabel: string = environment.config.customNotifications.registratura.setari.sabloaneSolicitari.editSuccess;
+	addSuccessLabel: string = environment.config.customNotifications.registratura.setari.sabloaneSolicitari.addSuccess;
 
 	generalError = environment.config.customNotifications.generalMessages.error;
 
-	
+
 	constructor(
 		private http: HttpClient,
-		private sabloaneService: SabloaneService,
+		private sabloaneSolicitareService: SabloaneSolicitareService,
 		private notificationService: NotificationService,
 		private dialog: MatDialog
 	) { }
@@ -130,7 +130,7 @@ export class SabloaneComponent implements OnInit {
 			ajax: (dataTablesParameters: any, callback) => {
 				self.http
 				.post<DataTablesResponse>(
-					'http://ps6-web.back.lc/api/sesizaresabloane',
+					'http://ps6-web.back.lc/api/ticketsabloane',
 					dataTablesParameters, {}
 				).
 				subscribe(response => {
@@ -176,7 +176,7 @@ export class SabloaneComponent implements OnInit {
 					content: res.data.content
 				};
 				
-				self.sabloaneService.storeSesizareSablon(dataToSend)
+				self.sabloaneSolicitareService.storeSolicitareSablon(dataToSend)
 				.then(async (res) => {
 					if(res.errors == false){
 						self.loading = false;
@@ -215,7 +215,7 @@ export class SabloaneComponent implements OnInit {
 
 		var self = this;
 
-		self.sabloaneService.getSesizareSablon(id)
+		self.sabloaneSolicitareService.getSolicitareSablon(id)
 		.then(async (res) => {
 			let response = (typeof res.status_code !== 'undefined' ? res : res.error)
 			if (typeof response.status_code !== 'undefined') {
@@ -243,7 +243,7 @@ export class SabloaneComponent implements OnInit {
 								content: res.data.content
 							};
 							
-							self.sabloaneService.updateSesizareSablon(dataToSend)
+							self.sabloaneSolicitareService.updateSolicitareSablon(dataToSend)
 							.then(async (res) => {
 								if(res.errors == false){
 									self.loading = false;
@@ -303,4 +303,5 @@ export class SabloaneComponent implements OnInit {
 			return false;
 		});
 	}
+
 }

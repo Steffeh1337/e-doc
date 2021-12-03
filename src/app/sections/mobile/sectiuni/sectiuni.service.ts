@@ -21,6 +21,8 @@ export class SectiuniService {
 	editMobileSectionFAQUrl = environment.interop.api.mobile.sectiuniMobile.editSectiuneMobilaFAQ;
 	addMobileSectionFAQUrl = environment.interop.api.mobile.sectiuniMobile.addSectiuneMobilaFAQ;
 	deleteMobileSectionFAQUrl = environment.interop.api.mobile.sectiuniMobile.deleteFAQ;
+
+	
 	constructor(
 		private http: HttpClient
 	) { }

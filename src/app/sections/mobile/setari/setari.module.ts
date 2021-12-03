@@ -14,9 +14,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { TipSesizareComponent } from './tip-sesizare/tip-sesizare.component';
 import { StatusSesizareComponent } from './status-sesizare/status-sesizare.component';
 import { PrioritateSesizareComponent } from './prioritate-sesizare/prioritate-sesizare.component';
-import { SabloaneComponent } from './sabloane/sabloane.component';
+import { SabloaneSesizareComponent } from './sabloane-sesizare/sabloane-sesizare.component';
 import { InstitutiiComponent } from './institutii/institutii.component';
-import { DepartamenteInstitutiiComponent } from './departamente-institutii/departamente-institutii.component';
 
 import { EditComponent as SesizareTypeEditComponent } from './tip-sesizare/partials/edit/edit.component';
 import { AddComponent as SesizareAddEditComponent } from './tip-sesizare/partials/add/add.component';
@@ -27,8 +26,8 @@ import { AddComponent as SesizareStatusAddComponent } from './status-sesizare/pa
 import { AddComponent as SesizarePrioritateAddComponent } from './prioritate-sesizare/partials/add/add.component';
 import { EditComponent as SesizarePrioritateEditComponent} from './prioritate-sesizare/partials/edit/edit.component';
 
-import { EditComponent as SesizareSablonEditComponent } from './sabloane/partials/edit/edit.component';
-import { AddComponent as SesizareSablonAddComponent } from './sabloane/partials/add/add.component';
+import { EditComponent as SesizareSablonEditComponent } from './sabloane-sesizare/partials/edit/edit.component';
+import { AddComponent as SesizareSablonAddComponent } from './sabloane-sesizare/partials/add/add.component';
 
 import { EditComponent as InstitutieEditComponent } from './institutii/partials/edit/edit.component';
 import { AddComponent as InstitutieAddComponent } from './institutii/partials/add/add.component';
@@ -37,8 +36,6 @@ import { ListComponent as InstitutieCompartimentListComponent } from './institut
 import { AddComponent as InstitutieCompartimentAddComponent } from './institutii/partials/compartimente/add/add.component';
 import { EditComponent as InstitutieCompartimentEditComponent } from './institutii/partials/compartimente/edit/edit.component';
 
-import { EditComponent as DepartamenteInstitutiiEditComponent } from './departamente-institutii/partials/edit/edit.component';
-import { AddComponent as DepartamenteInstitutiiAddComponent } from './departamente-institutii/partials/add/add.component';
 
 
 @NgModule({
@@ -47,9 +44,8 @@ import { AddComponent as DepartamenteInstitutiiAddComponent } from './departamen
     TipSesizareComponent,
     StatusSesizareComponent,
     PrioritateSesizareComponent,
-    SabloaneComponent,
+    SabloaneSesizareComponent,
     InstitutiiComponent,
-    DepartamenteInstitutiiComponent,
 
     SesizareTypeEditComponent,
     SesizareAddEditComponent,
@@ -69,9 +65,6 @@ import { AddComponent as DepartamenteInstitutiiAddComponent } from './departamen
 	InstitutieCompartimentListComponent,
 	InstitutieCompartimentAddComponent,
 	InstitutieCompartimentEditComponent,
-	
-	DepartamenteInstitutiiEditComponent,
-	DepartamenteInstitutiiAddComponent
   ],
   imports: [
     CommonModule,

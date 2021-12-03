@@ -16,6 +16,10 @@ export class InstitutiiService {
 	editInstitutieUrl = environment.interop.api.mobile.setari.institutii.editInstitutie;
 	addInstitutieUrl = environment.interop.api.mobile.setari.institutii.addInstitutie;
 
+	getInstitutieCompartimenteUrl = environment.interop.api.mobile.setari.institutii.getCompartimente;
+	findInstitutieCompartimentUrl = environment.interop.api.mobile.setari.institutii.findCompartiment;
+	editInstitutieCompartimentUrl = environment.interop.api.mobile.setari.institutii.editCompartiment;
+	addInstitutieCompartiment = environment.interop.api.mobile.setari.institutii.addCompartiment;
 
 	constructor(
 		private http: HttpClient
@@ -57,6 +61,50 @@ export class InstitutiiService {
 
 	storeInstitutie(data){
 		return this.http.post<{ data: any }>(this.url + this.addInstitutieUrl, data)
+			.toPromise()
+			.then(
+				res => res,
+				err => err.error
+			)
+			.catch(e => e.error);
+	}
+
+
+	getCompartimente(dataTablesParameters, id){
+		return this.http.post<{ data: any }>(this.url + this.getInstitutieCompartimenteUrl + id, dataTablesParameters)
+		.toPromise()
+		.then(
+			res => res,
+			err => err.error
+		)
+		.catch(e => e.error);
+	}
+
+
+	findCompartiment(id){
+		return this.http.get<{ data: any }>(this.url + this.findInstitutieCompartimentUrl + id)
+			.toPromise()
+			.then(
+				res => res,
+				err => err.error
+			)
+			.catch(e => e.error);
+	}
+
+
+	updateCompartiment(data){
+		return this.http.put<{ data: any }>(this.url + this.editInstitutieCompartimentUrl, data)
+			.toPromise()
+			.then(
+				res => res,
+				err => err.error
+			)
+			.catch(e => e.error);
+	}
+
+
+	storeCompartiment(data, id){
+		return this.http.post<{ data: any }>(this.url + this.addInstitutieCompartiment + id, data)
 			.toPromise()
 			.then(
 				res => res,

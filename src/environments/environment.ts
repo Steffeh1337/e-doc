@@ -75,14 +75,14 @@ export const environment = {
 						editSuccess: "Instituția a fost actualizată cu succes!",
 						editError: "Instituția nu a putut fi actualizată.",
 						addSuccess: "Instituția a fost adăugată cu succes!",
-						addError: "Instituția nu a putut fi adăugată."
+						addError: "Instituția nu a putut fi adăugată.",
+						compartimente: {
+							editSuccess: "Compartimentul a fost actualizat cu succes!",
+							editError: "Compartimentul nu a putut fi actualizat.",
+							addSuccess: "Compartimentul a fost adăugat cu succes!",
+							addError: "Compartimentul nu a putut fi adăugat.",
+						}
 					},
-					departamenteInstitutii: {
-						editSuccess: "Departamentul a fost actualizat cu succes!",
-						editError: "Departamentul nu a putut fi actualizat.",
-						addSuccess: "Departamentul a fost adăugat cu succes!",
-						addError: "Departamentul nu a putut fi adăugat."
-					}
 				},
 				articole: {
 					editSuccess: "Articolul a fost actualizat cu succes!",
@@ -110,6 +110,40 @@ export const environment = {
 						addError: "FAQ-ul nu a putut fi adăugat.",
 						deleteSuccess: "FAQ-ul a fost șters cu succes!",
 						deleteError: "FAQ-ul nu a putut fi șters."
+					}
+				}
+			},
+			registratura: {
+				setari: {
+					tipuriSolicitari: {
+						editSuccess: "Tipul de solicitare a fost actualizat cu succes!",
+						editError: "Tipul de solicitare nu a putut fi actualizat.",
+						addSuccess: "Tipul de solicitare a fost adăugat cu succes!",
+						addError: "Tipul de solicitare nu a putut fi adăugat." 
+					},
+					statusuriSolicitari: {
+						editSuccess: "Statusul solicitării a fost actualizat cu succes!",
+						editError: "Statusul solicitării nu a putut fi actualizat.",
+						addSuccess: "Statusul a fost adăugat cu succes!",
+						addError: "Statusul nu a putut fi adăugat." 
+					},
+					prioritatiSolicitari: {
+						editSuccess: "Prioritatea solicitării a fost actualizată cu succes!",
+						editError: "Prioritatea solicitării nu a putut fi actualizată.",
+						addSuccess: "Prioritatea a fost adăugată cu succes!",
+						addError: "Prioritatea nu a putut fi adăugată."
+					},
+					sabloaneSolicitari: {
+						editSuccess: "Șablonul solicitării a fost actualizat cu succes!",
+						editError: "Șablonul solicitării nu a putut fi actualizat.",
+						addSuccess: "Șablonul a fost adăugat cu succes!",
+						addError: "Șablonul nu a putut fi adăugat."
+					},
+					departamente: {
+						editSuccess: "Departamentul a fost actualizat cu succes!",
+						editError: "Departamentul nu a putut fi actualizat.",
+						addSuccess: "Departamentul a fost adăugat cu succes!",
+						addError: "Departamentul nu a putut fi adăugat."
 					}
 				}
 			}
@@ -185,13 +219,13 @@ export const environment = {
 						getInstitutii: '/api/directii',
 						findInstitutie: '/api/directie/',
 						editInstitutie: '/api/directie',
-						addInstitutie: '/api/directie'
-					},
-					departamenteInstitutii: {
-						getDepartments: '/api/departments',
-						findDepartment: '/api/department/',
-						editDepartment: '/api/department',
-						addDepartment: '/api/department'
+						addInstitutie: '/api/directie',
+
+						getCompartimente: '/api/directii-compartimente/',
+						findCompartiment: '/api/directii-compartiment/',
+						editCompartiment: '/api/directii-compartiment',
+						addCompartiment: '/api/directii-compartiment/',
+						deleteCompartiment: '/api/directii-compartiment/'
 					}
 				},
 				articole: {
@@ -219,6 +253,41 @@ export const environment = {
 					editSectiuneMobilaFAQ: '/api/mobile-section-faq',
 					addSectiuneMobilaFAQ: '/api/mobile-section-faq/',
 					deleteFAQ: '/api/mobile-section-faq/'
+				}
+			},
+			registratura: {
+				setari: {
+					departamente: {
+						getDepartments: '/api/departments',
+						findDepartment: '/api/department/',
+						editDepartment: '/api/department',
+						addDepartment: '/api/department'
+					},
+					tipuriSolicitari: {
+						getTipuriSolicitari: '/api/tickettypes',
+						getDepartamente: '/api/departments-active',
+						findTipSolicitare: '/api/ticket/type/',
+						editTipSolicitare: '/api/ticket/type',
+						addTipSolicitare: '/api/ticket/type',
+					},
+					statusuriSolicitari: {
+						getStatusuriSolicitari: '/api/ticketstatuses',
+						findStatusSolicitare: '/api/ticket/status/',
+						editStatusSolicitare: '/api/ticket/status',
+						addStatusSolicitare: '/api/ticket/status'
+					},
+					prioritatiSolicitari: {
+						getPrioritatiSolicitari: '/api/ticketpriorities',
+						findPrioritateSolicitare: '/api/ticket/priority/',
+						editPrioritateSolicitare: '/api/ticket/priority',
+						addPrioritateSolicitare: '/api/ticket/priority'
+					},
+					sabloaneSolicitari: {
+						getSabloaneSolicitari: '/api/ticketsabloane',
+						findSablonSolicitare: '/api/ticket/sablon/',
+						editSablonSolicitare: '/api/ticket/sablon',
+						addSablonSolicitare: '/api/ticket/sablon'
+					}
 				}
 			}
         }
