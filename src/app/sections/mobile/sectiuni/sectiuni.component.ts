@@ -28,7 +28,7 @@ class DataTablesResponse{
 }
 
 @Component({
-	selector: 'app-sectiuni',
+	selector: 'sectiuni',
 	templateUrl: './sectiuni.component.html',
 	styleUrls: ['./sectiuni.component.sass']
 })
@@ -123,6 +123,7 @@ export class SectiuniComponent implements OnInit {
 					next: ">>",
 					previous: "<<"
 				},
+				search: "Cauta:",
 				loadingRecords: "Va rugam asteptati. Se incarca...",
 				processing: "Va rugam asteptati. Se incarca...",
 				lengthMenu: "Afiseaza _MENU_ inregistrari",

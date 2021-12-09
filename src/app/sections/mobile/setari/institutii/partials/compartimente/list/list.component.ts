@@ -135,6 +135,7 @@ export class ListComponent implements OnInit {
 					next: ">>",
 					previous: "<<"
 				},
+				search: "Cauta:",
 				loadingRecords: "Va rugam asteptati. Se incarca...",
 				processing: "Va rugam asteptati. Se incarca...",
 				lengthMenu: "Afiseaza _MENU_ inregistrari",

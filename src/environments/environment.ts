@@ -289,6 +289,11 @@ export const environment = {
 						addSablonSolicitare: '/api/ticket/sablon'
 					}
 				}
+			},
+			administrativ: {
+				loguri: {
+					findLog: '/api/log-standard/'
+				}
 			}
         }
 	}
