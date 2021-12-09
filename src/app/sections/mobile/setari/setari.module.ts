@@ -37,7 +37,6 @@ import { AddComponent as InstitutieCompartimentAddComponent } from './institutii
 import { EditComponent as InstitutieCompartimentEditComponent } from './institutii/partials/compartimente/edit/edit.component';
 
 
-
 @NgModule({
   declarations: [
     SetariComponent,

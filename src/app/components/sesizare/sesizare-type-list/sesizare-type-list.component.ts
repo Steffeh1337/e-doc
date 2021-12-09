@@ -83,6 +83,7 @@ export class SesizareTypeListComponent implements AfterViewInit, OnDestroy, OnIn
 					next: ">>",
 					previous: "<<"
 				},
+				search: "Cauta:",
 				loadingRecords: "Va rugam asteptati. Se incarca...",
 				processing: "Va rugam asteptati. Se incarca...",
 				lengthMenu: "Afiseaza _MENU_ inregistrari",

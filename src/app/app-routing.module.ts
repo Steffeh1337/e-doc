@@ -224,26 +224,14 @@ const routes: Routes = [
 			},
 			// ADMINISTRATIV
 			{
-				path: 'administrativ-permisiuni',
-				loadChildren: () => import('./sections/administrativ/permisiuni/permisiuni.module').then(m => m.PermisiuniModule),
-				pathMatch: 'full',
-				canActivate: [AuthGuard],
-			},
-			{
-				path: 'administrativ-actiuni-permisiuni',
-				loadChildren: () => import('./sections/administrativ/actiuni-permisiuni/actiuni-permisiuni.module').then(m => m.ActiuniPermisiuniModule),
-				pathMatch: 'full',
-				canActivate: [AuthGuard],
-			},
-			{
-				path: 'administrativ-cronuri',
-				loadChildren: () => import('./sections/administrativ/cronuri/cronuri.module').then(m => m.CronuriModule),
-				pathMatch: 'full',
-				canActivate: [AuthGuard],
-			},
-			{
 				path: 'administrativ-loguri',
 				loadChildren: () => import('./sections/administrativ/loguri/loguri.module').then(m => m.LoguriModule),
+				pathMatch: 'full',
+				canActivate: [AuthGuard],
+			},
+			{
+				path: 'administrativ-setari',
+				loadChildren: () => import('./sections/administrativ/setari/setari.module').then(m => m.SetariModule),
 				pathMatch: 'full',
 				canActivate: [AuthGuard],
 			},

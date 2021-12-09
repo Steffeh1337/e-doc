@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PermisiuniComponent } from './permisiuni.component';
+import { SetariComponent } from './setari.component';
 
 const routes: Routes = [
     {
         path: '',
-		component: PermisiuniComponent
+		component: SetariComponent,
     }
 ];
 
@@ -14,5 +14,5 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
 })
-export class PermisiuniRoutingModule {
+export class SetariRoutingModule {
 }
