@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef, Injector} from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, Injector } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 import { DataTableDirective } from 'angular-datatables';
@@ -16,30 +16,12 @@ import { Subject } from 'rxjs';
 
 import { Router } from '@angular/router';
 
-class DataTablesResponse{
+class DataTablesResponse {
 	data: any[];
 	draw: number;
 	recordsFiltered: number;
 	recordsTotal: number;
 }
-
-// class BatchSearch {
-// 	id_user: number;
-// 	severity: number;
-// 	id_module: number;
-// 	action_id: number;
-// 	id_log: number;
-// 	id_updated: number;
-
-// 	constructor(id_user: number = -1, severity: number = -1, id_module: number = -1, action_id: number = -1, id_log: number = null, id_updated: number = null){
-// 		this.id_user = id_user;
-// 		this.severity = severity;
-// 		this.id_module = id_module;
-// 		this.action_id = action_id;
-// 		this.id_log = id_log;
-// 		this.id_updated = id_updated;
-// 	}
-// }
 
 @Component({
 	selector: 'loguri',
@@ -49,7 +31,7 @@ class DataTablesResponse{
 
 export class LoguriComponent implements OnInit {
 
-	@ViewChild(DataTableDirective, {static: false})
+	@ViewChild(DataTableDirective, { static: false })
 
 	dtElement: DataTableDirective;
 	dtTrigger: any = new Subject();
@@ -67,17 +49,17 @@ export class LoguriComponent implements OnInit {
 	errorIcon: string = environment.config.customNotifications.icons.error;
 	errorType: string = environment.config.customNotifications.icons.error;
 
-    successTitle: string = environment.config.customNotifications.headers.success;
+	successTitle: string = environment.config.customNotifications.headers.success;
 	successIcon: string = environment.config.customNotifications.icons.success;
 	successType: string = environment.config.customNotifications.icons.success;
 
 	generalError = environment.config.customNotifications.generalMessages.error;
 
-	search : any = {
-		id_user: -1,
-		severity: -1,
+	search: any = {
 		id_module: -1,
+		severity: -1,
 		action_id: -1,
+		id_user: -1,
 		id_log: null,
 		id_updated: null
 	};
@@ -108,68 +90,66 @@ export class LoguriComponent implements OnInit {
 	actions = [
 		{
 			id: -1,
-			name: '-- Toate --'  
+			name: '-- Toate --'
 		},
 		{
 			id: 1,
-			name: 'Create'  
+			name: 'Create'
 		},
 		{
 			id: 2,
-			name: 'Update'  
+			name: 'Update'
 		},
 		{
 			id: 3,
-			name: 'Delete'  
+			name: 'Delete'
 		}
 	];
-
-	responsibles = [];
 
 	modules = [
 		{
 			id: -1,
-			name: '-- Toate --'  
+			name: '-- Toate --'
 		},
 		{
 			id: 1,
-			name: 'DepartmentController'  
+			name: 'DepartmentController'
 		},
 		{
 			id: 2,
-			name: 'TicketStatusController'  
+			name: 'TicketStatusController'
 		},
 		{
 			id: 3,
-			name: 'TicketTypeController'  
+			name: 'TicketTypeController'
 		},
 		{
 			id: 4,
-			name: 'TicketPriorityController'  
+			name: 'TicketPriorityController'
 		},
 		{
 			id: 5,
-			name: 'CronJobController'  
+			name: 'CronJobController'
 		},
 		{
 			id: 6,
-			name: 'UserController'  
+			name: 'UserController'
 		},
 		{
 			id: 7,
-			name: 'TicketHistoryController'  
+			name: 'TicketHistoryController'
 		},
 		{
 			id: 8,
-			name: 'TicketSabloaneController'  
+			name: 'TicketSabloaneController'
 		},
 		{
 			id: 9,
-			name: 'DirectiiController'  
+			name: 'DirectiiController'
 		},
 		{
 			id: 10,
-			name: 'RegistraturaController'  
+			name: 'RegistraturaController'
 		},
 		{
 			id: 11,
@@ -177,34 +157,54 @@ export class LoguriComponent implements OnInit {
 		}
 	];
 
-	constructor(
+	operators = [
+		{
+			id: -1,
+			name: '-- Toti --'
+		},
+		{
+			id: 1,
+			name: 'Responsabil 1'
+		},
+		{
+			id: 2,
+			name: 'Responsabil 2'
+		},
+		{
+			id: 3,
+			name: 'Responsabil 3'
+		},
+	];
+
+	pathDT: string
+
+	constructor (
 		private http: HttpClient,
 		private loguriService: LoguriService,
 		private notificationService: NotificationService,
 		private dialog: MatDialog,
 		private router: Router,
 	) {
+		this.pathDT = environment.interop.basePath + environment.interop.api.administrativ.loguri.list
 	}
 
 
-	ngOnInit(): void {
-		$.fn['dataTable'].ext.search.push(this.search);
+	ngOnInit (): void {
 		this.datatable();
-		console.log(this.search);
 	}
 
 
-	ngAfterViewInit(): void {
+	ngAfterViewInit (): void {
 		this.dtTrigger.next();
 	}
 
 
-	ngOnDestroy(): void {
+	ngOnDestroy (): void {
 		this.dtTrigger.unsubscribe();
 	}
 
 
-	toggleTemplate(): void {
+	toggleTemplate (): void {
 		if (this.loadingTemplate) {
 			this.loadingTemplate = null;
 		} else {
@@ -213,14 +213,18 @@ export class LoguriComponent implements OnInit {
 	}
 
 
-	rerender(): void {
+	rerender (): void {
+
+		// this.datatable();
+
 		this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
 			dtInstance.draw(false)
 		});
 	}
 
 
-	async datatable(){
+	async datatable () {
+
 		var self = this;
 
 		self.toggleTemplate();
@@ -249,100 +253,121 @@ export class LoguriComponent implements OnInit {
 				zeroRecords: "Lipsa inregistrari"
 			},
 			ajax: (dataTablesParameters: any, callback) => {
-				self.http
-				.post<DataTablesResponse>(
-					'http://ps6-web.back.lc/api/logs',
-					dataTablesParameters, {}
-				).
-				subscribe(response => {
-					console.log(dataTablesParameters);
-					self.loading = false;
-					self.loaded = 1;
 
-					$(function(){
-						$('.list-payload').on('click', function(){
-							let id = $(this).val();
-							self.showPayload(id);
+				const dtData = { ...dataTablesParameters, search: self.search }
+				self.http
+					.post<DataTablesResponse>(
+						this.pathDT,
+						dtData, {}
+					).
+					subscribe(response => {
+						self.loading = false;
+						self.loaded = 1;
+
+						$(function () {
+							$('.list-payload').on('click', function () {
+								let id = $(this).val();
+								self.showPayload(id);
+							});
+						});
+
+						callback({
+							recordsTotal: response.data['recordsTotal'],
+							recordsFiltered: response.data['recordsFiltered'],
+							data: response.data['data']
 						});
 					});
-
-					callback({
-						recordsTotal: response.data['recordsTotal'],
-						recordsFiltered: response.data['recordsFiltered'],
-						data: response.data['data']
-					});
-				});
 			},
 			columns: [
 				{ title: 'ID', data: 'id_log' },
-				{ title: 'Mesaj', data: 'message' },
+				{ title: 'Mesaj', data: 'message', searchable: false },
 				{ title: 'Modul', data: 'module_name' },
-				{ orderable: false, title: 'Label', data: 'label' },
-				{ title: 'Code', data: 'error_code' },
+				{
+					title: 'Severitate', data: 'severity', searchable: false, render: function (data, type, full, meta) {
+						let eachRowSeverity = meta.settings['aoData'][meta.row]['_aData'].severity;
+						switch (eachRowSeverity) {
+							case 0:
+								return `<span class='green-text'><i class='fa fa-check-circle fa-fw text-center'></i>Log</span>`;
+
+							case 1:
+								return `<span class='text-info'><i class='fa fa-info-circle fa-fw text-center'></i>Notice</span>`;
+
+							case 2:
+								return `<span class='text-warning'><i class='fa fa-warning fa-fw text-center'></i>Warning</span>`;
+
+							case 3:
+								return `<span class='text-danger'><i class='fa fa-exclamation-circle fa-fw text-center'></i>Error</span>`
+
+							default:
+								return 'undefined'
+						}
+					}
+				},
+				{ title: 'Cod', data: 'error_code', searchable: false },
 				{ title: 'User', data: 'user_name' },
-				{ title: 'Action', data: 'action_type' },
+				{ title: 'Actiune', data: 'action_type', searchable: false },
 				{ title: 'ID Update', data: 'id_updated' },
-				{ title: 'Action Date', data: 'created_at'},
-				{ orderable: false, title: '#', data: 'actions' },
+				{ title: 'Data Actiune', data: 'created_at', searchable: false },
+				{ orderable: false, title: '#', data: 'actions', searchable: false },
 			],
 			order: [0, 'desc']
 		};
 	}
 
 
-	async showPayload(id){
+	async showPayload (id) {
 
 		var self = this;
 
 		self.loguriService.findLog(id)
-		.then(async (res) => {
-			let response = (typeof res.status_code !== 'undefined' ? res : res.error)
-			if(typeof response.status_code !== 'undefined'){
-				if(response.status_code == 200 && typeof response.data !== 'undefined'){
+			.then(async (res) => {
+				let response = (typeof res.status_code !== 'undefined' ? res : res.error)
+				if (typeof response.status_code !== 'undefined') {
+					if (response.status_code == 200 && typeof response.data !== 'undefined') {
 
-					self.loading = false;
-					let object_json = response.data.object_json
-					self.loaded = 1;
+						self.loading = false;
+						let object_json = response.data.object_json
+						self.loaded = 1;
 
-					let dataToDialog = {
-						data: object_json
-					};
+						let dataToDialog = {
+							data: object_json
+						};
 
-					let dialogRef = self.dialog.open(PayloadComponent, {
-						width: "500px",
-						data: dataToDialog,
-					})
-					.afterClosed()
-					.subscribe(res => {
-						console.log('inchis modal payload');
-					});
+						let dialogRef = self.dialog.open(PayloadComponent, {
+							width: "500px",
+							data: dataToDialog,
+						})
+							.afterClosed()
+							.subscribe(res => {
+								console.log('inchis modal payload');
+							});
+					}
+					else {
+						self.loading = false;
+						await self.notificationService.warningSwal(
+							self.errorTitle, self.generalError, self.errorIcon
+						);
+
+						return false;
+					}
 				}
 				else {
 					self.loading = false;
 					await self.notificationService.warningSwal(
 						self.errorTitle, self.generalError, self.errorIcon
 					);
-	
+
 					return false;
 				}
-			}
-			else {
+			})
+			.catch(async err => {
 				self.loading = false;
 				await self.notificationService.warningSwal(
 					self.errorTitle, self.generalError, self.errorIcon
 				);
 
 				return false;
-			}
-		})
-		.catch(async err => {
-			self.loading = false;
-			await self.notificationService.warningSwal(
-				self.errorTitle, self.generalError, self.errorIcon
-			);
-			
-			return false;
-		});
+			});
 	}
 
 }

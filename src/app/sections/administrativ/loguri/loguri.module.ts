@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { FormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { LoguriComponent } from './loguri.component';
@@ -22,7 +23,8 @@ import { PayloadComponent } from './partials/payload/payload.component';
 	LoguriRoutingModule,
 	DataTablesModule,
 	ReactiveFormsModule,
-	EditorModule
+	EditorModule,
+	FormsModule
   ]
 })
 export class LoguriModule { }

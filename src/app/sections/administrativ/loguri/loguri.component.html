@@ -3,6 +3,58 @@
 		<h5 class="ml-3">Loguri</h5>
 	</div>
 
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="form-group d-flex flex-column">
+				<label for="module" class="font-weight-bold">Modul</label>
+				<select name="module" [(ngModel)]="search.id_module" (change)="rerender()">
+					<option [value]="m.id" *ngFor="let m of modules">{{m.name}}</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="form-group d-flex flex-column">
+				<label for="severity" class="font-weight-bold">Severitate</label>
+				<select name="severity" [(ngModel)]="search.severity" (change)="rerender()">
+					<option [value]="s.id" *ngFor="let s of severityStatuses">{{s.name}}</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="form-group d-flex flex-column">
+				<label for="action_type" class="font-weight-bold">Tip Actiune</label>
+				<select name="action_type" [(ngModel)]="search.action_id" (change)="rerender()">
+					<option [value]="a.id" *ngFor="let a of actions">{{a.name}}</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="form-group d-flex flex-column">
+				<label for="id_user" class="font-weight-bold">Responsabil</label>
+				<select name="id_user" [(ngModel)]="search.id_user" (change)="rerender()">
+					<option [value]="o.id" *ngFor="let o of operators">{{o.name}}</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="form-group d-flex flex-column">
+				<label for="log" class="font-weight-bold">ID Log</label>
+				<input type="text" name="log" [(ngModel)]="search.id_log" (keyup)="rerender()" placeholder="XXX">
+			</div>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="form-group d-flex flex-column">
+				<label for="id_updated" class="font-weight-bold">ID Update</label>
+				<input type="text" name="id_updated" [(ngModel)]="search.id_updated" (keyup)="rerender()"
+					placeholder="XXX">
+			</div>
+		</div>
+	</div>
 
 	<div class="row">
 		<div class="col-sm-12">
