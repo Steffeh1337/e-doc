@@ -17,8 +17,8 @@ export const environment = {
 		storageKey: "ps6-web-app",
 		copyrightText: "Primaria Sectorului 6",
 		defaultLNG: 'ro',
-		emailRegex : "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
-		codeSMSRegex : /^[0-9]+$/,
+		emailRegex: "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
+		codeSMSRegex: /^[0-9]+$/,
 		phoneRegex: '[0-9]{6,20}',
 		cnpRegex: '[0-9]{13,13}',
 		validatorsAccrossApp: {
@@ -51,13 +51,13 @@ export const environment = {
 						editSuccess: "Tipul de sesizare a fost actualizat cu succes!",
 						editError: "Tipul de sesizare nu a putut fi actualizat.",
 						addSuccess: "Tipul de sesizare a fost adăugat cu succes!",
-						addError: "Tipul de sesizare nu a putut fi adăugat." 
+						addError: "Tipul de sesizare nu a putut fi adăugat."
 					},
 					statusuriSesizari: {
 						editSuccess: "Statusul sesizării a fost actualizat cu succes!",
 						editError: "Statusul sesizării nu a putut fi actualizat.",
 						addSuccess: "Statusul a fost adăugat cu succes!",
-						addError: "Statusul nu a putut fi adăugat." 
+						addError: "Statusul nu a putut fi adăugat."
 					},
 					prioritatiSesizari: {
 						editSuccess: "Prioritatea sesizării a fost actualizată cu succes!",
@@ -119,13 +119,13 @@ export const environment = {
 						editSuccess: "Tipul de solicitare a fost actualizat cu succes!",
 						editError: "Tipul de solicitare nu a putut fi actualizat.",
 						addSuccess: "Tipul de solicitare a fost adăugat cu succes!",
-						addError: "Tipul de solicitare nu a putut fi adăugat." 
+						addError: "Tipul de solicitare nu a putut fi adăugat."
 					},
 					statusuriSolicitari: {
 						editSuccess: "Statusul solicitării a fost actualizat cu succes!",
 						editError: "Statusul solicitării nu a putut fi actualizat.",
 						addSuccess: "Statusul a fost adăugat cu succes!",
-						addError: "Statusul nu a putut fi adăugat." 
+						addError: "Statusul nu a putut fi adăugat."
 					},
 					prioritatiSolicitari: {
 						editSuccess: "Prioritatea solicitării a fost actualizată cu succes!",
@@ -156,8 +156,8 @@ export const environment = {
 			refreshLogin: '/api/refresh-login',
 			resendCode: '/api/cetatean-resend-code',
 			confirmCode: '/api/cetatean-confirm-code',
-			checkEmailPasswordReset : '/api/auth/password/reset-password',
-			resendCodePasswordReset : '/api/auth/password/reset-password-resend-code',
+			checkEmailPasswordReset: '/api/auth/password/reset-password',
+			resendCodePasswordReset: '/api/auth/password/reset-password-resend-code',
 			verifyCodePasswordReset: "/api/auth/password/reset-verify-code",
 			updatePasswordReset: "/api/auth/password/reset-password-update",
 			fileUploadRegister: '/api/upload-file-register',
@@ -178,16 +178,16 @@ export const environment = {
 			viewSolicitare: '/api/dgitl/solicitare-view/',
 			cfGetMatricole: '/api/dgitl/cf-get-matricole',
 			saveMessageSolicitare: '/api/dgitl/solicitare-save-message/',
-            saveSolicitareCertificatFiscal: '/api/dgitl/process-certificat-fiscal-request'
+			saveSolicitareCertificatFiscal: '/api/dgitl/process-certificat-fiscal-request'
 		},
-        api: {
-            payments: {
+		api: {
+			payments: {
 				requestPayment: '/api/mobile-payment-request-v2',
 				getTax: '/api/get-taxes-cetatean-v2',
 				processPaymentsRecurente: '/api/process-payments-recurente/',
 				getCards: '/api/get-cards',
 				removeCard: '/api/remove-card/'
-            },
+			},
 			mobile: {
 				setari: {
 					tipuriSesizari: {
@@ -292,10 +292,11 @@ export const environment = {
 			},
 			administrativ: {
 				loguri: {
-					findLog: '/api/log-standard/'
+					findLog: '/api/log-standard/',
+					list: '/api/logs',
 				}
 			}
-        }
+		}
 	}
 };
 
