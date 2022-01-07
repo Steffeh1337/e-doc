@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef} from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 import { DataTableDirective } from 'angular-datatables';
@@ -16,7 +16,7 @@ import { environment } from '../../../../environments/environment'
 
 import { Subject } from 'rxjs';
 
-class DataTablesResponse{
+class DataTablesResponse {
 	data: any[];
 	draw: number;
 	recordsFiltered: number;
@@ -31,7 +31,7 @@ class DataTablesResponse{
 
 export class ArticoleComponent implements OnInit {
 
-	@ViewChild(DataTableDirective, {static: false})
+	@ViewChild(DataTableDirective, { static: false })
 
 	dtElement: DataTableDirective;
 	dtTrigger: any = new Subject();
@@ -49,7 +49,7 @@ export class ArticoleComponent implements OnInit {
 	errorIcon: string = environment.config.customNotifications.icons.error;
 	errorType: string = environment.config.customNotifications.icons.error;
 
-    successTitle: string = environment.config.customNotifications.headers.success;
+	successTitle: string = environment.config.customNotifications.headers.success;
 	successIcon: string = environment.config.customNotifications.icons.success;
 	successType: string = environment.config.customNotifications.icons.success;
 
@@ -63,29 +63,29 @@ export class ArticoleComponent implements OnInit {
 	generalError = environment.config.customNotifications.generalMessages.error;
 
 
-	constructor(
+	constructor (
 		private http: HttpClient,
 		private articoleService: ArticoleService,
 		private notificationService: NotificationService,
 		private dialog: MatDialog
 	) { }
 
-	ngOnInit(): void {
+	ngOnInit (): void {
 		this.datatable();
 	}
 
 
-	ngAfterViewInit(): void {
+	ngAfterViewInit (): void {
 		this.dtTrigger.next();
 	}
 
 
-	ngOnDestroy(): void {
+	ngOnDestroy (): void {
 		this.dtTrigger.unsubscribe();
 	}
 
 
-	toggleTemplate(): void {
+	toggleTemplate (): void {
 		if (this.loadingTemplate) {
 			this.loadingTemplate = null;
 		} else {
@@ -94,14 +94,14 @@ export class ArticoleComponent implements OnInit {
 	}
 
 
-	rerender(): void {
+	rerender (): void {
 		this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
 			dtInstance.draw(false)
 		});
 	}
 
 
-	async datatable(){
+	async datatable () {
 
 		var self = this;
 
@@ -132,114 +132,124 @@ export class ArticoleComponent implements OnInit {
 			},
 			ajax: (dataTablesParameters: any, callback) => {
 				self.http
-				.post<DataTablesResponse>(
-					'http://ps6-web.back.lc/api/articles',
-					dataTablesParameters, {}
-				).
-				subscribe(response => {
+					.post<DataTablesResponse>(
+						'http://ps6-web.back.lc/api/articles',
+						dataTablesParameters, {}
+					).
+					subscribe(response => {
 
-					self.loading = false;
-					self.loaded = 1;
+						self.loading = false;
+						self.loaded = 1;
 
-					$(function(){
-						$('.edit-article').on('click', function(){
-							let id = $(this).val();
-							self.editArticle(id);
+						$(function () {
+							$('.edit-article').on('click', function () {
+								let id = $(this).val();
+								self.editArticle(id);
+							});
+
+							$('.update-public-view').on('click', function () {
+								let id = $(this).val();
+								self.updatePublicView(id);
+							});
 						});
 
-						$('.update-public-view').on('click', function(){
-							let id = $(this).val();
-							self.updatePublicView(id);
+						callback({
+							recordsTotal: response.data['recordsTotal'],
+							recordsFiltered: response.data['recordsFiltered'],
+							data: response.data['data']
 						});
 					});
-
-					callback({
-						recordsTotal: response.data['recordsTotal'],
-						recordsFiltered: response.data['recordsFiltered'],
-						data: response.data['data']
-					});
-				});
 			},
 			columns: [
 				{ title: 'ID', data: 'id' },
-				{ title: 'Nume', data: 'title' }, 
+				{ title: 'Nume', data: 'title' },
 				{ title: 'WEB', data: 'website' },
 				{ title: 'Data actualizat', data: 'last_update' },
 				{ orderable: false, data: 'actions', title: 'Actiuni' }
 			],
+			order: [0, 'desc']
 		};
 	}
 
 
-	async editArticle(id){
+	async editArticle (id) {
 
 		var self = this;
 
 		self.articoleService.findArticle(id)
-		.then(async (res) => {
-			let response = (typeof res.status_code !== 'undefined' ? res : res.error)
-			if (typeof response.status_code !== 'undefined') {
-				if (response.status_code == 200 && typeof response.data !== 'undefined') {
+			.then(async (res) => {
+				let response = (typeof res.status_code !== 'undefined' ? res : res.error)
+				if (typeof response.status_code !== 'undefined') {
+					if (response.status_code == 200 && typeof response.data !== 'undefined') {
 
-					self.loading = false;
-					let element = response.data;
-					console.log(element);
+						self.loading = false;
+						let element = response.data;
+						console.log(element);
 
-					self.loaded = 1;
+						self.loaded = 1;
 
-					let dataToDialog = {
-						el: element,
-					};
-					
-					let dialogRef = self.dialog.open(EditComponent, {
-						width: "1000px",
-						data: dataToDialog,
-						autoFocus: false,
-						maxHeight: '90vh'
-						
-					})
-					.afterClosed()
-					.subscribe(res => {
-						// if(res){
-						// 	let dataToSend = {
-						// 		id: id,
-						// 		title: res.data.title,
-						// 		content: res.data.content,
-						// 		url: res.data.url,
-						// 	};
-							
-						// 	self.articoleService.updateArticle(dataToSend)
-						// 	.then(async (res) => {
-						// 		if(res.errors == false){
-						// 			self.loading = false;
-						// 			self.rerender();
-						// 			self.loaded = 1;
+						let dataToDialog = {
+							el: element,
+						};
 
-						// 			await self.notificationService.warningSwal(
-						// 				self.successTitle, self.editSuccessLabel,  self.successIcon
-						// 			);
-						// 		}
-						// 		else{
-						// 			self.loading = false;
-						// 			await self.notificationService.warningSwal(
-						// 				self.errorTitle, self.generalError, self.errorIcon
-						// 			);
+						let dialogRef = self.dialog.open(EditComponent, {
+							width: "1000px",
+							data: dataToDialog,
+							autoFocus: false,
+							maxHeight: '90vh'
 
-						// 			return false;
-						// 		}
-						// 	})
-						// 	.catch(async err => {
-						// 		self.loading = false;
-						// 		await self.notificationService.warningSwal(
-						// 			self.errorTitle, self.generalError, self.errorIcon
-						// 		);
-								
-						// 		return false;
-						// 	});
-						// }
-					});
+						})
+							.afterClosed()
+							.subscribe(res => {
+								// if(res){
+								// 	let dataToSend = {
+								// 		id: id,
+								// 		title: res.data.title,
+								// 		content: res.data.content,
+								// 		url: res.data.url,
+								// 	};
 
-					return false;
+								// 	self.articoleService.updateArticle(dataToSend)
+								// 	.then(async (res) => {
+								// 		if(res.errors == false){
+								// 			self.loading = false;
+								// 			self.rerender();
+								// 			self.loaded = 1;
+
+								// 			await self.notificationService.warningSwal(
+								// 				self.successTitle, self.editSuccessLabel,  self.successIcon
+								// 			);
+								// 		}
+								// 		else{
+								// 			self.loading = false;
+								// 			await self.notificationService.warningSwal(
+								// 				self.errorTitle, self.generalError, self.errorIcon
+								// 			);
+
+								// 			return false;
+								// 		}
+								// 	})
+								// 	.catch(async err => {
+								// 		self.loading = false;
+								// 		await self.notificationService.warningSwal(
+								// 			self.errorTitle, self.generalError, self.errorIcon
+								// 		);
+
+								// 		return false;
+								// 	});
+								// }
+							});
+
+						return false;
+
+					} else {
+						self.loading = false;
+						await self.notificationService.warningSwal(
+							self.errorTitle, self.generalError, self.errorIcon
+						);
+
+						return false;
+					}
 
 				} else {
 					self.loading = false;
@@ -249,76 +259,67 @@ export class ArticoleComponent implements OnInit {
 
 					return false;
 				}
-
-			} else {
+			})
+			.catch(async err => {
 				self.loading = false;
 				await self.notificationService.warningSwal(
 					self.errorTitle, self.generalError, self.errorIcon
 				);
 
 				return false;
-			}
-		})
-		.catch(async err => {
-			self.loading = false;
-			await self.notificationService.warningSwal(
-				self.errorTitle, self.generalError, self.errorIcon
-			);
-			
-			return false;
-		});
+			});
 	}
 
 
-	async addArticle(){
-		
+	async addArticle () {
+
 	}
 
 
-	async updatePublicView(id){
-		
+	async updatePublicView (id) {
+
 		var self = this;
 		self.articoleService.updatePublicView(id)
-		.then(async (res) => {
-			let response = (typeof res.status_code !== 'undefined' ? res : res.error)
-			if (typeof response.status_code !== 'undefined') {
-				if (response.status_code == 200 && typeof response.data !== 'undefined') {
+			.then(async (res) => {
+				let response = (typeof res.status_code !== 'undefined' ? res : res.error)
+				if (typeof response.status_code !== 'undefined') {
+					if (response.status_code == 200 && typeof response.data !== 'undefined') {
 
-					self.loading = false;
-					self.rerender();
-					self.loaded = 1;
+						self.loading = false;
+						self.rerender();
+						self.loaded = 1;
 
-					await self.notificationService.warningSwal(
-						self.successTitle, self.changeVisibilitySuccessLabel,  self.successIcon
-					);
-					return false;
+						await self.notificationService.warningSwal(
+							self.successTitle, self.changeVisibilitySuccessLabel, self.successIcon
+						);
+						return false;
+
+					} else {
+						self.loading = false;
+						await self.notificationService.warningSwal(
+							self.errorTitle, self.changeVisibilityErrorLabel, self.errorIcon
+						);
+
+						return false;
+					}
 
 				} else {
 					self.loading = false;
 					await self.notificationService.warningSwal(
-						self.errorTitle, self.changeVisibilityErrorLabel, self.errorIcon
+						self.errorTitle, self.generalError, self.errorIcon
 					);
 
 					return false;
 				}
-
-			} else {
+			})
+			.catch(async err => {
 				self.loading = false;
 				await self.notificationService.warningSwal(
 					self.errorTitle, self.generalError, self.errorIcon
 				);
 
 				return false;
-			}
-		})
-		.catch(async err => {
-			self.loading = false;
-			await self.notificationService.warningSwal(
-				self.errorTitle, self.generalError, self.errorIcon
-			);
-			
-			return false;
-		});
+			});
 	}
 
 }

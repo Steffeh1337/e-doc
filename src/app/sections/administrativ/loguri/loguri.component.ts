@@ -64,6 +64,8 @@ export class LoguriComponent implements OnInit {
 		id_updated: null
 	};
 
+	advancedFilters: any = {};
+
 	severityStatuses = [
 		{
 			id: -1,
@@ -185,12 +187,13 @@ export class LoguriComponent implements OnInit {
 		private dialog: MatDialog,
 		private router: Router,
 	) {
-		this.pathDT = environment.interop.basePath + environment.interop.api.administrativ.loguri.list
+		this.pathDT = environment.interop.basePath + environment.interop.api.administrativ.loguri.list;
 	}
 
 
 	ngOnInit (): void {
 		this.datatable();
+		this.getAdvancedFilterValues();
 	}
 
 
@@ -215,8 +218,6 @@ export class LoguriComponent implements OnInit {
 
 	rerender (): void {
 
-		// this.datatable();
-
 		this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
 			dtInstance.draw(false)
 		});
@@ -235,6 +236,7 @@ export class LoguriComponent implements OnInit {
 			pageLength: 10,
 			serverSide: true,
 			processing: true,
+			searching: false,
 			language: {
 				paginate: {
 					first: "Prima",
@@ -368,6 +370,40 @@ export class LoguriComponent implements OnInit {
 
 				return false;
 			});
+	}
+
+
+	async getAdvancedFilterValues () {
+
+		var self = this;
+
+		self.loguriService.getAdvancedFilterData()
+			.then(async (res) => {
+				let response = (typeof res.status_code !== 'undefined' ? res : res.error);
+				if (typeof response.status_code !== 'undefined') {
+					if (response.status_code == 200 && typeof response.data !== 'undefined') {
+
+						self.advancedFilters['modules'] = response.data['modules'];
+						self.advancedFilters['responsibles'] = response.data['responsibles'];
+					}
+					else {
+						self.loading = false;
+						await self.notificationService.warningSwal(
+							self.errorTitle, self.generalError, self.errorIcon
+						);
+
+						return false;
+					}
+				}
+				else {
+					self.loading = false;
+					await self.notificationService.warningSwal(
+						self.errorTitle, self.generalError, self.errorIcon
+					);
+
+					return false;
+				}
+			})
 	}
 
 }

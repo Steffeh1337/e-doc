@@ -1,15 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-setari',
-  templateUrl: './setari.component.html',
-  styleUrls: ['./setari.component.sass']
+	selector: 'app-setari',
+	templateUrl: './setari.component.html',
+	styleUrls: ['./setari.component.sass']
 })
+
 export class SetariComponent implements OnInit {
 
-  constructor() { }
+	activeModule: string;
 
-  ngOnInit(): void {
-  }
+	constructor (
+		public router: Router
+	) { }
 
+
+	ngOnInit (): void {
+		this.activeModule = 'permisiuni-list';
+	}
+
+	changeLocation (page): void {
+		this.activeModule = page;
+	}
 }

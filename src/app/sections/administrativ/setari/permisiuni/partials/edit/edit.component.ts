@@ -5,47 +5,45 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-	selector: 'app-add',
-	templateUrl: './add.component.html',
-	styleUrls: ['./add.component.sass']
+	selector: 'app-edit',
+	templateUrl: './edit.component.html',
+	styleUrls: ['./edit.component.sass']
 })
 
-export class AddComponent implements OnInit {
+export class EditComponent implements OnInit {
 
-	addForm: FormGroup;
+	editForm: FormGroup;
 	submitted = false;
 
 	constructor (
 		@Inject(MAT_DIALOG_DATA) public data: any,
-		private dialogRef: MatDialogRef<AddComponent>,
+		private dialogRef: MatDialogRef<EditComponent>,
 		private fb: FormBuilder,
 	) { }
 
-
 	ngOnInit (): void {
-		this.addForm = this.fb.group({
-			name: ['', Validators.required],
+		this.editForm = this.fb.group({
+			name: [this.data.el.name, Validators.required],
+			slug: [this.data.el.slug, Validators.required],
+			description: [this.data.el.description]
 		});
 	}
-
 
 	cancel () {
 		this.dialogRef.close();
 	}
 
-
 	onSubmit () {
 		this.submitted = true;
-		if (this.addForm.valid) {
+		if (this.editForm.valid) {
 			this.dialogRef.close({
-				data: this.addForm.value
+				data: this.editForm.value
 			});
 		}
 	}
 
-
-	get addFormControl () {
-		return this.addForm.controls;
+	get editFormControl () {
+		return this.editForm.controls;
 	}
 
 }

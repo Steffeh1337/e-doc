@@ -11,17 +11,16 @@ export class SetariComponent implements OnInit {
 
 	activeModule: string;
 
-	constructor(
+	constructor (
 		public router: Router
 	) { }
 
 
-	ngOnInit(): void {
+	ngOnInit (): void {
 		this.activeModule = 'solicitare-type-list';
 	}
 
-	changeLocation(page): void{
+	changeLocation (page): void {
 		this.activeModule = page;
 	}
-
 }

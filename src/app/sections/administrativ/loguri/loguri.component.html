@@ -8,7 +8,8 @@
 			<div class="form-group d-flex flex-column">
 				<label for="module" class="font-weight-bold">Modul</label>
 				<select name="module" [(ngModel)]="search.id_module" (change)="rerender()">
-					<option [value]="m.id" *ngFor="let m of modules">{{m.name}}</option>
+					<option value="-1">-- Toate --</option>
+					<option [value]="m.id_module" *ngFor="let m of advancedFilters.modules">{{m.module_name}}</option>
 				</select>
 			</div>
 		</div>
@@ -35,7 +36,8 @@
 			<div class="form-group d-flex flex-column">
 				<label for="id_user" class="font-weight-bold">Responsabil</label>
 				<select name="id_user" [(ngModel)]="search.id_user" (change)="rerender()">
-					<option [value]="o.id" *ngFor="let o of operators">{{o.name}}</option>
+					<option value="-1">-- Toti --</option>
+					<option [value]="r.id_user" *ngFor="let r of advancedFilters.responsibles">{{r.user_name}}</option>
 				</select>
 			</div>
 		</div>

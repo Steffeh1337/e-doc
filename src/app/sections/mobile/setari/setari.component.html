@@ -1,7 +1,7 @@
 <div class="app-inner-layout">
 	<section class="content">
 		<div class="row">
-			<div class="col-sm-2">
+			<div class="col-lg-2 mb-3">
 				<ul id="settings" class="sub-menu-wrap">
 					<li class="sub-menu-item" [ngClass]="activeModule == 'sesizare-type-list' ? 'active' : ''"
 						(click)="changeLocation('sesizare-type-list')">Tipuri Sesizari</li>
@@ -17,7 +17,7 @@
 						Institutii</li>
 				</ul>
 			</div>
-			<div class="col-sm-10 p-3 bg-white">
+			<div class="col-lg-10 p-3 bg-white">
 
 				<tip-sesizare *ngIf="activeModule == 'sesizare-type-list'">
 				</tip-sesizare>
