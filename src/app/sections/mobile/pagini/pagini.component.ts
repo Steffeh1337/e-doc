@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef} from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 import { DataTableDirective } from 'angular-datatables';
@@ -17,7 +17,7 @@ import { environment } from '../../../../environments/environment'
 import { Subject } from 'rxjs';
 
 
-class DataTablesResponse{
+class DataTablesResponse {
 	data: any[];
 	draw: number;
 	recordsFiltered: number;
@@ -32,7 +32,7 @@ class DataTablesResponse{
 
 export class PaginiComponent implements OnInit {
 
-	@ViewChild(DataTableDirective, {static: false})
+	@ViewChild(DataTableDirective, { static: false })
 
 	dtElement: DataTableDirective;
 	dtTrigger: any = new Subject();
@@ -52,7 +52,7 @@ export class PaginiComponent implements OnInit {
 	errorIcon: string = environment.config.customNotifications.icons.error;
 	errorType: string = environment.config.customNotifications.icons.error;
 
-    successTitle: string = environment.config.customNotifications.headers.success;
+	successTitle: string = environment.config.customNotifications.headers.success;
 	successIcon: string = environment.config.customNotifications.icons.success;
 	successType: string = environment.config.customNotifications.icons.success;
 
@@ -64,7 +64,7 @@ export class PaginiComponent implements OnInit {
 	generalError = environment.config.customNotifications.generalMessages.error;
 
 
-	constructor(
+	constructor (
 		private http: HttpClient,
 		private paginiService: PaginiService,
 		private notificationService: NotificationService,
@@ -72,23 +72,23 @@ export class PaginiComponent implements OnInit {
 	) { }
 
 
-	ngOnInit(): void {
+	ngOnInit (): void {
 		this.getMobileSections();
 		this.datatable();
 	}
 
 
-	ngAfterViewInit(): void {
+	ngAfterViewInit (): void {
 		this.dtTrigger.next();
 	}
 
 
-	ngOnDestroy(): void {
+	ngOnDestroy (): void {
 		this.dtTrigger.unsubscribe();
 	}
 
 
-	toggleTemplate(): void {
+	toggleTemplate (): void {
 		if (this.loadingTemplate) {
 			this.loadingTemplate = null;
 		} else {
@@ -97,14 +97,14 @@ export class PaginiComponent implements OnInit {
 	}
 
 
-	rerender(): void {
+	rerender (): void {
 		this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
 			dtInstance.draw(false)
 		});
 	}
 
 
-	async datatable(){
+	async datatable () {
 
 		var self = this;
 
@@ -135,28 +135,28 @@ export class PaginiComponent implements OnInit {
 			},
 			ajax: (dataTablesParameters: any, callback) => {
 				self.http
-				.post<DataTablesResponse>(
-					'http://ps6-web.back.lc/api/mobile-section-pages',
-					dataTablesParameters, {}
-				).
-				subscribe(response => {
+					.post<DataTablesResponse>(
+						'http://ps6-web.back.lc/api/mobile-section-pages',
+						dataTablesParameters, {}
+					).
+					subscribe(response => {
 
-					self.loading = false;
-					self.loaded = 1;
+						self.loading = false;
+						self.loaded = 1;
 
-					$(function(){
-						$('.edit-page').on('click', function(){
-							let id = $(this).val();
-							self.editPage(id);
+						$(function () {
+							$('.edit-page').on('click', function () {
+								let id = $(this).val();
+								self.editPage(id);
+							});
+						});
+
+						callback({
+							recordsTotal: response.data['recordsTotal'],
+							recordsFiltered: response.data['recordsFiltered'],
+							data: response.data['data']
 						});
 					});
-
-					callback({
-						recordsTotal: response.data['recordsTotal'],
-						recordsFiltered: response.data['recordsFiltered'],
-						data: response.data['data']
-					});
-				});
 			},
 			columns: [
 				{ title: 'ID', data: 'id' },
@@ -165,80 +165,90 @@ export class PaginiComponent implements OnInit {
 				{ title: 'Sectiune', data: 'sectiune.name', defaultContent: "" },
 				{ orderable: false, data: 'actions', title: 'Actiuni' }
 			],
+			order: [0, 'desc']
 		};
 	}
 
 
-	async editPage(id){
+	async editPage (id) {
 
 		var self = this;
 
 		self.paginiService.findMobilePage(id)
-		.then(async (res) => {
-			let response = (typeof res.status_code !== 'undefined' ? res : res.error)
-			if (typeof response.status_code !== 'undefined') {
-				if (response.status_code == 200 && typeof response.data !== 'undefined') {
+			.then(async (res) => {
+				let response = (typeof res.status_code !== 'undefined' ? res : res.error)
+				if (typeof response.status_code !== 'undefined') {
+					if (response.status_code == 200 && typeof response.data !== 'undefined') {
 
-					self.loading = false;
-					let element = response.data;
-					self.loaded = 1;
+						self.loading = false;
+						let element = response.data;
+						self.loaded = 1;
 
-					let dataToDialog = {
-						el: element,
-						sections: self.mobileSections
-					};
+						let dataToDialog = {
+							el: element,
+							sections: self.mobileSections
+						};
 
-					console.log(element);
-					
-					let dialogRef = self.dialog.open(EditComponent, {
-						width: "1000px",
-						data: dataToDialog,
-						autoFocus: false,
-						maxHeight: '90vh'
-					})
-					.afterClosed()
-					.subscribe(res => {
-						if(res){
-							let dataToSend = {
-								id: id,
-								title: res.data.title,
-								slug: res.data.slug,
-								sectiune_id: res.data.sectiune_id,
-								content: res.data.content
-							};
-							
-							self.paginiService.updateMobilePage(dataToSend)
-							.then(async (res) => {
-								if(res.errors == false){
-									self.loading = false;
-									self.rerender();
-									self.loaded = 1;
+						console.log(element);
 
-									await self.notificationService.warningSwal(
-										self.successTitle, self.editSuccessLabel,  self.successIcon
-									);
+						let dialogRef = self.dialog.open(EditComponent, {
+							width: "1000px",
+							data: dataToDialog,
+							autoFocus: false,
+							maxHeight: '90vh'
+						})
+							.afterClosed()
+							.subscribe(res => {
+								if (res) {
+									let dataToSend = {
+										id: id,
+										title: res.data.title,
+										slug: res.data.slug,
+										sectiune_id: res.data.sectiune_id,
+										content: res.data.content
+									};
+
+									self.paginiService.updateMobilePage(dataToSend)
+										.then(async (res) => {
+											if (res.errors == false) {
+												self.loading = false;
+												self.rerender();
+												self.loaded = 1;
+
+												await self.notificationService.warningSwal(
+													self.successTitle, self.editSuccessLabel, self.successIcon
+												);
+											}
+											else {
+												self.loading = false;
+												await self.notificationService.warningSwal(
+													self.errorTitle, self.generalError, self.errorIcon
+												);
+
+												return false;
+											}
+										})
+										.catch(async err => {
+											self.loading = false;
+											await self.notificationService.warningSwal(
+												self.errorTitle, self.generalError, self.errorIcon
+											);
+
+											return false;
+										});
 								}
-								else{
-									self.loading = false;
-									await self.notificationService.warningSwal(
-										self.errorTitle, self.generalError, self.errorIcon
-									);
-
-									return false;
-								}
-							})
-							.catch(async err => {
-								self.loading = false;
-								await self.notificationService.warningSwal(
-									self.errorTitle, self.generalError, self.errorIcon
-								);
-								
-								return false;
 							});
-						}
-					});
 
-					return false;
+						return false;
+
+					} else {
+						self.loading = false;
+						await self.notificationService.warningSwal(
+							self.errorTitle, self.generalError, self.errorIcon
+						);
+
+						return false;
+					}
 
 				} else {
 					self.loading = false;
@@ -248,28 +258,19 @@ export class PaginiComponent implements OnInit {
 
 					return false;
 				}
-
-			} else {
+			})
+			.catch(async err => {
 				self.loading = false;
 				await self.notificationService.warningSwal(
 					self.errorTitle, self.generalError, self.errorIcon
 				);
 
 				return false;
-			}
-		})
-		.catch(async err => {
-			self.loading = false;
-			await self.notificationService.warningSwal(
-				self.errorTitle, self.generalError, self.errorIcon
-			);
-			
-			return false;
-		});
+			});
 	}
 
 
-	async addPage(){
+	async addPage () {
 
 		var self = this;
 
@@ -283,52 +284,52 @@ export class PaginiComponent implements OnInit {
 			autoFocus: false,
 			maxHeight: '90vh'
 		})
-		.afterClosed()
-		.subscribe(res => {
-			if(res){
-				let dataToSend = {
-					title: res.data.title,
-					slug: res.data.slug,
-					sectiune_id: res.data.sectiune_id,
-					content: res.data.content
-				};
-				
-				self.paginiService.storeMobilePage(dataToSend)
-				.then(async (res) => {
-					if(res.errors == false){
-						self.loading = false;
-						self.rerender();
-						self.loaded = 1;
+			.afterClosed()
+			.subscribe(res => {
+				if (res) {
+					let dataToSend = {
+						title: res.data.title,
+						slug: res.data.slug,
+						sectiune_id: res.data.sectiune_id,
+						content: res.data.content
+					};
 
-						await self.notificationService.warningSwal(
-							self.successTitle, self.addSuccessLabel, self.successIcon
-						);
+					self.paginiService.storeMobilePage(dataToSend)
+						.then(async (res) => {
+							if (res.errors == false) {
+								self.loading = false;
+								self.rerender();
+								self.loaded = 1;
 
-						return false;
-					}
-					else{
-						self.loading = false;
-						await self.notificationService.warningSwal(
-							self.errorTitle, self.generalError, self.errorIcon
-						);
+								await self.notificationService.warningSwal(
+									self.successTitle, self.addSuccessLabel, self.successIcon
+								);
 
-						return false;
-					}
-				})
-				.catch(async err => {
-					self.loading = false;
-					await self.notificationService.warningSwal(
-						self.errorTitle, self.generalError, self.errorIcon
-					);
-					
-					return false;
-				});
-			}
-		});
+								return false;
+							}
+							else {
+								self.loading = false;
+								await self.notificationService.warningSwal(
+									self.errorTitle, self.generalError, self.errorIcon
+								);
+
+								return false;
+							}
+						})
+						.catch(async err => {
+							self.loading = false;
+							await self.notificationService.warningSwal(
+								self.errorTitle, self.generalError, self.errorIcon
+							);
+
+							return false;
+						});
+				}
+			});
 	}
 
 
-	async getMobileSections(){
+	async getMobileSections () {
 
 		var self = this;
 
@@ -336,16 +337,25 @@ export class PaginiComponent implements OnInit {
 		self.loading = true;
 
 		self.paginiService.getMobileSections()
-		.then(async (res) => {
-			let response = (typeof res.status_code !== 'undefined' ? res : res.error)
-			if (typeof response.status_code !== 'undefined') {
-				if (response.status_code == 200 && typeof response.data !== 'undefined') {
+			.then(async (res) => {
+				let response = (typeof res.status_code !== 'undefined' ? res : res.error)
+				if (typeof response.status_code !== 'undefined') {
+					if (response.status_code == 200 && typeof response.data !== 'undefined') {
 
-					self.loading = false;
-					self.mobileSections = response.data;
-					self.loaded = 1;
+						self.loading = false;
+						self.mobileSections = response.data;
+						self.loaded = 1;
 
-					return false;
+						return false;
+
+					} else {
+						self.loading = false;
+						await self.notificationService.warningSwal(
+							self.errorTitle, self.generalError, self.errorIcon
+						);
+
+						return false;
+					}
 
 				} else {
 					self.loading = false;
@@ -353,17 +363,8 @@ export class PaginiComponent implements OnInit {
 						self.errorTitle, self.generalError, self.errorIcon
 					);
 
-					return false;
+					return false
 				}
-
-			} else {
-				self.loading = false;
-				await self.notificationService.warningSwal(
-					self.errorTitle, self.generalError, self.errorIcon
-				);
-
-				return false
-			}
-		})
+			})
 	}
 }

@@ -33,35 +33,35 @@ import { AddComponent as PrioritateSolicitareAddComponent } from './prioritate-s
 
 
 @NgModule({
-  declarations: [
-    SetariComponent,
-    TipSolicitareComponent,
-    StatusSolicitareComponent,
-    PrioritateSolicitareComponent,
-    SabloaneSolicitareComponent,
-    DepartamenteComponent,
-	
-	TipSolicitareEditComponent,
-	TipSolicitareAddComponent,
+	declarations: [
+		SetariComponent,
+		TipSolicitareComponent,
+		StatusSolicitareComponent,
+		PrioritateSolicitareComponent,
+		SabloaneSolicitareComponent,
+		DepartamenteComponent,
 
-	StatusSolicitareEditComponent,
-	StatusSolicitareAddComponent,
+		TipSolicitareEditComponent,
+		TipSolicitareAddComponent,
 
-	PrioritateSolicitareEditComponent,
-	PrioritateSolicitareAddComponent,
+		StatusSolicitareEditComponent,
+		StatusSolicitareAddComponent,
 
-	SabloaneSolicitareEditComponent,
-	SabloaneSolicitareAddComponent,
+		PrioritateSolicitareEditComponent,
+		PrioritateSolicitareAddComponent,
 
-	DepartamenteEditComponent,
-	DepartamenteAddComponent
-  ],
-  imports: [
-    CommonModule,
-	SetariRoutingModule,
-	DataTablesModule,
-	ReactiveFormsModule,
-	EditorModule
-  ]
+		SabloaneSolicitareEditComponent,
+		SabloaneSolicitareAddComponent,
+
+		DepartamenteEditComponent,
+		DepartamenteAddComponent
+	],
+	imports: [
+		CommonModule,
+		SetariRoutingModule,
+		DataTablesModule,
+		ReactiveFormsModule,
+		EditorModule
+	]
 })
 export class SetariModule { }

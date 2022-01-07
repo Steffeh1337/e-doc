@@ -146,6 +146,22 @@ export const environment = {
 						addError: "Departamentul nu a putut fi adăugat."
 					}
 				}
+			},
+			administrativ: {
+				setari: {
+					permisiuni: {
+						editSuccess: "Permisiunea a fost actualizată cu succes!",
+						editError: "Permisiunea nu a putut fi actualizată.",
+						addSuccess: "Permisiunea a fost adăugată cu succes!",
+						addError: "Permisiunea nu a putut fi adăugată."
+					},
+					permisiuniActiuni: {
+						editSuccess: "Permisiunea acțiunii a fost actualizată cu succes!",
+						editError: "Permisiunea acțiunii nu a putut fi actualizată.",
+						addSuccess: "Permisiunea acțiunii a fost adăugată cu succes!",
+						addError: "Permisiunea acțiunii nu a putut fi adăugată."
+					},
+				}
 			}
 		}
 	},
@@ -294,6 +310,24 @@ export const environment = {
 				loguri: {
 					findLog: '/api/log-standard/',
 					list: '/api/logs',
+					getData: '/api/logs-data'
+				},
+				setari: {
+					permisiuni: {
+						list: '/api/permissions',
+						find: '/api/permission/',
+						edit: '/api/permission',
+						add: '/api/permission'
+					},
+					permisiuniActiuni: {
+						list: '/api/permissions-actions',
+						find: '/api/permission-action/',
+						edit: '/api/permission-action',
+						add: '/api/permission-action'
+					},
+					cronuri: {
+						list: '/api/crons',
+					}
 				}
 			}
 		}

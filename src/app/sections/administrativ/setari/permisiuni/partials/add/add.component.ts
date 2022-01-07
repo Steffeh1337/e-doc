@@ -25,6 +25,8 @@ export class AddComponent implements OnInit {
 	ngOnInit (): void {
 		this.addForm = this.fb.group({
 			name: ['', Validators.required],
+			slug: ['', Validators.required],
+			description: ['']
 		});
 	}
 
