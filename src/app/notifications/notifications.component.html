@@ -1,0 +1,71 @@
+<div class="app-inner-layout">
+	<div class="app-inner-layout__header bg-amy-crisp">
+		<div class="app-page-title">
+			<div class="page-title-wrapper">
+				<div class="page-title-heading">
+					<div class="page-title-icon">
+						<i class="fa fa-fw fa-bell icon-gradient bg-amy-crisp"></i>
+					</div>
+					<div class="text-white">
+						Notificări
+						<div class="page-title-subheading">
+							Vizualizare notificări și marcare ca citite/necitite
+						</div>
+					</div>
+				</div>
+				<div class="page-title-actions">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12 bg-white py-3 blue-border mt-5">
+		<div class="row d-flex justify-content-between mb-3">
+			<h5 class="ml-3">Notificări
+				<span *ngIf="loaded == 1" class="pl-1 pr-1 bg-info text-white rounded-pill">
+					{{notifications.length}}
+				</span>
+			</h5>
+		</div>
+
+		<div class="row" *ngIf="loaded == 1">
+
+			<div class="col-sm-7 mb-5" *ngIf="notifications.length == 0">
+				<div class="row">
+					<div class="col-sm-6">
+						<p>
+							Nu aveți nicio notificare
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-7 mb-5" *ngFor="let row of notifications">
+				<div class="row">
+
+					<div class="cover-image-article col-sm-6">
+						<img *ngIf="row.thumbnail !== null" src="{{row.thumbnail}}" class="article-img" />
+						<img *ngIf="row.thumbnail == null" src="./assets/images/logo.jpg" class="article-img" />
+					</div>
+
+					<div class="col-sm-6">
+						<h5 class="mt-1">
+							{{ row.slug }}
+							<span *ngIf="row.read == 0" (click)="markAsRead(row)" class="cursor-pointer">
+								<i class="vsm-icon fa fa-bell fa-fw text-danger"></i>
+							</span>
+							<span *ngIf="row.read == 1" (click)="markAsRead(row)" class="cursor-pointer">
+								<i class="vsm-icon fa fa-bell-o fa-fw text-success"></i>
+							</span>
+						</h5>
+						<p><em>{{row.created_at | date:'dd-MM-YYYY HH:mm:ss'}}</em></p>
+						<p>
+							{{row.content}}
+						</p>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

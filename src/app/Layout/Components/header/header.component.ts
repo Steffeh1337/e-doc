@@ -15,37 +15,34 @@ import { environment } from '../../../../environments/environment'
 export class HeaderComponent {
 
 	user: any = {
-		nume: '',
-		prenume: '',
+		last_name: '',
+		first_name: '',
 		email: '',
-		telefon: '',
-		f_nume: '',
+		phone: '',
 		cnp: '',
 		dialcode: '',
 		isocode: 'ro',
 		international_number: '',
-		type: 0,
 		ci_serie: '',
-		ci_numar: '',
-		f_reg_com: ''
+		ci_numar: ''
 	}
 
 	faEllipsisV = faEllipsisV;
 
-	constructor(public globals: ThemeOptions, private localStorage: StorageService) {
+	constructor (public globals: ThemeOptions, private localStorage: StorageService) {
 		this.pushInfoForm()
 	}
 
-	async pushInfoForm() {
+	async pushInfoForm () {
 		var self = this
 		const data = this.localStorage.getString(environment.config.userKey)
 		data.then((res: any) => {
 			let json = JSON.parse(res)
 
-			self.user.nume = json.nume
-			self.user.prenume = json.prenume
+			self.user.last_name = json.last_name
+			self.user.first_name = json.first_name
 			self.user.email = json.email
-			self.user.telefon = parseInt(json.telefon).toString()
+			self.user.phone = parseInt(json.phone).toString()
 			self.user.cnp = json.cnp
 
 			self.user.dialcode = json.dialcode
@@ -54,23 +51,11 @@ export class HeaderComponent {
 
 			self.user.ci_serie = json.ci_serie
 			self.user.ci_numar = json.ci_numar
-
-			self.user.type = json.type
-
-			if (typeof json.f_nume !== 'undefined') {
-				
-				self.user.f_nume = json.f_nume
-				self.user.f_reg_com = json.f_reg_com
-			} else {
-				self.user.f_reg_com = ''
-				self.user.f_nume = ''
-			}
-
-		})
+		});
 	}
 
 	@HostBinding('class.isActive')
-	get isActiveAsGetter() {
+	get isActiveAsGetter () {
 		return this.isActive;
 	}
 
@@ -78,11 +63,11 @@ export class HeaderComponent {
 
 	@select('config') public config$: Observable<any>;
 
-	toggleSidebarMobile() {
+	toggleSidebarMobile () {
 		this.globals.toggleSidebarMobile = !this.globals.toggleSidebarMobile;
 	}
 
-	toggleHeaderMobile() {
+	toggleHeaderMobile () {
 		this.globals.toggleHeaderMobile = !this.globals.toggleHeaderMobile;
 	}
 

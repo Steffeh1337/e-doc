@@ -1,6 +1,6 @@
 {
-  "name": "registratura-app.taxeimpozite4.ro",
-  "version": "0.0.1",
+  "name": "e-doc",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -55,7 +55,7 @@
     "chartjs-plugin-annotation": "^0.5.7",
     "chartjs-plugin-datalabels": "^0.7.0",
     "core-js": "^3.8.2",
-    "datatables.net": "^1.10.20",
+    "datatables.net": "^1.12.1",
     "datatables.net-bs4": "^1.10.20",
     "date-fns": "^2.16.1",
     "flag-icon-css": "^3.5.0",

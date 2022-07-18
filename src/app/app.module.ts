@@ -103,7 +103,15 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { GaugeModule } from 'angular-gauge';
 import { TrendModule } from 'ngx-trend';
 
-// Angular Material
+// MODULES
+import { ReviewsModule } from './reviews/reviews.module';
+import { AppointmentsModule } from './appointments/appointments.module';
+import { AuthModuleModule } from './auth-module/auth-module.module';
+
+// PROVIDERS
+import { AuthGuard } from './guards/auth.guard';
+import { LoginGuard } from './guards/login.guard';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 	suppressScrollX: true
@@ -122,18 +130,11 @@ import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 // import { NotificationService } from './general/notification.service'
 
-import { CheckCodeComponent } from '../app/auth-module/dialogs/check-code/check-code.component'
-
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { NgxMatIntlTelInputModule } from 'ngx-mat-intl-tel-input';
 
 // dialogs, settings
 import { httpInterceptorProviders } from "./interceptors";
-import { DialogExampleComponent } from './dialog-example/dialog-example.component';
-import { DialogExampleCardComponent } from './dialog-example-card/dialog-example-card.component';
-import { DialogExampleAddCardComponent } from './dialog-example-add-card/dialog-example-add-card.component';
-
-// import { InfoSectionsComponent } from '../app/dgitl/add-solicitare/directives/info-sections/info-sections.component'
 
 @NgModule({
 	declarations: [
@@ -174,15 +175,7 @@ import { DialogExampleAddCardComponent } from './dialog-example-add-card/dialog-
 
 
 		// Tables
-		NgbdSortableHeaderDirective,
-
-		// new pages
-		CheckCodeComponent,
-    	DialogExampleComponent,
-        DialogExampleCardComponent,
-        DialogExampleAddCardComponent,
-
-		// InfoSectionsComponent
+		NgbdSortableHeaderDirective
 	],
 	imports: [
 
@@ -251,9 +244,12 @@ import { DialogExampleAddCardComponent } from './dialog-example-add-card/dialog-
 		JwtModule,
 		StorageServiceModule,
 		NgxIntlTelInputModule,
-		NgxMatIntlTelInputModule
+		NgxMatIntlTelInputModule,
 
-
+		// new modules
+		// ReviewsModule,
+		// AppointmentsModule,
+		// AuthModuleModule
 	],
 	providers: [
 		{
@@ -264,15 +260,18 @@ import { DialogExampleAddCardComponent } from './dialog-example-add-card/dialog-
 				DEFAULT_PERFECT_SCROLLBAR_CONFIG,
 			// DEFAULT_DROPZONE_CONFIG,
 		},
+		// HttpClient,
 		ConfigActions,
 		ThemeOptions,
-		httpInterceptorProviders
+		httpInterceptorProviders,
+		// AuthGuard,
+		// LoginGuard
 	],
 	bootstrap: [AppComponent],
 })
 
 export class AppModule {
-	constructor(private ngRedux: NgRedux<ArchitectUIState>,
+	constructor (private ngRedux: NgRedux<ArchitectUIState>,
 		private devTool: DevToolsExtension) {
 
 		this.ngRedux.configureStore(

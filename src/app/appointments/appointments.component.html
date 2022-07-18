@@ -1,0 +1,57 @@
+<div class="app-inner-layout">
+	<div class="app-inner-layout__header bg-amy-crisp">
+		<div class="app-page-title">
+			<div class="page-title-wrapper">
+				<div class="page-title-heading">
+					<div class="page-title-icon">
+						<i class="fa fa-fw fa-calendar icon-gradient bg-amy-crisp"></i>
+					</div>
+					<div class="text-white">
+						Programări
+						<div class="page-title-subheading">
+							Vizualizare programări, căutare după pacient, perioadă și anulare programare
+						</div>
+					</div>
+				</div>
+				<div class="page-title-actions">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12 bg-white py-3 blue-border mt-5">
+		<div class="row d-flex justify-content-between mb-3">
+			<h5 class="ml-3">Programări</h5>
+		</div>
+
+		<div class="row" *ngIf="advancedFiltersLoaded == 1">
+
+			<div class="col-sm-3">
+				<div class="form-group d-flex flex-column">
+					<label for="log" class="font-weight-bold">Pacient</label>
+					<input type="text" name="log" [(ngModel)]="search.user_name" (keyup)="rerender()"
+						placeholder="Nume, prenume" class="p-1">
+				</div>
+			</div>
+
+			<div class="col-sm-3">
+				<div class="form-group d-flex flex-column">
+					<label for="user" class="font-weight-bold">Perioadă</label>
+					<select name="user" [(ngModel)]="search.appointments_type" (change)="rerender()" class="p-1">
+						<option value="-1">- Alegeți -</option>
+						<option [value]="a.id" *ngFor="let a of advancedFilters.appointments_type">{{a.name}}
+						</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<table datatable class="table table-striped table-bordered w-100" [dtOptions]="dtOptions"
+					[dtTrigger]="dtTrigger">
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
