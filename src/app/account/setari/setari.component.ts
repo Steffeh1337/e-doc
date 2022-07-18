@@ -21,11 +21,9 @@ import { StorageService } from '../../general/storage.service'
 
 import { MatDialog } from '@angular/material/dialog';
 
-import Swal from 'sweetalert2';
-
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-	isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+	isErrorState (control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
 		const isSubmitted = form && form.submitted;
 		return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
 	}
@@ -37,8 +35,6 @@ import { cloneDeep, random } from 'lodash-es';
 import {
 	GlobalConfig,
 	ToastrService,
-	ToastContainerDirective,
-	ToastNoAnimation,
 } from 'ngx-toastr';
 
 import { PhoneNumberUtil, PhoneNumber } from 'google-libphonenumber'
@@ -52,34 +48,37 @@ import { helper } from '../../../environments/helper'
 	templateUrl: './setari.component.html',
 	styleUrls: ['./setari.component.sass']
 })
+
+
 export class SetariComponent implements OnInit {
 
-	env: any = environment
-
 	user: any = {
-		nume: '',
-		prenume: '',
+		last_name: '',
+		first_name: '',
 		email: '',
 		telefon: '',
-		f_nume: '',
-		cnp: '',
-		dialcode: '',
-		isocode: 'ro',
 		international_number: '',
-		type: 0,
+		dial_code: '',
+		iso_code: 'ro',
+		cnp: '',
 		ci_serie: '',
+		doctor_type: 0,
 		ci_numar: '',
-		f_reg_com: ''
-	}
+		clinic_name: '',
+		field_name: '',
+		doctor_type_name: ''
+	};
+
+	schedules: any = [];
 
 	// general error
-	errorTitle: string = environment.config.customNotifications.headers.error
-	errorIcon: string = environment.config.customNotifications.icons.error
-	errorType: string = environment.config.customNotifications.icons.error
+	errorTitle: string = environment.config.customNotifications.headers.error;
+	errorIcon: string = environment.config.customNotifications.icons.error;
+	errorType: string = environment.config.customNotifications.icons.error;
 	// general success alert
-	successTitle: string = environment.config.customNotifications.headers.success
-	successIcon: string = environment.config.customNotifications.icons.success
-	successType: string = environment.config.customNotifications.icons.success
+	successTitle: string = environment.config.customNotifications.headers.success;
+	successIcon: string = environment.config.customNotifications.icons.success;
+	successType: string = environment.config.customNotifications.icons.success;
 
 	@ViewChild('ngxLoading') ngxLoadingComponent: NgxLoadingComponent;
 	@ViewChild('customLoadingTemplate') customLoadingTemplate: TemplateRef<any>;
@@ -88,9 +87,9 @@ export class SetariComponent implements OnInit {
 	public loadingTemplate: TemplateRef<any>;
 	matcher = new MyErrorStateMatcher();
 
-	hide: boolean = true
-	hide_confirmation: boolean = true
-	hide_current: boolean = true
+	hide: boolean = true;
+	hide_confirmation: boolean = true;
+	hide_current: boolean = true;
 
 	private lastInserted: number[] = [];
 	options: GlobalConfig;
@@ -105,7 +104,8 @@ export class SetariComponent implements OnInit {
 
 	formPasswords: FormGroup;
 	form: FormGroup;
-	updateFormShow: boolean = false
+	formSchedules: FormGroup;
+	updateFormShow: boolean = false;
 
 	separateDialCode = false;
 	SearchCountryField = SearchCountryField;
@@ -113,22 +113,11 @@ export class SetariComponent implements OnInit {
 	PhoneNumberFormat = PhoneNumberFormat;
 	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
 
-	selectedCountry: any = ['ro']
+	selectedCountry: any = ['ro'];
 
 	phone: any = {}
 
-	// address stuff
-	updateFormShowAddress: boolean = false
-	formAddress: FormGroup
-
-	judete: any = helper.judete
-
-	listAddresses: any = {
-		domiciliu: [],
-		sediu: []
-	}
-
-	constructor(
+	constructor (
 		private authService: AuthService,
 		private notificationService: NotificationService,
 		private localStorage: StorageService,
@@ -136,10 +125,6 @@ export class SetariComponent implements OnInit {
 		public dialog: MatDialog
 	) {
 
-		this.judete.unshift({
-			id: '-1',
-			name: '-- Alegeti --'
-		})
 		this.options = this.toastr.toastrConfig;
 
 		this.formPasswords = new FormGroup({
@@ -156,16 +141,14 @@ export class SetariComponent implements OnInit {
 		})
 
 		this.form = new FormGroup({
-			f_nume: new FormControl('', []),
-			f_reg_com: new FormControl('', []),
 			ci_serie: new FormControl('', []),
 			ci_numar: new FormControl('', []),
-			nume: new FormControl('', Validators.compose([
+			last_name: new FormControl('', Validators.compose([
 				Validators.minLength(environment.config.validatorsAccrossApp.minStringLength),
 				Validators.maxLength(environment.config.validatorsAccrossApp.maxStringLength),
 				Validators.required
 			])),
-			prenume: new FormControl('', Validators.compose([
+			first_name: new FormControl('', Validators.compose([
 				Validators.minLength(environment.config.validatorsAccrossApp.minStringLength),
 				Validators.maxLength(environment.config.validatorsAccrossApp.maxStringLength),
 				Validators.required
@@ -181,38 +164,15 @@ export class SetariComponent implements OnInit {
 			]))
 		});
 
-
-		this.formAddress = new FormGroup({
-			judet: new FormControl('-1', Validators.compose([
-				Validators.required
-			])),
-			type: new FormControl('-1', Validators.compose([
-				Validators.required
-			])),
-			oras: new FormControl('', Validators.compose([
-				Validators.required,
-				Validators.minLength(2),
-				Validators.maxLength(environment.config.validatorsAccrossApp.maxStringLength),
-			])),
-			sector: new FormControl('-1', []),
-			strada: new FormControl('', Validators.compose([
-				Validators.required,
-				Validators.minLength(2),
-				Validators.maxLength(environment.config.validatorsAccrossApp.maxStringLength),
-			])),
-			numar: new FormControl('', Validators.compose([
-				Validators.required
-			])),
-			bloc: new FormControl('', []),
-			scara: new FormControl('', []),
-			etaj: new FormControl('', []),
-			apartament: new FormControl('', []),
-			observatii: new FormControl('', []),
-			id: new FormControl('', [])
-		})
+		this.formSchedules = new FormGroup({});
 	}
 
-	async updatePwd() {
+	async ngOnInit () {
+		await this.getAccountDetails()
+		await this.pushInfoForm()
+	}
+
+	async updatePwd () {
 		var self = this
 		this.loading = true
 		if (!this.formPasswords.valid) {
@@ -224,9 +184,6 @@ export class SetariComponent implements OnInit {
 			await self.notificationService.warningSwal(this.errorTitle, 'Parolele introduse nu corespund pentru actualizare', this.errorIcon)
 			return false
 		} else {
-			// we have a go?
-
-
 			self.authService.updatePasswordAccount(self.formPasswords.value)
 				.then(async (res) => {
 					let response = (typeof res.status_code !== 'undefined' ? res : res.error)
@@ -236,10 +193,11 @@ export class SetariComponent implements OnInit {
 
 							// success
 							self.loading = false
-							self.formPasswords.patchValue({
-								password_confirmation: '',
-								password: ''
-							})
+							// self.formPasswords.patchValue({
+							// 	password_confirmation: '',
+							// 	password: ''
+							// })
+							self.formPasswords.reset();
 							let obj = {
 								title: self.successTitle,
 								message: 'Felicitari. Actualizarea parolei a fost efectuata cu succes.',
@@ -262,7 +220,6 @@ export class SetariComponent implements OnInit {
 						}
 
 					} else {
-						// add sentry
 						let errorMessage = environment.config.customNotifications.generalMessages.error;
 						self.loading = false
 						await self.notificationService.warningSwal(
@@ -280,68 +237,44 @@ export class SetariComponent implements OnInit {
 					);
 					return false
 				})
-
-
 		}
 	}
 
-	async ngOnInit() {
-		await this.getAccountDetails()
-		await this.listAddress()
-		await this.pushInfoForm()
-	}
+	async pushInfoForm () {
+		var self = this;
 
-	async pushInfoForm() {
-		var self = this
 		const data = this.localStorage.getString(environment.config.userKey)
 		data.then((res: any) => {
-			let json = JSON.parse(res)
 
-			self.selectedCountry = [json.isocode]
-			console.log(json, self.selectedCountry)
-			self.user.nume = json.nume
-			self.user.prenume = json.prenume
-			self.user.email = json.email
-			self.user.telefon = parseInt(json.telefon).toString()
-			self.user.cnp = json.cnp
+			let json = JSON.parse(res);
 
-			self.user.dialcode = json.dialcode
-			self.user.isocode = json.isocode
-			self.user.international_number = json.international_number
+			self.selectedCountry = [json.user.iso_code];
+			self.user.last_name = json.user.last_name;
+			self.user.first_name = json.user.first_name;
+			self.user.email = json.user.email;
+			self.user.telefon = json.user.phone;
 
-			self.user.ci_serie = json.ci_serie
-			self.user.ci_numar = json.ci_numar
+			self.user.cnp = json.user.cnp;
+			self.user.ci_serie = json.user.ci_serie;
+			self.user.ci_numar = json.user.ci_numar;
 
-			self.user.type = json.type
-
-			if (typeof json.f_nume !== 'undefined') {
-				self.form.patchValue({
-					f_nume: json.f_nume,
-					f_reg_com: json.f_reg_com
-				})
-				self.user.f_nume = json.f_nume
-				self.user.f_reg_com = json.f_reg_com
-			} else {
-				self.user.f_reg_com = ''
-				self.user.f_nume = ''
-			}
-
+			self.user.dial_code = json.user.dial_code
+			self.user.iso_code = json.user.iso_code
+			self.user.international_number = json.user.international_number
 
 			// now we need to update all the params inside the form
 			self.form.patchValue({
-				nume: json.nume,
-				prenume: json.prenume,
-				email: json.email,
-				telefon: parseInt(json.telefon).toString(),
-				ci_serie: json.ci_serie,
-				ci_numar: json.ci_numar
+				last_name: json.user.last_name,
+				first_name: json.user.first_name,
+				email: json.user.email,
+				telefon: json.user.phone,
+				ci_serie: json.user.ci_serie,
+				ci_numar: json.user.ci_numar
 			})
-
-			console.log(self.user, 'check user please')
 		})
 	}
 
-	openToast(object) {
+	openToast (object) {
 
 		const { type, message, title } = object
 
@@ -363,7 +296,7 @@ export class SetariComponent implements OnInit {
 		return inserted;
 	}
 
-	async toggleForm() {
+	async toggleForm () {
 		var self = this
 
 		if (!this.updateFormShow) {
@@ -374,40 +307,12 @@ export class SetariComponent implements OnInit {
 		this.updateFormShow = !this.updateFormShow
 	}
 
-	async toggleFormAddress() {
+	async updateAccount () {
 		var self = this
 
-		if (!this.updateFormShowAddress) {
-			// we need to show the form and process it
-			self.formAddress.patchValue({
-				judet: '-1',
-				oras: '',
-				type: '-1',
-				sector: '-1',
-				strada: '',
-				numar: '',
-				bloc: '',
-				scara: '',
-				etaj: '',
-				apartament: '',
-				observatii: '',
-				id: ''
-			})
-		}
-
-		this.updateFormShowAddress = !this.updateFormShowAddress
-	}
-
-	async updateAccount() {
-
-		var self = this
-		this.loading = true
+		this.loading = true;
 		try {
-
-			// process form here pls
-			// updateInfoAccount
-			// let phone 
-
+			// process form here
 			let emailReg = new RegExp(environment.config.emailRegex);
 			if (!emailReg.test(this.form.value.email) || this.form.value.email.length > 70) {
 				self.loading = false
@@ -431,20 +336,6 @@ export class SetariComponent implements OnInit {
 
 				self.phone.dialCode = this.form.value.telefon.toString().replace(self.phone.nationalNumber.toString(), '')
 				self.phone.nationalNumber = (self.phone.isoCode == 'ro' ? '0' + self.phone.nationalNumber : self.phone.nationalNumber)
-			}
-
-			if (this.user.cnp.toString().length < 13 && (typeof self.form.value.f_nume == 'undefined' || self.form.value.f_nume.length < 2)) {
-				// Company Required
-				self.loading = false
-				await self.notificationService.warningSwal(this.errorTitle, "Vă rugăm să completați câmpul 'Nume Companie'", this.errorIcon)
-				return false
-			}
-
-			if (this.user.cnp.toString().length < 13 && (typeof self.form.value.f_reg_com == 'undefined' || self.form.value.f_reg_com.length < 2)) {
-				// Company Required
-				self.loading = false
-				await self.notificationService.warningSwal(this.errorTitle, "Vă rugăm să completați câmpul 'Registrul Comertului'", this.errorIcon)
-				return false
 			}
 
 			const dataObj = Object.assign({}, self.form.value,
@@ -481,7 +372,6 @@ export class SetariComponent implements OnInit {
 						}
 
 					} else {
-						// add sentry
 						let errorMessage = environment.config.customNotifications.generalMessages.error;
 						self.loading = false
 						await self.notificationService.warningSwal(
@@ -505,77 +395,27 @@ export class SetariComponent implements OnInit {
 		} catch (err) {
 			self.loading = false
 			console.log(err)
-			await self.notificationService.warningSwal(this.errorTitle, 'Am intampinat o problema in procesarea informatiilor dvs. Va rugam sa reincercati sau sa reveniti mai tarziu.', this.errorIcon)
+			await self.notificationService.warningSwal(this.errorTitle, 'Am întâmpinat o problemă în procesarea informațiilor dvs. Vă rugăm să reîncercați sau să reveniți mai târziu.', this.errorIcon)
 		}
 	}
 
-	async getAccountDetails() {
+	async clearSchedule (row) {
+		let controlFromName = `day_${row.day}_from`;
+		let controlToName = `day_${row.day}_to`;
 
-		var self = this
-
-		try {
-			self.authService.findDetails()
-				.then(async (res) => {
-					let response = (typeof res.status_code !== 'undefined' ? res : res.error)
-					if (typeof response.status_code !== 'undefined') {
-						if (response.status_code == 200 && typeof response.data !== 'undefined') {
-
-
-							await self.localStorage.setString(environment.config.userKey, JSON.stringify(response.data.user))
-							self.user = response.data.user
-							return false;
-
-						} else {
-							let errorMessage = environment.config.customNotifications.generalMessages.error;
-							response.errors.message.forEach(function (msg) {
-								errorMessage = msg;
-							})
-							await self.notificationService.warningSwal(
-								self.errorTitle, errorMessage, self.errorIcon
-							);
-
-							return false;
-						}
-
-					} else {
-						// add sentry
-						let errorMessage = environment.config.customNotifications.generalMessages.error;
-						await self.notificationService.warningSwal(
-							self.errorTitle, errorMessage, self.errorIcon
-						);
-
-						return false
-					}
-				})
-				.catch(async err => {
-					let errorMessage = environment.config.customNotifications.generalMessages.error;
-					await self.notificationService.warningSwal(
-						self.errorTitle, errorMessage, self.errorIcon
-					);
-
-					return false
-				})
-
-		} catch (err) {
-			console.log(err)
-			await self.notificationService.warningSwal(this.errorTitle, 'Am intampinat o problema in procesarea informatiilor dvs. Va rugam sa reincercati sau sa reveniti mai tarziu.', this.errorIcon)
-		}
-
+		this.formSchedules.get(controlFromName).patchValue(null);
+		this.formSchedules.get(controlToName).patchValue(null);
 	}
 
-	async addAddress() {
+	
+	async submitSchedule () {
+		var self = this;
 
-		console.log(this.formAddress.value)
+		this.loading = true;
 
-		var self = this
-		this.loading = true
 		try {
-
-			// process form here pls
-			// updateInfoAccount
-			// let phone 
-
-			this.authService.addressSave(self.formAddress.value)
+			// process form here
+			this.authService.updateSchedule(this.formSchedules.value)
 				.then(async (res) => {
 					let response = (typeof res.status_code !== 'undefined' ? res : res.error)
 					if (typeof response.status_code !== 'undefined') {
@@ -585,13 +425,12 @@ export class SetariComponent implements OnInit {
 
 							let obj = {
 								title: self.successTitle,
-								message: 'Contul dvs a fost actualizat cu succes.',
+								message: response.data,
 								type: self.successIcon
-							}
+							};
+
 							self.openToast(obj)
-							self.toggleFormAddress()
-							self.loading = false
-							self.listAddress()
+							self.loading = false;
 							return false;
 
 						} else {
@@ -608,7 +447,6 @@ export class SetariComponent implements OnInit {
 						}
 
 					} else {
-						// add sentry
 						let errorMessage = environment.config.customNotifications.generalMessages.error;
 						self.loading = false
 						await self.notificationService.warningSwal(
@@ -632,22 +470,33 @@ export class SetariComponent implements OnInit {
 		} catch (err) {
 			self.loading = false
 			console.log(err)
-			await self.notificationService.warningSwal(this.errorTitle, 'Am intampinat o problema in procesarea informatiilor dvs. Va rugam sa reincercati sau sa reveniti mai tarziu.', this.errorIcon)
+			await self.notificationService.warningSwal(this.errorTitle, 'Am întâmpinat o problemă în procesarea informațiilor dvs. Vă rugăm să reîncercați sau să reveniți mai târziu.', this.errorIcon)
 		}
-
 	}
 
-	async listAddress() {
+	async getAccountDetails () {
 		var self = this
 
 		try {
-			self.authService.addressList()
+			self.authService.findDetails()
 				.then(async (res) => {
 					let response = (typeof res.status_code !== 'undefined' ? res : res.error)
 					if (typeof response.status_code !== 'undefined') {
 						if (response.status_code == 200 && typeof response.data !== 'undefined') {
-							self.listAddresses = response.data
+
+							await self.localStorage.setString(environment.config.userKey, JSON.stringify(response.data))
+							self.user = response.data.user;
+							self.schedules = response.data.schedules;
+
+							await self.schedules.forEach(element => {
+								// add start for each day
+								this.formSchedules.addControl(`day_${element.day}_from`, new FormControl(element.from, []));
+								// add stop for each day
+								this.formSchedules.addControl(`day_${element.day}_to`, new FormControl(element.to, []));
+							});
+
 							return false;
+
 						} else {
 							let errorMessage = environment.config.customNotifications.generalMessages.error;
 							response.errors.message.forEach(function (msg) {
@@ -661,7 +510,6 @@ export class SetariComponent implements OnInit {
 						}
 
 					} else {
-						// add sentry
 						let errorMessage = environment.config.customNotifications.generalMessages.error;
 						await self.notificationService.warningSwal(
 							self.errorTitle, errorMessage, self.errorIcon
@@ -681,191 +529,40 @@ export class SetariComponent implements OnInit {
 
 		} catch (err) {
 			console.log(err)
-			await self.notificationService.warningSwal(this.errorTitle, 'Am intampinat o problema in procesarea informatiilor dvs. Va rugam sa reincercati sau sa reveniti mai tarziu.', this.errorIcon)
+			await self.notificationService.warningSwal(this.errorTitle, 'Am întâmpinat o problemă în procesarea informațiilor dvs. Vă rugăm să reîncercați sau să reveniți mai târziu.', this.errorIcon)
 		}
+
 	}
 
-	async deleteAddress(row) {
-		console.log(row)
-
-		var self = this
-		const swalWithBootstrapButtons = Swal.mixin({
-			customClass: {
-				confirmButton: 'btn btn-success',
-				cancelButton: 'btn btn-danger'
-			},
-			buttonsStyling: false
-		});
-
-		swalWithBootstrapButtons.fire({
-			title: 'Sunteti sigur?',
-			text: 'Actiune ireversibila',
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonText: 'Confirm',
-			cancelButtonText: 'Anulati',
-			reverseButtons: true
-		}).then((result) => {
-			if (result.value) {
-
-				// please proceed with the success, HTTP request
-				try {
-					self.authService.addressDelete(row.id)
-						.then(async (res) => {
-							let response = (typeof res.status_code !== 'undefined' ? res : res.error)
-							if (typeof response.status_code !== 'undefined') {
-								if (response.status_code == 200 && typeof response.data !== 'undefined') {
-
-									self.listAddress()
-									swalWithBootstrapButtons.fire(
-										'Succes',
-										'Adresa mentionata a fost stearsa',
-										'success'
-									);
-									return false
-
-								} else {
-									let errorMessage = environment.config.customNotifications.generalMessages.error;
-									response.errors.message.forEach(function (msg) {
-										errorMessage = msg;
-									})
-									// await self.notificationService.warningSwal(
-									// 	self.errorTitle, errorMessage, self.errorIcon
-									// );
-									swalWithBootstrapButtons.fire(
-										'Am intampinat o eroare!',
-										errorMessage,
-										'error'
-									);
-									return false;
-								}
-
-							} else {
-								// add sentry
-								let errorMessage = environment.config.customNotifications.generalMessages.error;
-								// await self.notificationService.warningSwal(
-								// 	self.errorTitle, errorMessage, self.errorIcon
-								// );
-								swalWithBootstrapButtons.fire(
-									'Am intampinat o eroare!',
-									errorMessage,
-									'error'
-								);
-								return false
-							}
-						})
-						.catch(async err => {
-							let errorMessage = environment.config.customNotifications.generalMessages.error;
-							// await self.notificationService.warningSwal(
-							// 	self.errorTitle, errorMessage, self.errorIcon
-							// );
-							
-							swalWithBootstrapButtons.fire(
-								'Am intampinat o eroare!',
-								errorMessage,
-								'error'
-							);
-							return false
-						})
-
-				} catch (err) {
-					console.log(err)
-					self.notificationService.warningSwal(this.errorTitle, 'Am intampinat o problema in procesarea informatiilor dvs. Va rugam sa reincercati sau sa reveniti mai tarziu.', this.errorIcon)
-
-					swalWithBootstrapButtons.fire(
-						'Am intampinat o eroare!',
-						'Am intampinat o problema in procesarea informatiilor dvs. Va rugam sa reincercati sau sa reveniti mai tarziu.',
-						'error'
-					);
-					return false
-				}
-			} else if (
-				/* Read more about handling dismissals below */
-				result.dismiss === Swal.DismissReason.cancel
-			) {
-				swalWithBootstrapButtons.fire(
-					'Anulat',
-					'Adresa mentionata nu a fost stearsa',
-					'error'
-				);
-			}
-		});
-	}
-
-	updateFormAddress (row) {
-		console.log(row)
-		var self = this
-		self.formAddress.patchValue({
-			judet: row.judet.toString(),
-			oras: row.oras,
-			type: row.type.toString(),
-			sector: row.sector.toString(),
-			strada: row.strada,
-			numar: row.numar,
-			bloc: row.bloc,
-			scara: row.scara,
-			etaj: row.etaj,
-			apartament: row.apartament,
-			observatii: row.observatii,
-			id: row.id
-		})
-		this.updateFormShowAddress = true
-	}
-
-	// settings form
-	get password() {
+	get password () {
 		return this.formPasswords.get('password');
 	}
 
-	get passwordConfirmation() {
+	get passwordConfirmation () {
 		return this.formPasswords.get('password_confirmation');
 	}
 
-	get nume() {
-		return this.form.get('nume');
+	get last_name () {
+		return this.form.get('last_name');
 	}
 
-	get prenume() {
-		return this.form.get('prenume');
+	get first_name () {
+		return this.form.get('first_name');
 	}
 
-	get email() {
+	get email () {
 		return this.form.get('email');
 	}
 
-	get telefon() {
+	get telefon () {
 		return this.form.get('telefon');
 	}
 
-	get ci_serie() {
+	get ci_serie () {
 		return this.form.get('ci_serie');
 	}
 
-	get ci_numar() {
+	get ci_numar () {
 		return this.form.get('ci_numar');
 	}
-
-	// address form
-
-	get type() {
-		return this.formAddress.get('type');
-	}
-
-	get judet() {
-		return this.formAddress.get('judet');
-	}
-
-	get oras() {
-		return this.formAddress.get('oras');
-	}
-
-	get strada() {
-		return this.formAddress.get('strada');
-	}
-
-	get numar() {
-		return this.formAddress.get('numar');
-	}
-
-
 }

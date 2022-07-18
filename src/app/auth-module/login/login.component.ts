@@ -15,13 +15,11 @@ import { StorageService } from '../../general/storage.service'
 
 import { MatDialog } from '@angular/material/dialog';
 
-import { CheckCodeComponent } from '../dialogs/check-code/check-code.component'
-
 import { Router } from '@angular/router';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-	isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+	isErrorState (control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
 		const isSubmitted = form && form.submitted;
 		return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
 	}
@@ -34,8 +32,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class LoginComponent implements OnInit {
 
-	env : any = environment
-	
+	env: any = environment
+
 	// general error
 	errorTitle: string = environment.config.customNotifications.headers.error
 	errorIcon: string = environment.config.customNotifications.icons.error
@@ -55,16 +53,16 @@ export class LoginComponent implements OnInit {
 	passwordIcon: string = 'eye-off';
 
 	public id_cetatean: any = null;
-	public phone_no : string = null;
+	public phone_no: string = null;
 
 	hide: boolean = true
 
-	constructor(
+	constructor (
 		private authService: AuthService,
 		private notificationService: NotificationService,
 		private localStorage: StorageService,
 		public dialog: MatDialog,
-		private router : Router
+		private router: Router
 	) {
 		this.form = new FormGroup({
 			email: new FormControl('', Validators.compose([
@@ -82,7 +80,7 @@ export class LoginComponent implements OnInit {
 
 	}
 
-	async ngOnInit() {
+	async ngOnInit () {
 
 		var self = this
 		// check credentials saved
@@ -110,7 +108,7 @@ export class LoginComponent implements OnInit {
 		}
 	}
 
-	toggleTemplate(): void {
+	toggleTemplate (): void {
 		if (this.loadingTemplate) {
 			this.loadingTemplate = null;
 		} else {
@@ -118,30 +116,29 @@ export class LoginComponent implements OnInit {
 		}
 	}
 
-	showLoader() {
+	showLoader () {
 		this.loading = !this.loading
 	}
 
-	get email() {
+	get email () {
 		return this.form.get('email');
 	}
 
-	get password() {
+	get password () {
 		return this.form.get('password');
 	}
 
-	get saveme() {
+	get saveme () {
 		return this.form.get('saveme');
 	}
 
-	async onSubmit() {
+	async onSubmit () {
 
-		console.log('login??')
 		this.loading = true
 		var self = this;
 		if (!this.form.valid) {
 			self.loading = false
-			await self.notificationService.warningSwal(this.errorTitle, 'Va rugam sa completati toate campurile.', this.errorIcon)
+			await self.notificationService.warningSwal(this.errorTitle, 'Vă rugăm să completați toate câmpurile.', this.errorIcon)
 			return false;
 		} else if (this.form.value.saveme) {
 			// add to storage
@@ -155,54 +152,23 @@ export class LoginComponent implements OnInit {
 			await self.localStorage.removeItem(environment.config.storageKey + "password");
 		}
 
-
 		this.authService.login(this.form.value)
 			.then(async (res) => {
 				let response = (typeof res.status_code !== 'undefined' ? res : res.error)
 				if (typeof response.status_code !== 'undefined') {
-					if (response.status_code == 200 && typeof response.data.token !== 'undefined' && response.code_validation == 0) {
-                        console.log('auth?')
+					if (response.status_code == 200 && typeof response.data.token !== 'undefined') {
 						// everything ok now, we wrap it up now
-						self.authService.setToken(response.data.token)
+						self.authService.setToken(response.data.token);
 						await self.localStorage.setString(environment.config.tokenKey, response.data.token)
 						await self.localStorage.setString(environment.config.userKey, JSON.stringify(response.data.user))
-						
-						// redirect to /dashboard/main
+
+						// redirect to /appointments
 						// set authenticated and redirect
-						self.loading = false
-						setTimeout(function() {
-                            console.log('auth? 2')
+						self.loading = false;
+						setTimeout(function () {
 							self.authService.setAuthenticatedNext(true);
-							self.router.navigateByUrl('dashboard/main', { replaceUrl: true })
+							self.router.navigateByUrl('appointments', { replaceUrl: true })
 						}, 200)
-
-					} else if (response.code_validation == 1) {
-						// get phone verification
-						response.errors.message.forEach(function (msg) {
-							self.notificationService.warningSwal(
-								self.errorTitle, msg, self.errorIcon
-							);
-						})
-
-						self.id_cetatean = response.id
-						self.phone_no = response.phone_no
-						// # de reactivat
-						self.loading = false
-						self.resendCodeAndOpenModal('sms')
-						return false
-					} else if (response.code_validation == 2) {
-						// get phone verification
-						response.errors.message.forEach(function (msg) {
-							self.notificationService.warningSwal(
-								self.errorTitle, msg, self.errorIcon
-							);
-						})
-
-						self.id_cetatean = response.id
-						// # de reactivat
-						self.loading = false
-						self.resendCodeAndOpenModal('email')
-						return false
 					} else {
 						let errorMessage = environment.config.customNotifications.generalMessages.error;
 						response.errors.message.forEach(function (msg) {
@@ -233,77 +199,8 @@ export class LoginComponent implements OnInit {
 				await self.notificationService.warningSwal(
 					self.errorTitle, errorMessage, self.errorIcon
 				);
-				
+
 				return false
 			})
-	}
-
-	openDialog(): void {
-		const dialogRef = this.dialog.open(CheckCodeComponent, {
-			width: '400px',
-			data: { phone_no: 'xxxx072' }
-		});
-
-		dialogRef.afterClosed().subscribe(result => {
-			console.log(result)
-		}, (err) => {
-			console.log(err, 'err')
-		});
-	}
-
-	resendCodeAndOpenModal(inputFormat) {
-		var self = this
-		self.authService.resendCode({ id: self.id_cetatean, format: inputFormat })
-			.then(async res => {
-				// check if success
-				let response = (typeof res.status_code !== 'undefined' ? res : res.error)
-				if (typeof response.status_code !== 'undefined') {
-					if (response.status_code == 200) {
-						// success
-						// on success.. please open the modal
-						const dialogRef = this.dialog.open(CheckCodeComponent, {
-							width: '400px',
-							data: { phone_no: self.phone_no, id_cetatean: self.id_cetatean, inputFormat }
-						});
-				
-						dialogRef.beforeClosed().subscribe(res => {
-							if(res === 1) {
-								// we have a success, please show swal with relogin pls.
-								self.notificationService.warningSwal(
-									self.successTitle, 'Contul a fost validat cu succes. Va rugam sa va autentificati.', self.successIcon
-								);
-							}
-						})
-						return false
-
-					} else {
-						// error
-						response.errors.message.forEach(function (msg) {
-							self.notificationService.warningSwal(
-								self.errorTitle, msg, self.errorIcon
-							);
-						})
-
-						return false
-					}
-				} else {
-					// general error
-					let errorMessage = environment.config.customNotifications.generalMessages.error;
-					self.loading = false
-					await self.notificationService.warningSwal(
-						self.errorTitle, errorMessage, self.errorIcon
-					);
-					return false
-				}
-
-			})
-			.catch(async err => {
-				let errorMessage = environment.config.customNotifications.generalMessages.error;
-				self.loading = false
-				await self.notificationService.warningSwal(
-					self.errorTitle, errorMessage, self.errorIcon
-				);
-				return false
-			});
 	}
 }

@@ -16,6 +16,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgxMatIntlTelInputModule } from 'ngx-mat-intl-tel-input';
 import { MatSelectModule } from '@angular/material/select';
 
+import { MatButtonModule } from '@angular/material/button';
+
 @NgModule({
 	declarations: [
 		SetariComponent
@@ -33,7 +35,8 @@ import { MatSelectModule } from '@angular/material/select';
 		MatCheckboxModule,
 		MatFormFieldModule,
 		NgxLoadingModule.forRoot({}),
-		NgxMatIntlTelInputModule
+		NgxMatIntlTelInputModule,
+		MatButtonModule
 	]
 })
 export class SetariModule { }

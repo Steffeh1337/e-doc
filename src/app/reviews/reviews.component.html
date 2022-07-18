@@ -1,0 +1,66 @@
+<div class="app-inner-layout">
+	<div class="app-inner-layout__header bg-amy-crisp">
+		<div class="app-page-title">
+			<div class="page-title-wrapper">
+				<div class="page-title-heading">
+					<div class="page-title-icon">
+						<i class="fa fa-fw fa-star icon-gradient bg-amy-crisp"></i>
+					</div>
+					<div class="text-white">
+						Review-uri
+						<div class="page-title-subheading">
+							Vizualizare review-uri primite de la pacienți
+						</div>
+					</div>
+				</div>
+				<div class="page-title-actions">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12 bg-white py-3 blue-border mt-5">
+		<div class="row d-flex justify-content-between mb-3">
+			<h5 class="ml-3">Review-uri
+				<span *ngIf="loaded == 1" class="pl-1 pr-1 bg-info text-white rounded-pill">
+					{{data.reviewsNo}}
+				</span>
+			</h5>
+		</div>
+
+		<div class="row" *ngIf="loaded == 1 && data.reviewsNo > 0 && data.flooredRating > 0">
+			<div class="col-sm-7 mb-5">
+				<span *ngFor="let item of [].constructor(data.flooredRating); let i = index">
+					<i class="vsm-icon fa fa-star fa-fw text-warning"></i>
+				</span>
+				<span class="ml-10 text-primary">
+					{{ data.rating }} stele din {{ data.reviewsNo }} review-uri
+				</span>
+			</div>
+		</div>
+
+		<div class="row" *ngIf="loaded == 1">
+			<div class="col-sm-7 mb-3" *ngFor="let row of reviews">
+
+				<div class="row">
+					<div class="col-sm-6">
+
+						<h5 class="mt-1">
+							{{ row.user_name }}
+						</h5>
+						<p><em>{{row.done_user | date:'dd-MM-YYYY HH:mm:ss'}}</em></p>
+						<p>
+							<span *ngFor="let item of [].constructor(row.rating_user); let i = index">
+								<i class="vsm-icon fa fa-star fa-fw text-warning"></i>
+							</span>
+						</p>
+						<p class="m-0">
+							{{row.comment_user}}
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

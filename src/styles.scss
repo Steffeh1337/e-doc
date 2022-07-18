@@ -63,7 +63,7 @@
 .custom-header-class {
   position: absolute;
   right: 10px;
-  top: 5px;
+  top: 20px;
   width: 300px;
   display: flex;
   flex-direction: row;
@@ -195,4 +195,18 @@
   font-size: 75%;
   font-weight: 700;
   line-height: 1;
+}
+
+.swal2-cancel {
+  margin-right: 3px !important;
+  width: 49% !important;
+}
+
+.swal2-confirm {
+  margin-left: 3px !important;
+  width: 49% !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

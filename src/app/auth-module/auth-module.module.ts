@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AuthRoutingModule } from './auth-module-routing.module';
 
 @NgModule({
@@ -8,7 +8,8 @@ import { AuthRoutingModule } from './auth-module-routing.module';
 	],
 	imports: [
 		CommonModule,
-		AuthRoutingModule
+		AuthRoutingModule,
+		HttpClientModule
 	]
 })
 export class AuthModuleModule { }

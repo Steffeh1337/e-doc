@@ -18,17 +18,11 @@ import { Router } from '@angular/router';
 
 export class SidebarComponent implements OnInit {
 	public extraParameter: any;
-	public showRegistratura = false;
-	public showMobile = false;
-	public showSettings = false;
-	public showAdmin = false;
 
-	constructor(public globals: ThemeOptions, private activatedRoute: ActivatedRoute,
+	constructor (public globals: ThemeOptions, private activatedRoute: ActivatedRoute,
 		private authService: AuthService,
 		private router: Router
-	) {
-
-	}
+	) { }
 
 	@select('config') public config$: Observable<any>;
 
@@ -37,25 +31,25 @@ export class SidebarComponent implements OnInit {
 	private innerWidth: number;
 	activeId = 'dashboards';
 
-	toggleSidebar() {
+	toggleSidebar () {
 		this.globals.toggleSidebar = !this.globals.toggleSidebar;
 		this.globals.sidebarHover = !this.globals.toggleSidebar;
 	}
 
-	sidebarHover() {
+	sidebarHover () {
 		this.globals.sidebarHover = !this.globals.sidebarHover;
 	}
 
-	sidebarHoverMouseOut() {
+	sidebarHoverMouseOut () {
 		this.globals.sidebarHover = false;
 	}
 
-	sidebarHoverMouseIn() {
+	sidebarHoverMouseIn () {
 		this.globals.sidebarHover = true;
 	}
 
 
-	ngOnInit() {
+	ngOnInit () {
 		setTimeout(() => {
 			this.innerWidth = window.innerWidth;
 			if (this.innerWidth < 1200) {
@@ -68,7 +62,7 @@ export class SidebarComponent implements OnInit {
 	}
 
 	@HostListener('window:resize', ['$event'])
-	onResize(event) {
+	onResize (event) {
 		this.newInnerWidth = event.target.innerWidth;
 
 		if (this.newInnerWidth < 1200) {
@@ -78,9 +72,8 @@ export class SidebarComponent implements OnInit {
 		}
 	}
 
-	async logout() {
+	async logout () {
 		await this.authService.logout();
 		this.router.navigateByUrl('/auth/login', { replaceUrl: true });
-		console.log('here')
 	}
 }

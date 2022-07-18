@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-	title = 'Directia de Impozite si Taxe Sector 4 - Bucuresti';
+	title = 'E-DOC';
 }

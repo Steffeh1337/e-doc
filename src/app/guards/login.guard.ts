@@ -19,27 +19,27 @@ const TOKEN_KEY = environment.config.tokenKey;
 })
 export class LoginGuard implements CanActivate {
 
-	constructor(public authService: AuthService, public router: Router, private localStorage : StorageService) { }
+	constructor (public authService: AuthService, public router: Router, private localStorage: StorageService) { }
 
 	// canActivate(): Observable<boolean> {
-	canActivate(): any {
+	canActivate (): any {
 		var self = this
-		const token = localStorage.getItem(TOKEN_KEY)
-		if(token == null || token == '') { 
+		const token = localStorage.getItem(TOKEN_KEY);
+		if (token == null || token == '') {
 			return true
-		}else {
+		} else {
 			// we have a token.. please check
 			const isExpired = helperJWT.isTokenExpired(token)
-			if(isExpired) {
+			if (isExpired) {
 				return true
-			}else {
+			} else {
 				// it's not expired.. please let me check the valability/issuer
 				const decodedToken = helperJWT.decodeToken(token)
-				if(decodedToken.iss !== environment.config.fromTokenValid) {
+				if (decodedToken.iss !== environment.config.fromTokenValid) {
 					return true
-				}else {
+				} else {
 					self.authService.setToken(token)
-					this.router.navigateByUrl('/dashboard/main', { replaceUrl: true });
+					this.router.navigateByUrl('/appointments', { replaceUrl: true });
 					return false;
 				}
 			}

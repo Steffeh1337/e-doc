@@ -22,29 +22,29 @@ const TOKEN_KEY = environment.config.tokenKey;
 export class AuthGuard implements CanActivate {
 
 	token
-	constructor(public authService: AuthService, public router: Router, private localStorage: StorageService) { }
+	constructor (public authService: AuthService, public router: Router, private localStorage: StorageService) { }
 
 	// canActivate(): Observable<boolean> {
-	canActivate(): boolean {
-		var self = this
+	canActivate (): boolean {
+		var self = this;
 
-		const token = localStorage.getItem(TOKEN_KEY)
-		if(token == null || token == '') {
+		const token = localStorage.getItem(TOKEN_KEY);
+		if (token == null || token == '') {
 			// redirect to login please
-			this.router.navigateByUrl('/auth/login', { replaceUrl: true });
+			this.router.navigateByUrl('/pages/login', { replaceUrl: true });
 			return false
-		}else {
+		} else {
 			const isExpired = helperJWT.isTokenExpired(token)
 			if (isExpired) {
-				this.router.navigateByUrl('/auth/login', { replaceUrl: true });
+				this.router.navigateByUrl('/pages/login', { replaceUrl: true });
 				return false
-			}else {
+			} else {
 				// we are not expired.. please check the issuer
 				const decodedToken = helperJWT.decodeToken(token)
-				if(decodedToken.iss !== environment.config.fromTokenValid) {
-					this.router.navigateByUrl('/auth/login', { replaceUrl: true });
+				if (decodedToken.iss !== environment.config.fromTokenValid) {
+					this.router.navigateByUrl('/pages/login', { replaceUrl: true });
 					return false
-				}else {
+				} else {
 					// we are fine here, please allow
 					self.authService.setToken(token)
 					return true
